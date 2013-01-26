@@ -193,3 +193,6 @@
 [submodule "vim/bundle/sleuth"]
 	path = vim/bundle/sleuth
 	url = git://github.com/tpope/vim-sleuth.git
+[submodule "vim/bundle/open-url"]
+	path = vim/bundle/open-url
+	url = git://github.com/henrik/vim-open-url.git
