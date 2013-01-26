@@ -1,0 +1,24 @@
+#!/bin/bash
+
+git submodule init
+git submodule update
+
+not_ignored() {
+  local ignorelist=(setup update README.md global.gems)
+  for i in "${ignorelist[@]}"; do
+    if [ "$1" = "$i" ]; then
+      return 1
+    fi
+  done
+
+  return 0
+}
+
+for f in *; do
+  if not_ignored "$f"; then
+    rm -rf "$HOME/.$f"
+    ln -s "$PWD/$f" "$HOME/.$f"
+  fi
+done
+
+chmod 0600 msmtprc

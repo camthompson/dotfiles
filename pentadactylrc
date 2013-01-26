@@ -1,0 +1,52 @@
+" General
+set editor='/usr/local/bin/mvim -f +<line> <file>'
+set followhints=1
+set showtabline=never
+set showstatuslinks=command
+set runtimepath=~/.pentadactyl
+set hlfind
+set hintkeys='asdfg;lkjh'
+
+" Styling
+colorscheme solarized-light
+highlight StatusLine -moz-appearance: none !important; font-weight: bold; background: transparent !important; border: 0px !important; min-height: 22px !important; text-shadow: none !important; font: normal 12px/1 'Menlo' !important; padding: 3px 0px 3px 5px !important;
+highlight CmdLine padding: 1px !important; font: normal 12px 'Menlo' !important;
+highlight CmdOutput font: normal 12px 'Menlo' !important;
+highlight CompItem font: normal 12px 'Menlo' !important;
+
+" ; instead of : for command mode
+nmap -builtin ; :
+
+" Backspace is a choad
+nmap -builtin <bs> <nop>
+
+" Move faster
+nmap -builtin h 3h
+nmap -builtin j 3j
+nmap -builtin k 3k
+nmap -builtin l 3l
+
+" Easier access to quickmarks
+nmap -builtin "'" go
+nmap -builtin '"' gn
+
+" Toggle inspect element
+nmap -builtin <c-s> <m-a-i>
+imap -builtin <c-s> <esc><m-a-i>
+
+" Toggle console
+nmap -builtin <c-g> <m-a-k><esc>
+imap -builtin <c-g> <esc><m-a-k><esc>
+
+" Change tabs
+nmap -builtin { :tn<cr>
+nmap -builtin ( :tp<cr>
+
+" Clear search highlighting and normal highlighting.
+nmap -builtin <cr> <esc>:noh<cr><cr>
+
+" Shut up
+javascript dactyl.beep = function() { return false;  }
+
+" Passthrough
+set passkeys+=duckduckgo.com:hjkmrsv<cr>1

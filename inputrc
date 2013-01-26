@@ -1,0 +1,12 @@
+set editing-mode vi
+
+tab: complete
+set completion-ignore-case on
+set page-completions on
+
+set keymap vi-insert
+"\C-l": clear-screen
+"\C-w": backward-kill-word
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-u": kill-whole-line

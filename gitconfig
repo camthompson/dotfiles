@@ -1,0 +1,89 @@
+[user]
+  name = Cam Thompson
+  email = cam@camthompson.com
+[github]
+  user = camthompson
+[core]
+  editor = vim -f
+  excludesfile = ~/.cvsignore
+  autocrlf = false
+  pager = less -FXRS
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[init]
+  templatedir = ~/.gittemplate
+[web]
+  browser = open
+[credential]
+  helper = osxkeychain
+[merge]
+  tool = fugitive
+  stat = true
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[push]
+  default = tracking
+[diff]
+  mnemonicprefix = true
+  renames = copies
+[advice]
+  statusHints = false
+	pushNonFastForward = false
+[branch]
+  autosetupmerge = true
+[alias]
+  a = add
+  aa = add --all
+  ap = add -p
+  b = branch
+  c = commit --verbose
+  ca = commit --verbose -a
+  caa = commit --verbose -a --amend -C HEAD
+  cam = commit --verbose -am
+  cm = commit --verbose -m
+  d = diff
+  dc = diff --cached
+  dh1 = diff HEAD~1
+  div = divergence
+  f = fetch
+  fa = fetch --all
+  g = grep
+  gn = goodness
+  gnc = goodness --cached
+  h = !git l -1
+  hp = !. ~/.githelpers && show_git_head
+  l = !. ~/.githelpers && pretty_git_log
+  la = !. ~/.githelpers && pretty_git_log --all
+  ls = ls-files
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lp = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
+  m = merge --no-ff
+  mv = mv
+  o = checkout
+  ob = checkout -b
+  p = push
+  r = !git l -30
+  ra = !git r --all
+  rb = rebase
+  rc = rebase --continue
+  re = reset
+  rm = rm
+  rs = rebase --skip
+  rv = remote --verbose
+  s = status --short --ignore-submodules
+  ss = status --short
+  sa = stash apply
+  sd = stash drop
+  sh = stash
+  sl = stash list
+  sm = submodule
+  st = status
+  t = tag
+  u = pull
+  up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+  wat = what-the-hell-just-happened
+  wc = whatchanged -p --abbrev-commit --pretty=medium

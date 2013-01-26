@@ -1,0 +1,14 @@
+--sort-files
+
+--ignore-dir=tmp
+--ignore-dir=log
+--ignore-dir=vendor
+
+--type-set=css=css,sass,scss,less
+--type-set=cucumber=feature
+--type-set=markdown=md,mkd,markdown
+--type-set=rdoc=rdoc
+
+--type-add=ruby=haml,rake,erb
+--type-add=html=haml,rb
+--type-add=js=json

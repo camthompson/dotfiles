@@ -1,0 +1,20 @@
+#
+# A monochrome theme that displays basic information.
+#
+# Authors:
+#   Brian Tse <briankftse@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+# Screenshots:
+#   http://i.imgur.com/zLZNK.png
+#
+
+function prompt_minimal_setup {
+  prompt_opts=(cr percent subst)
+
+  # Define prompts.
+  PROMPT='%1~ > '
+  RPROMPT=''
+}
+
+prompt_minimal_setup "$@"

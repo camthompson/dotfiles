@@ -1,0 +1,15 @@
+vim/swp/*
+!vim/swp/.gitkeep
+vim/undo/*
+!vim/undo/.gitkeep
+vim/yankring_history_v2.txt
+vim/dbext_history.txt
+pentadactyl/info
+mutt/tmp/*
+!mutt/tmp/.gitkeep
+mutt/cache/headers/*
+!mutt/cache/headers/.gitkeep
+mutt/cache/bodies/*
+!mutt/cache/bodies/.gitkeep
+irssi/sasl.auth
+irssi/saved_colors
