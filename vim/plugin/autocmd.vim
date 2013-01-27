@@ -30,6 +30,9 @@ augroup vimrc
   au FileType markdown set ai formatoptions=tcroqn2 comments=n:&gt;
   au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
   au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
+  au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
+  au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
+  au FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,coffee set ai sw=2 sts=2 et
 
   " TODO: Figure out if this is still necessary
   " For whatever reason, this breaks shit if mapped normally
