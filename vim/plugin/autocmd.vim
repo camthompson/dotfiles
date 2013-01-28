@@ -34,7 +34,6 @@ augroup vimrc
   au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
   au FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,coffee set ai sw=2 sts=2 et
 
-  " TODO: Figure out if this is still necessary
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
 augroup END
