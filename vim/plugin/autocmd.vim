@@ -25,7 +25,6 @@ augroup vimrc
   au InsertEnter * set colorcolumn+=81 noignorecase listchars-=trail:·
   au InsertLeave * set colorcolumn-=81 ignorecase listchars+=trail:·
 
-  " TODO: Figure out why this is here
   au FileType python set sw=4 sts=4 et
   au FileType markdown set ai formatoptions=tcroqn2 comments=n:&gt;
   au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
