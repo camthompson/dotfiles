@@ -21,7 +21,7 @@ inoremap <c-w> <c-g>u<c-w>
 " Normal Mode {{{
 nnoremap ' `
 nnoremap ` '
-nnoremap H ^
+nnoremap H g^
 nnoremap L g_
 nnoremap <c-y> 5<c-y>
 nnoremap <c-e> 5<c-e>
@@ -68,3 +68,11 @@ nnoremap <localleader>sh :setlocal filetype=sh<CR>
 nnoremap <localleader>vi :setlocal filetype=vim<CR>
 nnoremap <localleader>xm :setlocal filetype=xml<CR>
 " }}}"
+
+" Move By Display Lines {{{
+noremap j gj
+noremap k gk
+noremap $ g$
+noremap 0 g0
+noremap ^ g^
+" }}}
