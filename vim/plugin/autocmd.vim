@@ -7,19 +7,6 @@ augroup vimrc
     \   exe "normal g`\"" |
     \ endif
 
-  " Show relative line numbers on active buffer
-  if exists('+relativenumber')
-    au WinLeave *
-          \ if &rnu == 1 && bufname("%") !~# "Result" && &ft != "help" |
-          \ exe "setl norelativenumber" |
-          \ exe "setl number" |
-          \ endif
-    au WinEnter *
-          \ if &rnu == 0 && bufname("%") !~# "Result" && &ft != "help" |
-          \ exe "setl relativenumber" |
-          \ endif
-  endif
-
   " Highlight 81st column in insert mode; show trailing spaces when not
   " in insert; honestly I don't know why the ignorecase stuff is here
   au InsertEnter * set colorcolumn+=81 noignorecase listchars-=trail:·

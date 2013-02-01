@@ -25,7 +25,7 @@ colo solarized
 " }}}
 
 " Appearance {{{
-set relativenumber "show line numbers relative to cursor
+set number "show line numbers
 set scrolloff=5 "keep 5 lines above or below current line
 set sidescrolloff=5 "keep 5 lines left or right of cursor
 set list "show symbols for whitespace characters
