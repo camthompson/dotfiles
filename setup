@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md global.gems)
+  local ignorelist=(setup update README.md default-gems)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -22,3 +22,6 @@ for f in *; do
 done
 
 chmod 0600 msmtprc
+
+rm -f "$HOME/.rbenv/default-gems"
+ln -s "$PWD/default-gems" "$HOME/.rbenv/default-gems"
