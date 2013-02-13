@@ -78,7 +78,7 @@ macro index,pager M "<save-message>?<toggle-mailboxes>" "move a message to a mai
 macro index,pager i "<save-message>=Inbox\n" "move message to inbox"
 macro index,pager d "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><delete-message>" "mark as read and move to trash"
 macro index,pager e "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Archive\n" "mark as read and archive"
-macro index,pager s "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Spam\n" "mark as read and move to spam"
+macro index,pager ! "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Spam\n" "mark as read and move to spam"
 
 # Pager View Options ---------------------------------
 set pager_index_lines = 5  # number of index lines to show
@@ -145,7 +145,7 @@ bind index,pager \Cp   sidebar-prev
 bind index,pager \Co   sidebar-open
 
 # Search ---------------------------------------------
-macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/Search<enter><change-folder-readonly>=Search<enter>" "search mail (using notmuch)"
+macro index s "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/Search<enter><change-folder-readonly>=Search<enter>" "search mail (using notmuch)"
 macro index a "<limit>all\n" "show all messages (undo limit)"
 bind index,pager N search-opposite
 
