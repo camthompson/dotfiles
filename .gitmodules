@@ -196,3 +196,6 @@
 [submodule "vim/bundle/open-url"]
 	path = vim/bundle/open-url
 	url = git://github.com/henrik/vim-open-url.git
+[submodule "vim/bundle/gitgutter"]
+	path = vim/bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
