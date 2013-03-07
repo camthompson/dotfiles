@@ -13,6 +13,7 @@
   diff = auto
   interactive = auto
   status = auto
+  grep = auto
 [init]
   templatedir = ~/.gittemplate
 [web]
