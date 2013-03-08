@@ -7,7 +7,6 @@ pry-doc
 pry-debugger
 pry-stack_explorer
 pry-rescue
-pry-exception_explorer
 pry-syntax-hacks
 pry-editline
 interactive_editor
