@@ -205,3 +205,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/obsession"]
+	path = vim/bundle/obsession
+	url = git://github.com/tpope/vim-obsession.git
