@@ -166,9 +166,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git@github.com:camthompson/vim-colors-solarized.git
-[submodule "vim/bundle/foreplay"]
-	path = vim/bundle/foreplay
-	url = git://github.com/tpope/vim-foreplay.git
 [submodule "vim/bundle/scriptease"]
 	path = vim/bundle/scriptease
 	url = git://github.com/tpope/vim-scriptease.git
@@ -208,3 +205,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = git://github.com/tpope/vim-obsession.git
+[submodule "vim/bundle/fireplace"]
+	path = vim/bundle/fireplace
+	url = git://github.com/tpope/vim-fireplace.git
