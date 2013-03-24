@@ -13,7 +13,7 @@ hirb
 wirble
 github
 hookup
-laser --prerelease
+laser --pre
 vagrant
 debugger
 github-markup
