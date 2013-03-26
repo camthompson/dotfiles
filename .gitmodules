@@ -211,3 +211,6 @@
 [submodule "vim/bundle/qargs"]
 	path = vim/bundle/qargs
 	url = git://github.com/henrik/vim-qargs.git
+[submodule "vim/bundle/markdown-folding"]
+	path = vim/bundle/markdown-folding
+	url = git://github.com/nelstrom/vim-markdown-folding.git
