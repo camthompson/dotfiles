@@ -208,3 +208,6 @@
 [submodule "vim/bundle/showmarks"]
 	path = vim/bundle/showmarks
 	url = git://github.com/vimez/vim-showmarks.git
+[submodule "vim/bundle/qargs"]
+	path = vim/bundle/qargs
+	url = git://github.com/henrik/vim-qargs.git
