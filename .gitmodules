@@ -97,9 +97,6 @@
 [submodule "vim/bundle/splitjoin"]
 	path = vim/bundle/splitjoin
 	url = git://github.com/AndrewRadev/splitjoin.vim.git
-[submodule "vim/bundle/qargs"]
-	path = vim/bundle/qargs
-	url = https://github.com/nelstrom/vim-qargs.git
 [submodule "vim/bundle/visual-star-search"]
 	path = vim/bundle/visual-star-search
 	url = https://github.com/nelstrom/vim-visual-star-search.git
