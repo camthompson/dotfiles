@@ -1,1 +1,1 @@
-let g:showmark_enable = 0
+let g:showmarks_enable = 0
