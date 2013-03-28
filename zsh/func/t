@@ -64,20 +64,9 @@ if [[ -n $1 ]]; then
 else
   session="${${PWD/$HOME/~}:t}"
 fi
-
-# This works around an epoll bug on Linux. Looks silly, but works.
-tmux has-session -t $session |& read tmp
-rc=${pipestatus[1]}
-
-if (( rc != 0 )); then
-    tmux new-session -d -s $session ||
-        { printf 'Failed to created session `%s'\''\n' $session
-          return 1; }
-fi
-
 local -a tmux_options
 
-tmux_options=(attach-session -t $session)
+tmux_options=(new-session -As $session)
 (( ${+opt[-d]} )) && tmux_options+=(-d)
 
 local EXEC=exec
