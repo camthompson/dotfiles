@@ -70,9 +70,6 @@
 [submodule "vim/bundle/bundler"]
 	path = vim/bundle/bundler
 	url = git://github.com/tpope/vim-bundler.git
-[submodule "vim/bundle/auto-pairs"]
-	path = vim/bundle/auto-pairs
-	url = git://github.com/jiangmiao/auto-pairs.git
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
@@ -217,3 +214,6 @@
 [submodule "vim/bundle/tbone"]
 	path = vim/bundle/tbone
 	url = git://github.com/tpope/vim-tbone.git
+[submodule "vim/bundle/smartinput"]
+	path = vim/bundle/smartinput
+	url = git://github.com/kana/vim-smartinput.git
