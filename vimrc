@@ -13,15 +13,8 @@ silent! call pathogen#infect("~/src/vimbundles")
 
 " Colorscheme {{{
 set t_Co=256
-set background=light
-let g:solarized_bold = 0
-let g:solarized_italic = 0
-let g:solarized_underline = 0
-let g:solarized_visibility = "low"
-let g:solarized_hitrail = 1
-let g:solarized_diffmode = "high"
-let g:solarized_menu = 0
-colo solarized
+set background=dark
+colo Tomorrow-Night
 " }}}
 
 " Appearance {{{
