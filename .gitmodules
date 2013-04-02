@@ -214,3 +214,6 @@
 [submodule "vim/bundle/tbone"]
 	path = vim/bundle/tbone
 	url = git://github.com/tpope/vim-tbone.git
+[submodule "vim/bundle/hemisu"]
+	path = vim/bundle/hemisu
+	url = git://github.com/noahfrederick/Hemisu.git
