@@ -34,9 +34,9 @@ function prompt_cam_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_cam_precmd
 
-  zstyle ':keymap:insert' format ' %b%F{cyan}>%f%b'
+  zstyle ':keymap:insert' format ' %b%F{blue}>%f%b'
   zstyle ':keymap:overwrite' format ' %f{red}>%f'
-  zstyle ':keymap:command' format ' %b%F{cyan}<%f%b'
+  zstyle ':keymap:command' format ' %b%F{blue}<%f%b'
   zstyle ':git:action' format ':%%F{magenta}%s%f%%b'
   zstyle ':git:added' format ' %%F{magenta}+%f%%b'
   zstyle ':git:ahead' format ' %%F{magenta}^%f%%b'
