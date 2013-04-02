@@ -31,11 +31,19 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
+function! SL(function)
+  if exists('*'.a:function)
+    return call(a:function,[])
+  else
+    return ''
+  endif
+endfunction
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
 " }}}
 
 " Behavior {{{
 set nowrap "don't wrap lines
-set noshowmode "show mode
+set showmode "show mode
 set startofline "jump commands move to first non-blank character
 set autoread "automatically reads file when updated outside of vim
 set magic "unescaped . and * in regex are special chars

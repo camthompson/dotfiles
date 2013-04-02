@@ -115,9 +115,6 @@
 [submodule "vim/bundle/hammer"]
 	path = vim/bundle/hammer
 	url = git://github.com/matthias-guenther/hammer.vim.git
-[submodule "vim/bundle/statline"]
-	path = vim/bundle/statline
-	url = git://github.com/millermedeiros/vim-statline.git
 [submodule "vim/bundle/speeddating"]
 	path = vim/bundle/speeddating
 	url = git://github.com/tpope/vim-speeddating.git
@@ -220,3 +217,6 @@
 [submodule "vim/bundle/tomorrow"]
 	path = vim/bundle/tomorrow
 	url = git://github.com/chriskempson/vim-tomorrow-theme.git
+[submodule "vim/bundle/base16"]
+	path = vim/bundle/base16
+	url = git://github.com/chriskempson/base16-vim.git
