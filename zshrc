@@ -18,7 +18,7 @@ func_glob='^([_.]*|prompt_*_setup)(.N:t)'
 for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
 
 autoload -Uz promptinit && promptinit
-prompt cam
+prompt cettomorrow
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
