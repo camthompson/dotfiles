@@ -1,5 +1,5 @@
 let g:Powerline_theme='cam'
-let g:Powerline_colorscheme='cam'
+let g:Powerline_colorscheme='solarized'
 let g:Powerline_stl_path_style = 'short'
 let g:Powerline_mode_n = 'N'
 let g:Powerline_mode_i = 'I'
