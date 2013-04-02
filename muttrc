@@ -56,7 +56,8 @@ set postponed = "=Drafts"
 # Index View Options ---------------------------------
 set date_format = "%m/%d/%y"
 set index_format = "[%Z]  %D  %-20.20F  %s"
-set sort = reverse-date-received
+set sort = threads
+set sort_aux = reverse-last-date-received
 
 # Index Key Bindings ---------------------------------
 bind index gg       first-entry
