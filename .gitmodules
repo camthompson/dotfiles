@@ -208,3 +208,9 @@
 [submodule "vim/bundle/tbone"]
 	path = vim/bundle/tbone
 	url = git://github.com/tpope/vim-tbone.git
+[submodule "vim/bundle/git-log"]
+	path = vim/bundle/git-log
+	url = git://github.com/kablamo/vim-git-log.git
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = git://github.com/tpope/vim-dispatch.git
