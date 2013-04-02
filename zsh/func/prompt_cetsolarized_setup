@@ -58,8 +58,8 @@ function prompt_cam_setup {
   PROMPT='${SSH_TTY:+%F{green\}%m%b%f:}'
   PROMPT+='%F{yellow}${_prompt_cam_pwd}'
   PROMPT+='${git_info:+${(e)git_info[prompt]}}'
-  PROMPT+='${editor_info[keymap]} '
-  RPROMPT='${git_info[rprompt]}'
+  PROMPT+='${editor_info[keymap]} %f%b'
+  RPROMPT='${git_info[rprompt]}%f%b'
 }
 
 prompt_cam_setup "$@"
