@@ -145,9 +145,6 @@
 [submodule "vim/bundle/scratch"]
 	path = vim/bundle/scratch
 	url = git://github.com/kana/vim-scratch.git
-[submodule "vim/bundle/tagbar"]
-	path = vim/bundle/tagbar
-	url = git://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/pasta"]
 	path = vim/bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
@@ -166,9 +163,6 @@
 [submodule "vim/bundle/clojure-static"]
 	path = vim/bundle/clojure-static
 	url = git://github.com/guns/vim-clojure-static.git
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/handlebars"]
 	path = vim/bundle/handlebars
 	url = git://github.com/nono/vim-handlebars.git
@@ -217,3 +211,6 @@
 [submodule "vim/bundle/eighties"]
 	path = vim/bundle/eighties
 	url = git://github.com/justincampbell/vim-eighties.git
+[submodule "vim/bundle/textobjectify"]
+	path = vim/bundle/textobjectify
+	url = git://github.com/paradigm/TextObjectify.git
