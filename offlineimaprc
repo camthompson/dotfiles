@@ -41,7 +41,7 @@ nametrans = lambda folder: {'drafts': 'INBOX.Drafts',
 type = IMAP
 remotehost = mail.messagingengine.com
 ssl = yes
-sslcacertfile = ~/.certs/fastmail.pem
+cert_fingerprint = fa86c1ca2d4f805e8fe7b8e7076a3ad2ccc52bb4
 remoteport = 993
 remoteuser = camthompson@fastmail.fm
 remotepasseval = get_keychain_pass(account="cam@camthompson.com", server="mail.messagingengine.com")
