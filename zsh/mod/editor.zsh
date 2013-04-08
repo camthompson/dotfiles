@@ -109,4 +109,5 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey -M viins ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
+bindkey -M viins '^U' backward-kill-line
 # vim:set ft=zsh:
