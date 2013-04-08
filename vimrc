@@ -68,10 +68,6 @@ set splitbelow "open splits below current window
 set splitright "open vertical splits to the right of the current window
 set switchbuf=usetab "jump to first open window or tab with a buffer
 set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
 set noesckeys "esc enters command mode instantly
 " }}}
 
