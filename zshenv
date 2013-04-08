@@ -22,6 +22,7 @@ fpath=(
 path=(
   $HOME/bin
   $HOME/.rbenv/bin
+  $HOME/.rbenv/shims
   /Applications/MacVim.app/Contents/MacOS
   /usr/local/{bin,sbin}
   /usr/local/share/python
