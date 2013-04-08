@@ -7,6 +7,7 @@ noremap <F1> <nop>
 
 " Command Mode {{{
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
+cnoremap <c-o> <up>
 " }}}
 
 " {{{ Insert Mode
