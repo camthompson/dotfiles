@@ -38,13 +38,6 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-function! SL(function)
-  if exists('*'.a:function)
-    return call(a:function,[])
-  else
-    return ''
-  endif
-endfunction
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
 " }}}
 
@@ -134,5 +127,95 @@ set undodir=$HOME/.vim/undo/ "undo file directory
 set undolevels=1000 "number of undo levels to save
 set nobackup "do not backup files
 " }}}
+
+function! SL(function)
+  if exists('*'.a:function)
+    return call(a:function,[])
+  else
+    return ''
+  endif
+endfunction
+
+function! Run()
+  let old_makeprg = &makeprg
+  let old_errorformat = &errorformat
+  try
+    let cmd = matchstr(getline(1),'^#!\zs[^ ]*')
+    if exists('b:run_command')
+      exe b:run_command
+    elseif cmd != '' && executable(cmd)
+      wa
+      let &makeprg = matchstr(getline(1),'^#!\zs.*').' %'
+      make
+    elseif &ft == 'mail' || &ft == 'text' || &ft == 'help' || &ft == 'gitcommit'
+      setlocal spell!
+    elseif exists('b:rails_root') && exists(':Rake')
+      wa
+      Rake
+    elseif &ft == 'cucumber'
+      wa
+      compiler cucumber
+      make %
+    elseif &ft == 'ruby'
+      wa
+      if executable(expand('%:p')) || getline(1) =~ '^#!'
+        compiler ruby
+        let &makeprg = 'ruby'
+        make %
+      elseif expand('%:t') =~ '_test\.rb$'
+        compiler rubyunit
+        let &makeprg = 'ruby'
+        make %
+      elseif expand('%:t') =~ '_spec\.rb$'
+        compiler rspec
+        let &makeprg = 'rspec'
+        make %
+      elseif &makeprg ==# 'bundle'
+        make
+      elseif executable('pry') && exists('b:rake_root')
+        execute '!pry -I"'.b:rake_root.'/lib" -r"%:p"'
+      elseif executable('pry')
+        !pry -r"%:p"
+      else
+        !irb -r"%:p"
+      endif
+    elseif &ft == 'html' || &ft == 'xhtml' || &ft == 'php' || &ft == 'aspvbs' || &ft == 'aspperl'
+      wa
+      if !exists('b:url')
+        call OpenURL(expand('%:p'))
+      else
+        call OpenURL(b:url)
+      endif
+    elseif &ft == 'vim'
+      w
+      if exists(':Runtime')
+        return 'Runtime %'
+      else
+        unlet! g:loaded_{expand('%:t:r')}
+        return 'source %'
+      endif
+    elseif &ft == 'sql'
+      1,$DBExecRangeSQL
+    elseif expand('%:e') == 'tex'
+      wa
+      exe "normal :!rubber -f %:r && xdvi %:r >/dev/null 2>/dev/null &\<CR>"
+    elseif &ft == 'dot'
+      let &makeprg = 'dotty'
+      make %
+    else
+      wa
+      if &makeprg =~ '%'
+        make
+      else
+        make %
+      endif
+    endif
+    return ''
+  finally
+    let &makeprg = old_makeprg
+    let &errorformat = old_errorformat
+  endtry
+endfunction
+command! -bar Run :execute Run()
 
 set secure
