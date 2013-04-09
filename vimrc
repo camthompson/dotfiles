@@ -179,7 +179,7 @@ function! Run()
       else
         !irb -r"%:p"
       endif
-    elseif &ft == 'html' || &ft == 'xhtml' || &ft == 'php' || &ft == 'aspvbs' || &ft == 'aspperl'
+    elseif &ft == 'html' || &ft == 'xhtml'
       wa
       if !exists('b:url')
         call OpenURL(expand('%:p'))
@@ -196,12 +196,6 @@ function! Run()
       endif
     elseif &ft == 'sql'
       1,$DBExecRangeSQL
-    elseif expand('%:e') == 'tex'
-      wa
-      exe "normal :!rubber -f %:r && xdvi %:r >/dev/null 2>/dev/null &\<CR>"
-    elseif &ft == 'dot'
-      let &makeprg = 'dotty'
-      make %
     else
       wa
       if &makeprg =~ '%'
