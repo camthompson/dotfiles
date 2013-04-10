@@ -35,7 +35,8 @@ default_color = "-1";
 info_eol = "false";
 
 # these characters are automatically replaced with specified color
-replaces = { "[]=" = "%K$*%n"; };
+# replaces = { "[]=" = "%K$*%n"; };
+replaces = { };
 
 abstracts = {
   ##

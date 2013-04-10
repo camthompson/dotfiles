@@ -193,8 +193,8 @@ settings = {
   };
   "irc/core" = { alternate_nick = "camth"; };
   "perl/core/scripts" = {
-    awl_display_key = " %w$H$N $C $S";
-    awl_display_key_active = "$H%k%4 %W$N  $C %b%0 $S";
+    awl_display_key = " $H$N-$C$S ";
+    awl_display_key_active = "$H%W%4 [$N-$C] $S";
     awl_separator = " ";
     neat_colorize = "yes";
     screen_away_active = "yes";
