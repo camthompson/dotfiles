@@ -96,8 +96,8 @@ statusbar = {
     topic_empty = " Irssi v$J - http://www.irssi.org";
 
     # all of these treated specially, they're only displayed when needed
-    lag = "{sb Lag: %R$0-%n}⮁ ";
-    act = "{sb Act: $0-}⮁ ";
+    lag = "{sb Lag: %R$0-%n} ";
+    act = "{sb Act: $0-} ";
     more = "%k%3-- more --%n";
   };
 
@@ -194,7 +194,7 @@ settings = {
   "irc/core" = { alternate_nick = "camth"; };
   "perl/core/scripts" = {
     awl_display_key = " %w$H$N $C $S";
-    awl_display_key_active = "$H%k%4⮀ %W$N ⮁ $C %b%0⮀ $S";
+    awl_display_key_active = "$H%k%4 %W$N  $C %b%0 $S";
     awl_separator = " ";
     neat_colorize = "yes";
     screen_away_active = "yes";
