@@ -208,8 +208,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
-[submodule "vim/bundle/eighties"]
-	path = vim/bundle/eighties
 	url = git://github.com/justincampbell/vim-eighties.git
 [submodule "vim/bundle/textobjectify"]
 	path = vim/bundle/textobjectify
