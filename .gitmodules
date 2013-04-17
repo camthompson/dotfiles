@@ -212,3 +212,6 @@
 [submodule "vim/bundle/textobjectify"]
 	path = vim/bundle/textobjectify
 	url = git://github.com/paradigm/TextObjectify.git
+[submodule "vim/bundle/hardmode"]
+	path = vim/bundle/hardmode
+	url = git://github.com/wikitopian/hardmode.git
