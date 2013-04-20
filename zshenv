@@ -23,6 +23,7 @@ path=(
   $HOME/bin
   $HOME/.rbenv/bin
   $HOME/.rbenv/shims
+  /usr/local/share/npm/bin/
   /Applications/MacVim.app/Contents/MacOS
   /usr/local/{bin,sbin}
   /usr/local/share/python
