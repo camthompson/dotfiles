@@ -304,9 +304,6 @@ cnoremap <c-o> <up>
 " {{{ Insert Mode
 inoremap <c-c> <esc>zza
 "center current line on screen
-"
-inoremap <c-\> <c-k>
-" insert diacritic workaround for UltiSnips
 
 " make c-u and c-w undoable
 inoremap <c-u> <c-g>u<c-u>
