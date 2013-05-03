@@ -14,8 +14,8 @@ color message       cyan            default
 color markers       red             black
 color attachment    black           default
 color search        brightmagenta   default
-color status        white      black
-color indicator     white           blue
+color status        black           white
+color indicator     black           white
 color tree          yellow          default                                     # arrow in threads
 
 # basic monocolor screen
