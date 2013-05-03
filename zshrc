@@ -20,6 +20,9 @@ for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
 autoload -Uz promptinit && promptinit
 prompt cetsolarized
 
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white'
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
