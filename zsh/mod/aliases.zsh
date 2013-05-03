@@ -76,7 +76,6 @@ alias rake='noglob rake'
 alias rsync='noglob rsync'
 alias scp='noglob scp'
 alias sftp='noglob sftp'
-alias g='noglob git'
 
 alias s='sudo'
 
