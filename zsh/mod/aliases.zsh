@@ -82,3 +82,5 @@ alias s='sudo'
 if [[ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ]]; then
   alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 fi
+
+alias tm=tmux
