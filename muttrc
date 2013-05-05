@@ -56,10 +56,10 @@ set postponed = "=Drafts"
 # Index View Options ---------------------------------
 set date_format = "%m/%d/%y"
 set index_format = "[%Z]  %D  %-20.20F  %M %s"
-set sort = threads
+set sort = reverse-threads
 unset collapse_unread
 folder-hook . "exec collapse-all"
-set sort_aux = reverse-last-date-received
+set sort_aux = last-date-received
 
 # Index Key Bindings ---------------------------------
 bind index gg       first-entry
