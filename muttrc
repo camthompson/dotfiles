@@ -55,8 +55,10 @@ set postponed = "=Drafts"
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d/%y"
-set index_format = "[%Z]  %D  %-20.20F  %s"
+set index_format = "[%Z]  %D  %-20.20F  %M %s"
 set sort = threads
+unset collapse_unread
+folder-hook . "exec collapse-all"
 set sort_aux = reverse-last-date-received
 
 # Index Key Bindings ---------------------------------
@@ -65,7 +67,8 @@ bind index G        last-entry
 
 bind index R        group-reply
 bind index <tab>    sync-mailbox
-bind index <space>  collapse-thread
+bind index -        collapse-thread
+bind index _        collapse-all
 
 # Ctrl-R to mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
