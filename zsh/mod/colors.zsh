@@ -1,4 +1,3 @@
-export GREP_COLOR='37;45'
 export GREP_OPTIONS='--color=auto'
 export ACK_COLOR_MATCH='red'
 
