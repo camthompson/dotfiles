@@ -244,18 +244,20 @@ abstracts = {
   # NOTE: if all the other overriding settings below are set, this only seems to affect
   #   the content parts of the adv_windowlist.  Default seems to be blue
   # NOTE: if not set, the default background seems to be %w%4 = white on blue
-  sb_background = "%w%0";
+  sb_background = "%k%7";
 
   # default backround for "default" statusbar group
   # NOTE: this impacts the statusbar of an inactive window and the edges of adv_windowlist
   sb_default_bg = "%B%0";
 
   # background for topicbar at the top (defaults to sb_default_bg)
-  sb_topic_bg = "%w%0";
+  sb_topic_bg = "%y%0";
+
+  sb_window_inact_bg = "%y%0";
 
   # background for the statusbar of active window. You can also give
   # the foreground color.
-  sb_window_bg = "%w%2";
+  sb_window_bg = "";
 
   # background for prompt / input line
   sb_prompt_bg = "%n";
@@ -289,12 +291,12 @@ abstracts = {
   sb_act_sep = "";
   # normal text
   # This also affects the color of the window with activity in adv_windowlist
-  sb_act_text = "%m$*";
+  sb_act_text = "%k%5$*";
   # public message (ordinary messages)
-  sb_act_msg = "%m$*";
+  sb_act_msg = "%k%5$*";
   # hilight (when people actually chat)
   # This also affects the color of the window with direct message in adv_windowlist
-  sb_act_hilight = "%m$*";
+  sb_act_hilight = "%k%5$*";
   # hilight with specified color, $0 = color, $1 = text
   sb_act_hilight_color = "$0$1-%n";
 };
@@ -307,8 +309,8 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick {menick $[-15]0$3}{msgchannel $1}}$2";
     pubmsg_hilight = "{pubmsghinick $0 $0 $[-15]1$3%n}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-15]1$4{msgchannel $2}}$3";
-    pubmsg = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
-    pubmsg_channel = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
+    pubmsg = "{pubmsgnick {pubnick %Y$[-15]0}$2}$1";
+    pubmsg_channel = "{pubmsgnick {pubnick %Y$[-15]0}$2}$1";
     msg_private_query = "{privmsgnick $[-15]0}$2";
   };
   "fe-common/irc" = {

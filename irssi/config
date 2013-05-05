@@ -58,7 +58,7 @@ aliases = {
   GOTO = "sb goto";
   CHAT = "dcc chat";
   RUN = "SCRIPT LOAD";
-  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+  CALC = "exec - if command -v bc >/dev/null 2>i1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
   Q = "QUERY";
@@ -177,6 +177,13 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -193,8 +200,8 @@ settings = {
   };
   "irc/core" = { alternate_nick = "camth"; };
   "perl/core/scripts" = {
-    awl_display_key = " $H$N-$C$S ";
-    awl_display_key_active = "$H%W%4 [$N-$C] $S";
+    awl_display_key = "$H $N-$C $S";
+    awl_display_key_active = "$H%g%0 [$N-$C] $S";
     awl_separator = " ";
     neat_colorize = "yes";
     screen_away_active = "yes";
@@ -232,7 +239,7 @@ ignores = (
     level = "JOINS PARTS QUITS NICKS";
     channels = ( "#vim", "#5by5", "#git", "#zsh" );
   },
-  { level = "MODES"; channels = ( "&bitlbee" ); }
+  { level = "MODES"; channels = ( "ibitlbee" ); }
 );
 logs = { };
 windows = {
@@ -243,7 +250,7 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "&bitlbee";
+        name = "ibitlbee";
         tag = "bitlbee";
       }
     );
