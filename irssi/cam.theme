@@ -248,7 +248,7 @@ abstracts = {
 
   # default backround for "default" statusbar group
   # NOTE: this impacts the statusbar of an inactive window and the edges of adv_windowlist
-  sb_default_bg = "%B%0";
+  sb_default_bg = "%k%7";
 
   # background for topicbar at the top (defaults to sb_default_bg)
   sb_topic_bg = "%y%0";
