@@ -291,12 +291,12 @@ abstracts = {
   sb_act_sep = "";
   # normal text
   # This also affects the color of the window with activity in adv_windowlist
-  sb_act_text = "%k%5$*";
+  sb_act_text = "%p%0$*";
   # public message (ordinary messages)
-  sb_act_msg = "%k%5$*";
+  sb_act_msg = "%p%0$*";
   # hilight (when people actually chat)
   # This also affects the color of the window with direct message in adv_windowlist
-  sb_act_hilight = "%k%5$*";
+  sb_act_hilight = "%p%0$*";
   # hilight with specified color, $0 = color, $1 = text
   sb_act_hilight_color = "$0$1-%n";
 };
@@ -309,8 +309,8 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick {menick $[-15]0$3}{msgchannel $1}}$2";
     pubmsg_hilight = "{pubmsghinick $0 $0 $[-15]1$3%n}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-15]1$4{msgchannel $2}}$3";
-    pubmsg = "{pubmsgnick {pubnick %b$[-15]0}$2}$1";
-    pubmsg_channel = "{pubmsgnick {pubnick %b$[-15]0}$2}$1";
+    pubmsg = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
+    pubmsg_channel = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
     msg_private_query = "{privmsgnick $[-15]0}$2";
   };
   "fe-common/irc" = {
