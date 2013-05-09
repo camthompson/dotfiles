@@ -78,7 +78,6 @@
   s = status --short --ignore-submodules
   ss = status --short
   sa = stash apply
-  sd = stash drop
   sh = stash
   sl = stash list
   sm = submodule
