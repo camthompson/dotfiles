@@ -13,6 +13,10 @@ setopt MULTIOS            # Write to multiple descriptors.
 unsetopt CLOBBER          # Do not overwrite existing files with > and >>.
                           # Use >! and >>! to bypass.
 
+# Disable flow control
+stty stop undef
+stty start undef
+
 for mod ($HOME/.zsh/mod/*.zsh) source $mod; unset mod
 func_glob='^([_.]*|prompt_*_setup)(.N:t)'
 for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
