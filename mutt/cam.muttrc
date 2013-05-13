@@ -52,7 +52,7 @@ color index         yellow          red             "~v~(~D)"                   
 # message headers ------------------------------------------------------
 
 #color header        brightcyan      default         "^"
-color hdrdefault    cyan            default
+color hdrdefault    yellow          default
 color header        blue            default         "^(From)"
 color header        green           default         "^(To)"
 color header        magenta         default         "^(Subject)"
