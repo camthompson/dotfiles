@@ -218,3 +218,6 @@
 [submodule "vim/bundle/lucius"]
 	path = vim/bundle/lucius
 	url = git://github.com/jonathanfilip/vim-lucius.git
+[submodule "vim/bundle/relops"]
+	path = vim/bundle/relops
+	url = git://github.com/vim-scripts/RelOps.git
