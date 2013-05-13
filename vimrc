@@ -14,7 +14,7 @@ silent! call pathogen#infect("~/src/vimbundles")
 " Colorscheme {{{
 set t_Co=256
 set background=dark
-colo lucius
+colo monokai
 " }}}
 
 " Appearance {{{
