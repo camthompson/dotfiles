@@ -11,10 +11,55 @@ silent! call pathogen#infect()
 silent! call pathogen#infect("~/src/vimbundles")
 " }}}
 
-" Colorscheme {{{
-set t_Co=256
-set background=dark
-colo lucius
+" AutoCMD {{{
+aug vimrc
+  au FocusLost * silent! wall
+
+  " Go to last position in a file when opening
+  au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+
+  " Highlight 81st column in insert mode; show trailing spaces when not
+  " in insert; honestly I don't know why the ignorecase stuff is here
+  au InsertEnter * set colorcolumn+=81 noignorecase listchars-=trail:·
+  au InsertLeave * set colorcolumn-=81 ignorecase listchars+=trail:·
+
+  au FileType c,cpp,cs,java setlocal commentstring=//\ %s
+  au Syntax javascript setlocal isk+=$
+  au FileType text,txt,mail setlocal ai com=fb:*,fb:-,n:>
+  au FileType sh,zsh,csh,tcsh inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
+  au FileType perl,python,ruby inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
+  au FileType c,cpp,cs,java,perl,javscript,php,aspperl,tex,css let b:surround_101 = "\r\n}"
+  au FileType markdown set ai formatoptions=tcroqn2 comments=n:&gt;
+  au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
+  au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
+  au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
+  au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
+  au FileType ruby setlocal tw=79 comments=:#\  isfname+=:
+  au FileType ruby
+        \ if expand('%') =~# '_test\.rb$' |
+        \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+        \ elseif expand('%') =~# '_spec\.rb$' |
+        \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
+        \ else |
+        \   compiler ruby | setl makeprg=ruby\ -w\ \"%:p\" |
+        \ endif
+  au FileType css  silent! setlocal omnifunc=csscomplete#CompleteCSS
+  au FileType cucumber silent! compiler cucumber | setl makeprg=cucumber\ "%:p" | imap <buffer><expr> <Tab> pumvisible() ? "\<C-N>" : (CucumberComplete(1,'') >= 0 ? "\<C-X>\<C-O>" : (getline('.') =~ '\S' ? ' ' : "\<C-I>"))
+  au FileType git,gitcommit setlocal foldmethod=syntax foldlevel=1
+  au FileType gitcommit setlocal spell
+  au FileType gitrebase nnoremap <buffer> S :Cycle<CR>
+  au FileType help setlocal ai fo+=2n | silent! setlocal nospell
+  au FileType help nnoremap <silent><buffer> q :q<CR>
+  au FileType html setlocal iskeyword+=~
+  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
+  au FileType vim  setlocal keywordprg=:help nojoinspaces
+
+  " For whatever reason, this breaks shit if mapped normally
+  au VimEnter * noremap ; :
+aug END
 " }}}
 
 " Appearance {{{
@@ -72,6 +117,12 @@ set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
 set wildmenu "show completion matches above command line
 " }}}
 
+" Colorscheme {{{
+set t_Co=256
+set background=dark
+colo lucius
+" }}}
+
 " Folding {{{
 set nofoldenable "disable folding by default
 set foldmethod=marker "folds on markers
@@ -82,109 +133,83 @@ set foldlevel=1 "only automatically fold levels of 1 or higher
 set foldlevelstart=1 "start editing all buffers with some folds closed
 " }}}
 
-" General {{{
-syntax on
-filetype plugin indent on
-set ttyfast "improves copy/paste for terminals
-set encoding=utf-8
-set visualbell t_vb= "no bell
-set mouse=a
-set timeout ttimeout "time out on mappings and key codes
-set timeoutlen=500 "time out duration
-set cpoptions=aABceFsmq "copy options
-set fileformats=unix,dos,mac "reads EOLs to determine file format
-set history=1000 "number of commands to keep in history
-" }}}
-
-" Indentation/Tabs {{{
-set backspace=2 "allow backspace over autoindent and line break
-set tabstop=2 "tab width
-set softtabstop=2 "treat 2 consecutive spaces as a tab
-set expandtab "insert spaces instead of tabs
-set shiftwidth=2 "< and > indent width
-set smarttab "use shiftwidth value for tabs at beginning of a line
-set autoindent "use previous line's indentation
-set nosmartindent "the name of this option is misleading
-set shiftround "round indentation to multiples of shiftwidth
-" }}}
-
-" Search {{{
-set incsearch "incremental search jumping
-set wrapscan "search wraps around end of document
-set ignorecase "case insensitive search
-set smartcase "stops ignoring case when capitals used
-set nohlsearch "don't highlight search terms
-" }}}
-
-" Swap/Backup/Undo {{{
-set swapfile "save swap files for crash recovery etc.
-set directory=$HOME/.vim/swp// "swap file directory
-set updatecount=100 "number of chars after which to update swap file
-set undofile "persistent undo history
-set undodir=$HOME/.vim/undo/ "undo file directory
-set undolevels=1000 "number of undo levels to save
-set nobackup "do not backup files
-" }}}
-
-" AutoCMD {{{
-aug vimrc
-  au FocusLost * silent! wall
-
-  " Go to last position in a file when opening
-  au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
-
-  " Highlight 81st column in insert mode; show trailing spaces when not
-  " in insert; honestly I don't know why the ignorecase stuff is here
-  au InsertEnter * set colorcolumn+=81 noignorecase listchars-=trail:·
-  au InsertLeave * set colorcolumn-=81 ignorecase listchars+=trail:·
-
-  au FileType c,cpp,cs,java setlocal commentstring=//\ %s
-  au Syntax javascript setlocal isk+=$
-  au FileType text,txt,mail setlocal ai com=fb:*,fb:-,n:>
-  au FileType sh,zsh,csh,tcsh inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
-  au FileType perl,python,ruby inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
-  au FileType c,cpp,cs,java,perl,javscript,php,aspperl,tex,css let b:surround_101 = "\r\n}"
-  au FileType markdown set ai formatoptions=tcroqn2 comments=n:&gt;
-  au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
-  au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
-  au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
-  au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
-  au FileType ruby setlocal tw=79 comments=:#\  isfname+=:
-  au FileType ruby
-        \ if expand('%') =~# '_test\.rb$' |
-        \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
-        \ elseif expand('%') =~# '_spec\.rb$' |
-        \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
-        \ else |
-        \   compiler ruby | setl makeprg=ruby\ -w\ \"%:p\" |
-        \ endif
-  au FileType css  silent! setlocal omnifunc=csscomplete#CompleteCSS
-  au FileType cucumber silent! compiler cucumber | setl makeprg=cucumber\ "%:p" | imap <buffer><expr> <Tab> pumvisible() ? "\<C-N>" : (CucumberComplete(1,'') >= 0 ? "\<C-X>\<C-O>" : (getline('.') =~ '\S' ? ' ' : "\<C-I>"))
-  au FileType git,gitcommit setlocal foldmethod=syntax foldlevel=1
-  au FileType gitcommit setlocal spell
-  au FileType gitrebase nnoremap <buffer> S :Cycle<CR>
-  au FileType help setlocal ai fo+=2n | silent! setlocal nospell
-  au FileType help nnoremap <silent><buffer> q :q<CR>
-  au FileType html setlocal iskeyword+=~
-  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
-  au FileType vim  setlocal keywordprg=:help nojoinspaces
-
-  " For whatever reason, this breaks shit if mapped normally
-  au VimEnter * noremap ; :
-aug END
-" }}}
-
-" SL {{{
-function! SL(function)
-  if exists('*'.a:function)
-    return call(a:function,[])
-  else
-    return ''
-  endif
+" Functions {{{
+" ClearRegisters {{{
+function! ClearRegisters()
+  let regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"'
+  let i=0
+  while (i < strlen(regs))
+    exec 'let @'.regs[i].'=""'
+    let i = i + 1
+  endwhile
 endfunction
+command! ClearRegisters :call ClearRegisters()
+" }}}
+
+" DiffOrig {{{
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+    \ | wincmd p | diffthis
+" }}}
+
+" OpenChangedFiles {{{
+function! OpenChangedFiles()
+  only " Close all windows, unless they're modified
+  let status = system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
+  let filenames = split(status, "\n")
+  exec "edit " . filenames[0]
+  for filename in filenames[1:]
+    exec "sp " . filename
+  endfor
+endfunction
+command! OpenChangedFiles :call OpenChangedFiles()
+" }}}
+
+" OpenTestAlternate {{{
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+  return new_file
+endfunction
+
+nnoremap <leader>. :call OpenTestAlternate()<cr>
+" }}}
+
+" PromoteToLet {{{
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
+" }}}
+
+" Rails {{{
+map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>gd :topleft 100 :split db/schema.rb<cr>
 " }}}
 
 " Run {{{
@@ -265,21 +290,79 @@ endfunction
 command! -bar Run :execute Run()
 " }}}
 
-" ClearRegisters {{{
-function! ClearRegisters()
-  let regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"'
-  let i=0
-  while (i < strlen(regs))
-    exec 'let @'.regs[i].'=""'
-    let i = i + 1
-  endwhile
+" SL {{{
+function! SL(function)
+  if exists('*'.a:function)
+    return call(a:function,[])
+  else
+    return ''
+  endif
 endfunction
-command! ClearRegisters :call ClearRegisters()
 " }}}
 
-" DiffOrig {{{
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-    \ | wincmd p | diffthis
+" StripTrailingWhitespace {{{
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+nmap <leader>w :StripTrailingWhitespaces<CR>
+" }}}
+
+" SynStack {{{
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+" }}}
+
+" WordProcessorMode {{{
+func! WordProcessorMode()
+  setlocal formatoptions=1
+  setlocal noexpandtab
+  setlocal spell spelllang=en_us
+  set formatprg=par
+  setlocal wrap
+  setlocal linebreak
+  setlocal nolist
+endfu
+com! WP call WordProcessorMode()
+" }}}
+"}}}
+
+" General {{{
+syntax on
+filetype plugin indent on
+set ttyfast "improves copy/paste for terminals
+set encoding=utf-8
+set visualbell t_vb= "no bell
+set mouse=a
+set timeout ttimeout "time out on mappings and key codes
+set timeoutlen=500 "time out duration
+set cpoptions=aABceFsmq "copy options
+set fileformats=unix,dos,mac "reads EOLs to determine file format
+set history=1000 "number of commands to keep in history
+" }}}
+
+" Indentation/Tabs {{{
+set backspace=2 "allow backspace over autoindent and line break
+set tabstop=2 "tab width
+set softtabstop=2 "treat 2 consecutive spaces as a tab
+set expandtab "insert spaces instead of tabs
+set shiftwidth=2 "< and > indent width
+set smarttab "use shiftwidth value for tabs at beginning of a line
+set autoindent "use previous line's indentation
+set nosmartindent "the name of this option is misleading
+set shiftround "round indentation to multiples of shiftwidth
 " }}}
 
 " Maps {{{
@@ -369,106 +452,7 @@ noremap g^ ^
 " }}}
 " }}}
 
-" OpenChangedFiles {{{
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
-  let filenames = split(status, "\n")
-  exec "edit " . filenames[0]
-  for filename in filenames[1:]
-    exec "sp " . filename
-  endfor
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
-" }}}
-
-" OpenTestAlternate {{{
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-" }}}
-
-" PromoteToLet {{{
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
-" }}}
-
-" Rails {{{
-map <leader>gr :topleft :split config/routes.rb<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>gd :topleft 100 :split db/schema.rb<cr>
-" }}}
-
-" StripTrailingWhitespace {{{
-function! <SID>StripTrailingWhitespaces()
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  %s/\s\+$//e
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-nmap <leader>w :StripTrailingWhitespaces<CR>
-" }}}
-
-" SynStack {{{
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-" }}}
-
-" WordProcessorMode {{{
-func! WordProcessorMode()
-  setlocal formatoptions=1
-  setlocal noexpandtab
-  setlocal spell spelllang=en_us
-  set formatprg=par
-  setlocal wrap
-  setlocal linebreak
-  setlocal nolist
-endfu
-com! WP call WordProcessorMode()
-" }}}
-
-" Plugins {{{
+" Plugin Config {{{
 " CapsLock {{{
 imap <c-l>     <plug>CapsLockToggle
 " }}}
@@ -599,6 +583,24 @@ let g:vroom_detect_spec_helper=1
 nmap <leader>z <c-w>o
 set noequalalways
 " }}}
+" }}}
+
+" Search {{{
+set incsearch "incremental search jumping
+set wrapscan "search wraps around end of document
+set ignorecase "case insensitive search
+set smartcase "stops ignoring case when capitals used
+set nohlsearch "don't highlight search terms
+" }}}
+
+" Swap/Backup/Undo {{{
+set swapfile "save swap files for crash recovery etc.
+set directory=$HOME/.vim/swp// "swap file directory
+set updatecount=100 "number of chars after which to update swap file
+set undofile "persistent undo history
+set undodir=$HOME/.vim/undo/ "undo file directory
+set undolevels=1000 "number of undo levels to save
+set nobackup "do not backup files
 " }}}
 
 set secure
