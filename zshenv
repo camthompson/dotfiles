@@ -21,8 +21,6 @@ fpath=(
 
 path=(
   $HOME/bin
-  $HOME/.rbenv/bin
-  $HOME/.rbenv/shims
   /usr/local/share/npm/bin/
   /Applications/MacVim.app/Contents/MacOS
   /usr/local/{bin,sbin}
@@ -36,5 +34,5 @@ path=(
   $path
 )
 
-if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
-export RBENV_ROOT="$HOME/.rbenv"
+source /usr/local/share/chruby/chruby.sh
+chruby 2.0
