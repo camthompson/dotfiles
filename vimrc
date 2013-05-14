@@ -151,7 +151,8 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
 " }}}
 
-function! ShortCWD() " {{{
+" ShortCWD {{{
+function! ShortCWD()
   " Recalculate the filepath when cwd changes.
   let cwd = getcwd()
   if exists("b:cet_cwd") && cwd != b:cet_cwd
@@ -183,7 +184,8 @@ function! ShortCWD() " {{{
 
   let b:cet_filepath = ret
   return ret
-endfunction " }}}
+endfunction
+" }}}
 
 " OpenChangedFiles {{{
 function! OpenChangedFiles()
