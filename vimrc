@@ -35,6 +35,7 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitiv
 " }}}
 
 " Behavior {{{
+set shell=$SHELL\ -l
 set nowrap "don't wrap lines
 set showmode "show mode
 set startofline "jump commands move to first non-blank character
