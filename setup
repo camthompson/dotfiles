@@ -22,6 +22,3 @@ for f in *; do
 done
 
 chmod 0600 msmtprc
-
-rm -f "$HOME/.rbenv/default-gems"
-ln -s "$PWD/default-gems" "$HOME/.rbenv/default-gems"
