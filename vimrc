@@ -76,7 +76,7 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-set statusline=[%n]\ %{ShortCWD()}%t\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P\ 
+set statusline=[%n]%{SL('CapsLockStatusline')}\ %{ShortCWD()}%t%{GitBranch()}\ %h%w%m%r%y%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P\ 
 " }}}
 
 " Behavior {{{
@@ -149,6 +149,17 @@ command! ClearRegisters :call ClearRegisters()
 " DiffOrig {{{
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
+" }}}
+
+" GitBranch {{{
+function! GitBranch()
+  let head=fugitive#head()
+  if strlen(head) > 0
+    return '('.head.')'
+  else
+    return ''
+  endif
+endfunction
 " }}}
 
 " ShortCWD {{{
