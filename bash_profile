@@ -1,1 +1,3 @@
-source /usr/local/share/chruby/auto.sh
+if [ -f ~/.bashrc  ]; then
+  source ~/.bashrc
+fi
