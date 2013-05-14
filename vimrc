@@ -76,7 +76,7 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
+set statusline=[%n]\ %{ShortCWD()}%t\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
 " }}}
 
 " Behavior {{{
@@ -150,6 +150,40 @@ command! ClearRegisters :call ClearRegisters()
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
 " }}}
+
+function! ShortCWD() " {{{
+  " Recalculate the filepath when cwd changes.
+  let cwd = getcwd()
+  if exists("b:cet_cwd") && cwd != b:cet_cwd
+    unlet! b:cet_filepath
+  endif
+  let b:cet_cwd = cwd
+
+  if exists('b:cet_filepath')
+    return b:cet_filepath
+  endif
+
+  let dirsep = has('win32') && ! &shellslash ? '\' : '/'
+  let filepath = expand('%:p')
+
+  if empty(filepath)
+    return ''
+  endif
+
+  let ret = ''
+
+  let mod = (exists('+acd') && &acd) ? ':~:h' : ':~:.:h'
+  let fpath = split(fnamemodify(filepath, mod), dirsep)
+  let fpath_shortparts = map(fpath, 'v:val[0]')
+  let ret = join(fpath_shortparts, dirsep) . dirsep
+
+  if ret == ('.' . dirsep)
+    let ret = ''
+  endif
+
+  let b:cet_filepath = ret
+  return ret
+endfunction " }}}
 
 " OpenChangedFiles {{{
 function! OpenChangedFiles()
