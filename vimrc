@@ -118,9 +118,8 @@ set wildmenu "show completion matches above command line
 " }}}
 
 " Colorscheme {{{
-set t_Co=256
 set background=dark
-colo lucius
+colo base16-tomorrow
 " }}}
 
 " Folding {{{
