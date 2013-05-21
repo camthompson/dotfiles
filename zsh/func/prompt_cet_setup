@@ -41,7 +41,7 @@ function prompt_cam_setup {
   zstyle ':git:added' format ' %F{magenta}+'
   zstyle ':git:ahead' format ' %F{magenta}▲'
   zstyle ':git:behind' format ' %F{magenta}▼'
-  zstyle ':git:branch' format '%%B%F{magenta}%b%%b'
+  zstyle ':git:branch' format '%F{magenta}%b'
   zstyle ':git:commit' format '%F{green}%.7c'
   zstyle ':git:deleted' format ' %F{magenta}x'
   zstyle ':git:modified' format ' %F{magenta}*'

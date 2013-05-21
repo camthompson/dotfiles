@@ -22,7 +22,7 @@ func_glob='^([_.]*|prompt_*_setup)(.N:t)'
 for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
 
 autoload -Uz promptinit && promptinit
-prompt cetsolarized
+prompt cet
 
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white'
