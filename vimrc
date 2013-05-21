@@ -153,12 +153,13 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 
 " GitBranch {{{
 function! GitBranch()
-  let head=fugitive#head()
-  if strlen(head) > 0
-    return '('.head.')'
-  else
-    return ''
+  if exists("*fugitive#head")
+    let head=fugitive#head()
+    if strlen(head) > 0
+      return '('.head.')'
+    endif
   endif
+  return ''
 endfunction
 " }}}
 
