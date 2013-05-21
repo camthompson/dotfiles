@@ -244,16 +244,16 @@ abstracts = {
   # NOTE: if all the other overriding settings below are set, this only seems to affect
   #   the content parts of the adv_windowlist.  Default seems to be blue
   # NOTE: if not set, the default background seems to be %w%4 = white on blue
-  sb_background = "%k%7";
+  sb_background = "%K%0";
 
   # default backround for "default" statusbar group
   # NOTE: this impacts the statusbar of an inactive window and the edges of adv_windowlist
-  sb_default_bg = "%k%7";
+  sb_default_bg = "%K%0";
 
   # background for topicbar at the top (defaults to sb_default_bg)
   sb_topic_bg = "%y%0";
 
-  sb_window_inact_bg = "%y%0";
+  sb_window_inact_bg = "%K%0";
 
   # background for the statusbar of active window. You can also give
   # the foreground color.
@@ -309,8 +309,8 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick {menick $[-15]0$3}{msgchannel $1}}$2";
     pubmsg_hilight = "{pubmsghinick $0 $0 $[-15]1$3%n}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-15]1$4{msgchannel $2}}$3";
-    pubmsg = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
-    pubmsg_channel = "{pubmsgnick {pubnick %w$[-15]0}$2}$1";
+    pubmsg = "{pubmsgnick {pubnick %R$[-15]0}$2}$1";
+    pubmsg_channel = "{pubmsgnick {pubnick %R$[-15]0}$2}$1";
     msg_private_query = "{privmsgnick $[-15]0}$2";
   };
   "fe-common/irc" = {

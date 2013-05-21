@@ -177,6 +177,13 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -193,8 +200,8 @@ settings = {
   };
   "irc/core" = { alternate_nick = "camth"; };
   "perl/core/scripts" = {
-    awl_display_key = "$H $N-$C $S";
-    awl_display_key_active = "$H%g%0 [$N-$C] $S";
+    awl_display_key = "$H$N-$C $S";
+    awl_display_key_active = "$H%g%0[$N-$C] $S";
     awl_separator = " ";
     neat_colorize = "yes";
     screen_away_active = "yes";
