@@ -487,14 +487,8 @@ nnoremap <localleader>xm :setlocal filetype=xml<CR>
 " Move By Display Lines {{{
 noremap j gj
 noremap k gk
-noremap $ g$
-noremap 0 g0
-noremap ^ g^
 noremap gj j
 noremap gk k
-noremap g$ $
-noremap g0 0
-noremap g^ ^
 " }}}
 " }}}
 
