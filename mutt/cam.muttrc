@@ -7,13 +7,13 @@
 # base03, bg, black, any of the non brights
 
 # basic colors ---------------------------------------------------------
-color normal        brightblue      default
+color normal        blue            default
 color error         red             default
 color tilde         white           default
 color message       cyan            default
 color markers       red             black
-color attachment    brightmagenta   default
-color search        brightmagenta   default
+color attachment    magenta         default
+color search        magenta         default
 color status        black           white
 color indicator     black           magenta
 color tree          yellow          default                                     # arrow in threads
@@ -26,18 +26,18 @@ mono  error         bold
 
 # index ----------------------------------------------------------------
 color index         default         default         "~A"                        # all messages
-color index         brightmagenta   default         "~Q"                        # messages that have been replied to
+color index         magenta         default         "~Q"                        # messages that have been replied to
 color index         default         default         "~R"                        # read messages
 color index         yellow          default         "~U"                        # unread messages
-color index         brightblue      default         "~v"                        # messages part of a collapsed thread
-color index         brightmagenta   default         "~P"                        # messages from me
+color index         blue            default         "~v"                        # messages part of a collapsed thread
+color index         magenta         default         "~P"                        # messages from me
 color index         cyan            default         "~p!~F"                     # messages to me
 color index         magenta         default         "~U~p!~F"                   # unread messages to me
 color index         green           default         "~R~p!~F"                   # messages to me
 color index         white           magenta         "~F"                        # flagged messages
 color index         white           red             "~D"                        # deleted messages
 color index         white           black           "~T"                        # tagged messages
-color index         brightgreen     default         "~v~(!~N)"                  # collapsed thread with no unread
+color index         green           default         "~v~(!~N)"                  # collapsed thread with no unread
 color index         yellow          default         "~v~(~N)"                   # collapsed thread with some unread
 color index         green           default         "~N~v~(~N)"                 # collapsed thread with unread parent
 # statusbg used to indicated flagged when foreground color shows other status
@@ -51,7 +51,7 @@ color index         yellow          red             "~v~(~D)"                   
 
 # message headers ------------------------------------------------------
 
-#color header        brightcyan      default         "^"
+#color header        cyan      default         "^"
 color hdrdefault    yellow          default
 color header        blue            default         "^(From)"
 color header        green           default         "^(To)"
@@ -63,27 +63,27 @@ color quoted        blue            default
 color quoted1       cyan            default
 color quoted2       yellow          default
 color quoted3       red             default
-color quoted4       brightred       default
+color quoted4       red             default
 
-color signature     brightcyan      default
+color signature     cyan            default
 color bold          white           default
 color underline     white           default
 color normal        default         default
 #
-color body          brightgreen     default         "[;:][-o][)/(|]"    # emoticons
-color body          brightgreen     default         "[;:][)(|]"         # emoticons
-color body          brightgreen     default         "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
+color body          green           default         "[;:][-o][)/(|]"    # emoticons
+color body          green           default         "[;:][)(|]"         # emoticons
+color body          green           default         "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
                                                      |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
                                                      |IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
-color body          brightgreen     default         "[ ][*][^*]*[*][ ]?" # more emoticon?
-color body          brightgreen     default         "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body          green           default         "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body          green           default         "[ ]?[*][^*]*[*][ ]" # more emoticon?
 
 ## pgp
 color body          red             default         "(BAD signature)"
 color body          cyan            default         "(Good signature)"
-color body          brightwhite     default         "^gpg: Good signature .*"
-color body          brightblue      default         "^gpg: "
-color body          brightblue      red             "^gpg: BAD signature from.*"
+color body          white           default         "^gpg: Good signature .*"
+color body          blue            default         "^gpg: "
+color body          blue            red             "^gpg: BAD signature from.*"
 mono  body          bold                            "^gpg: Good signature"
 mono  body          bold                            "^gpg: BAD signature from.*"
 
