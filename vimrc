@@ -118,7 +118,7 @@ set wildmenu "show completion matches above command line
 " }}}
 
 " Colorscheme {{{
-colo base16-tomorrow
+colo base16-eighties
 " }}}
 
 " Folding {{{
