@@ -119,7 +119,7 @@ set wildmenu "show completion matches above command line
 
 " Colorscheme {{{
 set background=dark
-colo base16-railscasts
+colo base16-monokai
 " }}}
 
 " Folding {{{
