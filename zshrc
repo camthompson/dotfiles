@@ -102,8 +102,8 @@ alias sftp='noglob sftp'
 
 alias s='sudo'
 
-if [[ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ]]; then
-  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+if [[ -x "/Applications/MacVim.app/Contents/MacOS/vim" ]]; then
+  alias vim='/Applications/MacVim.app/Contents/MacOS/vim'
 fi
 
 alias tm=tmux
