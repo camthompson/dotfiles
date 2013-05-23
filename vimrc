@@ -368,11 +368,23 @@ function! SynStack()
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+endfunction
+" }}}
+
+" ToggleBackground {{{
+function! ToggleBackground()
+  let dark=(&bg == 'dark')
+  if dark
+    set bg=light
+  else
+    set bg=dark
+  endif
+endfunction
+command! ToggleBG call ToggleBackground()
 " }}}
 
 " WordProcessorMode {{{
-func! WordProcessorMode()
+function! WordProcessorMode()
   setlocal formatoptions=1
   setlocal noexpandtab
   setlocal spell spelllang=en_us
@@ -381,7 +393,7 @@ func! WordProcessorMode()
   setlocal linebreak
   setlocal nolist
 endfu
-com! WP call WordProcessorMode()
+command! WP call WordProcessorMode()
 " }}}
 "}}}
 
