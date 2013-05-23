@@ -50,7 +50,6 @@ aug vimrc
   au FileType cucumber silent! compiler cucumber | setl makeprg=cucumber\ "%:p" | imap <buffer><expr> <Tab> pumvisible() ? "\<C-N>" : (CucumberComplete(1,'') >= 0 ? "\<C-X>\<C-O>" : (getline('.') =~ '\S' ? ' ' : "\<C-I>"))
   au FileType git,gitcommit setlocal foldmethod=syntax foldlevel=1
   au FileType gitcommit setlocal spell
-  au FileType gitrebase nnoremap <buffer> S :Cycle<CR>
   au FileType help setlocal ai fo+=2n | silent! setlocal nospell
   au FileType help nnoremap <silent><buffer> q :q<CR>
   au FileType html setlocal iskeyword+=~
