@@ -61,6 +61,8 @@ aug vimrc
 
   au InsertEnter * call InsertEnter()
   au InsertLeave * call InsertLeave()
+
+  au ColorScheme * hi ModeMsg ctermfg=5
 aug END
 " }}}
 
