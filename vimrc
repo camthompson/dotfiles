@@ -122,6 +122,7 @@ set wildmenu "show completion matches above command line
 " }}}
 
 " Colorscheme {{{
+set background=dark
 colo base16-eighties
 
 " Save normal status line highlight for later
