@@ -58,6 +58,9 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
+
+  au InsertEnter * call InsertEnter()
+  au InsertLeave * call InsertLeave()
 aug END
 " }}}
 
@@ -118,6 +121,25 @@ set wildmenu "show completion matches above command line
 
 " Colorscheme {{{
 colo base16-eighties
+
+" Save normal status line highlight for later
+redir => g:hl
+silent! hi StatusLine
+redir END
+let g:hl2 = split(hl)
+call remove(g:hl2,1)
+let g:hl = join(g:hl2)
+
+function! InsertEnter()
+  " Make status line magenta on black for insert mode
+  hi StatusLine ctermfg=0 ctermbg=5
+endfunction
+
+function! InsertLeave()
+  " Revert status line highlight
+  exec 'hi '.g:hl
+endfunction
+
 " }}}
 
 " Folding {{{
