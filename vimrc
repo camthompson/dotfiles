@@ -161,6 +161,28 @@ function! GitBranch()
 endfunction
 " }}}
 
+" ModeInfo {{{
+function! ModeInfo()
+  if winnr() == 1
+    let mode = mode()
+    if mode == 'i'
+      hi! User1 ctermbg=2 ctermfg=0 guibg=#a6e22e guifg=#272822
+      return '  I '
+    elseif mode == 'R'
+      hi! User1 ctermbg=1 ctermfg=0 guibg=#f92672 guifg=#272822
+      return '  R '
+    elseif mode ==# 'v'
+      hi! User1 ctermbg=5 ctermfg=0 guibg=#ae81ff guifg=#272822
+      return '  V '
+    elseif mode ==#  "V"
+      hi! User1 ctermbg=4 ctermfg=0 guibg=#66d9ef guifg=#272822
+      return '  L '
+    endif
+  endif
+  return ''
+endfunction
+" }}}
+
 " ShortCWD {{{
 function! ShortCWD()
   " Recalculate the filepath when cwd changes.
