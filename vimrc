@@ -75,14 +75,12 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-set statusline=%#User1#%{ModeInfo()}%*
-set statusline+=[%n]%{SL('CapsLockStatusline')}
+set statusline=[%n]%{SL('CapsLockStatusline')}
 set statusline+=\ %{ShortCWD()}%t%{GitBranch()}
 set statusline+=\ %h%w%m%r%y%#ErrorMsg#
 set statusline+=%{SL('SyntasticStatuslineFlag')}%*
 set statusline+=%=%-14.(%l,%c%V%)\ %P\ 
 " }}}
-
 
 " Behavior {{{
 set shell=$SHELL\ -l
@@ -125,6 +123,7 @@ set wildmenu "show completion matches above command line
 " Colorscheme {{{
 set background=dark
 colo base16-monokai
+au Colorscheme * hi! ModeMsg cterm=reverse ctermbg=2 ctermfg=0
 " }}}
 
 " Folding {{{
@@ -161,28 +160,6 @@ function! GitBranch()
     let head=fugitive#head()
     if strlen(head) > 0
       return '('.head.')'
-    endif
-  endif
-  return ''
-endfunction
-" }}}
-
-" ModeInfo {{{
-function! ModeInfo()
-  if winnr() == 1
-    let mode = mode()
-    if mode == 'i'
-      hi! User1 ctermbg=2 ctermfg=0 guibg=#a6e22e guifg=#272822
-      return '  I '
-    elseif mode == 'R'
-      hi! User1 ctermbg=1 ctermfg=0 guibg=#f92672 guifg=#272822
-      return '  R '
-    elseif mode ==# 'v'
-      hi! User1 ctermbg=5 ctermfg=0 guibg=#ae81ff guifg=#272822
-      return '  V '
-    elseif mode ==#  "V"
-      hi! User1 ctermbg=4 ctermfg=0 guibg=#66d9ef guifg=#272822
-      return '  L '
     endif
   endif
   return ''
