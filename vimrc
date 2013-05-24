@@ -75,8 +75,14 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-set statusline=[%n]%{SL('CapsLockStatusline')}\ %{ShortCWD()}%t%{GitBranch()}\ %h%w%m%r%y%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P\ 
+set statusline=%#User1#%{ModeInfo()}%*
+set statusline+=[%n]%{SL('CapsLockStatusline')}
+set statusline+=\ %{ShortCWD()}%t%{GitBranch()}
+set statusline+=\ %h%w%m%r%y%#ErrorMsg#
+set statusline+=%{SL('SyntasticStatuslineFlag')}%*
+set statusline+=%=%-14.(%l,%c%V%)\ %P\ 
 " }}}
+
 
 " Behavior {{{
 set shell=$SHELL\ -l
