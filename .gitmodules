@@ -233,3 +233,6 @@
 [submodule "vim/bundle/vroom"]
 	path = vim/bundle/vroom
 	url = git://github.com/skalnik/vim-vroom.git
+[submodule "vim/bundle/emblem"]
+	path = vim/bundle/emblem
+	url = git://github.com/darthdeus/vim-emblem.git
