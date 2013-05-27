@@ -122,7 +122,7 @@ set wildmenu "show completion matches above command line
 
 " Colorscheme {{{
 set background=dark
-colo base16-monokai
+colo base16-eighties
 au Colorscheme * hi! ModeMsg cterm=reverse ctermbg=2 ctermfg=0
 " }}}
 
