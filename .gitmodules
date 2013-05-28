@@ -236,3 +236,6 @@
 [submodule "vim/bundle/emblem"]
 	path = vim/bundle/emblem
 	url = git://github.com/darthdeus/vim-emblem.git
+[submodule "vim/bundle/ruby-xmpfilter"]
+	path = vim/bundle/ruby-xmpfilter
+	url = git://github.com/t9md/vim-ruby-xmpfilter.git
