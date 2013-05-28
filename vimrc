@@ -58,6 +58,9 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
+
+  au WinEnter,BufEnter * call UpdateStatusline(1)
+  au WinLeave * call UpdateStatusline(0)
 aug END
 " }}}
 
@@ -75,17 +78,12 @@ set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
-set statusline=[%n]%{SL('CapsLockStatusline')}
-set statusline+=\ %{ShortCWD()}%t%{GitBranch()}
-set statusline+=\ %h%w%m%r%y%#ErrorMsg#
-set statusline+=%{SL('SyntasticStatuslineFlag')}%*
-set statusline+=%=%-14.(%l,%c%V%)\ %P\ 
 " }}}
 
 " Behavior {{{
 set shell=$SHELL\ -l
 set nowrap "don't wrap lines
-set showmode "show mode
+set noshowmode "don't show mode
 set startofline "jump commands move to first non-blank character
 set autoread "automatically reads file when updated outside of vim
 set magic "unescaped . and * in regex are special chars
@@ -123,7 +121,6 @@ set wildmenu "show completion matches above command line
 " Colorscheme {{{
 set background=dark
 colo base16-eighties
-au Colorscheme * hi! ModeMsg cterm=reverse ctermbg=2 ctermfg=0
 " }}}
 
 " Folding {{{
@@ -163,6 +160,35 @@ function! GitBranch()
     endif
   endif
   return ''
+endfunction
+" }}}
+
+" Mode {{{
+function! Mode()
+  let l:mode = mode()
+  hi clear User1
+
+  if mode ==# "n"
+    hi User1 cterm=reverse ctermbg=2 ctermfg=0 gui=reverse guibg=#99cc99 guifg=#2d2d2d
+    return "-NORMAL-"
+  elseif mode ==# "i"
+    hi User1 ctermbg=5 ctermfg=0 guibg=#cc99cc guifg=#2d2d2d
+    return "-INSERT-"
+  elseif mode ==# "R"
+    hi User1 ctermbg=6 ctermfg=0 guibg=#66cccc guifg=#2d2d2d
+    return "REPLACE-"
+  elseif mode ==# "v"
+    hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
+    return "-VISUAL-"
+  elseif mode ==# "V"
+    hi User1 ctermbg=3 ctermfg=0 guibg=#ffcc66 guifg=#2d2d2d
+    return "-V-LINE-"
+  elseif mode =~# ""
+    hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
+    return "V-BLOCK-"
+  else
+    return ""
+  endif
 endfunction
 " }}}
 
@@ -386,6 +412,24 @@ function! ToggleBackground()
   endif
 endfunction
 command! ToggleBG call ToggleBackground()
+" }}}
+
+" UpdateStatusLine {{{
+function! UpdateStatusline(current)
+  if a:current
+    let l:statline="%1*%{Mode()}%*"
+  else
+    let l:statline=""
+  endif
+
+  let statline.="[%n]%{SL('CapsLockl:statline')}"
+  let statline.=" %{ShortCWD()}%t%{GitBranch()}"
+  let statline.=" %h%w%m%r%y%#ErrorMsg#"
+  let statline.="%{SL('Syntasticl:statlineFlag')}%*"
+  let statline.="%=%-14.(%l,%c%V%)\ %P\ "
+
+  call setwinvar(0, '&statusline', statline)
+endfunction
 " }}}
 
 " WordProcessorMode {{{
