@@ -622,6 +622,19 @@ map <leader>d <plug>Kwbd
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+" }}}
+
+" Ruby-XMPFilter {{{
+nmap <buffer> <F5> <Plug>(xmpfilter-run)
+xmap <buffer> <F5> <Plug>(xmpfilter-run)
+imap <buffer> <F5> <Plug>(xmpfilter-run)
+
+nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+imap <buffer> <F4> <Plug>(xmpfilter-mark)
+" }}}
+
+" Space {{{
 let g:space_disable_select_mode = 1
 " }}}
 
