@@ -170,22 +170,22 @@ function! Mode()
 
   if mode ==# "n"
     hi User1 cterm=reverse ctermbg=2 ctermfg=0 gui=reverse guibg=#99cc99 guifg=#2d2d2d
-    return "-NORMAL-"
+    return "[NORMAL]"
   elseif mode ==# "i"
     hi User1 ctermbg=5 ctermfg=0 guibg=#cc99cc guifg=#2d2d2d
-    return "-INSERT-"
+    return "[INSERT]"
   elseif mode ==# "R"
     hi User1 ctermbg=6 ctermfg=0 guibg=#66cccc guifg=#2d2d2d
-    return "REPLACE-"
+    return "REPLACE]"
   elseif mode ==# "v"
     hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
-    return "-VISUAL-"
+    return "[VISUAL]"
   elseif mode ==# "V"
     hi User1 ctermbg=3 ctermfg=0 guibg=#ffcc66 guifg=#2d2d2d
-    return "-V-LINE-"
+    return "[V-LINE]"
   elseif mode =~# ""
     hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
-    return "V-BLOCK-"
+    return "V-BLOCK]"
   else
     return ""
   endif
