@@ -90,7 +90,7 @@ set magic "unescaped . and * in regex are special chars
 set hidden "don't delete buffer when abandoned
 set report=5 "threshold for showing when a number of lines are changed
 set shortmess=aOstTAI "help avoid hit enter prompts
-set formatoptions=tcroqwn
+set formatoptions-=or "don't automatically comment lines
 set pastetoggle=<F2> "F2 toggles pastemode
 set gdefault "makes /g the default on substitute
 set modeline "check file for vim options
