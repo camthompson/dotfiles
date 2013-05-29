@@ -287,6 +287,48 @@ au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
 map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>gd :topleft 100 :split db/schema.rb<cr>
+
+let g:rails_projections = {
+      \  "app/assets/javascripts/models/*.coffee": {
+      \    "command": "jmodel",
+      \    "alternate": "spec/javascripts/models/%s_spec.coffee",
+      \    "template": "App.%S = DS.Model.extend"
+      \  },
+      \  "app/assets/javascripts/controllers/*_controller.coffee": {
+      \    "command": "jcontroller",
+      \    "alternate": "spec/javascripts/controllers/%s_spec.coffee",
+      \    "template": "App.%SController = Ember.ObjectController.extend"
+      \  },
+      \  "app/assets/javascripts/views/*_view.coffee": {
+      \    "command": "jview",
+      \    "alternate": "spec/javascripts/views/%s_spec.coffee",
+      \    "related": "app/assets/javascripts/templates/%s.hbs",
+      \    "template": "%SView = Ember.View.extend"
+      \  },
+      \  "app/assets/javascripts/router.coffee": {
+      \    "command": "jrouter"
+      \  },
+      \  "app/assets/javascripts/routes/*_route.coffee": {
+      \    "command": "jroute",
+      \    "alternate": "spec/javascripts/routes/%s_spec.coffee",
+      \    "template": "App.%SRoute = Ember.Route.extend"
+      \  },
+      \  "spec/javascripts/*_spec.coffee": {
+      \    "command": "jspec",
+      \    "alternate": "app/assets/javascripts/%s.coffee"
+      \  },
+      \  "app/assets/javascripts/templates/*.hbs": {
+      \    "command": "template",
+      \    "alternate": "app/assets/javascripts/views/%s.coffee"
+      \  },
+      \  "app/serializers/*_serializer.rb": {
+      \     "command": "serializer",
+      \     "affinity": "model",
+      \     "test": "spec/serializers/%s_spec.rb",
+      \     "related": "app/models/%s.rb",
+      \     "template": "class %SSerializer < ActiveModel::Serializer\nend"
+      \ }
+      \}
 " }}}
 
 " Run {{{
