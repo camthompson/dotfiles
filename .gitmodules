@@ -239,3 +239,6 @@
 [submodule "vim/bundle/ruby-xmpfilter"]
 	path = vim/bundle/ruby-xmpfilter
 	url = git://github.com/t9md/vim-ruby-xmpfilter.git
+[submodule "vim/bundle/scala"]
+	path = vim/bundle/scala
+	url = git://github.com/derekwyatt/vim-scala.git
