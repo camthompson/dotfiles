@@ -68,7 +68,7 @@ aug END
 set number "show line numbers
 set scrolloff=5 "keep 5 lines above or below current line
 set sidescrolloff=5 "keep 5 lines left or right of cursor
-set nolist "don't show symbols for whitespace characters
+set list "show symbols for whitespace characters
 set listchars=tab:▸\ ,eol:¬,trail:· "symbols for whitespace chars
 set matchtime=5 "how long in tenths of a second to show matching parens
 set cursorline "highlight the cursor line
