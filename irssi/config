@@ -17,6 +17,12 @@ channels = (
   { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#zsh"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#git"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#emberjs"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#postgresql"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#cucumber"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#rspec"; chatnet = "freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -177,13 +183,6 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
   };
 };
 settings = {
@@ -206,7 +205,7 @@ settings = {
     neat_colorize = "yes";
     screen_away_active = "yes";
     screen_away_message = "AFK";
-    neat_colors = "rRgGyYbMck";
+    neat_colors = "rgybck";
     neat_allow_shrinking = "yes";
     neat_maxlength = "15";
     trackbar_style = "%b";
@@ -250,7 +249,7 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "ibitlbee";
+        name = "&bitlbee";
         tag = "bitlbee";
       }
     );
@@ -295,8 +294,68 @@ windows = {
       }
     );
   };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#emberjs";
+        tag = "freenode";
+      }
+    );
+  };
+  9 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#RubyOnRails";
+        tag = "freenode";
+      }
+    );
+  };
+  10 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#ruby";
+        tag = "freenode";
+      }
+    );
+  };
+  11 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#postgresql";
+        tag = "freenode";
+      }
+    );
+  };
+  12 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#cucumber";
+        tag = "freenode";
+      }
+    );
+  };
+  13 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#rspec";
+        tag = "freenode";
+      }
+    );
+  };
 };
 mainwindows = {
-  3 = { first_line = "9"; lines = "42"; };
+  1 = { first_line = "9"; lines = "42"; };
   2 = { first_line = "1"; lines = "8"; };
 };
