@@ -574,6 +574,7 @@ autocmd! CmdwinLeave * :call MapCR()
 " }}}
 
 " Set Filetypes {{{
+nnoremap <localleader>co :setlocal filetype=coffee<CR>
 nnoremap <localleader>cs :setlocal filetype=css<CR>
 nnoremap <localleader>ht :setlocal filetype=html<CR>
 nnoremap <localleader>js :setlocal filetype=javascript<CR>
