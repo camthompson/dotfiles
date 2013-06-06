@@ -617,7 +617,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'ToggleFocus()':        ['<c-tab>'],
       \ }
 let g:ctrlp_dotfiles = 0
-let g:ctrlp_extensions = ['tag', 'quickfix', 'dir']
+let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'rtscript' ]
 let g:ctrlp_mruf_max = 100
 let g:ctrlp_use_caching = 0
 let g:ctrlp_map = '<leader><leader>'
