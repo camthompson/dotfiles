@@ -38,6 +38,7 @@ aug vimrc
   au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
   au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
   au FileType ruby setlocal tw=79 comments=:#\  isfname+=:
+  au FileType ruby let b:surround_58 = ":\r"
   au FileType ruby
         \ if expand('%') =~# '_test\.rb$' |
         \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
