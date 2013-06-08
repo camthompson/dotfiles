@@ -16,12 +16,12 @@ channels = (
   { name = "#5by5"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#zsh"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#git"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#emberjs"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#postgresql"; chatnet = "freenode"; autojoin = "Yes"; }
-  { name = "#cucumber"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#git"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#emberjs"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#postgresql"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#cucumber"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#rspec"; chatnet = "freenode"; autojoin = "Yes"; }
 );
 
@@ -180,6 +180,13 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
