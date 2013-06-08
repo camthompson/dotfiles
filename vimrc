@@ -170,13 +170,13 @@ function! Mode()
   hi clear User1
 
   if mode ==# "n"
-    hi User1 cterm=reverse ctermbg=6 ctermfg=0 guibg=#66cccc guifg=#2d2d2d
+    hi User1 cterm=reverse ctermbg=6 ctermfg=0 gui=reverse guibg=#66cccc guifg=#2d2d2d
     return "[NORMAL]"
   elseif mode ==# "i"
     hi User1 ctermbg=5 ctermfg=0 guibg=#cc99cc guifg=#2d2d2d
     return "[INSERT]"
   elseif mode ==# "R"
-    hi User1 ctermbg=2 ctermfg=0 gui=reverse guibg=#99cc99 guifg=#2d2d2d
+    hi User1 ctermbg=2 ctermfg=0 guibg=#99cc99 guifg=#2d2d2d
     return "REPLACE]"
   elseif mode ==# "v"
     hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
