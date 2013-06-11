@@ -218,9 +218,6 @@
 [submodule "vim/bundle/relops"]
 	path = vim/bundle/relops
 	url = git://github.com/vim-scripts/RelOps.git
-[submodule "vim/bundle/monokai"]
-	path = vim/bundle/monokai
-	url = git://github.com/sickill/vim-monokai.git
 [submodule "vim/bundle/switch"]
 	path = vim/bundle/switch
 	url = https://github.com/AndrewRadev/switch.vim.git
