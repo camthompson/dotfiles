@@ -61,9 +61,6 @@
 [submodule "vim/bundle/git"]
 	path = vim/bundle/git
 	url = git://github.com/tpope/vim-git.git
-[submodule "vim/bundle/rvm"]
-	path = vim/bundle/rvm
-	url = git://github.com/tpope/vim-rvm.git
 [submodule "vim/bundle/linediff"]
 	path = vim/bundle/linediff
 	url = git://github.com/AndrewRadev/linediff.vim.git
