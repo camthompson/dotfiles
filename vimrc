@@ -761,4 +761,6 @@ set undolevels=1000 "number of undo levels to save
 set nobackup "do not backup files
 " }}}
 
+set re=1
+
 set secure
