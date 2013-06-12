@@ -107,6 +107,7 @@ set winheight=5
 set winminheight=5
 set winheight=999
 set noesckeys "esc enters command mode instantly
+set re=1 "use old regexp engine; the new one makes Ruby syntax highlighting slow
 " }}}
 
 " Completion {{{
@@ -760,7 +761,5 @@ set undodir=$HOME/.vim/undo/ "undo file directory
 set undolevels=1000 "number of undo levels to save
 set nobackup "do not backup files
 " }}}
-
-set re=1
 
 set secure
