@@ -732,7 +732,7 @@ let g:vitality_fix_cursor = 0
 " }}}
 
 " Vroom {{{
-let g:vroom_use_dispatch=1
+let g:vroom_use_vimux=1
 let g:vroom_use_colors=1
 let g:vroom_detect_spec_helper=1
 " }}}
