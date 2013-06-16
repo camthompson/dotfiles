@@ -107,7 +107,6 @@ set winheight=5
 set winminheight=5
 set winheight=999
 set noesckeys "esc enters command mode instantly
-set re=1 "use old regexp engine; the new one makes Ruby syntax highlighting slow
 " }}}
 
 " Completion {{{
