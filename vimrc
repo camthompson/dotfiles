@@ -735,6 +735,7 @@ let g:vitality_fix_cursor = 0
 let g:vroom_use_vimux=1
 let g:vroom_use_colors=1
 let g:vroom_detect_spec_helper=1
+let g:vroom_cucumber_path='cucumber'
 " }}}
 
 " ZoomWin {{{
