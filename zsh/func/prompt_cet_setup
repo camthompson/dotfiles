@@ -34,32 +34,31 @@ function prompt_cam_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_cam_precmd
 
-  zstyle ':keymap:insert' format ' %F{blue}>'
+  zstyle ':keymap:insert' format ' %F{cyan}>'
   zstyle ':keymap:overwrite' format ' %F{red}>'
-  zstyle ':keymap:command' format ' %F{blue}<'
-  zstyle ':git:action' format ':%F{magenta}%s'
-  zstyle ':git:added' format ' %F{magenta}+'
-  zstyle ':git:ahead' format ' %F{magenta}▲'
-  zstyle ':git:behind' format ' %F{magenta}▼'
+  zstyle ':keymap:command' format ' %F{cyan}<'
+  zstyle ':git:action' format ':%F{red}%s'
+  zstyle ':git:added' format ' %F{red}+'
+  zstyle ':git:ahead' format ' %F{red}▲'
+  zstyle ':git:behind' format ' %F{red}▼'
   zstyle ':git:branch' format '%F{magenta}%b'
   zstyle ':git:commit' format '%F{green}%.7c'
-  zstyle ':git:deleted' format ' %F{magenta}x'
-  zstyle ':git:modified' format ' %F{magenta}*'
-  zstyle ':git:position' format ':%F{magenta}%p'
-  zstyle ':git:renamed' format ' %F{magenta}→'
-  zstyle ':git:stashed' format ' %F{magenta}■'
-  zstyle ':git:unmerged' format ' %F{magenta}§'
-  zstyle ':git:untracked' format ' %F{magenta}?'
+  zstyle ':git:deleted' format ' %F{red}x'
+  zstyle ':git:modified' format ' %F{red}*'
+  zstyle ':git:position' format ':%F{red}%p'
+  zstyle ':git:renamed' format ' %F{red}→'
+  zstyle ':git:stashed' format ' %F{red}■'
+  zstyle ':git:unmerged' format ' %F{red}§'
+  zstyle ':git:untracked' format ' %F{red}?'
   zstyle ':git:keys' format \
-    'prompt' '%f:$(coalesce "%b" "%p" "%c")%s' \
-    'rprompt' '%A%B%S%a%d%m%r%U%u %c'
+    'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='${SSH_TTY:+%F{green\}%m%b%f:}'
+  PROMPT='%F{green}%n%b%f@'
+  PROMPT+='%F{blue}%m%b%f:'
   PROMPT+='%F{yellow}${_prompt_cam_pwd}'
-  PROMPT+='${git_info:+${(e)git_info[prompt]}}'
   PROMPT+='${editor_info[keymap]} %f%b'
-  RPROMPT='${git_info[rprompt]}%f%b'
+  RPROMPT='${git_info[prompt]}%f%b'
 }
 
 prompt_cam_setup "$@"
