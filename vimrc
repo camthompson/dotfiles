@@ -59,6 +59,8 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
+  au VimEnter * hi! link EasyMotionTarget ErrorMsg
+  au VimEnter * hi! link ModeMsg WarningMsg
 
   au WinEnter,BufEnter * call UpdateStatusline(1)
   au WinLeave * call UpdateStatusline(0)
