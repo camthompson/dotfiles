@@ -54,8 +54,7 @@ function prompt_cam_setup {
     'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='%F{green}%n%b%f@'
-  PROMPT+='%F{blue}%m%b%f:'
+  PROMPT='${SSH_TTY:+%F{green\}%n%b%f@%F{blue\}%m%b%f:}'
   PROMPT+='%F{yellow}${_prompt_cam_pwd}'
   PROMPT+='${editor_info[keymap]} %f%b'
   RPROMPT='${git_info[prompt]}%f%b'
