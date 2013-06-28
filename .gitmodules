@@ -236,3 +236,6 @@
 [submodule "vim/bundle/emblem"]
 	path = vim/bundle/emblem
 	url = https://github.com/heartsentwined/vim-emblem.git
+[submodule "vim/bundle/slim"]
+	path = vim/bundle/slim
+	url = https://github.com/slim-template/vim-slim.git
