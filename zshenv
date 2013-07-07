@@ -22,7 +22,6 @@ fpath=(
 path=(
   $HOME/bin
   /usr/local/share/npm/bin/
-  /Applications/MacVim.app/Contents/MacOS
   /usr/local/{bin,sbin}
   /usr/local/share/python
   /usr/local/share/python3
