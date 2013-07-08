@@ -42,7 +42,7 @@ alias laf='ls -aGF'
 alias v=vim
 alias m='v -g'
 alias vd='v -d'
-alias view='v -R'
+alias vw='v -R'
 
 alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/logfile start'
 alias pgstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
