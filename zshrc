@@ -374,7 +374,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey -M viins ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
 bindkey -M viins '^U' backward-kill-line
-# vim:set ft=zsh:
 # }}}
 
 # Functions {{{
