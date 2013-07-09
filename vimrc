@@ -59,7 +59,6 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
-  au VimEnter * hi! link EasyMotionTarget ErrorMsg
   au VimEnter * hi! link ModeMsg WarningMsg
 
   au WinEnter,BufEnter * call UpdateStatusline(1)
@@ -638,8 +637,7 @@ nnoremap ,, :CtrlPBuffer<cr>
 
 " EasyMotion {{{
 let g:EasyMotion_leader_key = ','
-let g:EasyMotion_keys = 'asdfhjkl'
-hi link EasyMotionTarget helpSpecial
+hi! link EasyMotionTarget ErrorMsg
 " }}}
 
 " Gist {{{
