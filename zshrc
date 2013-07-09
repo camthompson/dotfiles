@@ -17,9 +17,6 @@ unsetopt CLOBBER          # Do not overwrite existing files with > and >>.
 stty stop undef
 stty start undef
 
-func_glob='^([_.]*|prompt_*_setup)(.N:t)'
-for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
-
 # Aliases {{{
 alias %=' '
 alias $=' '
@@ -136,6 +133,12 @@ else
   # Define colors for the completion system.
   export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 fi
+
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white'
+
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 # }}}
 
 # Completion {{{
@@ -151,7 +154,7 @@ setopt MENU_COMPLETE       # Autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
 # Treat these characters as part of a word.
-WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # Case-insensitive (all), partial-word, and then substring completion.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -377,6 +380,9 @@ bindkey -M viins '^U' backward-kill-line
 # }}}
 
 # Functions {{{
+func_glob='^([_.]*|prompt_*_setup)(.N:t)'
+for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
+
 function g {
   if [[ $# > 0  ]]; then
     git $@
@@ -392,9 +398,9 @@ function mcd {
 # }}}
 
 # History {{{
-HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"       # The path to the history file.
-HISTSIZE=100000                   # The maximum number of events to save in the internal history.
-SAVEHIST=100000                   # The maximum number of events to save in the history file.
+export HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"       # The path to the history file.
+export HISTSIZE=100000                   # The maximum number of events to save in the internal history.
+export SAVEHIST=100000                   # The maximum number of events to save in the history file.
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -410,13 +416,9 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 setopt NO_HIST_BEEP              # Don't beep when accessing non-existent history.
 # }}}
 
+# Prompt {{{
 autoload -Uz promptinit && promptinit
 prompt cet
-
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white'
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
+# }}}
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
