@@ -188,6 +188,15 @@ function! Mode()
   elseif mode =~# ""
     hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
     return "V-BLOCK]"
+  elseif mode ==# "s"
+    hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
+    return "[SELECT]"
+  elseif mode ==# "S"
+    hi User1 ctermbg=3 ctermfg=0 guibg=#ffcc66 guifg=#2d2d2d
+    return "[S-LINE]"
+  elseif mode =~# ""
+    hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
+    return "S-BLOCK]"
   else
     return ""
   endif
