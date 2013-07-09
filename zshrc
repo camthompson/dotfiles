@@ -137,7 +137,8 @@ fi
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white'
 
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+export ZSH_HIGHLIGHT_HIGHLIGHTERS
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 # }}}
 
