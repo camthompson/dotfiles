@@ -1,4 +1,15 @@
 set nocompatible "no vi compatibility
+syntax on
+filetype plugin indent on
+set ttyfast "improves copy/paste for terminals
+set encoding=utf-8
+set visualbell t_vb= "no bell
+set mouse=a
+set timeout ttimeout "time out on mappings and key codes
+set timeoutlen=500 "time out duration
+set cpoptions=aABceFsmq "copy options
+set fileformats=unix,dos,mac "reads EOLs to determine file format
+set history=1000 "number of commands to keep in history
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
@@ -498,20 +509,6 @@ endfu
 command! WP call WordProcessorMode()
 " }}}
 "}}}
-
-" General {{{
-syntax on
-filetype plugin indent on
-set ttyfast "improves copy/paste for terminals
-set encoding=utf-8
-set visualbell t_vb= "no bell
-set mouse=a
-set timeout ttimeout "time out on mappings and key codes
-set timeoutlen=500 "time out duration
-set cpoptions=aABceFsmq "copy options
-set fileformats=unix,dos,mac "reads EOLs to determine file format
-set history=1000 "number of commands to keep in history
-" }}}
 
 " Indentation/Tabs {{{
 set backspace=2 "allow backspace over autoindent and line break
