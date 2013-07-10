@@ -606,7 +606,7 @@ noremap gk k
 
 " Plugin Config {{{
 " CapsLock {{{
-imap <c-g> <plug>CapsLockToggle
+imap <c-l> <plug>CapsLockToggle
 " }}}
 
 " Clam {{{
