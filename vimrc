@@ -9,7 +9,7 @@ set timeout ttimeout "time out on mappings and key codes
 set timeoutlen=500 "time out duration
 set cpoptions=aABceFsmq "copy options
 set fileformats=unix,dos,mac "reads EOLs to determine file format
-set history=1000 "number of commands to keep in history
+set history=10000 "number of commands to keep in history
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
