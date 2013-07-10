@@ -70,7 +70,6 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
-  au VimEnter * hi! link ModeMsg WarningMsg
 
   au WinEnter,BufEnter * call UpdateStatusline(1)
   au WinLeave * call UpdateStatusline(0)
@@ -134,6 +133,7 @@ set wildmenu "show completion matches above command line
 " Colorscheme {{{
 set background=dark
 colo base16-eighties
+hi! link ModeMsg WarningMsg
 " }}}
 
 " Folding {{{
