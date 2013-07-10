@@ -97,9 +97,6 @@
 [submodule "vim/bundle/webapi"]
 	path = vim/bundle/webapi
 	url = git://github.com/mattn/webapi-vim.git
-[submodule "vim/bundle/tomdoc"]
-	path = vim/bundle/tomdoc
-	url = git://github.com/duwanis/tomdoc.vim.git
 [submodule "vim/bundle/extradite"]
 	path = vim/bundle/extradite
 	url = git://github.com/int3/vim-extradite.git
@@ -133,9 +130,6 @@
 [submodule "vim/bundle/indent-object"]
 	path = vim/bundle/indent-object
 	url = git://github.com/michaeljsmith/vim-indent-object.git
-[submodule "vim/bundle/scratch"]
-	path = vim/bundle/scratch
-	url = git://github.com/kana/vim-scratch.git
 [submodule "vim/bundle/pasta"]
 	path = vim/bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
@@ -163,9 +157,6 @@
 [submodule "vim/bundle/sleuth"]
 	path = vim/bundle/sleuth
 	url = git://github.com/tpope/vim-sleuth.git
-[submodule "vim/bundle/open-url"]
-	path = vim/bundle/open-url
-	url = git://github.com/henrik/vim-open-url.git
 [submodule "vim/bundle/gitgutter"]
 	path = vim/bundle/gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
@@ -194,9 +185,6 @@
 [submodule "vim/bundle/textobjectify"]
 	path = vim/bundle/textobjectify
 	url = git://github.com/paradigm/TextObjectify.git
-[submodule "vim/bundle/hardmode"]
-	path = vim/bundle/hardmode
-	url = git://github.com/wikitopian/hardmode.git
 [submodule "vim/bundle/lucius"]
 	path = vim/bundle/lucius
 	url = git://github.com/jonathanfilip/vim-lucius.git
