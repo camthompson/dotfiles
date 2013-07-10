@@ -4,7 +4,7 @@ filetype plugin indent on
 set ttyfast "improves copy/paste for terminals
 set encoding=utf-8
 set visualbell t_vb= "no bell
-set mouse=a
+set mouse=a "enable mouse in all modes
 set timeout ttimeout "time out on mappings and key codes
 set timeoutlen=500 "time out duration
 set cpoptions=aABceFsmq "copy options
