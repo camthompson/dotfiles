@@ -5,5 +5,4 @@ begin
   end
   Hirb.enable
 rescue LoadError
-  puts "HIRB not avaialble"
 end

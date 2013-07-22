@@ -36,14 +36,12 @@ begin
   require 'interactive_editor'
   alias v vim
 rescue LoadError
-  puts 'Interactive editor not available'
 end
 
 begin
   require 'ap'
   alias p ap
 rescue LoadError
-  puts 'Awesome print not available'
 end
 
 begin
@@ -51,14 +49,12 @@ begin
   Wirble.init
   Wirble.colorize
 rescue LoadError
-  puts 'Wirble not available'
 end
 
 begin
   require 'hirb'
   Hirb.enable
 rescue LoadError
-  puts 'Hirb not available'
 end
 
 class Array

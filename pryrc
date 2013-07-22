@@ -18,13 +18,10 @@ Pry.config.ls.public_method_color = :green
 Pry.config.ls.protected_method_color = :yellow
 Pry.config.ls.private_method_color = :blue
 
-unloaded = []
-
 begin
   require 'awesome_print'
   Pry.config.print = proc {|output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)}
 rescue LoadError
-  unloaded << 'awesome_print'
 end
 
 default_command_set = Pry::CommandSet.new do
@@ -166,7 +163,4 @@ end
 begin
   require 'clipboard'
 rescue LoadError
-  unloaded << 'clipboard'
 end
-
-puts "Unable to load #{unloaded.join(', ')}" unless unloaded.empty?
