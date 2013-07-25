@@ -523,7 +523,7 @@ set shiftround "round indentation to multiples of shiftwidth
 " }}}
 
 " Maps {{{
-let mapleader = '\'
+let mapleader = ','
 let maplocalleader = '-'
 
 " Useless Keys {{{
@@ -637,7 +637,7 @@ nnoremap ,, :CtrlPBuffer<cr>
 " }}}
 
 " EasyMotion {{{
-let g:EasyMotion_leader_key = ','
+let g:EasyMotion_leader_key = '\'
 hi! link EasyMotionTarget ErrorMsg
 " }}}
 
