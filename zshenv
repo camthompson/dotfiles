@@ -34,4 +34,5 @@ path=(
 )
 
 source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
