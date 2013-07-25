@@ -613,11 +613,11 @@ imap <c-g> <plug>CapsLockToggle
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_prompt_mappings = {
-      \ 'PrtSelectMove("j")':   ['<c-n>', '<down>', '<s-tab>'],
-      \ 'PrtSelectMove("k")':   ['<c-p>', '<up>', '<tab>'],
-      \ 'PrtHistory(-1)':       ['<c-j>'],
-      \ 'PrtHistory(1)':        ['<c-k>'],
-      \ 'ToggleFocus()':        ['<c-tab>'],
+      \ 'PrtSelectMove("j")':   ['<c-n>', '<c-j>', '<s-tab>'],
+      \ 'PrtSelectMove("k")':   ['<c-p>', '<c-k>', '<tab>'],
+      \ 'PrtHistory(-1)':       ['<down>'],
+      \ 'PrtHistory(1)':        ['<up>'],
+      \ 'ToggleFocus':          ['<c-tab>'],
       \ }
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'rtscript' ]
