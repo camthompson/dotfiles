@@ -691,7 +691,7 @@ let g:splitjoin_ruby_curly_braces=0
 
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-p>'
 let g:SuperTabCrMapping = 0
 " }}}
 
