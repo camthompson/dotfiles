@@ -218,3 +218,6 @@
 [submodule "vim/bundle/undotree"]
 	path = vim/bundle/undotree
 	url = https://github.com/mbbill/undotree.git
+[submodule "vim/bundle/dash"]
+	path = vim/bundle/dash
+	url = https://github.com/rizzatti/dash.vim.git
