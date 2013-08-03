@@ -224,3 +224,6 @@
 [submodule "vim/bundle/ruby-refactoring"]
 	path = vim/bundle/ruby-refactoring
 	url = https://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "vim/bundle/funcoo"]
+	path = vim/bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git
