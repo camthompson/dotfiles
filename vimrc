@@ -719,14 +719,14 @@ function! s:align()
   endif
 endfunction
 inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<cr>a
-nnoremap <leader>= :Tabularize /=<cr>
-xnoremap <leader>= :Tabularize /=<cr>
-nnoremap <leader>: :Tabularize /:\zs<cr>
-xnoremap <leader>: :Tabularize /:\zs<cr>
-nnoremap <leader>, :Tabularize /,\zs<cr>
-xnoremap <leader>, :Tabularize /,\zs<cr>
-nnoremap <leader><bar> :Tabularize /<bar><cr>
-vnoremap <leader><bar> :Tabularize /<bar><cr>
+nnoremap <localleader>= :Tabularize /=<cr>
+xnoremap <localleader>= :Tabularize /=<cr>
+nnoremap <localleader>: :Tabularize /:\zs<cr>
+xnoremap <localleader>: :Tabularize /:\zs<cr>
+nnoremap <localleader>, :Tabularize /,\zs<cr>
+xnoremap <localleader>, :Tabularize /,\zs<cr>
+nnoremap <localleader><bar> :Tabularize /<bar><cr>
+vnoremap <localleader><bar> :Tabularize /<bar><cr>
 " }}}
 
 " Vitality {{{
