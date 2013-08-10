@@ -623,7 +623,6 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'rtscript' ]
 let g:ctrlp_mruf_max = 100
 let g:ctrlp_use_caching = 0
-let g:ctrlp_map = '<leader><leader>'
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 'ra'
@@ -632,7 +631,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
       \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*'"]
 let g:ctrlp_mruf_relative = 1
 nnoremap -- :CtrlPMRU<cr>
-nnoremap \\ :CtrlPBuffer<cr>
+nnoremap ,, :CtrlPBuffer<cr>
+nnoremap \\ :CtrlP<cr>
 " }}}
 
 " EasyMotion {{{
