@@ -63,6 +63,7 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   lp = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
   m = merge --no-ff
+  mff = merge --ff-only
   mv = mv
   o = checkout
   ob = checkout -b
