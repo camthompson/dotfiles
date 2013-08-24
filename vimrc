@@ -574,7 +574,7 @@ if !(has("gui_running"))
 endif
 
 function! MapCR()
-  nnoremap <cr> :set hlsearch!<cr>
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":set hlsearch!\<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
