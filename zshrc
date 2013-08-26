@@ -100,6 +100,8 @@ alias sftp='noglob sftp'
 alias s='sudo'
 
 alias tm=tmux
+
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 # }}}
 
 # Colors {{{
