@@ -21,8 +21,6 @@ function prompt_cam_precmd {
   prompt_cam_pwd
 
   git-info
-
-  ruby-info
 }
 
 function prompt_cam_setup {
