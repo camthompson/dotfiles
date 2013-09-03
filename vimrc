@@ -131,8 +131,8 @@ set wildmenu "show completion matches above command line
 " }}}
 
 " Colorscheme {{{
-set background=dark
-colo base16-eighties
+set background=light
+colo solarized
 hi! link ModeMsg WarningMsg
 " }}}
 
@@ -181,7 +181,7 @@ function! Mode()
   let l:mode = mode()
   hi clear User1
 
-  if mode ==# "n"
+  if mode ==# "n" || mode ==# "no"
     hi User1 cterm=reverse ctermbg=6 ctermfg=0 gui=reverse guibg=#66cccc guifg=#2d2d2d
     return "[NORMAL]"
   elseif mode ==# "i"
