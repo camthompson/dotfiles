@@ -1,0 +1,18 @@
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/master-%r@%h:%p
+  VerifyHostKeyDNS yes
+  ServerAliveInterval 150
+  ServerAliveCountMax 3
+  ControlPersist 4h
+  TCPKeepAlive no
+  ServerAliveInterval 30
+  ServerAliveCountMax 10
+Host lana
+  User cam
+  Hostname lana.camthompson.com
+  ForwardAgent true
+Host pair
+  User pair
+  Hostname localhost
+  ForwardAgent true
