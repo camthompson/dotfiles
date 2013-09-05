@@ -37,6 +37,7 @@
   autosetupmerge = true
 [alias]
   a = add
+  au = add -u
   aa = add --all
   ap = add -p
   b = branch
