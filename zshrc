@@ -135,7 +135,6 @@ else
   # Define colors for the completion system.
   export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 fi
-
 # }}}
 
 # Completion {{{
@@ -417,9 +416,6 @@ setopt NO_HIST_BEEP              # Don't beep when accessing non-existent histor
 autoload -Uz promptinit && promptinit
 prompt cet
 # }}}
-
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=black'
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=black'
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
