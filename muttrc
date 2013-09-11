@@ -146,7 +146,7 @@ macro index,pager b "<enter-command>toggle sidebar_visible<enter>" "toggle sideb
 # Sidebar Key Bindings -------------------------------
 bind index,pager \Cn   sidebar-next
 bind index,pager \Cp   sidebar-prev
-bind index,pager \Co   sidebar-open
+bind index,pager \C]   sidebar-open
 
 # Search ---------------------------------------------
 macro index s "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/Search<enter><change-folder-readonly>=Search<enter>" "search mail (using notmuch)"
