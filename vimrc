@@ -70,9 +70,6 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
-
-  au WinEnter,BufEnter * call UpdateStatusline(1)
-  au WinLeave * call UpdateStatusline(0)
 aug END
 " }}}
 
@@ -133,7 +130,6 @@ set wildmenu "show completion matches above command line
 " Colorscheme {{{
 set background=light
 colo solarized
-hi! link ModeMsg WarningMsg
 " }}}
 
 " Folding {{{
@@ -173,44 +169,6 @@ function! GitBranch()
     endif
   endif
   return ''
-endfunction
-" }}}
-
-" Mode {{{
-function! Mode()
-  let l:mode = mode()
-  hi clear User1
-
-  if mode ==# "n" || mode ==# "no"
-    hi User1 cterm=reverse ctermbg=6 ctermfg=0 gui=reverse guibg=#66cccc guifg=#2d2d2d
-    return "[NORMAL]"
-  elseif mode ==# "i"
-    hi User1 ctermbg=5 ctermfg=0 guibg=#cc99cc guifg=#2d2d2d
-    return "[INSERT]"
-  elseif mode ==# "R"
-    hi User1 ctermbg=2 ctermfg=0 guibg=#99cc99 guifg=#2d2d2d
-    return "REPLACE]"
-  elseif mode ==# "v"
-    hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
-    return "[VISUAL]"
-  elseif mode ==# "V"
-    hi User1 ctermbg=3 ctermfg=0 guibg=#ffcc66 guifg=#2d2d2d
-    return "[V-LINE]"
-  elseif mode =~# ""
-    hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
-    return "V-BLOCK]"
-  elseif mode ==# "s"
-    hi User1 ctermbg=4 ctermfg=0 guibg=#6699cc guifg=#2d2d2d
-    return "[SELECT]"
-  elseif mode ==# "S"
-    hi User1 ctermbg=3 ctermfg=0 guibg=#ffcc66 guifg=#2d2d2d
-    return "[S-LINE]"
-  elseif mode =~# ""
-    hi User1 ctermbg=1 ctermfg=0 guibg=#f2777a guifg=#2d2d2d
-    return "S-BLOCK]"
-  else
-    return ""
-  endif
 endfunction
 " }}}
 
@@ -478,24 +436,6 @@ endfunction
 command! ToggleBG call ToggleBackground()
 " }}}
 
-" UpdateStatusLine {{{
-function! UpdateStatusline(current)
-  if a:current
-    let l:statline="%1*%{Mode()}%*"
-  else
-    let l:statline=""
-  endif
-
-  let statline.="[%n] %{ShortCWD()}%t%{GitBranch()}%<"
-  let statline.="%{SL('CapsLockStatusline')}"
-  let statline.=" %h%w%m%r%y%#ErrorMsg#%#warningmsg#"
-  let statline.="%{SL('SyntasticStatuslineFlag')}%*"
-  let statline.="%=%-14.(%l,%c%V%)\ %P\ "
-
-  call setwinvar(0, '&statusline', statline)
-endfunction
-" }}}
-
 " WordProcessorMode {{{
 function! WordProcessorMode()
   setlocal formatoptions=1
@@ -605,6 +545,12 @@ noremap gk k
 " }}}
 
 " Plugin Config {{{
+" Airline {{{
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
