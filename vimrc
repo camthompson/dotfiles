@@ -486,10 +486,10 @@ function! UpdateStatusline(current)
     let l:statline=""
   endif
 
-  let statline.="[%n]%{SL('CapsLockl:statline')}"
-  let statline.=" %{ShortCWD()}%t%{GitBranch()}"
-  let statline.=" %h%w%m%r%y%#ErrorMsg#"
-  let statline.="%{SL('Syntasticl:statlineFlag')}%*"
+  let statline.="[%n] %{ShortCWD()}%t%{GitBranch()}%<"
+  let statline.="%{SL('CapsLockStatusline')}"
+  let statline.=" %h%w%m%r%y%#ErrorMsg#%#warningmsg#"
+  let statline.="%{SL('SyntasticStatuslineFlag')}%*"
   let statline.="%=%-14.(%l,%c%V%)\ %P\ "
 
   call setwinvar(0, '&statusline', statline)
