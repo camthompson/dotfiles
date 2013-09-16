@@ -605,10 +605,6 @@ noremap gk k
 " }}}
 
 " Plugin Config {{{
-" CapsLock {{{
-imap <c-g> <plug>CapsLockToggle
-" }}}
-
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
