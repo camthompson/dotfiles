@@ -35,6 +35,7 @@
   pushNonFastForward = false
 [branch]
   autosetupmerge = true
+  autosetuprebase = always
 [alias]
   a = add
   au = add -u
@@ -85,7 +86,7 @@
   sm = submodule
   st = status
   t = tag
-  u = !echo 'Use fetch and merge instead of pull'
+  u = pull
   up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
   wat = what-the-hell-just-happened
   wc = whatchanged -p --abbrev-commit --pretty=medium
