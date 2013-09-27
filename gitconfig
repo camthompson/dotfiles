@@ -32,7 +32,7 @@
   renames = copies
 [advice]
   statusHints = false
-	pushNonFastForward = false
+  pushNonFastForward = false
 [branch]
   autosetupmerge = true
 [alias]
