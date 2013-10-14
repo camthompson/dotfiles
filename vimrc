@@ -707,4 +707,8 @@ set undolevels=1000 "number of undo levels to save
 set nobackup "do not backup files
 " }}}
 
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
+
 set secure
