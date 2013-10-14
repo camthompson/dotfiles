@@ -227,3 +227,9 @@
 [submodule "vim/bundle/airline"]
 	path = vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
+[submodule "vim/bundle/ember"]
+	path = vim/bundle/ember
+	url = https://github.com/dsawardekar/ember.vim.git
+[submodule "vim/bundle/portkey"]
+	path = vim/bundle/portkey
+	url = https://github.com/dsawardekar/portkey.git
