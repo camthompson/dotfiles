@@ -547,9 +547,31 @@ noremap gk k
 
 " Plugin Config {{{
 " Airline {{{
+function! AirlineThemePatch(palette)
+  let a:palette.normal.airline_a = [ '#ffffff', '#268bd2', 255, 33  ]
+endfunction
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+function! StatusPath()
+  let parts = split(expand('%:p'), '/')[0:-2]
+  return join(add(map(parts, 'v:val[0]'), expand('%')), '/')
+endfunction
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+let g:airline_section_c = "%<%{StatusPath()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
 " }}}
 
 " CtrlP {{{
