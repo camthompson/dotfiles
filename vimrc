@@ -553,7 +553,7 @@ function! AirlineThemePatch(palette)
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 function! StatusPath()
-  let parts = split(substitute(expand('%:p:h'), expand('$HOME'), '~', ''), '/')
+  let parts = split(substitute(expand('%'), expand('$HOME'), '~', ''), '/')[0:-2]
   return join(add(map(parts, 'v:val[0]'), expand('%:t')), '/')
 endfunction
 let g:airline_powerline_fonts = 0
