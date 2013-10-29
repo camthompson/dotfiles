@@ -137,17 +137,6 @@ set record = "=Sent"
 bind compose p postpone-message
 bind index p recall-message
 
-# Sidebar Patch --------------------------------------
-set sidebar_delim = '|'
-set sidebar_visible = no
-set sidebar_width = 24
-macro index,pager b "<enter-command>toggle sidebar_visible<enter>" "toggle sidebar"
-
-# Sidebar Key Bindings -------------------------------
-bind index,pager \Cn   sidebar-next
-bind index,pager \Cp   sidebar-prev
-bind index,pager \C]   sidebar-open
-
 # Search ---------------------------------------------
 macro index s "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/Search<enter><change-folder-readonly>=Search<enter>" "search mail (using notmuch)"
 macro index a "<limit>all\n" "show all messages (undo limit)"
