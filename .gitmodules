@@ -85,9 +85,6 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/tcomment"]
-	path = vim/bundle/tcomment
-	url = git://github.com/tomtom/tcomment_vim.git
 [submodule "vim/bundle/splitjoin"]
 	path = vim/bundle/splitjoin
 	url = git://github.com/AndrewRadev/splitjoin.vim.git
@@ -233,3 +230,6 @@
 [submodule "vim/bundle/portkey"]
 	path = vim/bundle/portkey
 	url = https://github.com/dsawardekar/portkey.git
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = https://github.com/tpope/vim-commentary.git
