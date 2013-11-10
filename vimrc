@@ -1,6 +1,14 @@
+" Pathogen {{{
+filetype off
+runtime bundle/pathogen/autoload/pathogen.vim
+runtime macros/matchit.vim
+silent! call pathogen#infect()
+silent! call pathogen#infect("~/src/vimbundles")
+" }}}
+
+filetype plugin indent on
 set nocompatible "no vi compatibility
 syntax on
-filetype plugin indent on
 set ttyfast "improves copy/paste for terminals
 set encoding=utf-8
 set visualbell t_vb= "no bell
@@ -14,13 +22,6 @@ set history=10000 "number of commands to keep in history
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
-
-" Pathogen {{{
-runtime bundle/pathogen/autoload/pathogen.vim
-runtime macros/matchit.vim
-silent! call pathogen#infect()
-silent! call pathogen#infect("~/src/vimbundles")
-" }}}
 
 " AutoCMD {{{
 aug vimrc
