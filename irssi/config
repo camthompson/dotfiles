@@ -6,11 +6,10 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "yes";
-  },
-  { address = "localhost"; autoconnect = "yes"; chatnet = "bitlbee"; }
+  }
 );
 
-chatnets = { bitlbee = { type = "IRC"; }; freenode = { type = "IRC"; }; };
+chatnets = { freenode = { type = "IRC"; }; };
 
 channels = (
   { name = "#5by5"; chatnet = "freenode"; autojoin = "Yes"; },
@@ -183,13 +182,6 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
   };
 };
 settings = {
@@ -244,8 +236,7 @@ ignores = (
   {
     level = "JOINS PARTS QUITS NICKS";
     channels = ( "#vim", "#5by5", "#git", "#zsh" );
-  },
-  { level = "MODES"; channels = ( "ibitlbee" ); }
+  }
 );
 logs = { };
 windows = {
@@ -256,22 +247,12 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "&bitlbee";
-        tag = "bitlbee";
-      }
-    );
-  };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
         name = "#5by5";
         tag = "freenode";
       }
     );
   };
-  5 = {
+  4 = {
     items = (
       {
         type = "CHANNEL";
@@ -281,7 +262,7 @@ windows = {
       }
     );
   };
-  6 = {
+  5 = {
     items = (
       {
         type = "CHANNEL";
@@ -291,7 +272,7 @@ windows = {
       }
     );
   };
-  7 = {
+  6 = {
     items = (
       {
         type = "CHANNEL";
@@ -301,7 +282,7 @@ windows = {
       }
     );
   };
-  8 = {
+  7 = {
     items = (
       {
         type = "CHANNEL";
@@ -311,17 +292,7 @@ windows = {
       }
     );
   };
-  9 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#RubyOnRails";
-        tag = "freenode";
-      }
-    );
-  };
-  10 = {
+  8 = {
     items = (
       {
         type = "CHANNEL";
@@ -331,7 +302,7 @@ windows = {
       }
     );
   };
-  11 = {
+  9 = {
     items = (
       {
         type = "CHANNEL";
@@ -341,7 +312,7 @@ windows = {
       }
     );
   };
-  12 = {
+  10 = {
     items = (
       {
         type = "CHANNEL";
@@ -351,7 +322,7 @@ windows = {
       }
     );
   };
-  13 = {
+  11 = {
     items = (
       {
         type = "CHANNEL";
@@ -363,6 +334,6 @@ windows = {
   };
 };
 mainwindows = {
-  1 = { first_line = "9"; lines = "42"; };
-  2 = { first_line = "1"; lines = "8"; };
+  1 = { first_line = "8"; lines = "43"; };
+  2 = { first_line = "1"; lines = "7"; };
 };
