@@ -70,6 +70,7 @@ aug vimrc
 
   " For whatever reason, this breaks shit if mapped normally
   au VimEnter * noremap ; :
+  au VimEnter * noremap : ;
 
   " Unmap things from commentary plugin
   au VimEnter * nunmap \\u
