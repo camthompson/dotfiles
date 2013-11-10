@@ -21,7 +21,7 @@ fpath=(
 
 path=(
   $HOME/bin
-  /usr/local/share/npm/bin/
+  /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   /usr/local/share/python
   /usr/local/share/python3
