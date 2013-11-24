@@ -23,8 +23,6 @@ path=(
   $HOME/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
-  /usr/local/share/python
-  /usr/local/share/python3
   /usr/local/heroku/bin
   /opt/local/bin
   /usr/{bin,sbin}
