@@ -486,6 +486,8 @@ inoremap <c-c> <esc>zza
 " make c-u and c-w undoable
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
+
+imap <c-l> <Plug>CapsLockToggle
 " }}}
 
 " Normal Mode {{{
