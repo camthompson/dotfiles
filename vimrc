@@ -610,7 +610,7 @@ nnoremap ,, :CtrlPBuffer<cr>
 " }}}
 
 " EasyMotion {{{
-let g:EasyMotion_leader_key = '\'
+let g:EasyMotion_leader_key = ','
 hi! link EasyMotionTarget ErrorMsg
 " }}}
 
