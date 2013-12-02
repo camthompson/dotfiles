@@ -69,10 +69,6 @@ aug vimrc
   au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
   au FileType vim  setlocal keywordprg=:help nojoinspaces
 
-  " For whatever reason, this breaks shit if mapped normally
-  au VimEnter * noremap ; :
-  au VimEnter * noremap : ;
-
   " Unmap things from commentary plugin
   au VimEnter * nunmap \\u
   au VimEnter * nunmap \\\
@@ -516,6 +512,8 @@ xnoremap Q gq
 nnoremap ql ^vg_gq
 nnoremap <leader>c :!git ctags<cr>
 nnoremap Y y$
+nnoremap ; :
+nnoremap : ;
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa\|suspend<cr>
