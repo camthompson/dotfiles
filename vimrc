@@ -35,8 +35,8 @@ aug vimrc
 
   " Highlight 81st column in insert mode; show trailing spaces when not
   " in insert; honestly I don't know why the ignorecase stuff is here
-  au InsertEnter * set colorcolumn+=81 noignorecase listchars-=trail:·
-  au InsertLeave * set colorcolumn-=81 ignorecase listchars+=trail:·
+  au InsertEnter * set listchars-=trail:·
+  au InsertLeave * set listchars+=trail:·
 
   au FileType c,cpp,cs,java setlocal commentstring=//\ %s
   au Syntax javascript setlocal isk+=$
