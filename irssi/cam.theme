@@ -244,7 +244,7 @@ abstracts = {
   # NOTE: if all the other overriding settings below are set, this only seems to affect
   #   the content parts of the adv_windowlist.  Default seems to be blue
   # NOTE: if not set, the default background seems to be %w%4 = white on blue
-  sb_background = "%K%0";
+  sb_background = "%W%0";
 
   # default backround for "default" statusbar group
   # NOTE: this impacts the statusbar of an inactive window and the edges of adv_windowlist
