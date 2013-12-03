@@ -475,7 +475,7 @@ noremap <F1> <nop>
 " }}}
 
 " Command Mode {{{
-cnoremap %% <c-r>=expand('%:h').'/'<cr>
+cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 cnoremap <c-o> <up>
 " }}}
 
