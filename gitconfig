@@ -90,3 +90,5 @@
   up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
   wat = what-the-hell-just-happened
   wc = whatchanged -p --abbrev-commit --pretty=medium
+[pull]
+  rebase = preserve
