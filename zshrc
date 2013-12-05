@@ -21,6 +21,8 @@ stty start undef
 alias %=' '
 alias $=' '
 
+alias g='noglob mygit'
+
 alias c=cd
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias ..='cd ..'
@@ -379,14 +381,14 @@ bindkey -M viins '^U' backward-kill-line
 func_glob='^([_.]*|prompt_*_setup)(.N:t)'
 for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
 
-function g {
+function mygit {
   if [[ $# > 0  ]]; then
     git $@
   else
     git status --short --ignore-submodules
   fi
 }
-compdef g=git
+compdef mygit=git
 
 function mcd {
   mkdir -p "$*" && cd "$*"
