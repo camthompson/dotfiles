@@ -227,3 +227,6 @@
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/bundle/vinegar"]
+	path = vim/bundle/vinegar
+	url = https://github.com/tpope/vim-vinegar.git
