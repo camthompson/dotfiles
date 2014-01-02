@@ -21,8 +21,6 @@ function prompt_cam_precmd {
   prompt_cam_pwd
 
   git-info
-
-  ruby-info
 }
 
 function prompt_cam_setup {
@@ -57,9 +55,7 @@ function prompt_cam_setup {
   PROMPT='%F{green}%n%b%f@%F{blue}%m%b%f:'
   PROMPT+='%F{yellow}${_prompt_cam_pwd}'
   PROMPT+='${editor_info[keymap]} %f%b'
-  RPROMPT='${git_info[prompt]}%b%f${git_info[prompt]+:}'
-  RPROMPT+='%b%F{cyan}${ruby_info}'
-  RPROMPT+='%f%b'
+  RPROMPT='${git_info[prompt]}%f%b'
 }
 
 prompt_cam_setup "$@"
