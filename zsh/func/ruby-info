@@ -1,11 +1,5 @@
-local version
-
-# Clean up previous $ruby_info.
-unset ruby_info
-typeset -gA ruby_info
-
-if (( $+commands[rbenv] )); then
-  version="$(rbenv version-name)"
-  ruby_info[separator]=":"
-  ruby_info[version]="$version"
+if (( $+commands[ruby] )); then
+  ruby_info="$(ruby --version | cut -d' ' -f 1-2)"
+else
+  unset ruby_info
 fi
