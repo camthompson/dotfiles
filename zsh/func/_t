@@ -32,7 +32,7 @@ function _t() {
     local -a arguments
     arguments=(
         '-d[detach other clients when attaching to existing sessions]'
-        '-x[do not `exec'\'' off to tmux; just call it]'
+        '-x[exec off to tmux]'
         '*::existing tmux sessions:__tmux-sessions'
     )
     _arguments -s $arguments
