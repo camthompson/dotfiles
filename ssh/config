@@ -16,3 +16,6 @@ Host pair
   User pair
   Hostname localhost
   ForwardAgent true
+Host gitolite
+  User cam
+  Hostname lana.camthompson.com
