@@ -503,9 +503,7 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-=> <c-w>=
 nnoremap / :set hlsearch<cr>/\v
-xnoremap / :set hlsearch<cr>/\v
 nnoremap ? :set hlsearch<cr>?\v
-xnoremap ? :set hlsearch<cr>?\v
 nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
