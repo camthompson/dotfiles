@@ -514,6 +514,8 @@ nnoremap <leader>c :!git ctags<cr>
 nnoremap Y y$
 nnoremap ; :
 nnoremap : ;
+xnoremap ; :
+xnoremap : ;
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa\|suspend<cr>
