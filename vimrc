@@ -611,6 +611,7 @@ nnoremap ,, :CtrlPBuffer<cr>
 
 " EasyMotion {{{
 let g:EasyMotion_leader_key = ','
+let g:EasyMotion_smartcase = 1
 hi! link EasyMotionTarget ErrorMsg
 " }}}
 
