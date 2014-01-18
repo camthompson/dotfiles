@@ -94,6 +94,7 @@ set colorcolumn=+1 "highlight column after &textwidth
 
 " Behavior {{{
 set shell=$SHELL\ -l
+set textwidth=79 "used for &colorcolumn
 set nowrap "don't wrap lines
 set noshowmode "don't show mode
 set startofline "jump commands move to first non-blank character
