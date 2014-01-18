@@ -445,10 +445,11 @@ function! WordProcessorMode()
   setlocal formatoptions=1
   setlocal noexpandtab
   setlocal spell spelllang=en_us
-  set formatprg=par
+  setlocal formatprg=par
   setlocal wrap
   setlocal linebreak
   setlocal nolist
+  setlocal tw=0
 endfu
 command! WP call WordProcessorMode()
 " }}}
