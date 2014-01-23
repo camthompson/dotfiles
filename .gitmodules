@@ -115,9 +115,6 @@
 [submodule "zsh/bundle/history-substring-search"]
 	path = zsh/bundle/history-substring-search
 	url = git://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "vim/bundle/dbext"]
-	path = vim/bundle/dbext
-	url = git://github.com/vim-scripts/dbext.vim.git
 [submodule "vim/bundle/indent-object"]
 	path = vim/bundle/indent-object
 	url = git://github.com/michaeljsmith/vim-indent-object.git
@@ -163,37 +160,16 @@
 [submodule "vim/bundle/markdown-folding"]
 	path = vim/bundle/markdown-folding
 	url = git://github.com/nelstrom/vim-markdown-folding.git
-[submodule "vim/bundle/git-log"]
-	path = vim/bundle/git-log
-	url = git://github.com/kablamo/vim-git-log.git
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
 	url = git://github.com/justincampbell/vim-eighties.git
-[submodule "vim/bundle/textobjectify"]
-	path = vim/bundle/textobjectify
-	url = git://github.com/paradigm/TextObjectify.git
-[submodule "vim/bundle/lucius"]
-	path = vim/bundle/lucius
-	url = git://github.com/jonathanfilip/vim-lucius.git
 [submodule "vim/bundle/relops"]
 	path = vim/bundle/relops
 	url = git://github.com/vim-scripts/RelOps.git
-[submodule "vim/bundle/switch"]
-	path = vim/bundle/switch
-	url = https://github.com/AndrewRadev/switch.vim.git
-[submodule "vim/bundle/base16"]
-	path = vim/bundle/base16
-	url = git://github.com/chriskempson/base16-vim.git
 [submodule "vim/bundle/vroom"]
 	path = vim/bundle/vroom
 	url = git://github.com/skalnik/vim-vroom.git
-[submodule "vim/bundle/ruby-xmpfilter"]
-	path = vim/bundle/ruby-xmpfilter
-	url = git://github.com/t9md/vim-ruby-xmpfilter.git
-[submodule "vim/bundle/scala"]
-	path = vim/bundle/scala
-	url = git://github.com/derekwyatt/vim-scala.git
 [submodule "vim/bundle/ctrlp-register"]
 	path = vim/bundle/ctrlp-register
 	url = git://github.com/mattn/ctrlp-register.git
@@ -206,9 +182,6 @@
 [submodule "vim/bundle/undotree"]
 	path = vim/bundle/undotree
 	url = https://github.com/mbbill/undotree.git
-[submodule "vim/bundle/ruby-refactoring"]
-	path = vim/bundle/ruby-refactoring
-	url = https://github.com/ecomba/vim-ruby-refactoring.git
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
