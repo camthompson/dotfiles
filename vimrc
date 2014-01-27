@@ -639,12 +639,6 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 " }}}
 
-" SplitJoin {{{
-nnoremap <leader>j :SplitjoinJoin<cr>
-nnoremap <leader>s :SplitjoinSplit<cr>
-let g:splitjoin_ruby_curly_braces=0
-" }}}
-
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextDefaultCompletionType = '<c-x><c-p>'
