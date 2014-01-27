@@ -629,11 +629,6 @@ endif
 let g:gitgutter_enabled = 0
 " }}}
 
-" Gundo {{{
-noremap <leader>gu :GundoToggle<cr>
-let g:gundo_help = 0
-" }}}
-
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
@@ -642,20 +637,6 @@ map <leader>d <plug>Kwbd
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
-" }}}
-
-" Ruby-XMPFilter {{{
-nmap <buffer> <F5> <Plug>(xmpfilter-run)
-xmap <buffer> <F5> <Plug>(xmpfilter-run)
-imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-imap <buffer> <F4> <Plug>(xmpfilter-mark)
-" }}}
-
-" Space {{{
-let g:space_disable_select_mode = 1
 " }}}
 
 " SplitJoin {{{
@@ -702,10 +683,6 @@ nnoremap <localleader>, :Tabularize /,\zs<cr>
 xnoremap <localleader>, :Tabularize /,\zs<cr>
 nnoremap <localleader><bar> :Tabularize /<bar><cr>
 vnoremap <localleader><bar> :Tabularize /<bar><cr>
-" }}}
-
-" Vitality {{{
-let g:vitality_fix_cursor = 0
 " }}}
 
 " Vroom {{{
