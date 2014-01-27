@@ -109,9 +109,6 @@
 [submodule "zsh/bundle/history-substring-search"]
 	path = zsh/bundle/history-substring-search
 	url = git://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "vim/bundle/indent-object"]
-	path = vim/bundle/indent-object
-	url = git://github.com/michaeljsmith/vim-indent-object.git
 [submodule "vim/bundle/pasta"]
 	path = vim/bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
@@ -206,3 +203,6 @@
 [submodule "vim/bundle/dbext"]
 	path = vim/bundle/dbext
 	url = git://github.com/vim-scripts/dbext.vim.git
+[submodule "vim/bundle/textobj-indent"]
+	path = vim/bundle/textobj-indent
+	url = https://github.com/kana/vim-textobj-indent.git
