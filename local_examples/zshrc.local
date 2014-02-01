@@ -1,0 +1,2 @@
+export GITHUB_USER=$USER
+export GITHUB_TOKEN=$TOKEN
