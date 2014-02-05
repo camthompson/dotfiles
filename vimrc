@@ -584,6 +584,13 @@ let g:airline_mode_map = {
 let g:airline_section_c = "%<%{StatusPath()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
 " }}}
 
+" Anzu {{{
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
