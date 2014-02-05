@@ -640,6 +640,11 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 " }}}
 
+" Sideways {{{
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
+" }}}
+
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextDefaultCompletionType = '<c-x><c-p>'

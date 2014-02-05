@@ -218,3 +218,12 @@
 [submodule "vim/bundle/ragtag"]
 	path = vim/bundle/ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+[submodule "vim/bundle/splitjoin"]
+	path = vim/bundle/splitjoin
+	url = https://github.com/AndrewRadev/splitjoin.vim.git
+[submodule "vim/bundle/switch"]
+	path = vim/bundle/switch
+	url = https://github.com/AndrewRadev/switch.vim.git
+[submodule "vim/bundle/sideways"]
+	path = vim/bundle/sideways
+	url = https://github.com/AndrewRadev/sideways.vim.git
