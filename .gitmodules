@@ -233,3 +233,6 @@
 [submodule "vim/bundle/anzu"]
 	path = vim/bundle/anzu
 	url = https://github.com/osyo-manga/vim-anzu.git
+[submodule "vim/bundle/exchange"]
+	path = vim/bundle/exchange
+	url = https://github.com/tommcdo/vim-exchange.git
