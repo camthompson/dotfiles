@@ -648,8 +648,8 @@ let g:rubycomplete_rails = 1
 " }}}
 
 " Sideways {{{
-nnoremap <c-h> :SidewaysLeft<cr>
-nnoremap <c-l> :SidewaysRight<cr>
+nnoremap ch :SidewaysLeft<cr>
+nnoremap cl :SidewaysRight<cr>
 " }}}
 
 " SuperTab {{{
