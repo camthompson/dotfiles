@@ -664,6 +664,10 @@ let g:surround_45 = "<% \r %>"    " -
 let g:surround_61 = "<%= \r %>"   " =
 " }}}
 
+" Switch {{{
+nnoremap c= :Switch<cr>
+" }}}
+
 " Syntastic {{{
 let g:syntastic_check_on_open = 0
 let g:syntastic_enable_balloons = 0
