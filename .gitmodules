@@ -194,9 +194,6 @@
 [submodule "vim/bundle/textobj-rubyblock"]
 	path = vim/bundle/textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
-[submodule "vim/bundle/easymotion"]
-	path = vim/bundle/easymotion
-	url = https://github.com/haya14busa/vim-easymotion.git
 [submodule "vim/bundle/dbext"]
 	path = vim/bundle/dbext
 	url = git://github.com/vim-scripts/dbext.vim.git
@@ -230,3 +227,6 @@
 [submodule "vim/bundle/exchange"]
 	path = vim/bundle/exchange
 	url = https://github.com/tommcdo/vim-exchange.git
+[submodule "vim/bundle/sneak"]
+	path = vim/bundle/sneak
+	url = https://github.com/justinmk/vim-sneak.git
