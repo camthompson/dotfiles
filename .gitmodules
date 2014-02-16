@@ -230,3 +230,6 @@
 [submodule "vim/bundle/sneak"]
 	path = vim/bundle/sneak
 	url = https://github.com/justinmk/vim-sneak.git
+[submodule "vim/bundle/jdaddy"]
+	path = vim/bundle/jdaddy
+	url = https://github.com/tpope/vim-jdaddy.git
