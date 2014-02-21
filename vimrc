@@ -518,6 +518,7 @@ nnoremap ; :
 nnoremap : ;
 xnoremap ; :
 xnoremap : ;
+nnoremap q; q:
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa\|suspend<cr>
