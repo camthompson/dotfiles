@@ -179,9 +179,6 @@
 [submodule "vim/bundle/ember"]
 	path = vim/bundle/ember
 	url = https://github.com/dsawardekar/ember.vim.git
-[submodule "vim/bundle/portkey"]
-	path = vim/bundle/portkey
-	url = https://github.com/dsawardekar/portkey.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -233,3 +230,6 @@
 [submodule "vim/bundle/jdaddy"]
 	path = vim/bundle/jdaddy
 	url = https://github.com/tpope/vim-jdaddy.git
+[submodule "vim/bundle/projectile"]
+	path = vim/bundle/projectile
+	url = https://github.com/tpope/vim-projectile.git
