@@ -22,6 +22,7 @@ alias %=' '
 alias $=' '
 
 alias g='noglob mygit'
+hash hub > /dev/null 2>&1 && alias git='hub'
 
 alias c=cd
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
