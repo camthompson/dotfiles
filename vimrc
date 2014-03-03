@@ -635,6 +635,16 @@ let g:gitgutter_enabled = 0
 map <leader>d <plug>Kwbd
 " }}}
 
+" Neocomplete {{{
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#force_overwrite_completefunc=1
+inoremap <expr><tab>  pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
+inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
+" }}}
+
 " Ruby {{{
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
@@ -644,12 +654,6 @@ let g:rubycomplete_rails = 1
 " Sideways {{{
 nnoremap ch :SidewaysLeft<cr>
 nnoremap cl :SidewaysRight<cr>
-" }}}
-
-" SuperTab {{{
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-p>'
-let g:SuperTabCrMapping = 0
 " }}}
 
 " Surround {{{
