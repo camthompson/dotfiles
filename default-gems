@@ -3,26 +3,18 @@ bundler
 rake
 awesome_print
 pry
-pry-doc
-pry-debugger
-pry-stack_explorer
-pry-rescue
+pry-plus
 pry-editline
 interactive_editor
 hirb
 wirble
-github
 hookup
-laser --pre
 vagrant
 debugger
 github-markup
 tilt
-lunchy
-cheat
 gem-browse
 redcarpet
-foreman
 rspec
 cucumber
 rails
@@ -39,3 +31,4 @@ rubocop
 zeus
 showterm
 debugger-ruby_core_source
+tmuxinator
