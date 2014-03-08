@@ -672,6 +672,11 @@ let g:surround_45 = "<% \r %>"    " -
 let g:surround_61 = "<%= \r %>"   " =
 " }}}
 
+" SplitJoin {{{
+nnoremap <leader>ss :SplitjoinSplit<cr>
+nnoremap <leader>sj :SplitjoinJoin<cr>
+" }}}
+
 " Switch {{{
 nnoremap c= :Switch<cr>
 " }}}
