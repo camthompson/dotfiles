@@ -641,7 +641,16 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#force_overwrite_completefunc=1
-inoremap <expr><tab>  pumvisible() ? "\<c-n>" : "\<c-x><c-u>"
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+     return "\<tab>"
+   elseif pumvisible()
+     return "\<c-n>"
+   else
+     return "\<c-x>\<c-u>"
+   endif
+endfunction
+inoremap <expr><tab> CleverTab()
 inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
 inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
 " }}}
