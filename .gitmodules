@@ -82,9 +82,6 @@
 [submodule "vim/bundle/extradite"]
 	path = vim/bundle/extradite
 	url = git://github.com/int3/vim-extradite.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/speeddating"]
 	path = vim/bundle/speeddating
 	url = git://github.com/tpope/vim-speeddating.git
@@ -227,9 +224,6 @@
 [submodule "vim/bundle/projectile"]
 	path = vim/bundle/projectile
 	url = https://github.com/tpope/vim-projectile.git
-[submodule "vim/bundle/github-issues"]
-	path = vim/bundle/github-issues
-	url = https://github.com/jaxbot/github-issues.vim.git
 [submodule "vim/bundle/preview"]
 	path = vim/bundle/preview
 	url = git@github.com:greyblake/vim-preview.git

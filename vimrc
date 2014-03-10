@@ -681,12 +681,6 @@ nnoremap <leader>sj :SplitjoinJoin<cr>
 nnoremap c= :Switch<cr>
 " }}}
 
-" Syntastic {{{
-let g:syntastic_check_on_open = 0
-let g:syntastic_enable_balloons = 0
-let g:syntastic_loc_list_height = 5
-" }}}
-
 " Tabular {{{
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
