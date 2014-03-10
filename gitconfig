@@ -92,3 +92,5 @@
   wc = whatchanged -p --abbrev-commit --pretty=medium
 [pull]
   rebase = preserve
+[grep]
+  extendRegexp = true
