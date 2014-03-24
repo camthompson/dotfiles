@@ -146,9 +146,6 @@
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
 	url = git://github.com/justincampbell/vim-eighties.git
-[submodule "vim/bundle/vroom"]
-	path = vim/bundle/vroom
-	url = git://github.com/skalnik/vim-vroom.git
 [submodule "vim/bundle/ctrlp-register"]
 	path = vim/bundle/ctrlp-register
 	url = git://github.com/mattn/ctrlp-register.git
