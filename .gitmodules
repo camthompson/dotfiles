@@ -228,5 +228,5 @@
 	path = vim/bundle/neocomplete
 	url = git@github.com:Shougo/neocomplete.vim.git
 [submodule "vim-ruby-refactoring"]
-	path = vim-ruby-refactoring
+	path = vim/bundle/ruby-refactoring
 	url = git@github.com:ecomba/vim-ruby-refactoring.git
