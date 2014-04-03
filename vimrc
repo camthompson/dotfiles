@@ -491,6 +491,9 @@ inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
 imap <c-l> <Plug>CapsLockToggle
+
+inoremap <c-\> <c-k>
+inoremap <c-k> <c-g>u<esc>lDa
 " }}}
 
 " Normal Mode {{{
