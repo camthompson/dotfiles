@@ -564,12 +564,9 @@ noremap gk k
 function! AirlineThemePatch(palette)
   let a:palette.normal.airline_a = [ '#ffffff', '#268bd2', 255, 33  ]
   let a:palette.normal.airline_z = [ '#ffffff', '#268bd2', 255, 33  ]
+  let a:palette.normal_modified.airline_c = [ '#cb4b16', '#eee8d5', 9, 7, '' ]
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! StatusPath()
-  let parts = split(substitute(expand('%'), expand('$HOME'), '~', ''), '/')[0:-2]
-  return join(add(map(parts, 'v:val[0]'), expand('%:t')), '/')
-endfunction
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -586,7 +583,12 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
+function! StatusPath()
+  let parts = split(substitute(expand('%'), expand('$HOME'), '~', ''), '/')[0:-2]
+  return join(add(map(parts, 'v:val[0]'), expand('%:t')), '/')
+endfunction
 let g:airline_section_c = "%<%{StatusPath()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
+let g:airline#extensions#hunks#enabled = 0
 " }}}
 
 " CtrlP {{{
@@ -738,6 +740,9 @@ nmap <leader>z <c-w>o
 set noequalalways
 " }}}
 " }}}
+"
+"
+"
 
 " Search {{{
 set incsearch "incremental search jumping
