@@ -564,7 +564,8 @@ noremap gk k
 function! AirlineThemePatch(palette)
   let a:palette.normal.airline_a = [ '#ffffff', '#268bd2', 255, 33  ]
   let a:palette.normal.airline_z = [ '#ffffff', '#268bd2', 255, 33  ]
-  let a:palette.normal_modified.airline_c = [ '#cb4b16', '#eee8d5', 9, 7, '' ]
+  let a:palette.normal_modified.airline_c[0] = '#cb4b16'
+  let a:palette.normal_modified.airline_c[2] = 9
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_powerline_fonts = 0
