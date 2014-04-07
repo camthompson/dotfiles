@@ -631,10 +631,6 @@ else
 endif
 " }}}
 
-" GitGutter {{{
-let g:gitgutter_enabled = 0
-" }}}
-
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
