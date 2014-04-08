@@ -492,7 +492,7 @@ inoremap <c-w> <c-g>u<c-w>
 
 imap <c-l> <Plug>CapsLockToggle
 
-inoremap <c-\> <c-k>
+inoremap <c-l> <c-k>
 inoremap <c-k> <c-g>u<esc>l"_Da
 " }}}
 
