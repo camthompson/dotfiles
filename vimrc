@@ -32,8 +32,6 @@ aug vimrc
         \   exe "normal g`\"" |
         \ endif
 
-  " Highlight 81st column in insert mode; show trailing spaces when not
-  " in insert; honestly I don't know why the ignorecase stuff is here
   au InsertEnter * set listchars-=trail:·
   au InsertLeave * set listchars+=trail:·
 
