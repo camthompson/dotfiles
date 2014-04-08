@@ -521,11 +521,11 @@ xnoremap : ;
 nnoremap q; q:
 
 if !(has("gui_running"))
-  nnoremap <c-z> :wa\|suspend<cr>
+  nnoremap <c-z> :wa<bar>suspend<cr>
 endif
 
 function! MapCR()
-  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":set hlsearch!\<cr>")
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
