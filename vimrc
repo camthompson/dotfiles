@@ -726,6 +726,11 @@ nnoremap <localleader><bar> :Tabularize /<bar><cr>
 vnoremap <localleader><bar> :Tabularize /<bar><cr>
 " }}}
 
+" Vitality {{{
+let g:vitality_fix_cursor=0
+let g:vitality_fix_focus=1
+" }}}
+
 " Vroom {{{
 let g:vroom_use_vimux=1
 let g:vroom_use_colors=1
@@ -741,9 +746,6 @@ nmap <leader>z <c-w>o
 set noequalalways
 " }}}
 " }}}
-"
-"
-"
 
 " Search {{{
 set incsearch "incremental search jumping

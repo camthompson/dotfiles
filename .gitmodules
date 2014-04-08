@@ -230,3 +230,6 @@
 [submodule "vim-ruby-refactoring"]
 	path = vim/bundle/ruby-refactoring
 	url = git@github.com:ecomba/vim-ruby-refactoring.git
+[submodule "vim/bundle/vitality"]
+	path = vim/bundle/vitality
+	url = https://github.com/sjl/vitality.vim.git
