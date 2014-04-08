@@ -482,7 +482,7 @@ cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 cnoremap <c-o> <up>
 " }}}
 
-" {{{ Insert Mode
+" Insert Mode {{{
 inoremap <c-c> <esc>zza
 "center current line on screen
 
@@ -493,7 +493,7 @@ inoremap <c-w> <c-g>u<c-w>
 imap <c-l> <Plug>CapsLockToggle
 
 inoremap <c-\> <c-k>
-inoremap <c-k> <c-g>u<esc>lDa
+inoremap <c-k> <c-g>u<esc>l"_Da
 " }}}
 
 " Normal Mode {{{
