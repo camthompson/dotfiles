@@ -506,6 +506,8 @@ nnoremap <c-h> <c-w><c-h>
 nnoremap <c-=> <c-w>=
 nnoremap / :set hlsearch<cr>/\v
 nnoremap ? :set hlsearch<cr>?\v
+nnoremap n :set hlsearch<cr>n
+nnoremap N :set hlsearch<cr>N
 nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
