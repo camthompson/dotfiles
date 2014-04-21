@@ -679,6 +679,7 @@ let g:surround_61 = "<%= \r %>"   " =
 
 " Sneak {{{
 let g:sneak#streak=1
+let g:sneak#s_next=1
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
 xmap f <Plug>Sneak_f
