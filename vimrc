@@ -691,7 +691,7 @@ nmap T <Plug>Sneak_T
 xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T <Plug>Sneak_T
+omap T <Plug>Sneak_T
 " }}}
 
 " SplitJoin {{{
