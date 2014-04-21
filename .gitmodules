@@ -164,9 +164,6 @@
 [submodule "vim/bundle/airline"]
 	path = vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
-[submodule "vim/bundle/ember"]
-	path = vim/bundle/ember
-	url = https://github.com/dsawardekar/ember.vim.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = https://github.com/tpope/vim-commentary.git
