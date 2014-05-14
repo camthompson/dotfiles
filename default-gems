@@ -9,8 +9,6 @@ interactive_editor
 hirb
 wirble
 hookup
-vagrant
-debugger
 github-markup
 tilt
 gem-browse
@@ -18,7 +16,6 @@ redcarpet
 rspec
 cucumber
 rails
-capistrano
 brakeman
 haml
 sass
@@ -28,7 +25,5 @@ ghi
 middleman
 fastri
 rubocop
-zeus
 showterm
-debugger-ruby_core_source
 tmuxinator
