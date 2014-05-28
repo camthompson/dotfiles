@@ -652,11 +652,6 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 " }}}
 
-" SplitJoin {{{
-nnoremap css :SplitjoinSplit<cr>
-nnoremap csj :SplitjoinJoin<cr>
-" }}}
-
 " Switch {{{
 nnoremap c= :Switch<cr>
 " }}}
