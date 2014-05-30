@@ -531,6 +531,7 @@ let g:airline#extensions#hunks#enabled = 0
 
 " CtrlP {{{
 let g:ctrlp_max_height = 10
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_prompt_mappings = {
       \ 'PrtSelectMove("j")':   ['<c-n>', '<c-j>', '<s-tab>'],
