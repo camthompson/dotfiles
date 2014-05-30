@@ -1,11 +1,101 @@
-" Pathogen {{{
-filetype off
-runtime bundle/pathogen/autoload/pathogen.vim
-silent! call pathogen#infect()
-silent! call pathogen#infect("~/src/vimbundles")
+set nocompatible "no vi compatibility
+
+" NeoBundle {{{
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'AndrewRadev/linediff.vim'
+NeoBundle 'AndrewRadev/sideways.vim'
+NeoBundle 'AndrewRadev/splitjoin.vim'
+NeoBundle 'AndrewRadev/switch.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'benmills/vimux'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'ecomba/vim-ruby-refactoring'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'greyblake/vim-preview'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'heartsentwined/vim-emblem'
+NeoBundle 'henrik/vim-qargs'
+NeoBundle 'int3/vim-extradite'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'kana/vim-textobj-entire'
+NeoBundle 'kana/vim-textobj-fold'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-line'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mattn/ctrlp-register'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'nelstrom/vim-textobj-rubyblock'
+NeoBundle 'nelstrom/vim-visual-star-search'
+NeoBundle 'nono/vim-handlebars'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'sickill/vim-pasta'
+NeoBundle 'skalnik/vim-vroom'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'tommcdo/vim-exchange'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-afterimage'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-capslock'
+NeoBundle 'tpope/vim-characterize'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-cucumber'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-jdaddy'
+NeoBundle 'tpope/vim-liquid'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-obsession'
+NeoBundle 'tpope/vim-pathogen'
+NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'tpope/vim-ragtag'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-rsi'
+NeoBundle 'tpope/vim-scriptease'
+NeoBundle 'tpope/vim-sensible'
+NeoBundle 'tpope/vim-sleuth'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-tbone'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-vinegar'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'vim-scripts/dbext.vim'
+NeoBundle 'vim-scripts/kwbdi.vim'
+NeoBundle 'zsh-users/zsh-completions'
+NeoBundle 'zsh-users/zsh-history-substring-search'
+NeoBundle 'zsh-users/zsh-syntax-highlighting'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+NeoBundleCheck
+
 " }}}
 
-set nocompatible "no vi compatibility
 set ttyfast "improves copy/paste for terminals
 set visualbell t_vb= "no bell
 set mouse=a "enable mouse in all modes
@@ -56,11 +146,6 @@ aug vimrc
   au FileType html setlocal iskeyword+=~
   au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
   au FileType vim  setlocal keywordprg=:help nojoinspaces
-
-  " Unmap things from commentary plugin
-  au VimEnter * nunmap \\u
-  au VimEnter * nunmap \\\
-  au VimEnter * xunmap \\
 aug END
 " }}}
 

@@ -13,3 +13,4 @@ mutt/cache/bodies/*
 !mutt/cache/bodies/.gitkeep
 irssi/sasl.auth
 irssi/saved_colors
+vim/bundle
