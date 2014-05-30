@@ -1,23 +1,15 @@
 " Pathogen {{{
 filetype off
 runtime bundle/pathogen/autoload/pathogen.vim
-runtime macros/matchit.vim
 silent! call pathogen#infect()
 silent! call pathogen#infect("~/src/vimbundles")
 " }}}
 
-filetype plugin indent on
 set nocompatible "no vi compatibility
-syntax on
 set ttyfast "improves copy/paste for terminals
-set encoding=utf-8
 set visualbell t_vb= "no bell
 set mouse=a "enable mouse in all modes
-set timeout ttimeout "time out on mappings and key codes
-set timeoutlen=500 "time out duration
 set cpoptions=aABceFsmq "copy options
-set fileformats=unix,dos,mac "reads EOLs to determine file format
-set history=10000 "number of commands to keep in history
 set exrc "local for .vimrc in CWD
 
 if filereadable(expand("~/.vimrc.before"))
@@ -32,8 +24,8 @@ aug vimrc
         \   exe "normal g`\"" |
         \ endif
 
-  au InsertEnter * set listchars-=trail:·
-  au InsertLeave * set listchars+=trail:·
+  au InsertEnter * set listchars-=trail:-
+  au InsertLeave * set listchars+=trail:-
 
   au FileType c,cpp,cs,java setlocal commentstring=//\ %s
   au Syntax javascript setlocal isk+=$
@@ -77,12 +69,9 @@ set number "show line numbers
 set scrolloff=5 "keep 5 lines above or below current line
 set sidescrolloff=5 "keep 5 lines left or right of cursor
 set list "show symbols for whitespace characters
-set listchars=tab:▸\ ,eol:¬,trail:· "symbols for whitespace chars
 set matchtime=5 "how long in tenths of a second to show matching parens
 set cursorline "highlight the cursor line
 set cursorcolumn "highlight the cursor column
-set showcmd "show partial command in last line
-set laststatus=2 "always show status
 set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
@@ -90,12 +79,10 @@ set colorcolumn=+1 "highlight column after &textwidth
 " }}}
 
 " Behavior {{{
-set shell=$SHELL\ -l
 set textwidth=79 "used for &colorcolumn
 set nowrap "don't wrap lines
 set noshowmode "don't show mode
 set startofline "jump commands move to first non-blank character
-set autoread "automatically reads file when updated outside of vim
 set magic "unescaped . and * in regex are special chars
 set hidden "don't delete buffer when abandoned
 set report=5 "threshold for showing when a number of lines are changed
@@ -126,7 +113,6 @@ set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
 set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
 set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
 set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
-set wildmenu "show completion matches above command line
 " }}}
 
 " Colorscheme {{{
@@ -412,15 +398,11 @@ command! WP call WordProcessorMode()
 "}}}
 
 " Indentation/Tabs {{{
-set backspace=2 "allow backspace over autoindent and line break
 set tabstop=2 "tab width
 set softtabstop=2 "treat 2 consecutive spaces as a tab
 set expandtab "insert spaces instead of tabs
 set shiftwidth=2 "< and > indent width
-set smarttab "use shiftwidth value for tabs at beginning of a line
-set autoindent "use previous line's indentation
 set nosmartindent "the name of this option is misleading
-set shiftround "round indentation to multiples of shiftwidth
 " }}}
 
 " Maps {{{
@@ -440,8 +422,7 @@ cnoremap <c-o> <up>
 inoremap <c-c> <esc>zza
 "center current line on screen
 
-" make c-u and c-w undoable
-inoremap <c-u> <c-g>u<c-u>
+" make c-w undoable
 inoremap <c-w> <c-g>u<c-w>
 
 imap <c-l> <Plug>CapsLockToggle
