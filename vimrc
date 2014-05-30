@@ -84,9 +84,6 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/dbext.vim'
 NeoBundle 'vim-scripts/kwbdi.vim'
-NeoBundle 'zsh-users/zsh-completions'
-NeoBundle 'zsh-users/zsh-history-substring-search'
-NeoBundle 'zsh-users/zsh-syntax-highlighting'
 
 call neobundle#end()
 
