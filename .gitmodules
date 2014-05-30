@@ -1,3 +1,6 @@
-[submodule "vim/bundle/neobundle.vim"]
-	path = vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
+	[submodule "zsh/bundle/syntax-highlighting"]
+		url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	[submodule "zsh/bundle/completions"]
+		url = https://github.com/zsh-users/zsh-completions.git
+	[submodule "zsh/bundle/history-substring-search"]
+		url = https://github.com/zsh-users/zsh-history-substring-search.git
