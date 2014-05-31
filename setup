@@ -26,3 +26,6 @@ cp -n ssh/config "$HOME/.ssh/config"
 cp -n ssh/authorized_keys "$HOME/.ssh/authorized_keys"
 
 chmod 0600 msmtprc
+
+git clone https://github.com/Shougo/neobundle.vim vim/bundle/neobundle.vim
+vim +NeoBundleInstall +qall
