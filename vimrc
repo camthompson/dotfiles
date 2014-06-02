@@ -613,9 +613,7 @@ let g:airline#extensions#hunks#enabled = 0
 
 " CtrlP {{{
 let g:ctrlp_max_height = 10
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
 let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_lazy_update = 350
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
 let g:ctrlp_prompt_mappings = {
@@ -631,7 +629,7 @@ let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | sed -n "/.keep/!p"',
-      \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*'"]
+      \ 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude = '.*/\.git/.*\|.*/mutt/tmp/.*'
 let g:ctrlp_map = '\\'
