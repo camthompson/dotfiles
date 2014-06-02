@@ -637,6 +637,11 @@ nnoremap -- :CtrlPMRU<cr>
 nnoremap ,, :CtrlPBuffer<cr>
 " }}}
 
+" Dispatch {{{
+let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
+nnoremap g<cr> :up<bar>Dispatch<cr>
+" }}}
+
 " EasyMotion {{{
 let g:EasyMotion_leader_key = ','
 let g:EasyMotion_smartcase = 1
@@ -741,7 +746,8 @@ vnoremap <localleader><bar> :Tabularize /<bar><cr>
 " }}}
 
 " Vroom {{{
-let g:vroom_use_vimux=1
+let g:vroom_clear_screen=0
+let g:vroom_use_dispatch=1
 let g:vroom_use_colors=1
 let g:vroom_detect_spec_helper=1
 let g:vroom_cucumber_path='cucumber'
