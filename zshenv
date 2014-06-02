@@ -31,6 +31,11 @@ path=(
   $path
 )
 
+cdpath=(
+  $HOME
+  $HOME/src
+)
+
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
