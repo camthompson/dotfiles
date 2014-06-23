@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-`vim +NeoBundleUpdate +qall &> /dev/null`
-
 Dir['zsh/bundle/*'].each do |d|
   Dir.chdir(d) do
     `git pull`
