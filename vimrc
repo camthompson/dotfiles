@@ -85,6 +85,7 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/dbext.vim'
 NeoBundle 'vim-scripts/kwbdi.vim'
+NeoBundle 'wting/rust.vim'
 
 call neobundle#end()
 
