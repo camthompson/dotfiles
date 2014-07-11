@@ -7,6 +7,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle '1995eaton/vim-better-javascript-completion'
+NeoBundle '1995eaton/vim-better-css-completion'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'AndrewRadev/linediff.vim'
