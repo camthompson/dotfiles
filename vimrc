@@ -522,7 +522,9 @@ inoremap <c-k> <c-g>u<esc>l"_Da
 nnoremap ' `
 nnoremap ` '
 nnoremap H g^
+xnoremap H g^
 nnoremap L g_
+xnoremap L g_
 nnoremap <c-y> 5<c-y>
 nnoremap <c-e> 5<c-e>
 nnoremap <c-j> <c-w><c-j>
