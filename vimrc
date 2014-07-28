@@ -711,6 +711,10 @@ nnoremap ch :SidewaysLeft<cr>
 nnoremap cl :SidewaysRight<cr>
 " }}}
 
+" SplitJoin {{{
+let g:splitjoin_ruby_curly_braces=0
+" }}}
+
 " Surround {{{
 let g:surround_35  = "#{\r}"      " #
 let g:surround_45 = "<% \r %>"    " -
