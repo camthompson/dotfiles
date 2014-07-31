@@ -790,13 +790,14 @@ set nohlsearch "don't highlight search terms
 " }}}
 
 " Swap/Backup/Undo {{{
-set swapfile "save swap files for crash recovery etc.
-set directory=$HOME/.vim/swp// "swap file directory
-set updatecount=100 "number of chars after which to update swap file
 set undofile "persistent undo history
-set undodir=$HOME/.vim/undo/ "undo file directory
+set undodir=$HOME/.vim/tmp/undo// "undo file directory
 set undolevels=1000 "number of undo levels to save
-set nobackup "do not backup files
+set backup "enable backup
+set backupdir=$HOME/.vim/tmp/backup// "backup file directory
+set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
+set directory=$HOME/.vim/tmp/swp// "swap file directory
+set noswapfile "don't save swap files
 " }}}
 
 set secure

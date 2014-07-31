@@ -1,7 +1,7 @@
-vim/swp/*
-!vim/swp/.gitkeep
-vim/undo/*
-!vim/undo/.gitkeep
+vim/tmp/*
+!vim/tmp/swp/.gitkeep
+!vim/tmp/undo/.gitkeep
+!vim/tmp/backup/.gitkeep
 vim/yankring_history_v2.txt
 vim/dbext_history.txt
 pentadactyl/info
