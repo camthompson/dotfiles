@@ -548,6 +548,7 @@ nnoremap : ;
 xnoremap ; :
 xnoremap : ;
 nnoremap q; q:
+nnoremap <tab> :set hlsearch!<cr>
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
