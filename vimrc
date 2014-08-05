@@ -658,12 +658,6 @@ let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
 nnoremap g<cr> :up<bar>Dispatch<cr>
 " }}}
 
-" EasyMotion {{{
-let g:EasyMotion_leader_key = ','
-let g:EasyMotion_smartcase = 1
-hi! link EasyMotionTarget ErrorMsg
-" }}}
-
 " Gist {{{
 let g:gist_detect_filetype = 1
 if has("mac")
