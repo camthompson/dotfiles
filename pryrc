@@ -1,10 +1,5 @@
 Pry.editor = ENV['EDITOR'] || 'vi'
 
-if defined?(Rails) && Rails.env
-  load File.dirname(__FILE__) + '/.railsrc'
-  load File.expand_path('~/.railsrc')
-end
-
 Pry.commands.alias_command 'c', 'continue' rescue nil
 Pry.commands.alias_command 's', 'step' rescue nil
 Pry.commands.alias_command 'n', 'next' rescue nil
