@@ -17,8 +17,8 @@ NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'benmills/vimux'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'ecomba/vim-ruby-refactoring'
-NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'greyblake/vim-preview'
@@ -35,7 +35,6 @@ NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/ctrlp-register'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
@@ -637,9 +636,6 @@ let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'rtscript' ]
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_arg_map = 1
-if has('python')
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
-endif
 if executable('ag')
   let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | sed -n "/.keep/!p"',
         \ 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""']
