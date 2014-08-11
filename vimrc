@@ -165,6 +165,7 @@ set lazyredraw "don't redraw the screen while executing macros
 set colorcolumn=+1 "highlight column after &textwidth
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
+set breakindent "visually indent wrapped lines
 " }}}
 
 " Behavior {{{
