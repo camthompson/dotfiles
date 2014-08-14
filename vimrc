@@ -656,6 +656,11 @@ let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
 nnoremap g<cr> :up<bar>Dispatch<cr>
 " }}}
 
+" Easy Align {{{
+vmap <cr> <plug>(EasyAlign)
+nmap <leader>a <plug>(EasyAlign)
+" }}}
+
 " Expand Region {{{
 vmap v <plug>(expand_region_expand)
 vmap V <plug>(expand_region_shrink)
