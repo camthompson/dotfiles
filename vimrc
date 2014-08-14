@@ -645,7 +645,7 @@ else
 endif
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude = '.*/\.git/.*\|.*/mutt/tmp/.*'
-let g:ctrlp_map = '\\'
+let g:ctrlp_map = '<space><space>'
 nnoremap -- :CtrlPMRU<cr>
 nnoremap ,, :CtrlPBuffer<cr>
 " }}}
