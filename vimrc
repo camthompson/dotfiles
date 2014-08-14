@@ -19,7 +19,6 @@ NeoBundle 'benmills/vimux'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'ecomba/vim-ruby-refactoring'
-NeoBundle 'godlygeek/tabular'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'greyblake/vim-preview'
 NeoBundle 'guns/vim-clojure-static'
@@ -29,6 +28,7 @@ NeoBundle 'idanarye/vim-merginal'
 NeoBundle 'int3/vim-extradite'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-fold'
 NeoBundle 'kana/vim-textobj-indent'
@@ -50,6 +50,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'skalnik/vim-vroom'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-afterimage'
@@ -655,6 +656,11 @@ let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
 nnoremap g<cr> :up<bar>Dispatch<cr>
 " }}}
 
+" Expand Region {{{
+vmap v <plug>(expand_region_expand)
+vmap V <plug>(expand_region_shrink)
+" }}}
+
 " Gist {{{
 let g:gist_detect_filetype = 1
 if has("mac")
@@ -732,28 +738,6 @@ omap T <Plug>Sneak_T
 
 " Switch {{{
 nnoremap c= :Switch<cr>
-" }}}
-
-" Tabular {{{
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
-inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<cr>a
-nnoremap <localleader>= :Tabularize /=<cr>
-xnoremap <localleader>= :Tabularize /=<cr>
-nnoremap <localleader>: :Tabularize /:\zs<cr>
-xnoremap <localleader>: :Tabularize /:\zs<cr>
-nnoremap <localleader>, :Tabularize /,\zs<cr>
-xnoremap <localleader>, :Tabularize /,\zs<cr>
-nnoremap <localleader><bar> :Tabularize /<bar><cr>
-vnoremap <localleader><bar> :Tabularize /<bar><cr>
 " }}}
 
 " Vroom {{{
