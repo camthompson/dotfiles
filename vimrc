@@ -49,6 +49,7 @@ NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'skalnik/vim-vroom'
@@ -746,6 +747,13 @@ omap T <Plug>Sneak_T
 
 " Switch {{{
 nnoremap c= :Switch<cr>
+" }}}
+
+" Syntastic {{{
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['ruby', 'coffee'],
+                           \ 'passive_filetypes': [] }
 " }}}
 
 " Vroom {{{
