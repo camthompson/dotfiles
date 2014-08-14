@@ -495,7 +495,7 @@ set nosmartindent "the name of this option is misleading
 " }}}
 
 " Maps {{{
-let mapleader = ','
+let mapleader = "\<space>"
 let maplocalleader = '-'
 
 " Useless Keys {{{
