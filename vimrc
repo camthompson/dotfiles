@@ -702,6 +702,10 @@ inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
 inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
 " }}}
 
+" Rubocop {{{
+let g:vimrubocop_keymap=0
+" }}}
+
 " Ruby {{{
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
