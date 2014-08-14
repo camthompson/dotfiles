@@ -193,8 +193,9 @@ set switchbuf=usetab "jump to first open window or tab with a buffer
 set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
 set winheight=20
 set winwidth=20
-set winminheight=20
-set winminwidth=20
+set winminheight=5
+set winminwidth=5
+set previewheight=12
 set noesckeys "esc enters command mode instantly
 set nojoinspaces "don't insert space after word-terminating chars when using J and gq
 " }}}
