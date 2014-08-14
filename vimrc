@@ -755,8 +755,9 @@ nnoremap c= :Switch<cr>
 " Syntastic {{{
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['ruby', 'coffee'],
+                           \ 'active_filetypes': ['coffee'],
                            \ 'passive_filetypes': [] }
+nnoremap <leader>s :up<bar>:SyntasticCheck<cr>
 " }}}
 
 " Vroom {{{
