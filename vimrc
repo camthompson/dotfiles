@@ -501,7 +501,7 @@ set nosmartindent "the name of this option is misleading
 
 " Maps {{{
 let mapleader = "\<space>"
-let maplocalleader = '-'
+let maplocalleader = ','
 
 " Useless Keys {{{
 noremap <F1> <nop>
@@ -650,9 +650,9 @@ else
 endif
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude = '.*/\.git/.*\|.*/mutt/tmp/.*'
-let g:ctrlp_map = '<space><space>'
-nnoremap -- :CtrlPMRU<cr>
-nnoremap ,, :CtrlPBuffer<cr>
+let g:ctrlp_map = '<leader><leader>'
+nnoremap \\ :CtrlPBuffer<cr>
+nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " }}}
 
 " Dispatch {{{
