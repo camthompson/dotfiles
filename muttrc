@@ -149,6 +149,9 @@ macro index,pager gd "<change-folder>=Drafts<enter>"
 macro index,pager gt "<change-folder>=Sent<enter>"
 macro index,pager gs "<change-folder>=Search<enter>"
 
+# Send to Omnifocus ----------------------------------
+macro index,pager \Ca "<pipe-message>mutt-to-omnifocus.py<enter>" "send to OmniFocus"
+
 # Trash Patch ----------------------------------------
 set trash = "=Trash"
 
