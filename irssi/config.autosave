@@ -241,7 +241,7 @@ ignores = (
 logs = { };
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
-  2 = { name = "hilight"; sticky = "yes"; parent = "12"; };
+  2 = { name = "hilight"; sticky = "yes"; };
   3 = {
     items = (
       {
@@ -332,19 +332,8 @@ windows = {
       }
     );
   };
-  12 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#ember-dev";
-        tag = "freenode";
-      }
-    );
-    sticky = "yes";
-  };
 };
 mainwindows = {
-  1 = { first_line = "6"; lines = "37"; };
-  12 = { first_line = "1"; lines = "5"; };
+  1 = { first_line = "8"; lines = "43"; };
+  2 = { first_line = "1"; lines = "7"; };
 };
