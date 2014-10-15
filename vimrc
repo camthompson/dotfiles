@@ -130,13 +130,15 @@ aug vimrc
   au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
   au BufEnter *pryrc,*irbrc,*railsrc setfiletype ruby
   au FileType ruby let b:surround_58 = ":\r"
-  au FileType ruby
+  autocmd FileType ruby setlocal tw=79 comments=:#\  isfname+=:
+  autocmd FileType ruby
+        \ let b:start = executable('pry') ? 'pry -r "%:p"' : 'irb -r "%:p"' |
         \ if expand('%') =~# '_test\.rb$' |
-        \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+        \   let b:dispatch = 'testrb %' |
         \ elseif expand('%') =~# '_spec\.rb$' |
-        \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
-        \ else |
-        \   compiler ruby | setl makeprg=ruby\ -w\ \"%:p\" |
+        \   let b:dispatch = 'rspec %' |
+        \ elseif !exists('b:dispatch') |
+        \   let b:dispatch = 'ruby -wc %' |
         \ endif
   au FileType css  silent! setlocal omnifunc=csscomplete#CompleteCSS
   au FileType cucumber silent! compiler cucumber | setl makeprg=cucumber\ "%:p" | imap <buffer><expr> <Tab> pumvisible() ? "\<C-N>" : (CucumberComplete(1,'') >= 0 ? "\<C-X>\<C-O>" : (getline('.') =~ '\S' ? ' ' : "\<C-I>"))
@@ -343,84 +345,6 @@ au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
 nnoremap <leader>gd :topleft 100 :split db/schema.rb<cr>
-" }}}
-
-" Run {{{
-function! Run()
-  let old_makeprg = &makeprg
-  let old_errorformat = &errorformat
-  try
-    let cmd = matchstr(getline(1),'^#!\zs[^ ]*')
-    if exists('b:run_command')
-      exe b:run_command
-    elseif cmd != '' && executable(cmd)
-      wa
-      let &makeprg = matchstr(getline(1),'^#!\zs.*').' %'
-      make
-    elseif &ft == 'mail' || &ft == 'text' || &ft == 'help' || &ft == 'gitcommit'
-      setlocal spell!
-    elseif exists('b:rails_root') && exists(':Rake')
-      wa
-      Rake
-    elseif &ft == 'cucumber'
-      wa
-      compiler cucumber
-      make %
-    elseif &ft == 'ruby'
-      wa
-      if executable(expand('%:p')) || getline(1) =~ '^#!'
-        compiler ruby
-        let &makeprg = 'ruby'
-        make %
-      elseif expand('%:t') =~ '_test\.rb$'
-        compiler rubyunit
-        let &makeprg = 'ruby'
-        make %
-      elseif expand('%:t') =~ '_spec\.rb$'
-        compiler rspec
-        let &makeprg = 'rspec'
-        make %
-      elseif &makeprg ==# 'bundle'
-        make
-      elseif executable('pry') && exists('b:rake_root')
-        execute '!pry -I"'.b:rake_root.'/lib" -r"%:p"'
-      elseif executable('pry')
-        !pry -r"%:p"
-      else
-        !irb -r"%:p"
-      endif
-    elseif &ft == 'html' || &ft == 'xhtml'
-      wa
-      if !exists('b:url')
-        call OpenURL(expand('%:p'))
-      else
-        call OpenURL(b:url)
-      endif
-    elseif &ft == 'vim'
-      w
-      if exists(':Runtime')
-        return 'Runtime %'
-      else
-        unlet! g:loaded_{expand('%:t:r')}
-        return 'source %'
-      endif
-    elseif &ft == 'sql'
-      1,$DBExecRangeSQL
-    else
-      wa
-      if &makeprg =~ '%'
-        make
-      else
-        make %
-      endif
-    endif
-    return ''
-  finally
-    let &makeprg = old_makeprg
-    let &errorformat = old_errorformat
-  endtry
-endfunction
-command! -bar Run :execute Run()
 " }}}
 
 " SL {{{
