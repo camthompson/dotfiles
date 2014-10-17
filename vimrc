@@ -88,6 +88,7 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/kwbdi.vim'
 NeoBundle 'wting/rust.vim'
+NeoBundle 'ZoomWin'
 
 call neobundle#end()
 
