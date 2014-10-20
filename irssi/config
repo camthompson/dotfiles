@@ -343,8 +343,18 @@ windows = {
     );
     sticky = "yes";
   };
+  13 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#ember-cli";
+        tag = "freenode";
+      }
+    );
+  };
 };
 mainwindows = {
-  1 = { first_line = "6"; lines = "37"; };
+  13 = { first_line = "6"; lines = "37"; };
   12 = { first_line = "1"; lines = "5"; };
 };
