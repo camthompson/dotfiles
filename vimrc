@@ -21,6 +21,7 @@ NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'greyblake/vim-preview'
 NeoBundle 'groenewege/vim-less'
+NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'heartsentwined/vim-emblem'
 NeoBundle 'henrik/vim-qargs'
 NeoBundle 'idanarye/vim-merginal'
@@ -456,10 +457,6 @@ nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-=> <c-w>=
-nnoremap / :set hlsearch<cr>/\v
-nnoremap ? :set hlsearch<cr>?\v
-nnoremap n :set hlsearch<cr>n
-nnoremap N :set hlsearch<cr>N
 nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
@@ -599,6 +596,20 @@ else
 endif
 " }}}
 
+" Incsearch {{{
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+let g:incsearch#magic = '\v'
+" }}}
+
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
@@ -703,7 +714,7 @@ set incsearch "incremental search jumping
 set wrapscan "search wraps around end of document
 set ignorecase "case insensitive search
 set smartcase "stops ignoring case when capitals used
-set nohlsearch "don't highlight search terms
+set hlsearch "highlight search terms
 " }}}
 
 " Swap/Backup/Undo {{{
