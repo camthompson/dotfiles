@@ -37,7 +37,7 @@ hdr_order from: to: cc: date: subject:  # and in this order
 my_hdr Bcc: cam@camthompson.com
 
 # Account Settings -----------------------------------
-alternates cthompson@propack.ca cthomp51@students.kennesaw.edu
+alternates cam@simplephoto.com
 
 # Default inbox.
 set spoolfile = "=Inbox"
