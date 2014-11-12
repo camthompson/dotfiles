@@ -7,6 +7,8 @@ Dir['zsh/bundle/*'].each do |d|
 end
 
 def push_to_github()
+  `git add vim/bundle/NeoBundle.lock`
+  `git commit -m 'Vim plugin update'`
   `git add zsh/bundle`
   `git commit -m 'ZSH plugin update'`
   `git push`
