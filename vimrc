@@ -18,6 +18,7 @@ NeoBundle 'benmills/vimux'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'ecomba/vim-ruby-refactoring'
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'greyblake/vim-preview'
 NeoBundle 'groenewege/vim-less'
@@ -28,7 +29,6 @@ NeoBundle 'idanarye/vim-merginal'
 NeoBundle 'int3/vim-extradite'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'junegunn/vim-github-dashboard'
 NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-fold'
@@ -575,11 +575,6 @@ nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " Dispatch {{{
 let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
 nnoremap g<cr> :up<bar>Dispatch<cr>
-" }}}
-
-" Easy Align {{{
-vmap <cr> <plug>(EasyAlign)
-nmap <leader>a <plug>(EasyAlign)
 " }}}
 
 " Expand Region {{{
