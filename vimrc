@@ -706,7 +706,7 @@ function! s:OpenQUnit()
 endfunction
 
 command! OpenQUnit call s:OpenQUnit()
-au FileType javascript nnoremap <leader>r :OpenQUnit<cr>
+au FileType javascript nnoremap <buffer> <leader>r :OpenQUnit<cr>
 " }}}
 
 " Rubocop {{{
