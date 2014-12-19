@@ -683,6 +683,32 @@ inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
 inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
 " }}}
 
+" QUnit {{{
+function! s:OpenQUnit()
+  let l:test_name = ''
+
+  for l:line in readfile(bufname('%'), '')
+    if line =~ "^moduleFor"
+      let l:test_name = matchstr(line, '\v, ''\zs.*\ze''')
+      break
+    elseif line =~ "^module"
+      let l:test_name = matchstr(line, '\v''\zs.*\ze''')
+      break
+    endif
+  endfor
+
+  if len(test_name)
+    silent execute "!open 'http://localhost:3000/tests?module=".test_name."'"
+    redraw!
+  else
+    echom 'No test module found'
+  endif
+endfunction
+
+command! OpenQUnit call s:OpenQUnit()
+au FileType javascript nnoremap <leader>r :OpenQUnit<cr>
+" }}}
+
 " Rubocop {{{
 let g:vimrubocop_keymap=0
 " }}}
