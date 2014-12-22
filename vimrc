@@ -89,6 +89,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/kwbdi.vim'
+NeoBundle 'vim-scripts/TailMinusF'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'ZoomWin'
 
