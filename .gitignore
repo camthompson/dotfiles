@@ -14,3 +14,10 @@ mutt/cache/bodies/*
 irssi/sasl.auth
 irssi/saved_colors
 vim/bundle
+nvim/tmp/*
+!nvim/tmp/swp/.gitkeep
+!nvim/tmp/undo/.gitkeep
+!nvim/tmp/backup/.gitkeep
+nvim/yankring_history_v2.txt
+nvim/dbext_history.txt
+nvim/bundle
