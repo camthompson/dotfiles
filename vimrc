@@ -653,7 +653,7 @@ let g:projectionist_heuristics = {
       \        "command": "component",
       \        "alternate": "tests/unit/components/{}-test.js"
       \      },
-      \      "app/styles/*.sass": { "command": "style" },
+      \      "app/styles/*.scss": { "command": "style" },
       \      "bower.json": { "command": "bower" },
       \      "package.json": { "command": "package" },
       \      "README.md": { "command": "readme" }
