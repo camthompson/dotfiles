@@ -92,6 +92,8 @@ NeoBundle 'ZoomWin'
 
 call neobundle#end()
 
+call neobundle#local('~/src/vimbundles')
+
 filetype plugin indent on
 
 NeoBundleCheck
