@@ -609,60 +609,6 @@ let g:incsearch#magic = '\v'
 map <leader>d <plug>Kwbd
 " }}}
 
-" Projectionist {{{
-let g:projectionist_heuristics = {
-      \   ".ember-cli": {
-      \      "app/models/*.js": {
-      \        "command": "model",
-      \        "alternate": "tests/unit/models/{}-test.js"
-      \      },
-      \      "app/mixins/*.js": {
-      \        "command": "mixin",
-      \        "alternate": "tests/unit/mixins/{}-test.js"
-      \      },
-      \      "app/router.js": { "command": "router"},
-      \      "app/serializers/*.js": {
-      \        "command": "serializer",
-      \        "alternate": "tests/unit/serializers/{}-test.js"
-      \      },
-      \      "app/services/*.js": {
-      \        "command": "service",
-      \        "alternate": "tests/unit/services/{}-test.js"
-      \      },
-      \      "app/initializers/*.js": { "command": "initializer" },
-      \      "app/routes/*.js": {
-      \        "command": "route",
-      \        "alternate": "app/controllers/{}.js"
-      \      },
-      \      "app/controllers/*.js": {
-      \        "command": "controller",
-      \        "alternate": "tests/unit/controllers/{}-test.js"
-      \      },
-      \      "app/views/*.js": {
-      \        "command": "view",
-      \        "alternate": "tests/unit/views/{}-test.js"
-      \      },
-      \      "app/helpers/*.js": {
-      \        "command": "helper",
-      \        "alternate": "tests/unit/helpers/{}-test.js"
-      \      },
-      \      "app/templates/*.hbs": {
-      \        "command": "template",
-      \        "template": [ "{{outlet}}" ],
-      \        "alternate": "app/controllers/{}.js"
-      \      },
-      \      "app/components/*.js": {
-      \        "command": "component",
-      \        "alternate": "tests/unit/components/{}-test.js"
-      \      },
-      \      "app/styles/*.scss": { "command": "style" },
-      \      "bower.json": { "command": "bower" },
-      \      "package.json": { "command": "package" },
-      \      "README.md": { "command": "readme" }
-      \    }
-      \  }
-" }}}
-
 " Neocomplete {{{
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
