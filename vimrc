@@ -613,15 +613,13 @@ map <leader>d <plug>Kwbd
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#force_overwrite_completefunc=1
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
      return "\<tab>"
    elseif pumvisible()
      return "\<c-n>"
    else
-     return "\<c-x>\<c-u>"
+     return neocomplete#start_manual_complete()
    endif
 endfunction
 inoremap <expr><tab> CleverTab()
