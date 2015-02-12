@@ -69,6 +69,7 @@ alias bi='bundle install'
 alias bid='bundle install --without production'
 alias b='bundle exec'
 alias br='bundle exec rails'
+alias e='ember'
 
 alias rr='rbenv rehash'
 
