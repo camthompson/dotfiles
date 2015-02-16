@@ -21,3 +21,4 @@ nvim/tmp/*
 nvim/yankring_history_v2.txt
 nvim/dbext_history.txt
 nvim/bundle
+vim/bundle/NeoBundle.lock
