@@ -70,6 +70,7 @@ alias bid='bundle install --without production'
 alias b='bundle exec'
 alias br='bundle exec rails'
 alias e='ember'
+alias nombom='npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
 
 alias rr='rbenv rehash'
 
