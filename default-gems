@@ -5,6 +5,14 @@ rake
 awesome_print
 pry
 pry-editline
+pry-doc
+pry-docmore
+pry-byebug
+pry-stack_explorer
+pry-exception_explorer
+pry-rescue
+bond
+jist
 interactive_editor
 hirb
 wirble
