@@ -4,7 +4,6 @@ bundler
 rake
 awesome_print
 pry
-pry-plus
 pry-editline
 interactive_editor
 hirb
