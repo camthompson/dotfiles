@@ -9,7 +9,6 @@ pry-doc
 pry-docmore
 pry-byebug
 pry-stack_explorer
-pry-exception_explorer
 pry-rescue
 bond
 jist
