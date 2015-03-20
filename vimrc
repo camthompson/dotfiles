@@ -462,7 +462,6 @@ nnoremap & :&&<cr>
 xnoremap & :&&<cr>
 nnoremap Q gqip
 xnoremap Q gq
-nnoremap ql ^vg_gq
 nnoremap <leader>c :!git ctags<cr>
 nnoremap Y y$
 nnoremap ; :
