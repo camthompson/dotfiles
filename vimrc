@@ -348,6 +348,12 @@ au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
 nnoremap <leader>gd :topleft 100 :split db/schema.rb<cr>
+let g:rails_gem_projections = {
+      \ "active_model_serializers": {
+      \   "app/serializers/*_serializer.rb": {
+      \     "command": "serializer",
+      \     "affinity": "model"}}
+      \}
 " }}}
 
 " SL {{{
