@@ -48,6 +48,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'sickill/vim-pasta'
+NeoBundle 'sjl/vitality.vim'
 NeoBundle 'skalnik/vim-vroom'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tommcdo/vim-exchange'
@@ -714,6 +715,10 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['coffee'],
                            \ 'passive_filetypes': [] }
 nnoremap <leader>s :up<bar>:SyntasticCheck<cr>
+" }}}
+
+" Vitality {{{
+let g:vitality_fix_cursor=0
 " }}}
 
 " Vroom {{{
