@@ -1,9 +1,9 @@
 set nocompatible "no vi compatibility
 
 " NeoBundle {{{
-set runtimepath+=~/.nvim/bundle/neobundle.vim/
+set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-call neobundle#begin(expand('~/.nvim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -21,9 +21,7 @@ NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'greyblake/vim-preview'
-NeoBundle 'groenewege/vim-less'
 NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'heartsentwined/vim-emblem'
 NeoBundle 'henrik/vim-qargs'
 NeoBundle 'idanarye/vim-merginal'
 NeoBundle 'int3/vim-extradite'
@@ -35,12 +33,11 @@ NeoBundle 'kana/vim-textobj-fold'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mattn/ctrlp-register'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mbbill/undotree'
-" NeoBundle 'mmozuras/vim-github-comment'
+NeoBundle 'mmozuras/vim-github-comment'
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'nelstrom/vim-markdown-folding'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
@@ -49,11 +46,11 @@ NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'sickill/vim-pasta'
+NeoBundle 'sjl/vitality.vim'
 NeoBundle 'skalnik/vim-vroom'
 NeoBundle 'slim-template/vim-slim'
-NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-afterimage'
@@ -350,6 +347,12 @@ au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
 nnoremap <leader>gd :topleft 100 :split db/schema.rb<cr>
+let g:rails_gem_projections = {
+      \ "active_model_serializers": {
+      \   "app/serializers/*_serializer.rb": {
+      \     "command": "serializer",
+      \     "affinity": "model"}}
+      \}
 " }}}
 
 " SL {{{
@@ -464,7 +467,6 @@ nnoremap & :&&<cr>
 xnoremap & :&&<cr>
 nnoremap Q gqip
 xnoremap Q gq
-nnoremap ql ^vg_gq
 nnoremap <leader>c :!git ctags<cr>
 nnoremap Y y$
 nnoremap ; :
@@ -611,73 +613,17 @@ let g:incsearch#magic = '\v'
 map <leader>d <plug>Kwbd
 " }}}
 
-" Projectionist {{{
-let g:projectionist_heuristics = {
-      \   ".ember-cli": {
-      \      "app/models/*.js": {
-      \        "command": "model",
-      \        "alternate": "tests/unit/models/{}-test.js"
-      \      },
-      \      "app/mixins/*.js": {
-      \        "command": "mixin",
-      \        "alternate": "tests/unit/mixins/{}-test.js"
-      \      },
-      \      "app/router.js": { "command": "router"},
-      \      "app/serializers/*.js": {
-      \        "command": "serializer",
-      \        "alternate": "tests/unit/serializers/{}-test.js"
-      \      },
-      \      "app/services/*.js": {
-      \        "command": "service",
-      \        "alternate": "tests/unit/services/{}-test.js"
-      \      },
-      \      "app/initializers/*.js": { "command": "initializer" },
-      \      "app/routes/*.js": {
-      \        "command": "route",
-      \        "alternate": "app/controllers/{}.js"
-      \      },
-      \      "app/controllers/*.js": {
-      \        "command": "controller",
-      \        "alternate": "tests/unit/controllers/{}-test.js"
-      \      },
-      \      "app/views/*.js": {
-      \        "command": "view",
-      \        "alternate": "tests/unit/views/{}-test.js"
-      \      },
-      \      "app/helpers/*.js": {
-      \        "command": "helper",
-      \        "alternate": "tests/unit/helpers/{}-test.js"
-      \      },
-      \      "app/templates/*.hbs": {
-      \        "command": "template",
-      \        "template": [ "{{outlet}}" ],
-      \        "alternate": "app/controllers/{}.js"
-      \      },
-      \      "app/components/*.js": {
-      \        "command": "component",
-      \        "alternate": "tests/unit/components/{}-test.js"
-      \      },
-      \      "app/styles/*.sass": { "command": "style" },
-      \      "bower.json": { "command": "bower" },
-      \      "package.json": { "command": "package" },
-      \      "README.md": { "command": "readme" }
-      \    }
-      \  }
-" }}}
-
 " Neocomplete {{{
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#force_overwrite_completefunc=1
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
      return "\<tab>"
    elseif pumvisible()
      return "\<c-n>"
    else
-     return "\<c-x>\<c-u>"
+     return neocomplete#start_manual_complete()
    endif
 endfunction
 inoremap <expr><tab> CleverTab()
@@ -767,6 +713,10 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['coffee'],
                            \ 'passive_filetypes': [] }
 nnoremap <leader>s :up<bar>:SyntasticCheck<cr>
+" }}}
+
+" Vitality {{{
+let g:vitality_fix_cursor=0
 " }}}
 
 " Vroom {{{
