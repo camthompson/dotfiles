@@ -99,7 +99,6 @@ NeoBundleCheck
 
 " }}}
 
-set ttyfast "improves copy/paste for terminals
 set visualbell t_vb= "no bell
 set mouse=a "enable mouse in all modes
 set cpoptions=aABceFsmq "copy options
