@@ -90,9 +90,9 @@ NeoBundle 'vim-scripts/TailMinusF'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'ZoomWin'
 
-call neobundle#end()
-
 call neobundle#local('~/src/vimbundles')
+
+call neobundle#end()
 
 filetype plugin indent on
 
