@@ -1,9 +1,9 @@
 set nocompatible "no vi compatibility
 
 " NeoBundle {{{
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+set runtimepath+=~/.nvim/bundle/neobundle.vim/
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.nvim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
