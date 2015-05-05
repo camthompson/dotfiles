@@ -536,7 +536,9 @@ function! StatusPath()
   return join(add(map(parts, 'v:val[0]'), expand('%:t')), '/')
 endfunction
 let g:airline_section_c = "%<%{StatusPath()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
-let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_section_x = ''
+let g:airline_section_y = ''
 " }}}
 
 " CtrlP {{{
