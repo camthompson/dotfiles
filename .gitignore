@@ -13,7 +13,6 @@ mutt/cache/bodies/*
 !mutt/cache/bodies/.gitkeep
 irssi/sasl.auth
 irssi/saved_colors
-vim/bundle
 nvim/tmp/*
 !nvim/tmp/swp/.gitkeep
 !nvim/tmp/undo/.gitkeep
@@ -21,4 +20,5 @@ nvim/tmp/*
 nvim/yankring_history_v2.txt
 nvim/dbext_history.txt
 nvim/bundle
-vim/bundle/NeoBundle.lock
+vim/autoload/plug.vim
+vim/plugged
