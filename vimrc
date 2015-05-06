@@ -87,7 +87,7 @@ Plug 'wting/rust.vim'
 
 Plug '~/.vim/bundle/ZoomWin'
 
-Plug '~/src/vimbundles/vim-ember'
+Plug '~/src/vim-ember'
 
 call plug#end()
 " }}}
