@@ -425,4 +425,7 @@ prompt cet
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
