@@ -347,6 +347,7 @@ let g:rails_gem_projections = {
       \     "command": "serializer",
       \     "affinity": "model"}}
       \}
+let g:rails_projections = { "config/routes.rb": {"command": "routes"}}
 " }}}
 
 " SL {{{
