@@ -21,4 +21,5 @@ nvim/yankring_history_v2.txt
 nvim/dbext_history.txt
 nvim/bundle
 vim/autoload/plug.vim
+vim/autoload/plug.vim.old
 vim/plugged
