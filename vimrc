@@ -11,7 +11,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/undoquit.vim'
 Plug 'benmills/vimux'
-Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'godlygeek/tabular'
@@ -60,6 +59,7 @@ Plug 'tpope/vim-dotenv'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-flagship'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-haml'
@@ -172,7 +172,7 @@ set breakindent "visually indent wrapped lines
 " Behavior {{{
 set textwidth=79 "used for &colorcolumn
 set nowrap "don't wrap lines
-set noshowmode "don't show mode
+set showmode "show mode
 set startofline "jump commands move to first non-blank character
 set magic "unescaped . and * in regex are special chars
 set hidden "don't delete buffer when abandoned
@@ -511,40 +511,6 @@ noremap gk k
 " }}}
 
 " Plugin Config {{{
-" Airline {{{
-function! AirlineThemePatch(palette)
-  let a:palette.normal.airline_a = [ '#ffffff', '#268bd2', 255, 33  ]
-  let a:palette.normal.airline_z = [ '#ffffff', '#268bd2', 255, 33  ]
-  let a:palette.normal_modified.airline_c[0] = '#cb4b16'
-  let a:palette.normal_modified.airline_c[2] = 9
-endfunction
-let g:airline_theme_patch_func = 'AirlineThemePatch'
-let g:airline_powerline_fonts = 0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-function! StatusPath()
-  let parts = split(substitute(expand('%'), expand('$HOME'), '~', ''), '/')[0:-2]
-  return join(add(map(parts, 'v:val[0]'), expand('%:t')), '/')
-endfunction
-let g:airline_section_c = "%<%{StatusPath()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
-let g:airline#extensions#hunks#enabled = 0
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-" }}}
-
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
