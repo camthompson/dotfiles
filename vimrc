@@ -551,6 +551,10 @@ vmap v <plug>(expand_region_expand)
 vmap V <plug>(expand_region_shrink)
 " }}}
 
+" Flagship {{{
+autocmd User Flags call Hoist("window", "SyntasticStatuslineFlag")
+" }}}
+
 " Gist {{{
 let g:gist_detect_filetype = 1
 if has("mac")
