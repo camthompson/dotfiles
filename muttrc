@@ -81,7 +81,7 @@ macro index o "<shell-escape>offlineimap<enter>"           "run offlineimap to s
 macro index,pager C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index,pager M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager i "<save-message>=Inbox\n" "move message to inbox"
-macro index,pager d "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><delete-message>" "mark as read and move to trash"
+macro index,pager d "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Trash\n" "mark as read and trash"
 macro index,pager e "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Archive\n" "mark as read and archive"
 macro index,pager ! "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Spam\n" "mark as read and move to spam"
 
@@ -152,9 +152,6 @@ macro index,pager gs "<change-folder>=Search<enter>"
 
 # Send to Omnifocus ----------------------------------
 macro index,pager \Ca "<pipe-message>mutt-to-omnifocus.py<enter>" "send to OmniFocus"
-
-# Trash Patch ----------------------------------------
-set trash = "=Trash"
 
 # Colors ---------------------------------------------
 source ~/.mutt/cet.muttrc
