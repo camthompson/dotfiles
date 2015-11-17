@@ -165,8 +165,8 @@ set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
 set colorcolumn=+1 "highlight column after &textwidth
-set listchars=tab:▸\ ,extends:❯,precedes:❮
-set showbreak=↪
+set listchars=tab:>\ ,extends:>,precedes:<,
+set showbreak=|
 set breakindent "visually indent wrapped lines
 " }}}
 
