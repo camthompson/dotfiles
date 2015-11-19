@@ -124,6 +124,7 @@ aug vimrc
   au FileType perl,python,ruby inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
   au FileType c,cpp,cs,java,perl,javscript,php,aspperl,tex,css let b:surround_101 = "\r\n}"
   au FileType markdown set formatoptions=tcroqn2 comments=n:&gt;
+  au FileType markdown nnoremap <buffer> <leader>r :Preview<cr>
   au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
   au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
   au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
