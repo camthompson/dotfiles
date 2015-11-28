@@ -425,9 +425,4 @@ prompt cet
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
-if [[ "$OSTYPE" == darwin* ]]; then
-  export NVM_DIR=~/.nvm
-  source $(brew --prefix nvm)/nvm.sh
-fi
-
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
