@@ -209,6 +209,16 @@ set background=light
 colo solarized
 " }}}
 
+" Commands {{{
+" Journal {{{
+command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%d-%m-%y').'.md'
+" }}}
+
+" Timestamp {{{
+command! Timestamp execute 'normal o'.strftime("%I:%M%p")
+"}}}
+"}}}
+
 " Folding {{{
 set nofoldenable "disable folding by default
 set foldmethod=marker "folds on markers
