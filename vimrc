@@ -215,7 +215,7 @@ command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%d-%m-%y').'.md'
 " }}}
 
 " Timestamp {{{
-command! Timestamp execute 'normal o'.strftime("%I:%M%p")
+command! Timestamp execute 'normal o## '.strftime("%I:%M%p")
 "}}}
 "}}}
 
