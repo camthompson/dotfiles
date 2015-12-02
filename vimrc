@@ -211,7 +211,7 @@ colo solarized
 
 " Commands {{{
 " Journal {{{
-command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%d-%m-%y').'.md'
+command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
 
 " Timestamp {{{
