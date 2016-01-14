@@ -1,4 +1,4 @@
-vim/tmp/*
+vim/tmp/**/*
 !vim/tmp/swp/.gitkeep
 !vim/tmp/undo/.gitkeep
 !vim/tmp/backup/.gitkeep
