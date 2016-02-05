@@ -11,7 +11,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/undoquit.vim'
 Plug 'benmills/vimux'
-Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'editorconfig/editorconfig-vim'
@@ -210,7 +209,7 @@ set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
 
 " Colorscheme {{{
 set background=dark
-colo base16-atelierlakeside
+colo base16-ateliercave
 " }}}
 
 " Commands {{{
