@@ -209,8 +209,8 @@ set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
 " }}}
 
 " Colorscheme {{{
-set background=light
-colo solarized
+set background=dark
+colo base16-atelierlakeside
 " }}}
 
 " Commands {{{
