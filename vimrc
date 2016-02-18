@@ -88,6 +88,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'vim-scripts/TailMinusF'
+Plug 'wellle/targets.vim'
 Plug 'wting/rust.vim'
 
 Plug '~/.vim/bundle/ZoomWin'
