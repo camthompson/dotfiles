@@ -25,3 +25,4 @@ config/nvim/dbext_history.txt
 config/nvim/autoload/plug.vim
 config/nvim/autoload/plug.vim.old
 config/nvim/plugged
+config/nvim/.init.vim-rplugin~
