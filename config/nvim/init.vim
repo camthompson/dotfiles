@@ -582,10 +582,6 @@ vmap v <plug>(expand_region_expand)
 vmap V <plug>(expand_region_shrink)
 " }}}
 
-" Flagship {{{
-autocmd User Flags call Hoist("window", "SyntasticStatuslineFlag")
-" }}}
-
 " Gist {{{
 let g:gist_detect_filetype = 1
 if has("mac")
@@ -673,14 +669,6 @@ omap T <Plug>Sneak_T
 
 " Switch {{{
 nnoremap c= :Switch<cr>
-" }}}
-
-" Syntastic {{{
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['coffee'],
-                           \ 'passive_filetypes': [] }
-nnoremap <leader>s :up<bar>:SyntasticCheck<cr>
 " }}}
 
 " Vitality {{{
