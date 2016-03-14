@@ -1,5 +1,3 @@
-set nocompatible "no vi compatibility
-
 " Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
@@ -101,7 +99,6 @@ call plug#end()
 " }}}
 
 filetype plugin indent on
-set ttyfast "improves copy/paste for terminals
 set visualbell t_vb= "no bell
 set mouse=a "enable mouse in all modes
 set cpoptions=aABceFsmq "copy options
