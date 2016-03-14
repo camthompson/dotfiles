@@ -167,7 +167,7 @@ set showtabline=1 "show tab line when more than one open
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
 set lazyredraw "don't redraw the screen while executing macros
 set colorcolumn=+1 "highlight column after &textwidth
-set listchars=tab:>\ ,extends:>,precedes:<,
+set listchars+=extends:>,precedes:<
 set showbreak=|
 set breakindent "visually indent wrapped lines
 " }}}
@@ -181,7 +181,6 @@ set magic "unescaped . and * in regex are special chars
 set hidden "don't delete buffer when abandoned
 set report=5 "threshold for showing when a number of lines are changed
 set shortmess=aOstTAI "help avoid hit enter prompts
-set formatoptions-=or "don't automatically comment lines
 set pastetoggle=<F2> "F2 toggles pastemode
 set gdefault "makes /g the default on substitute
 set modeline "check file for vim options
@@ -693,11 +692,9 @@ set noequalalways
 " }}}
 
 " Search {{{
-set incsearch "incremental search jumping
 set wrapscan "search wraps around end of document
 set ignorecase "case insensitive search
 set smartcase "stops ignoring case when capitals used
-set hlsearch "highlight search terms
 " }}}
 
 " Swap/Backup/Undo {{{
