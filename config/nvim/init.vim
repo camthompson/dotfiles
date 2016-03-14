@@ -216,6 +216,10 @@ colo base16-eighties
 command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
 
+" Notes {{{
+command! Notes execute 'lcd ~/Dropbox/Notes <bar> CtrlP'
+" }}}
+
 " Timestamp {{{
 command! Timestamp execute 'normal o## '.strftime("%I:%M%p")
 "}}}
