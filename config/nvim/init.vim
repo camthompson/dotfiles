@@ -568,7 +568,7 @@ function! CleverTab()
    elseif pumvisible()
      return "\<c-n>"
    else
-     return deoplete#start_manual_complete()
+     return deoplete#mappings#manual_complete()
    endif
 endfunction
 inoremap <expr><tab> CleverTab()
