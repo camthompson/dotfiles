@@ -204,6 +204,7 @@ set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
 set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
 set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
 set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
+set wildignorecase "ignore case when completing
 " }}}
 
 " Colorscheme {{{
