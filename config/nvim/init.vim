@@ -686,6 +686,7 @@ let g:vroom_use_colors=1
 let g:vroom_detect_spec_helper=1
 let g:vroom_cucumber_path='cucumber'
 let g:vroom_map_keys = 0
+let g:vroom_ignore_color_flag = 1
 nnoremap <leader>r :VroomRunTestFile<cr>
 nnoremap <leader>R :VroomRunNearestTest<CR>
 " }}}
