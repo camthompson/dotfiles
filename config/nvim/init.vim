@@ -473,7 +473,7 @@ nnoremap <c-e> 5<c-e>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
-nnoremap <c-h> <c-w><c-h>
+nnoremap <bs> <c-w><c-h>
 nnoremap <c-=> <c-w>=
 nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
