@@ -111,7 +111,7 @@ endif
 aug vimrc
   " Go to last position in a file when opening
   au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft != "gitcommit" |
         \   exe "normal g`\"" |
         \ endif
 
