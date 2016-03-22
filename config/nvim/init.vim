@@ -681,8 +681,8 @@ let g:vitality_fix_cursor=0
 " Vroom {{{
 let g:vroom_clear_screen=0
 let g:vroom_use_dispatch=1
-let g:vroom_use_colors=1
-let g:vroom_detect_spec_helper=1
+let g:vroom_use_bundle_exec=0
+let g:vroom_use_binstubs=1
 let g:vroom_cucumber_path='cucumber'
 let g:vroom_map_keys = 0
 let g:vroom_ignore_color_flag = 1
