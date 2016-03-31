@@ -194,6 +194,8 @@ set winheight=5
 set winminheight=5
 set noesckeys "esc enters command mode instantly
 set nojoinspaces "don't insert space after word-terminating chars when using J and gq
+let mapleader = "\<space>"
+let maplocalleader = ','
 " }}}
 
 " Completion {{{
@@ -217,7 +219,13 @@ command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
 
 " Notes {{{
-command! Notes execute 'lcd ~/Dropbox/Notes <bar> CtrlP'
+function! Notes()
+  let notes_dir = '~/Dropbox/Notes'
+  exec 'lcd' l:notes_dir
+  exec 'CtrlP' l:notes_dir
+endfunction
+command! Notes :call Notes()
+nnoremap <leader>n :Notes<cr>
 " }}}
 
 " Timestamp {{{
@@ -439,9 +447,6 @@ set nosmartindent "the name of this option is misleading
 " }}}
 
 " Maps {{{
-let mapleader = "\<space>"
-let maplocalleader = ','
-
 " Useless Keys {{{
 noremap <F1> <nop>
 " }}}
