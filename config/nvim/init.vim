@@ -454,6 +454,8 @@ inoremap <c-c> <esc>zza
 inoremap <c-w> <c-g>u<c-w>
 
 imap <c-l> <Plug>CapsLockToggle
+
+inoremap <c-c> <esc>
 " }}}
 
 " Normal Mode {{{
