@@ -200,7 +200,11 @@ set wildignorecase "ignore case when completing
 
 " Colorscheme {{{
 set background=dark
-colo base16-eighties
+if len($SSH_CLIENT) > 0
+  colo default
+else
+  colo base16-eighties
+endif
 " }}}
 
 " Commands {{{
