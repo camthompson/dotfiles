@@ -572,7 +572,6 @@ inoremap <expr><bs> deoplete#smart_close_popup()."\<c-h>"
 " }}}
 
 " Dispatch {{{
-let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
 nnoremap g<cr> :up<bar>Dispatch<cr>
 " }}}
 
