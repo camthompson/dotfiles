@@ -544,13 +544,8 @@ let g:ctrlp_extensions = ['quickfix', 'register']
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_arg_map = 1
-if executable('ag')
-  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | sed -n "/.keep/!p"',
-        \ 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""']
-else
-  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | sed -n "/.keep/!p"',
-        \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*'"]
-endif
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | sed -n "/.keep/!p"',
+      \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*'"]
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude = '.*/\.git/.*\|.*/mutt/tmp/.*'
 let g:ctrlp_map = '<leader><leader>'
