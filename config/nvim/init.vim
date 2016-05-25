@@ -567,8 +567,6 @@ function! CleverTab()
    endif
 endfunction
 inoremap <expr><tab> CleverTab()
-inoremap <expr><c-h> deoplete#smart_close_popup()."\<c-h>"
-inoremap <expr><bs> deoplete#smart_close_popup()."\<c-h>"
 " }}}
 
 " Dispatch {{{
