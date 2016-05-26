@@ -107,14 +107,12 @@ aug vimrc
   au InsertEnter * set listchars-=trail:-
   au InsertLeave * set listchars+=trail:-
 
-  au FileType c,cpp,cs,java setlocal commentstring=//\ %s
   au Syntax javascript setlocal isk+=$
   au FileType text,txt,mail setlocal ai com=fb:*,fb:-,n:>
   au FileType sh,zsh,csh,tcsh inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
   au FileType perl,python,ruby inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
   au FileType c,cpp,cs,java,perl,javscript,php,aspperl,tex,css let b:surround_101 = "\r\n}"
   au FileType markdown set formatoptions=tcroqn2 comments=n:&gt;
-  au FileType markdown nnoremap <buffer> <leader>r :w<bar>Preview<cr>
   au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
   au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
   au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
@@ -159,6 +157,7 @@ set colorcolumn=+1 "highlight column after &textwidth
 set listchars+=extends:>,precedes:<
 set showbreak=|
 set breakindent "visually indent wrapped lines
+set noequalalways "don't make windows same size automatically
 " }}}
 
 " Behavior {{{
@@ -303,61 +302,6 @@ function! ShortCWD()
 endfunction
 " }}}
 
-" OpenChangedFiles {{{
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
-  let filenames = split(status, "\n")
-  exec "edit " . filenames[0]
-  for filename in filenames[1:]
-    exec "sp " . filename
-  endfor
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
-" }}}
-
-" OpenTestAlternate {{{
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-" }}}
-
-" PromoteToLet {{{
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
-" }}}
-
 " Rails {{{
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
@@ -369,16 +313,6 @@ let g:rails_gem_projections = {
       \     "affinity": "model"}}
       \}
 let g:rails_projections = { "config/routes.rb": {"command": "routes"}}
-" }}}
-
-" SL {{{
-function! SL(function)
-  if exists('*'.a:function)
-    return call(a:function,[])
-  else
-    return ''
-  endif
-endfunction
 " }}}
 
 " StripTrailingWhitespace {{{
@@ -395,15 +329,6 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap <leader>w :StripTrailingWhitespaces<CR>
-" }}}
-
-" SynStack {{{
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
 " }}}
 
 " ToggleBackground {{{
@@ -502,21 +427,6 @@ call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
 autocmd! CmdwinLeave * :call MapCR()
 " }}}
-
-" Set Filetypes {{{
-nnoremap <localleader>co :setlocal filetype=coffee<CR>
-nnoremap <localleader>cs :setlocal filetype=css<CR>
-nnoremap <localleader>ht :setlocal filetype=html<CR>
-nnoremap <localleader>js :setlocal filetype=javascript<CR>
-nnoremap <localleader>md :setlocal filetype=markdown<CR>
-nnoremap <localleader>pl :setlocal filetype=perl<CR>
-nnoremap <localleader>ph :setlocal filetype=php<CR>
-nnoremap <localleader>py :setlocal filetype=python<CR>
-nnoremap <localleader>rb :setlocal filetype=ruby<CR>
-nnoremap <localleader>sh :setlocal filetype=sh<CR>
-nnoremap <localleader>vi :setlocal filetype=vim<CR>
-nnoremap <localleader>xm :setlocal filetype=xml<CR>
-" }}}"
 
 " Move By Display Lines {{{
 noremap j gj
@@ -636,10 +546,6 @@ nnoremap ch :SidewaysLeft<cr>
 nnoremap cl :SidewaysRight<cr>
 " }}}
 
-" SplitJoin {{{
-let g:splitjoin_ruby_curly_braces=0
-" }}}
-
 " Surround {{{
 let g:surround_35  = "#{\r}"      " #
 let g:surround_45 = "<% \r %>"    " -
@@ -667,10 +573,6 @@ omap T <Plug>Sneak_T
 nnoremap c= :Switch<cr>
 " }}}
 
-" Vitality {{{
-let g:vitality_fix_cursor=0
-" }}}
-
 " Vroom {{{
 let g:vroom_clear_screen=0
 let g:vroom_use_dispatch=1
@@ -685,7 +587,6 @@ nnoremap <leader>R :VroomRunNearestTest<CR>
 
 " ZoomWin {{{
 nmap <leader>z <c-w>o
-set noequalalways
 " }}}
 " }}}
 
