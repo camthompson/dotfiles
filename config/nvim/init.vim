@@ -142,68 +142,82 @@ aug vimrc
 aug END
 " }}}
 
-" Appearance {{{
-set number "show line numbers
-set scrolloff=5 "keep 5 lines above or below current line
-set sidescrolloff=5 "keep 5 lines left or right of cursor
-set list "show symbols for whitespace characters
-set matchtime=5 "how long in tenths of a second to show matching parens
-set cursorline "highlight the cursor line
-set cursorcolumn "highlight the cursor column
-set showtabline=1 "show tab line when more than one open
-set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
-set lazyredraw "don't redraw the screen while executing macros
-set colorcolumn=+1 "highlight column after &textwidth
-set listchars+=extends:>,precedes:<
-set showbreak=|
-set breakindent "visually indent wrapped lines
-set noequalalways "don't make windows same size automatically
-" }}}
-
-" Behavior {{{
-set textwidth=79 "used for &colorcolumn
-set nowrap "don't wrap lines
-set showmode "show mode
-set startofline "jump commands move to first non-blank character
-set magic "unescaped . and * in regex are special chars
-set hidden "don't delete buffer when abandoned
-set report=5 "threshold for showing when a number of lines are changed
-set shortmess=aOstTAI "help avoid hit enter prompts
-set pastetoggle=<F2> "F2 toggles pastemode
-set gdefault "makes /g the default on substitute
-set modeline "check file for vim options
-set modelines=10 "check 10 lines for options
-set path+=./**  "search recursively downards
-set nrformats=alpha,hex,octal "increment chars, consider 0x and #x to be decimal
-set splitbelow "open splits below current window
-set splitright "open vertical splits to the right of the current window
-set switchbuf=usetab "jump to first open window or tab with a buffer
-set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
-set winheight=5
-set winminheight=5
-set noesckeys "esc enters command mode instantly
-set nojoinspaces "don't insert space after word-terminating chars when using J and gq
+" Settings {{{
 let mapleader = "\<space>"
 let maplocalleader = ','
-" }}}
 
-" Completion {{{
-set wildmode=full "complete first full match
-"filetypes to ignore on tab-completion
-set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
-set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
-set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
-set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
-set wildignorecase "ignore case when completing
-" }}}
-
-" Colorscheme {{{
-set background=dark
 if len($SSH_CLIENT) > 0
   colo default
 else
   colo base16-eighties
 endif
+
+set background=dark
+set backup "enable backup
+set backupdir=$HOME/.vim/tmp/backup// "backup file directory
+set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
+set breakindent "visually indent wrapped lines
+set colorcolumn=+1 "highlight column after &textwidth
+set cursorcolumn "highlight the cursor column
+set cursorline "highlight the cursor line
+set directory=$HOME/.vim/tmp/swp// "swap file directory
+set expandtab "insert spaces instead of tabs
+set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
+set foldlevel=1 "only automatically fold levels of 1 or higher
+set foldlevelstart=1 "start editing all buffers with some folds closed
+set foldmethod=marker "folds on markers
+set foldnestmax=5 "only nest 5 folds at max when auto folding
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+set gdefault "makes /g the default on substitute
+set hidden "don't delete buffer when abandoned
+set ignorecase "case insensitive search
+set lazyredraw "don't redraw the screen while executing macros
+set list "show symbols for whitespace characters
+set listchars+=extends:>,precedes:<
+set magic "unescaped . and * in regex are special chars
+set matchtime=5 "how long in tenths of a second to show matching parens
+set modeline "check file for vim options
+set modelines=10 "check 10 lines for options
+set noequalalways "don't make windows same size automatically
+set noesckeys "esc enters command mode instantly
+set nofoldenable "disable folding by default
+set nojoinspaces "don't insert space after word-terminating chars when using J and gq
+set nosmartindent "the name of this option is misleading
+set noswapfile "don't save swap files
+set nowrap "don't wrap lines
+set nrformats=alpha,hex,octal "increment chars, consider 0x and #x to be decimal
+set number "show line numbers
+set pastetoggle=<F2> "F2 toggles pastemode
+set path+=./**  "search recursively downards
+set report=5 "threshold for showing when a number of lines are changed
+set scrolloff=5 "keep 5 lines above or below current line
+set shiftwidth=2 "< and > indent width
+set shortmess=aOstTAI "help avoid hit enter prompts
+set showbreak=|
+set showmode "show mode
+set showtabline=1 "show tab line when more than one open
+set sidescrolloff=5 "keep 5 lines left or right of cursor
+set smartcase "stops ignoring case when capitals used
+set softtabstop=2 "treat 2 consecutive spaces as a tab
+set splitbelow "open splits below current window
+set splitright "open vertical splits to the right of the current window
+set startofline "jump commands move to first non-blank character
+set switchbuf=usetab "jump to first open window or tab with a buffer
+set tabstop=2 "tab width
+set textwidth=79 "used for &colorcolumn
+set undodir=$HOME/.vim/tmp/undo// "undo file directory
+set undofile "persistent undo history
+set undolevels=1000 "number of undo levels to save
+set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
+set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
+set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
+set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
+set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
+set wildignorecase "ignore case when completing
+set wildmode=full "complete first full match
+set winheight=5
+set winminheight=5
+set wrapscan "search wraps around end of document
 " }}}
 
 " Commands {{{
@@ -225,16 +239,6 @@ nnoremap <leader>n :Notes<cr>
 command! Timestamp execute 'normal o## '.strftime("%I:%M%p")
 "}}}
 "}}}
-
-" Folding {{{
-set nofoldenable "disable folding by default
-set foldmethod=marker "folds on markers
-set foldnestmax=5 "only nest 5 folds at max when auto folding
-"actions that open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-set foldlevel=1 "only automatically fold levels of 1 or higher
-set foldlevelstart=1 "start editing all buffers with some folds closed
-" }}}
 
 " Functions {{{
 " ClearRegisters {{{
@@ -357,14 +361,6 @@ command! WP call WordProcessorMode()
 " }}}
 "}}}
 
-" Indentation/Tabs {{{
-set tabstop=2 "tab width
-set softtabstop=2 "treat 2 consecutive spaces as a tab
-set expandtab "insert spaces instead of tabs
-set shiftwidth=2 "< and > indent width
-set nosmartindent "the name of this option is misleading
-" }}}
-
 " Maps {{{
 " Useless Keys {{{
 noremap <F1> <nop>
@@ -436,7 +432,7 @@ noremap gk k
 " }}}
 " }}}
 
-" Plugin Config {{{
+" Plugins {{{
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
@@ -588,23 +584,6 @@ nnoremap <leader>R :VroomRunNearestTest<CR>
 " ZoomWin {{{
 nmap <leader>z <c-w>o
 " }}}
-" }}}
-
-" Search {{{
-set wrapscan "search wraps around end of document
-set ignorecase "case insensitive search
-set smartcase "stops ignoring case when capitals used
-" }}}
-
-" Swap/Backup/Undo {{{
-set undofile "persistent undo history
-set undodir=$HOME/.vim/tmp/undo// "undo file directory
-set undolevels=1000 "number of undo levels to save
-set backup "enable backup
-set backupdir=$HOME/.vim/tmp/backup// "backup file directory
-set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
-set directory=$HOME/.vim/tmp/swp// "swap file directory
-set noswapfile "don't save swap files
 " }}}
 
 set secure
