@@ -26,6 +26,7 @@ Plug 'mattn/ctrlp-register'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mbbill/undotree'
+Plug 'mhartington/oceanic-next'
 Plug 'mmozuras/vim-github-comment'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nelstrom/vim-markdown-folding'
@@ -149,7 +150,7 @@ let maplocalleader = ','
 if len($SSH_CLIENT) > 0
   colo default
 else
-  colo base16-eighties
+  colo OceanicNext
 endif
 
 set background=dark
