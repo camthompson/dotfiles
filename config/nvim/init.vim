@@ -150,7 +150,7 @@ let maplocalleader = ','
 if len($SSH_CLIENT) > 0
   colo default
 else
-  colo OceanicNext
+  colo base16-atelierlakeside
 endif
 
 set background=dark
