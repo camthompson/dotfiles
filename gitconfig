@@ -52,8 +52,8 @@
   dc = diff --cached
   dh1 = diff HEAD~1
   div = divergence
-	ds = diff --stat
-	dss = diff --shortstat
+  ds = diff --stat
+  dss = diff --shortstat
   f = fetch
   fa = fetch --all
   g = grep
