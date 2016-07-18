@@ -136,7 +136,7 @@ aug vimrc
   au FileType help setlocal ai fo+=2n | silent! setlocal nospell
   au FileType help nnoremap <silent><buffer> q :q<CR>
   au FileType html setlocal iskeyword+=~
-  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
+  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell fo+=aw
   au FileType markdown call WordProcessorMode()
   au FileType vim  setlocal keywordprg=:help nojoinspaces
 aug END
