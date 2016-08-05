@@ -140,6 +140,7 @@ aug vimrc
   au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell fo+=aw
   au FileType markdown call WordProcessorMode()
   au FileType vim  setlocal keywordprg=:help nojoinspaces
+  au FileType python nnoremap <leader>r :w<bar>!python %<cr>
 aug END
 " }}}
 
