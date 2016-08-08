@@ -477,7 +477,7 @@ inoremap <expr><tab> CleverTab()
 " }}}
 
 " Dispatch {{{
-nnoremap g<cr> :up<bar>Dispatch<cr>
+nnoremap g<space> :up<bar>Dispatch<cr>
 " }}}
 
 " Expand Region {{{
