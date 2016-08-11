@@ -15,6 +15,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
 Plug 'greyblake/vim-preview'
 Plug 'idanarye/vim-merginal'
+Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
@@ -565,6 +566,14 @@ omap T <Plug>Sneak_T
 " Switch {{{
 nnoremap c= :Switch<cr>
 " }}}
+
+" Test {{
+let test#strategy = "dispatch"
+nnoremap <leader>t :TestNearest<CR>
+nnoremap <leader>T :TestFile<CR>
+nnoremap <leader>a :TestSuite<CR>
+nnoremap <leader>l :TestLast<CR>
+" }}
 
 " Vroom {{{
 let g:vroom_clear_screen=0
