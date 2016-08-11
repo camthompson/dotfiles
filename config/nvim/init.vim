@@ -40,7 +40,6 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sickill/vim-pasta'
-Plug 'skalnik/vim-vroom'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
@@ -574,18 +573,6 @@ nnoremap <leader>T :TestFile<CR>
 nnoremap <leader>a :TestSuite<CR>
 nnoremap <leader>l :TestLast<CR>
 " }}
-
-" Vroom {{{
-let g:vroom_clear_screen=0
-let g:vroom_use_dispatch=1
-let g:vroom_use_bundle_exec=0
-let g:vroom_use_binstubs=1
-let g:vroom_cucumber_path='cucumber'
-let g:vroom_map_keys = 0
-let g:vroom_ignore_color_flag = 1
-nnoremap <leader>r :VroomRunTestFile<cr>
-nnoremap <leader>R :VroomRunNearestTest<CR>
-" }}}
 
 " ZoomWin {{{
 nmap <leader>z <c-w>o
