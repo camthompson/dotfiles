@@ -21,6 +21,16 @@ function prompt_cam_precmd {
   prompt_cam_pwd
 
   git-info
+
+  prompt_ssh_info
+}
+
+function prompt_ssh_info {
+  if [[ -n $SSH_CLIENT ]]; then
+    _prompt_ssh_info='(%F{red}SSH%f)'
+  else
+    _prompt_ssh_info=''
+  fi
 }
 
 function prompt_cam_setup {
@@ -53,6 +63,7 @@ function prompt_cam_setup {
 
   # Define prompts.
   PROMPT='%F{green}%n%b%f@%F{blue}%m%b%f:'
+  PROMPT+='${_prompt_ssh_info}'
   PROMPT+='%F{yellow}${_prompt_cam_pwd}'
   PROMPT+='${editor_info[keymap]} %f%b'
   RPROMPT='${git_info[prompt]}%f%b'
