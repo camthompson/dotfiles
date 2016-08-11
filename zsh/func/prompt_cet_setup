@@ -27,7 +27,7 @@ function prompt_cam_precmd {
 
 function prompt_host_info {
   if [[ -n $SSH_CLIENT ]]; then
-    _prompt_host_info='%F{green}%n%b%f@%F{blue}%m%b%f:'
+    _prompt_host_info='%F{yellow}%n%b%f@%F{green}%m%b%f:'
   else
     _prompt_host_info=''
   fi
@@ -63,7 +63,7 @@ function prompt_cam_setup {
 
   # Define prompts.
   PROMPT='${_prompt_host_info}'
-  PROMPT+='%F{yellow}${_prompt_cam_pwd}'
+  PROMPT+='%F{blue}${_prompt_cam_pwd}'
   PROMPT+='${editor_info[keymap]} %f%b'
   RPROMPT='${git_info[prompt]}%f%b'
 }
