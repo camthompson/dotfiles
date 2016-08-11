@@ -147,11 +147,7 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-if len($SSH_CLIENT) > 0
-  colo default
-else
-  colo base16-oceanicnext
-endif
+colo base16-oceanicnext
 
 set background=dark
 set backup "enable backup
