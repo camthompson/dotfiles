@@ -13,7 +13,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
-Plug 'greyblake/vim-preview'
+Plug 'iamcco/markdown-preview.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -96,6 +96,8 @@ set exrc "local for .vimrc in CWD
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
+
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 
 " AutoCMD {{{
 aug vimrc
@@ -493,6 +495,10 @@ endif
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
+
+" Markdown Preview {{
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+" }}
 
 " QUnit {{{
 function! s:OpenQUnit()
