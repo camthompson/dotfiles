@@ -13,7 +13,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
-Plug 'iamcco/markdown-preview.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -38,6 +37,7 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'rust-lang/rust.vim'
+Plug 'shime/vim-livedown'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sickill/vim-pasta'
 Plug 'slim-template/vim-slim'
@@ -495,10 +495,6 @@ endif
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
-
-" Markdown Preview {{
-let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
-" }}
 
 " QUnit {{{
 function! s:OpenQUnit()
