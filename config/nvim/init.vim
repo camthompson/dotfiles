@@ -574,8 +574,8 @@ nnoremap c= :Switch<cr>
 
 " Test {{
 let test#strategy = "dispatch"
-nnoremap <leader>t :w<bar>TestNearest<CR>
-nnoremap <leader>T :w<bar>TestFile<CR>
+nnoremap <leader>t :w<bar>TestFile<CR>
+nnoremap <leader>T :w<bar>TestNearest<CR>
 nnoremap <leader>a :w<bar>TestSuite<CR>
 nnoremap <leader>l :w<bar>TestLast<CR>
 " }}
