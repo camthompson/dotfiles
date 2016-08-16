@@ -574,10 +574,10 @@ nnoremap c= :Switch<cr>
 
 " Test {{
 let test#strategy = "dispatch"
-nnoremap <leader>t :TestNearest<CR>
-nnoremap <leader>T :TestFile<CR>
-nnoremap <leader>a :TestSuite<CR>
-nnoremap <leader>l :TestLast<CR>
+nnoremap <leader>t :w<bar>TestNearest<CR>
+nnoremap <leader>T :w<bar>TestFile<CR>
+nnoremap <leader>a :w<bar>TestSuite<CR>
+nnoremap <leader>l :w<bar>TestLast<CR>
 " }}
 
 " ZoomWin {{{
