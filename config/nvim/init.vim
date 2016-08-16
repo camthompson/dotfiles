@@ -496,6 +496,10 @@ endif
 map <leader>d <plug>Kwbd
 " }}}
 
+" Livedown {{
+let g:livedown_browser = 'open'
+" }}
+
 " QUnit {{{
 function! s:OpenQUnit()
   let l:test_name = ''
