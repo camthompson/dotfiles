@@ -27,3 +27,4 @@ config/nvim/autoload/plug.vim.old
 config/nvim/plugged
 config/nvim/.init.vim-rplugin~
 config/configstore/
+config/hub
