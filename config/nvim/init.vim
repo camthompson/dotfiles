@@ -97,8 +97,6 @@ if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
 
-let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
-
 " AutoCMD {{{
 aug vimrc
   " Go to last position in a file when opening
