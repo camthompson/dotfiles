@@ -16,6 +16,7 @@ Plug 'godlygeek/tabular'
 Plug 'idanarye/vim-merginal'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-entire'
@@ -147,7 +148,8 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-colo base16-oceanicnext
+let g:onedark_termcolors=16
+colo onedark
 
 set background=dark
 set backup "enable backup
