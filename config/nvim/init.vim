@@ -80,6 +80,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'vim-scripts/TailMinusF'
 Plug 'wellle/targets.vim'
+Plug 'zerowidth/vim-copy-as-rtf'
 
 Plug '~/.config/nvim/bundle/ZoomWin'
 
