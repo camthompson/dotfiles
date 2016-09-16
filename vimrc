@@ -10,20 +10,23 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/undoquit.vim'
-Plug 'benmills/vimux'
+Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-lang/vim-elixir'
-Plug 'greyblake/vim-preview'
+Plug 'godlygeek/tabular'
 Plug 'idanarye/vim-merginal'
+Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+Plug 'mattn/ctrlp-register'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mbbill/undotree'
@@ -33,13 +36,12 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ngmy/vim-rubocop'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/syntastic'
-Plug 'Shougo/neocomplete.vim'
+Plug 'radenling/vim-dispatch-neovim'
+Plug 'rust-lang/rust.vim'
+Plug 'shime/vim-livedown'
 Plug 'sickill/vim-pasta'
-Plug 'skalnik/vim-vroom'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
@@ -79,19 +81,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'vim-scripts/TailMinusF'
 Plug 'wellle/targets.vim'
-Plug 'wting/rust.vim'
-
-" To Remove
-Plug 'godlygeek/tabular'
-Plug 'gregsexton/gitv'
-Plug 'junegunn/vim-github-dashboard'
-Plug 'junegunn/gv.vim'
-Plug 'guns/vim-clojure-static'
-Plug 'henrik/vim-qargs'
-Plug 'mattn/ctrlp-register'
-Plug 'shime/vim-livedown'
-Plug 'tpope/vim-fireplace'
-Plug 'vim-scripts/dbext.vim'
+Plug 'zerowidth/vim-copy-as-rtf'
 
 Plug '~/.vim/bundle/ZoomWin'
 
@@ -115,21 +105,19 @@ endif
 aug vimrc
   " Go to last position in a file when opening
   au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft != "gitcommit" |
         \   exe "normal g`\"" |
         \ endif
 
   au InsertEnter * set listchars-=trail:-
   au InsertLeave * set listchars+=trail:-
 
-  au FileType c,cpp,cs,java setlocal commentstring=//\ %s
   au Syntax javascript setlocal isk+=$
   au FileType text,txt,mail setlocal ai com=fb:*,fb:-,n:>
   au FileType sh,zsh,csh,tcsh inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
   au FileType perl,python,ruby inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
   au FileType c,cpp,cs,java,perl,javscript,php,aspperl,tex,css let b:surround_101 = "\r\n}"
   au FileType markdown set formatoptions=tcroqn2 comments=n:&gt;
-  au FileType markdown nnoremap <buffer> <leader>r :w<bar>Preview<cr>
   au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
   au FileType vim setlocal foldmethod=marker foldenable foldlevel=0
   au BufEnter Gemfile,Rakefile,Thorfile,config.ru,Guardfile,Capfile,Vagrantfile setfiletype ruby
@@ -153,67 +141,85 @@ aug vimrc
   au FileType help setlocal ai fo+=2n | silent! setlocal nospell
   au FileType help nnoremap <silent><buffer> q :q<CR>
   au FileType html setlocal iskeyword+=~
-  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell
+  au FileType mail if getline(1) =~ '^[A-Za-z-]*:\|^From ' | exe 'norm gg}' |endif|silent! setlocal spell fo+=aw
   au FileType markdown call WordProcessorMode()
   au FileType vim  setlocal keywordprg=:help nojoinspaces
 aug END
 " }}}
 
-" Appearance {{{
-set number "show line numbers
-set scrolloff=5 "keep 5 lines above or below current line
-set sidescrolloff=5 "keep 5 lines left or right of cursor
-set list "show symbols for whitespace characters
-set matchtime=5 "how long in tenths of a second to show matching parens
-set cursorline "highlight the cursor line
-set cursorcolumn "highlight the cursor column
-set showtabline=1 "show tab line when more than one open
-set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
-set lazyredraw "don't redraw the screen while executing macros
-set colorcolumn=+1 "highlight column after &textwidth
-set listchars=tab:>\ ,extends:>,precedes:<,
-set showbreak=|
-set breakindent "visually indent wrapped lines
-" }}}
+" Settings {{{
+let mapleader = "\<space>"
+let maplocalleader = ','
 
-" Behavior {{{
-set textwidth=79 "used for &colorcolumn
-set nowrap "don't wrap lines
-set showmode "show mode
-set startofline "jump commands move to first non-blank character
-set magic "unescaped . and * in regex are special chars
-set hidden "don't delete buffer when abandoned
-set report=5 "threshold for showing when a number of lines are changed
-set shortmess=aOstTAI "help avoid hit enter prompts
-set formatoptions-=or "don't automatically comment lines
-set pastetoggle=<F2> "F2 toggles pastemode
+let g:onedark_termcolors=16
+colo onedark
+
+set background=dark
+set backup "enable backup
+set backupdir=$HOME/.vim/tmp/backup// "backup file directory
+set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
+set breakindent "visually indent wrapped lines
+set colorcolumn=+1 "highlight column after &textwidth
+set cursorcolumn "highlight the cursor column
+set cursorline "highlight the cursor line
+set directory=$HOME/.vim/tmp/swp// "swap file directory
+set expandtab "insert spaces instead of tabs
+set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
+set foldlevel=1 "only automatically fold levels of 1 or higher
+set foldlevelstart=1 "start editing all buffers with some folds closed
+set foldmethod=marker "folds on markers
+set foldnestmax=5 "only nest 5 folds at max when auto folding
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 set gdefault "makes /g the default on substitute
+set hidden "don't delete buffer when abandoned
+set ignorecase "case insensitive search
+set lazyredraw "don't redraw the screen while executing macros
+set list "show symbols for whitespace characters
+set listchars+=extends:>,precedes:<
+set magic "unescaped . and * in regex are special chars
+set matchtime=5 "how long in tenths of a second to show matching parens
 set modeline "check file for vim options
 set modelines=10 "check 10 lines for options
-set path+=./**  "search recursively downards
+set noequalalways "don't make windows same size automatically
+set noesckeys "esc enters command mode instantly
+set nofoldenable "disable folding by default
+set nojoinspaces "don't insert space after word-terminating chars when using J and gq
+set nosmartindent "the name of this option is misleading
+set noswapfile "don't save swap files
+set nowrap "don't wrap lines
 set nrformats=alpha,hex,octal "increment chars, consider 0x and #x to be decimal
+set number "show line numbers
+set pastetoggle=<F2> "F2 toggles pastemode
+set path+=./**  "search recursively downards
+set report=5 "threshold for showing when a number of lines are changed
+set scrolloff=5 "keep 5 lines above or below current line
+set shiftwidth=2 "< and > indent width
+set shortmess=aOstTAI "help avoid hit enter prompts
+set showbreak=|
+set showmode "show mode
+set showtabline=1 "show tab line when more than one open
+set sidescrolloff=5 "keep 5 lines left or right of cursor
+set smartcase "stops ignoring case when capitals used
+set softtabstop=2 "treat 2 consecutive spaces as a tab
 set splitbelow "open splits below current window
 set splitright "open vertical splits to the right of the current window
+set startofline "jump commands move to first non-blank character
 set switchbuf=usetab "jump to first open window or tab with a buffer
+set tabstop=2 "tab width
+set textwidth=79 "used for &colorcolumn
+set undodir=$HOME/.vim/tmp/undo// "undo file directory
+set undofile "persistent undo history
+set undolevels=1000 "number of undo levels to save
 set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
+set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
+set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
+set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
+set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
+set wildignorecase "ignore case when completing
+set wildmode=full "complete first full match
 set winheight=5
 set winminheight=5
-set noesckeys "esc enters command mode instantly
-set nojoinspaces "don't insert space after word-terminating chars when using J and gq
-" }}}
-
-" Completion {{{
-set wildmode=full "complete first full match
-"filetypes to ignore on tab-completion
-set wildignore=*.dll,*.exe,*.pyc,*.pyo,*.egg,*.class
-set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
-set wildignore+=Icon*,\.DS_Store,*.out,*.scssc,*.sassc
-set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
-" }}}
-
-" Colorscheme {{{
-set background=dark
-colo base16-eighties
+set wrapscan "search wraps around end of document
 " }}}
 
 " Commands {{{
@@ -221,20 +227,20 @@ colo base16-eighties
 command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
 
+" Notes {{{
+function! Notes()
+  let notes_dir = '~/Dropbox/Notes'
+  exec 'lcd' l:notes_dir
+  exec 'CtrlP' l:notes_dir
+endfunction
+command! Notes :call Notes()
+nnoremap <leader>n :Notes<cr>
+" }}}
+
 " Timestamp {{{
 command! Timestamp execute 'normal o## '.strftime("%I:%M%p")
 "}}}
 "}}}
-
-" Folding {{{
-set nofoldenable "disable folding by default
-set foldmethod=marker "folds on markers
-set foldnestmax=5 "only nest 5 folds at max when auto folding
-"actions that open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-set foldlevel=1 "only automatically fold levels of 1 or higher
-set foldlevelstart=1 "start editing all buffers with some folds closed
-" }}}
 
 " Functions {{{
 " ClearRegisters {{{
@@ -302,61 +308,6 @@ function! ShortCWD()
 endfunction
 " }}}
 
-" OpenChangedFiles {{{
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
-  let filenames = split(status, "\n")
-  exec "edit " . filenames[0]
-  for filename in filenames[1:]
-    exec "sp " . filename
-  endfor
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
-" }}}
-
-" OpenTestAlternate {{{
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-" }}}
-
-" PromoteToLet {{{
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-au BufNewFile,BufRead *spec.rb :map <buffer> <leader>l :call PromoteToLet()<cr>
-" }}}
-
 " Rails {{{
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
@@ -368,16 +319,6 @@ let g:rails_gem_projections = {
       \     "affinity": "model"}}
       \}
 let g:rails_projections = { "config/routes.rb": {"command": "routes"}}
-" }}}
-
-" SL {{{
-function! SL(function)
-  if exists('*'.a:function)
-    return call(a:function,[])
-  else
-    return ''
-  endif
-endfunction
 " }}}
 
 " StripTrailingWhitespace {{{
@@ -394,15 +335,6 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap <leader>w :StripTrailingWhitespaces<CR>
-" }}}
-
-" SynStack {{{
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
 " }}}
 
 " ToggleBackground {{{
@@ -431,18 +363,7 @@ command! WP call WordProcessorMode()
 " }}}
 "}}}
 
-" Indentation/Tabs {{{
-set tabstop=2 "tab width
-set softtabstop=2 "treat 2 consecutive spaces as a tab
-set expandtab "insert spaces instead of tabs
-set shiftwidth=2 "< and > indent width
-set nosmartindent "the name of this option is misleading
-" }}}
-
 " Maps {{{
-let mapleader = "\<space>"
-let maplocalleader = ','
-
 " Useless Keys {{{
 noremap <F1> <nop>
 " }}}
@@ -460,6 +381,8 @@ inoremap <c-c> <esc>zza
 inoremap <c-w> <c-g>u<c-w>
 
 imap <c-l> <Plug>CapsLockToggle
+
+inoremap <c-c> <esc>
 " }}}
 
 " Normal Mode {{{
@@ -474,7 +397,7 @@ nnoremap <c-e> 5<c-e>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
-nnoremap <c-h> <c-w><c-h>
+nnoremap <bs> <c-w><c-h>
 nnoremap <c-=> <c-w>=
 nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
@@ -503,21 +426,6 @@ autocmd! CmdwinEnter * :unmap <cr>
 autocmd! CmdwinLeave * :call MapCR()
 " }}}
 
-" Set Filetypes {{{
-nnoremap <localleader>co :setlocal filetype=coffee<CR>
-nnoremap <localleader>cs :setlocal filetype=css<CR>
-nnoremap <localleader>ht :setlocal filetype=html<CR>
-nnoremap <localleader>js :setlocal filetype=javascript<CR>
-nnoremap <localleader>md :setlocal filetype=markdown<CR>
-nnoremap <localleader>pl :setlocal filetype=perl<CR>
-nnoremap <localleader>ph :setlocal filetype=php<CR>
-nnoremap <localleader>py :setlocal filetype=python<CR>
-nnoremap <localleader>rb :setlocal filetype=ruby<CR>
-nnoremap <localleader>sh :setlocal filetype=sh<CR>
-nnoremap <localleader>vi :setlocal filetype=vim<CR>
-nnoremap <localleader>xm :setlocal filetype=xml<CR>
-" }}}"
-
 " Move By Display Lines {{{
 noremap j gj
 noremap k gk
@@ -526,7 +434,7 @@ noremap gk k
 " }}}
 " }}}
 
-" Plugin Config {{{
+" Plugins {{{
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
@@ -540,7 +448,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'ToggleFocus':          ['<c-tab>'],
       \ }
 let g:ctrlp_dotfiles = 0
-let g:ctrlp_extensions = ['quickfix', 'register']
+let g:ctrlp_extensions = ['register']
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_arg_map = 1
@@ -553,18 +461,29 @@ nnoremap \\ :CtrlPBuffer<cr>
 nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " }}}
 
+" Deoplete {{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#disable_auto_complete = 1
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+     return "\<tab>"
+   elseif pumvisible()
+     return "\<c-n>"
+   else
+     return deoplete#mappings#manual_complete()
+   endif
+endfunction
+inoremap <expr><tab> CleverTab()
+" }}}
+
 " Dispatch {{{
-let g:dispatch_compilers = { 'bundle exec': '', 'clear;': '', 'zeus': '' }
-nnoremap g<cr> :up<bar>Dispatch<cr>
+nnoremap g<space> :up<bar>Dispatch<cr>
 " }}}
 
 " Expand Region {{{
 vmap v <plug>(expand_region_expand)
 vmap V <plug>(expand_region_shrink)
-" }}}
-
-" Flagship {{{
-autocmd User Flags call Hoist("window", "SyntasticStatuslineFlag")
 " }}}
 
 " Gist {{{
@@ -580,23 +499,9 @@ endif
 map <leader>d <plug>Kwbd
 " }}}
 
-" Neocomplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#disable_auto_complete = 1
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-     return "\<tab>"
-   elseif pumvisible()
-     return "\<c-n>"
-   else
-     return neocomplete#start_manual_complete()
-   endif
-endfunction
-inoremap <expr><tab> CleverTab()
-inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
-inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
-" }}}
+" Livedown {{
+let g:livedown_browser = 'open'
+" }}
 
 " QUnit {{{
 function! s:OpenQUnit()
@@ -643,10 +548,6 @@ nnoremap ch :SidewaysLeft<cr>
 nnoremap cl :SidewaysRight<cr>
 " }}}
 
-" SplitJoin {{{
-let g:splitjoin_ruby_curly_braces=0
-" }}}
-
 " Surround {{{
 let g:surround_35  = "#{\r}"      " #
 let g:surround_45 = "<% \r %>"    " -
@@ -674,52 +575,17 @@ omap T <Plug>Sneak_T
 nnoremap c= :Switch<cr>
 " }}}
 
-" Syntastic {{{
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['coffee'],
-                           \ 'passive_filetypes': [] }
-nnoremap <leader>s :up<bar>:SyntasticCheck<cr>
-" }}}
-
-" Vitality {{{
-let g:vitality_fix_cursor=0
-" }}}
-
-" Vroom {{{
-let g:vroom_clear_screen=0
-let g:vroom_use_dispatch=1
-let g:vroom_use_colors=1
-let g:vroom_detect_spec_helper=1
-let g:vroom_cucumber_path='cucumber'
-let g:vroom_map_keys = 0
-nnoremap <leader>r :VroomRunTestFile<cr>
-nnoremap <leader>R :VroomRunNearestTest<CR>
-" }}}
+" Test {{
+let test#strategy = "dispatch"
+nnoremap <leader>t :w<bar>TestFile<CR>
+nnoremap <leader>T :w<bar>TestNearest<CR>
+nnoremap <leader>a :w<bar>TestSuite<CR>
+nnoremap <leader>l :w<bar>TestLast<CR>
+" }}
 
 " ZoomWin {{{
 nmap <leader>z <c-w>o
-set noequalalways
 " }}}
-" }}}
-
-" Search {{{
-set incsearch "incremental search jumping
-set wrapscan "search wraps around end of document
-set ignorecase "case insensitive search
-set smartcase "stops ignoring case when capitals used
-set hlsearch "highlight search terms
-" }}}
-
-" Swap/Backup/Undo {{{
-set undofile "persistent undo history
-set undodir=$HOME/.vim/tmp/undo// "undo file directory
-set undolevels=1000 "number of undo levels to save
-set backup "enable backup
-set backupdir=$HOME/.vim/tmp/backup// "backup file directory
-set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
-set directory=$HOME/.vim/tmp/swp// "swap file directory
-set noswapfile "don't save swap files
 " }}}
 
 set secure

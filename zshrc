@@ -39,7 +39,7 @@ alias la='ls -ahGF'
 alias lal='ls -lhaGF'
 alias laf='ls -aGF'
 
-alias v=nvim
+alias v=vim
 alias m='v -g'
 alias vd='v -d'
 alias vw='v -R'
