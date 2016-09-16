@@ -41,6 +41,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'rust-lang/rust.vim'
 Plug 'shime/vim-livedown'
+Plug 'Shougo/neocomplete.vim'
 Plug 'sickill/vim-pasta'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
@@ -461,17 +462,17 @@ nnoremap \\ :CtrlPBuffer<cr>
 nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " }}}
 
-" Deoplete {{{
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#disable_auto_complete = 1
+" Neocomplete {{{
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#disable_auto_complete = 1
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
      return "\<tab>"
    elseif pumvisible()
      return "\<c-n>"
    else
-     return deoplete#mappings#manual_complete()
+     return neocomplete#start_manual_complete()
    endif
 endfunction
 inoremap <expr><tab> CleverTab()
