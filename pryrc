@@ -1,10 +1,5 @@
 Pry.editor = ENV['EDITOR'] || 'vi'
 
-Pry.commands.alias_command 'c', 'continue' rescue nil
-Pry.commands.alias_command 's', 'step' rescue nil
-Pry.commands.alias_command 'n', 'next' rescue nil
-Pry.commands.alias_command 'q', 'exit' rescue nil
-
 Pry.config.ls.separator = "\n" # new lines between methods
 Pry.config.ls.heading_color = :magenta
 Pry.config.ls.public_method_color = :green
