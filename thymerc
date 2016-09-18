@@ -1,3 +1,0 @@
-set :tmux, true
-set :timer, 60 * 25
-set :tmux_theme, '#[fg=%s]%s#[default]#[default] | '
