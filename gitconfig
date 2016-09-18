@@ -60,7 +60,6 @@
   gn = goodness
   gnc = goodness --cached
   h = !git l -1
-  hp = !. ~/.githelpers && show_git_head
   l = !. ~/.githelpers && pretty_git_log
   la = !. ~/.githelpers && pretty_git_log --all
   ls = ls-files
@@ -69,7 +68,6 @@
   lp = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
   m = merge --no-ff
   mff = merge --ff-only
-  mv = mv
   o = checkout
   ob = checkout -b
   p = push
@@ -81,18 +79,13 @@
   rm = rm
   rs = rebase --skip
   rv = remote --verbose
-  s = status --short --ignore-submodules
-  ss = status --short
   sa = stash apply
   sh = stash
   sl = stash list
   sm = submodule
-  st = status
-  t = tag
   u = pull
   uncommit = reset HEAD^
   up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-  wat = what-the-hell-just-happened
   wc = whatchanged -p --abbrev-commit --pretty=medium
 [pull]
   rebase = preserve
