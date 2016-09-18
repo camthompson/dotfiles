@@ -9,13 +9,6 @@ if defined?(::Bundler)
   end
 end
 
-# begin
-#   require 'pry'
-#   Pry.start
-#   exit
-# rescue LoadError
-# end
-
 begin
   IRB.conf[:AUTO_INDENT] = true
 
