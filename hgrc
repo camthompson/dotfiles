@@ -1,5 +1,0 @@
-[merge-tools]
-threesome.executable = vim
-threesome.args = -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
-threesome.premerge = keep
-threesome.priority = 1
