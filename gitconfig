@@ -4,7 +4,7 @@
 [github]
   user = camthompson
 [core]
-  editor = nvim -f
+  editor = vim -f
   excludesfile = ~/.cvsignore
   autocrlf = false
   pager = less -FXRS
@@ -24,7 +24,7 @@
   tool = fugitive
   stat = true
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [push]
   default = tracking
 [diff]
