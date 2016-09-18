@@ -15,32 +15,17 @@ rescue Object => ex
 end
 
 begin
-  require 'interactive_editor'
-  alias v vim
-rescue LoadError
-end
-
-begin
   require 'ap'
-  alias p ap
 rescue LoadError
 end
 
-class Array
-  def self.toy(i=10)
-    (1..i).to_a
-  end
+def Array.toy(n = 10, &block)
+  block_given? ? Array.new(n, &block) : Array.new(n) { |i| i+1 }
 end
 
-class Hash
-  def self.toy(i=10)
-    h = {}
-    (1..i).each { |x| h[(x+96).chr.to_sym] = x }
-    h
-  end
+def Hash.toy(n = 10)
+  Array.toy(n).each_with_object({}) { |x, acc| acc[x] = (96 + (x + 1)).chr }
 end
-
-alias q exit
 
 def time(&block)
   require 'benchmark'
@@ -50,4 +35,14 @@ def time(&block)
   end
   puts "It took: #{timing}"
   result
+end
+
+begin
+  require 'clipboard'
+rescue LoadError
+end
+
+begin
+  require 'interactive_editor'
+rescue LoadError
 end
