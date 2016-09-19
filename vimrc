@@ -176,7 +176,7 @@ set hidden "don't delete buffer when abandoned
 set ignorecase "case insensitive search
 set lazyredraw "don't redraw the screen while executing macros
 set list "show symbols for whitespace characters
-set listchars=extends:>,precedes:<
+set listchars=extends:>,precedes:<,tab:>-
 set magic "unescaped . and * in regex are special chars
 set matchtime=5 "how long in tenths of a second to show matching parens
 set modeline "check file for vim options
