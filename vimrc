@@ -15,6 +15,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
+Plug 'iamcco/markdown-preview.vim'
 Plug 'idanarye/vim-merginal'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -40,7 +41,6 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'rust-lang/rust.vim'
-Plug 'shime/vim-livedown'
 Plug 'Shougo/neocomplete.vim'
 Plug 'sickill/vim-pasta'
 Plug 'slim-template/vim-slim'
@@ -500,10 +500,6 @@ endif
 map <leader>d <plug>Kwbd
 " }}}
 
-" Livedown {{
-let g:livedown_browser = 'open'
-" }}
-
 " QUnit {{{
 function! s:OpenQUnit()
   let l:test_name = ''
@@ -528,6 +524,11 @@ endfunction
 
 command! OpenQUnit call s:OpenQUnit()
 au FileType javascript,coffee nnoremap <buffer> <leader>r :OpenQUnit<cr>
+" }}}
+
+" Markdown Preview {{{
+let g:mkdp_path_to_chrome = 'open -a /Applications/Google\ Chrome.app'
+let g:mkdp_refresh_slow = 1
 " }}}
 
 " Rubocop {{{
