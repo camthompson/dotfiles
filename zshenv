@@ -21,6 +21,7 @@ fpath=(
 
 path=(
   $HOME/bin
+  $HOME/.yarn/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   /usr/local/heroku/bin
