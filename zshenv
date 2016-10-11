@@ -24,7 +24,6 @@ path=(
   $HOME/.yarn/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
-  /usr/local/heroku/bin
   /opt/local/bin
   /usr/{bin,sbin}
   /{bin,sbin}
