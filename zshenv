@@ -22,6 +22,7 @@ fpath=(
 path=(
   $HOME/bin
   $HOME/.yarn/bin
+  /usr/local/opt/node/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   /opt/local/bin
