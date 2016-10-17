@@ -1,0 +1,2 @@
+rm -rf ~/.zcompdump{,.zwc}
+compinit
