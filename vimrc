@@ -416,7 +416,7 @@ xnoremap : ;
 nnoremap q; q:
 nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
-nnoremap <leader>g :Gwrite<cr>
+nnoremap g<cr> :Gwrite<cr>
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
