@@ -1,5 +1,8 @@
 set nocompatible "no vi compatibility
 
+
+
+
 " Plug {{{
 call plug#begin('~/.vim/plugged')
 
@@ -312,9 +315,6 @@ endfunction
 " }}}
 
 " Rails {{{
-nnoremap <leader>gr :topleft :split config/routes.rb<cr>
-nnoremap <leader>gg :topleft 100 :split Gemfile<cr>
-nnoremap <leader>gd :topleft 100 :split db/schema.rb<cr>
 let g:rails_gem_projections = {
       \ "active_model_serializers": {
       \   "app/serializers/*_serializer.rb": {
@@ -416,6 +416,7 @@ xnoremap : ;
 nnoremap q; q:
 nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
+nnoremap <leader>g :Gwrite<cr>
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
