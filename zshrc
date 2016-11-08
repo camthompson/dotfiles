@@ -18,9 +18,6 @@ stty stop undef
 stty start undef
 
 # Aliases {{{
-alias %=' '
-alias $=' '
-
 alias g='noglob mygit'
 hash hub > /dev/null 2>&1 && alias git='hub'
 
@@ -30,8 +27,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-
-alias tl='tmux ls'
 
 alias l='ls -GF'
 alias ll='ls -lhGF'
@@ -56,55 +51,19 @@ alias d='dirs -v'
 alias f=fg
 alias bc='bc -q'
 alias ip='curl www.icanhazip.com'
-alias p='ping -o'
-alias d='dirs -v'
 
-alias rb='ruby'
-
-alias mi='bundle exec rake db:migrate db:test:prepare'
-alias rst='touch tmp/restart.txt'
-alias rlog='tail -f log/development.log'
-
-alias bi='bundle install'
-alias bid='bundle install --without production'
-alias b='bundle exec'
-alias br='bundle exec rails'
-alias e='ember'
 alias nombom='npm cache clean && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
 
-alias rr='rbenv rehash'
-
 alias duh='du -ch'
-
-_rsync_cmd='rsync --verbose --progress --human-readable --compress --archive --hard-links --one-file-system'
-
-# Mac OS X and HFS+ Enhancements
-# http://www.bombich.com/rsync.html
-if [[ "$OSTYPE" == darwin* ]] && grep -q 'file-flags' <(rsync --help 2>&1); then
-  _rsync_cmd="${_rsync_cmd} --crtimes --acls --xattrs --fileflags --protect-decmpfs --force-change"
-fi
-
-alias rsync-copy="${_rsync_cmd}"
-alias rsync-move="${_rsync_cmd} --remove-source-files"
-alias rsync-update="${_rsync_cmd} --update"
-alias rsync-synchronize="${_rsync_cmd} --update --delete"
-
-unset _rsync_cmd
 
 # Disable globbing.
 alias fc='noglob fc'
 alias find='noglob find'
-alias ftp='noglob ftp'
 alias history='noglob history'
 alias locate='noglob locate'
-alias rake='noglob rake'
 alias rsync='noglob rsync'
 alias scp='noglob scp'
 alias sftp='noglob sftp'
-
-alias s='sudo'
-
-alias tm=tmux
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 # }}}
