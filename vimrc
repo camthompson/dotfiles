@@ -1,8 +1,5 @@
 set nocompatible "no vi compatibility
 
-
-
-
 " Plug {{{
 call plug#begin('~/.vim/plugged')
 
