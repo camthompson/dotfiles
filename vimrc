@@ -21,7 +21,6 @@ Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'joshdick/onedark.vim'
-Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-entire'
@@ -88,6 +87,7 @@ Plug 'zerowidth/vim-copy-as-rtf'
 Plug '~/.vim/bundle/ZoomWin'
 
 Plug '~/src/vim-ember'
+Plug '~/src/vim-ember-hbs'
 
 call plug#end()
 " }}}
