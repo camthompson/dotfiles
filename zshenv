@@ -36,7 +36,8 @@ cdpath=(
 
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-[[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
 
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
+[[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
