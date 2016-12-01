@@ -21,7 +21,6 @@ fpath=(
 
 path=(
   $HOME/bin
-  /usr/local/opt/node/bin
   /usr/local/{bin,sbin}
   /opt/local/bin
   /usr/{bin,sbin}
@@ -38,3 +37,6 @@ cdpath=(
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
