@@ -564,6 +564,10 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 " }}}
 
+" SplitJoin {{{
+let g:splitjoin_ruby_curly_braces=0
+" }}}
+
 " Switch {{{
 nnoremap c= :Switch<cr>
 " }}}
