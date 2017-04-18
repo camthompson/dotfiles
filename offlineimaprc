@@ -17,7 +17,6 @@ fsync = false
 localrepository = CamThompson-Local
 remoterepository = CamThompson-Remote
 postsynchook = notmuch new
-status_backend = sqlite
 
 [Repository CamThompson-Local]
 type = Maildir
