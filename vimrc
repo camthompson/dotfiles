@@ -56,6 +56,7 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
@@ -78,7 +79,6 @@ Plug '~/.vim/bundle/ZoomWin'
 
 Plug '~/src/vim-ember'
 Plug '~/src/vim-ember-hbs'
-Plug '~/src/vim-ragtag'
 
 call plug#end()
 " }}}
