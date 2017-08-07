@@ -26,6 +26,7 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'MaxSt/FlatColor'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -145,8 +146,8 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let g:onedark_termcolors=16
-colo onedark
+let g:flatcolor_termcolors=16
+colo flatcolor
 
 set background=dark
 set backup "enable backup
