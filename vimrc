@@ -153,9 +153,6 @@ set backup "enable backup
 set backupdir=$HOME/.vim/tmp/backup// "backup file directory
 set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
 set breakindent "visually indent wrapped lines
-set colorcolumn=+1 "highlight column after &textwidth
-set cursorcolumn "highlight the cursor column
-set cursorline "highlight the cursor line
 set directory=$HOME/.vim/tmp/swp// "swap file directory
 set expandtab "insert spaces instead of tabs
 set fillchars=fold:\ ,vert:\| "fill characters for folds and vert splits
