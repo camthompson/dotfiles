@@ -147,7 +147,8 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-colo nova
+let g:onedark_termcolors=16
+colo onedark
 
 set background=dark
 set backup "enable backup
