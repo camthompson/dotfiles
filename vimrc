@@ -71,6 +71,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'trevordmiller/nova-vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'wellle/targets.vim'
@@ -146,8 +147,7 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let g:flatcolor_termcolors=16
-colo flatcolor
+colo nova
 
 set background=dark
 set backup "enable backup
