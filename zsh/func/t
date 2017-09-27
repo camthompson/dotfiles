@@ -62,7 +62,7 @@ if [[ -n $1 ]]; then
   session=$1
   shift
 else
-  session="${${PWD/$HOME/~}:t}"
+  session="${${PWD/$HOME/home}:t}"
 fi
 local -a tmux_options
 
