@@ -27,6 +27,7 @@ cp -n ssh/authorized_keys "$HOME/.ssh/authorized_keys"
 
 chmod 0600 msmtprc
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall +qall
+mkdir -p ~/.vim/pack/minpac/opt
+cd ~/.vim/pack/minpac/opt
+git clone https://github.com/k-takata/minpac.git
+vim +PackUpdate +qall

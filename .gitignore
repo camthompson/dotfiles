@@ -13,9 +13,8 @@ mutt/cache/bodies/*
 !mutt/cache/bodies/.gitkeep
 irssi/sasl.auth
 irssi/saved_colors
-vim/autoload/plug.vim
-vim/autoload/plug.vim.old
-vim/plugged
+vim/pack/minpac
+vim/pack/bundle
 config/nvim/tmp/**/*
 !config/nvim/tmp/swp/.gitkeep
 !config/nvim/tmp/undo/.gitkeep
