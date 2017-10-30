@@ -13,6 +13,8 @@ call minpac#add('AndrewRadev/switch.vim')
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('elixir-lang/vim-elixir')
 call minpac#add('godlygeek/tabular')
+call minpac#add('haya14busa/vim-asterisk')
+call minpac#add('haya14busa/is.vim')
 call minpac#add('henrik/vim-indexed-search')
 call minpac#add('iamcco/markdown-preview.vim')
 call minpac#add('idanarye/vim-merginal')
@@ -32,7 +34,6 @@ call minpac#add('mattn/webapi-vim')
 call minpac#add('mbbill/undotree')
 call minpac#add('nelstrom/vim-markdown-folding')
 call minpac#add('nelstrom/vim-textobj-rubyblock')
-call minpac#add('nelstrom/vim-visual-star-search')
 call minpac#add('ngmy/vim-rubocop')
 call minpac#add('othree/html5.vim')
 call minpac#add('pangloss/vim-javascript')
@@ -429,6 +430,13 @@ noremap gk k
 " }}}
 
 " Plugins {{{
+" Asertisk{{{
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_max_height = 10
 let g:ctrlp_match_window_reversed = 0
