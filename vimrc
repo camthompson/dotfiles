@@ -458,7 +458,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
       \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*'"]
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude = '.*/\.git/.*\|.*/mutt/tmp/.*'
-let g:ctrlp_map = '<leader><leader>'
+nnoremap <leader><leader> :CtrlP<cr>
 nnoremap \\ :CtrlPBuffer<cr>
 nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " }}}
