@@ -22,7 +22,6 @@ call minpac#add('janko-m/vim-test')
 call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('joshdick/onedark.vim')
 call minpac#add('junegunn/gv.vim')
-call minpac#add('justinmk/vim-sneak')
 call minpac#add('kana/vim-textobj-entire')
 call minpac#add('kana/vim-textobj-fold')
 call minpac#add('kana/vim-textobj-indent')
@@ -555,23 +554,6 @@ nnoremap cl :SidewaysRight<cr>
 let g:surround_35  = "#{\r}"      " #
 let g:surround_45 = "<% \r %>"    " -
 let g:surround_61 = "<%= \r %>"   " =
-" }}}
-
-" Sneak {{{
-let g:sneak#streak=1
-let g:sneak#s_next=1
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
 " }}}
 
 " SplitJoin {{{
