@@ -541,10 +541,6 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 " }}}
 
-" Ruby Refactoring {{{
-let g:ruby_refactoring_map_keys=0
-" }}}
-
 " Sideways {{{
 nnoremap ch :SidewaysLeft<cr>
 nnoremap cl :SidewaysRight<cr>
