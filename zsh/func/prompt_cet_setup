@@ -44,7 +44,7 @@ function prompt_cam_setup {
   zstyle ':git:deleted' format ' %F{red}x'
   zstyle ':git:modified' format ' %F{red}*'
   zstyle ':git:position' format ':%F{red}%p'
-  zstyle ':git:renamed' format ' %F{red}>'
+  zstyle ':git:renamed' format ' %F{red}R'
   zstyle ':git:stashed' format ' %F{red}='
   zstyle ':git:unmerged' format ' %F{red}§'
   zstyle ':git:untracked' format ' %F{red}?'
