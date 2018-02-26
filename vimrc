@@ -413,7 +413,7 @@ if !(has("gui_running"))
 endif
 
 function! MapCR()
-  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<bar>GitGutter\<cr>")
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
