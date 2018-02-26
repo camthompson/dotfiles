@@ -406,14 +406,14 @@ xnoremap : ;
 nnoremap q; q:
 nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
-nnoremap g<cr> :Gwrite<cr>
+nnoremap g<cr> :Gwrite<cr>:GitGutter<cr>
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
 endif
 
 function! MapCR()
-  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up<cr>")
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<bar>GitGutter\<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
