@@ -98,6 +98,8 @@ endif
 
 " AutoCMD {{{
 aug vimrc
+  " Workaround for https://github.com/airblade/vim-gitgutter/issues/502
+  autocmd BufWritePost * GitGutter
   " Go to last position in a file when opening
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft != "gitcommit" |
@@ -405,14 +407,14 @@ xnoremap : ;
 nnoremap q; q:
 nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
-nnoremap g<cr> :Gwrite<cr>:GitGutter<cr>
+nnoremap g<cr> :Gwrite<cr>
 
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
 endif
 
 function! MapCR()
-  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<bar>GitGutter\<cr>")
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
