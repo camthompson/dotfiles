@@ -21,8 +21,8 @@ fpath=(
 
 path=(
   $HOME/bin
-  /usr/local/{bin,sbin}
   /opt/local/bin
+  /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
   /opt/X11/bin
