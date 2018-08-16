@@ -515,7 +515,7 @@ function! s:OpenQUnit()
   endfor
 
   if len(test_name)
-    silent execute "!open -a '/Applications/Google Chrome.app' 'http://localhost:3000/tests?module=".test_name."'"
+    silent execute "!open -a '/Applications/Google Chrome.app' 'http://localhost:4200/tests?module=".test_name."'"
     redraw!
   else
     echom 'No test module found'
