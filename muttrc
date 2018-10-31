@@ -24,7 +24,6 @@ set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
 set sleep_time = 0       # make mailbox switching quicker
 unset help               # don't show help at top
-set text_flowed=yes      # don't send weird line breaks
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
