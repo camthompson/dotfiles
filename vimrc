@@ -219,6 +219,13 @@ set wrapscan "search wraps around end of document
 " }}}
 
 " Commands {{{
+" DiffSCP {{{
+function! DiffSCP(host)
+  exec 'diffsplit scp://'.a:host.'/'.expand('%:p')
+endfunction
+command! -nargs=1 DiffSCP :call DiffSCP(<f-args>)
+" }}}
+
 " Journal {{{
 command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
