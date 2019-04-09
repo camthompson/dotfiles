@@ -85,7 +85,7 @@
   sm = submodule
   u = pull
   uncommit = reset HEAD^
-  up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+  up = !sh -c 'git pull --rebase && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
   wc = whatchanged -p --abbrev-commit --pretty=medium
 [pull]
   rebase = preserve
