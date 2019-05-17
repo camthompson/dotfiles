@@ -1,3 +1,7 @@
+if [ -f '/etc/zprofile' ]; then
+  echo "/etc/zprofile is back. Delete it to keep it from trolling you."
+fi
+
 setopt NO_BEEP            # Shut up.
 setopt BRACE_CCL          # Allow brace character class list expansion.
 setopt RC_QUOTES          # Allow 'Henry''s Garage' instead of 'Henry'\''s Garage'.
