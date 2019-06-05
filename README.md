@@ -15,5 +15,14 @@
 * `./update` will update submodules that contain ZSH dependencies
 * From Vim, `:PlugUpgrade` and `:PlugUpdate` update `vim-plug` and other Vim add-ons, respectively
 
+# Development
+1. `ruby-install $VERSION`
+2. `echo $VERSION > ~/.ruby-version`
+3. `exec $SHELL`
+4. `while read line; do gem install $line; done < default-gems`
+5. Install [Node](nodejs.org)
+6. `npm install -g yarn`
+7. `yarn global add ember-cli`
+
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
