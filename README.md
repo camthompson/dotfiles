@@ -24,5 +24,9 @@
 6. `npm install -g yarn`
 7. `yarn global add ember-cli`
 
+# Non-Cask Apps
+1. Install [iTerm2](https://iterm2.com/downloads.html) *because test builds aren't in cask*
+2. Install [Slack](https://slack.com/beta/mac) *because beta builds aren't in cask*
+
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
