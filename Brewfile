@@ -48,6 +48,7 @@ cask "google-chrome"
 cask "minikube"
 cask "moom"
 cask "screens-connect"
+cask "visual-studio-code"
 cask "wkhtmltopdf"
 mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
