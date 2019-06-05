@@ -24,22 +24,10 @@
 6. `npm install -g yarn`
 7. `yarn global add ember-cli`
 
-# Non-Cask Apps
+# Non-Homebrew Apps
 1. Install [iTerm2](https://iterm2.com/downloads.html) *because test builds aren't in cask*
 2. Install [Slack](https://slack.com/beta/mac) *because beta builds aren't in cask*
 3. Install [AirBuddy](https://gumroad.com/discover?query=airbuddy#HkXQH) *because it's on gumroad*
-
-# App Store Apps
-1. Things
-2. Bear
-3. Drafts
-4. Deliveries
-5. Kindle
-6. xScope 4
-7. PCalc
-8. Shush
-9. Gladys
-10. Better Blocker
 
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
