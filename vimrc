@@ -230,6 +230,10 @@ command! -nargs=1 DiffSCP :call DiffSCP(<f-args>)
 command! Journal execute 'e ~/Dropbox/Notes/logs/'.strftime('%m-%d-%y').'.md'
 " }}}
 
+" Marked {{{
+command! Marked execute "!open '%' -a '/Applications/Marked 2.app/'"
+" }}}
+
 " Notes {{{
 function! Notes()
   let notes_dir = '~/Dropbox/Notes'
