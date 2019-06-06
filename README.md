@@ -30,5 +30,11 @@
 3. Install [AirBuddy](https://gumroad.com/discover?query=airbuddy#HkXQH) *because it's on gumroad*
 4. Install [Zoom](https://zoom.us/support/download) *because it's not in a cask*
 
+# Misc Setup
+1. Edit `/etc/ssh/sshd_config` and disable `PasswordAuthentication` and `ChallengeResponseAuthentication`
+2. `sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist`
+3. `sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist`
+4. `sudo mv /etc/zprofile{,.bak}` to keep `path_helper` from screwing up `$PATH`
+
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
