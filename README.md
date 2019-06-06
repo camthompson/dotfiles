@@ -28,6 +28,7 @@
 1. Install [iTerm2](https://iterm2.com/downloads.html) *because test builds aren't in cask*
 2. Install [Slack](https://slack.com/beta/mac) *because beta builds aren't in cask*
 3. Install [AirBuddy](https://gumroad.com/discover?query=airbuddy#HkXQH) *because it's on gumroad*
+4. Install [Zoom](https://zoom.us/support/download) *because it's not in a cask*
 
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
