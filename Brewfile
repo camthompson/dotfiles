@@ -37,6 +37,7 @@ brew "osx-cross/avr/avr-gcc@7", link: true
 brew "px4/px4/gcc-arm-none-eabi"
 cask "1password"
 cask "alfred"
+cask "backblaze"
 cask "chromedriver"
 cask "dash"
 cask "docker"
