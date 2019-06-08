@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md default-gems ssh)
+  local ignorelist=(setup update README.md default-gems)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -20,10 +20,6 @@ for f in *; do
     ln -s "$PWD/$f" "$HOME/.$f"
   fi
 done
-
-mkdir -p "$HOME/.ssh"
-cp -n ssh/config "$HOME/.ssh/config"
-cp -n ssh/authorized_keys "$HOME/.ssh/authorized_keys"
 
 chmod 0600 msmtprc
 
