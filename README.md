@@ -2,7 +2,7 @@
 1. Install [Homebrew](brew.sh)
 2. `brew bundle`
 3. `sudo echo '/usr/local/bin/zsh' >> /etc/shells`
-4. `chsh -s /usr/local/bin/zsh cam` *Replace cam with your user name if you're not me*
+4. `chsh -s /usr/local/bin/zsh`
 
 # Dotfiles
 ## Setup
