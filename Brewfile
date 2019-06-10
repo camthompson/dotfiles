@@ -34,7 +34,7 @@ brew "tmux"
 brew "watchman"
 brew "wget"
 brew "zsh"
-brew "osx-cross/avr/avr-gcc@7", link: true
+brew "osx-cross/avr/avr-gcc@8", link: true
 brew "px4/px4/gcc-arm-none-eabi"
 cask "1password"
 cask "alfred"
