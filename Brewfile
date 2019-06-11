@@ -39,6 +39,7 @@ brew "px4/px4/gcc-arm-none-eabi"
 cask "1password"
 cask "alfred"
 cask "backblaze"
+cask "carbon-copy-cloner"
 cask "chromedriver"
 cask "colorpicker-skalacolor"
 cask "dash"
@@ -54,6 +55,8 @@ cask "screens-connect"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
 mas "Bear", id: 1091189122
+mas "Bear", id: 1091189122
+mas "Better", id: 1121192229
 mas "Better", id: 1121192229
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
