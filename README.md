@@ -31,11 +31,12 @@
 4. Install [Zoom](https://zoom.us/support/download) *because it's not in a cask*
 
 # Misc Setup
-1. Edit `/etc/ssh/sshd_config` and disable `PasswordAuthentication` and `ChallengeResponseAuthentication`
-2. `sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist`
-3. `sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist`
-4. `sudo mv /etc/zprofile{,.bak}` to keep `path_helper` from screwing up `$PATH`
-5. `defaults write com.apple.mail UserHeaders '{"Bcc" = "cam@camthompson.com"; }'`
+1. `g clone camthompson/bin ~/bin`
+2. Edit `/etc/ssh/sshd_config` and disable `PasswordAuthentication` and `ChallengeResponseAuthentication`
+3. `sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist`
+4. `sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist`
+5. `sudo mv /etc/zprofile{,.bak}` to keep `path_helper` from screwing up `$PATH`
+6. `defaults write com.apple.mail UserHeaders '{"Bcc" = "cam@camthompson.com"; }'`
 
 # Backblaze
 `open /usr/local/Caskroom/backblaze/latest/Backblaze Installer.app`
