@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md default-gems karabiner.json)
+  local ignorelist=(setup update README.md default-gems)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -20,9 +20,6 @@ for f in *; do
     ln -s "$PWD/$f" "$HOME/.$f"
   fi
 done
-
-mkdir -p ~/.config/karabiner/
-ln -s "$PWD/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
 
 mkdir -p ~/.vim/pack/minpac/opt
 cd ~/.vim/pack/minpac/opt
