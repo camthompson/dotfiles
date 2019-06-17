@@ -53,17 +53,17 @@ cask "moom"
 cask "screens-connect"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
-mas "Bear", id: 1091189122
-mas "Better", id: 1121192229
-mas "Deliveries", id: 924726344
-mas "Drafts", id: 1435957248
-mas "Gladys", id: 1382386877
+mas "better.fyi.mac", id: 1121192229
+mas "build.bru.MacGladys", id: 1382386877
+mas "com.agiletortoise.Drafts-OSX", id: 1435957248
+mas "com.amazon.Kindle", id: 405399194
+mas "com.brettterpstra.marked2", id: 890031187
+mas "com.culturedcode.ThingsMac", id: 904280696
+mas "com.iconfactory.mac.xScope", id: 889428659
+mas "com.junecloud.mac.Deliveries", id: 924726344
+mas "com.mizage.shush", id: 496437906
 mas "Keynote", id: 409183694
-mas "Kindle", id: 405399194
-mas "Marked 2", id: 890031187
+mas "net.shinyfrog.bear", id: 1091189122
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "PCalc", id: 403504866
-mas "Shush", id: 496437906
-mas "Things", id: 904280696
-mas "xScope", id: 889428659
+mas "uk.co.tla-systems.pcalc", id: 403504866
