@@ -9,9 +9,7 @@
 # Dotfiles
 ## Setup
 1. `./setup` *This will overwrite things in your home directory*
-2. `mkdir vim/autoload`
-3. `wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O vim/autoload/plug.vim`
-4. Clone my Vim plugins into `vim/pack/bundle/start`
+2. Clone my Vim plugins into `vim/pack/bundle/start`
 
 ## Update
 * `./update` will update submodules that contain ZSH dependencies
