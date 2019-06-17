@@ -1,8 +1,10 @@
 # Prereqs
 1. Install [Homebrew](brew.sh)
 2. `brew bundle`
-3. `sudo echo '/usr/local/bin/zsh' >> /etc/shells`
-4. `chsh -s /usr/local/bin/zsh`
+3. `sudo su`
+4. `echo '/usr/local/bin/zsh' >> /etc/shells`
+5. `exit`
+6. `chsh -s /usr/local/bin/zsh`
 
 # Dotfiles
 ## Setup
