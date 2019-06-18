@@ -40,7 +40,7 @@
 6. `defaults write com.apple.mail UserHeaders '{"Bcc" = "cam@camthompson.com"; }'`
 
 # Backblaze
-`open /usr/local/Caskroom/backblaze/latest/Backblaze Installer.app`
+`open '/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app'`
 
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
