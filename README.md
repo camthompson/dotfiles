@@ -29,6 +29,7 @@
 2. Install [Slack](https://slack.com/beta/mac) *because beta builds aren't in cask*
 3. Install [AirBuddy](https://gumroad.com/discover?query=airbuddy#HkXQH) *because it's on gumroad*
 4. Install [Zoom](https://zoom.us/support/download) *because it's not in a cask*
+5. Install [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) *because it's not in a cask*
 
 # Misc Setup
 1. `g clone camthompson/bin ~/bin`
