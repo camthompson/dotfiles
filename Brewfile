@@ -33,6 +33,7 @@ brew "redis", restart_service: true
 brew "ruby-install"
 brew "teensy_loader_cli"
 brew "tmux"
+brew "tree"
 brew "watchman"
 brew "wget"
 brew "zsh"
