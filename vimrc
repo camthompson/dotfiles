@@ -421,6 +421,10 @@ nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
 nnoremap g<cr> :Gwrite<cr>
 
+nnoremap gy :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+
 if !(has("gui_running"))
   nnoremap <c-z> :wa<bar>suspend<cr>
 endif
