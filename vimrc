@@ -11,6 +11,7 @@ call minpac#add('AndrewRadev/sideways.vim')
 call minpac#add('AndrewRadev/splitjoin.vim')
 call minpac#add('AndrewRadev/switch.vim')
 call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('dracula/vim')
 call minpac#add('elixir-lang/vim-elixir')
 call minpac#add('godlygeek/tabular')
 call minpac#add('google/vim-jsonnet')
@@ -148,8 +149,9 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let g:onedark_termcolors=16
-colo onedark
+let g:dracula_colorterm = 0
+let g:dracula_italic = 0
+colo dracula
 
 set background=dark
 set backup "enable backup
