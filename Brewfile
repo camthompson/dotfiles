@@ -59,6 +59,7 @@ cask "visual-studio-code"
 cask "wkhtmltopdf"
 mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
+mas "Bumpr", id: 1166066070
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
