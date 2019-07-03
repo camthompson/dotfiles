@@ -21,7 +21,8 @@ brew "docker-machine-driver-hyperkit"
 brew "libffi"
 brew "go"
 brew "hub"
-brew "imagemagick"
+brew "imagemagick", link: false
+brew "imagemagick@6", link: true
 brew "kustomize"
 brew "libyaml"
 brew "loc"
@@ -29,6 +30,7 @@ brew "macvim"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
+brew "pkg-config"
 brew "postgresql@10", restart_service: true, link: true
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
