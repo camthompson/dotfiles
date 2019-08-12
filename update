@@ -6,6 +6,8 @@ Dir['zsh/bundle/*'].each do |d|
   end
 end
 
+`git pull`
+
 def push_to_github()
   `git add zsh/bundle`
   `git commit -m 'ZSH plugin update'`
