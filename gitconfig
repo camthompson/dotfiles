@@ -74,7 +74,8 @@
   r = !git l -30
   ra = !git r --all
   rb = rebase
-  rc = rebase --continue
+  rbi = rebase --interactive
+  rbc = rebase --continue
   re = reset
   rm = rm
   rs = rebase --skip
