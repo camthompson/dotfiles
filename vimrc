@@ -202,6 +202,7 @@ set splitright "open vertical splits to the right of the current window
 set startofline "jump commands move to first non-blank character
 set switchbuf=usetab "jump to first open window or tab with a buffer
 set tabstop=2 "tab width
+set tags^=./.git/tags
 set textwidth=79 "used for &colorcolumn
 set undodir=$HOME/.vim/tmp/undo// "undo file directory
 set undofile "persistent undo history
