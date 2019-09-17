@@ -61,6 +61,7 @@ alias nombom='npm cache clean && bower cache clean && rm -rf node_modules bower_
 alias duh='du -ch'
 
 # Disable globbing.
+alias jq='noglob jq'
 alias fc='noglob fc'
 alias find='noglob find'
 alias history='noglob history'
