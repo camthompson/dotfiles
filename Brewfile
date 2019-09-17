@@ -25,6 +25,7 @@ brew "go"
 brew "hub"
 brew "imagemagick", link: false
 brew "imagemagick@6", link: true
+brew "jq"
 brew "libyaml"
 brew "loc"
 brew "macvim"
