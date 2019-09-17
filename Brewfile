@@ -31,6 +31,7 @@ brew "macvim"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
+brew "nushell"
 brew "nvm"
 brew "pkg-config"
 brew "postgresql@10", restart_service: true, link: true
