@@ -1,3 +1,6 @@
+# New Computer Setup
+1. `sudo xcode-select --install`
+
 # Prereqs
 1. Install [Homebrew](brew.sh)
 2. `brew bundle`
@@ -17,12 +20,11 @@
 
 # Development
 1. `ruby-install $VERSION`
-2. `echo $VERSION > ~/.ruby-version`
-3. `exec $SHELL`
-4. `while read line; do gem install $line; done < default-gems`
-5. Install [Node](nodejs.org)
-6. `npm install -g yarn`
-7. `yarn global add ember-cli`
+2. `chruby $VERSION`
+3. `while read line; do gem install $line; done < default-gems`
+4. Install [Node](nodejs.org)
+5. `npm install -g yarn`
+6. `yarn global add ember-cli`
 
 # Misc Setup
 1. `g clone camthompson/bin ~/bin`
@@ -30,7 +32,6 @@
 3. `sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist`
 4. `sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist`
 5. `sudo mv /etc/zprofile{,.bak}` to keep `path_helper` from screwing up `$PATH`
-6. `defaults write com.apple.mail UserHeaders '{"Bcc" = "cam@camthompson.com"; }'`
 
 # Backblaze
 `open '/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app'`
