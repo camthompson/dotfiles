@@ -22,9 +22,8 @@
 1. `ruby-install $VERSION`
 2. `chruby $VERSION`
 3. `while read line; do gem install $line; done < default-gems`
-4. Install [Node](nodejs.org)
-5. `npm install -g yarn`
-6. `yarn global add ember-cli`
+4. `nvm install $VERSION`
+5. `npm install -g yarn ember-cli`
 
 # Misc Setup
 1. `g clone camthompson/bin ~/bin`
