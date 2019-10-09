@@ -21,6 +21,7 @@ fpath=(
 
 path=(
   $HOME/bin
+  /Applications/MacVim.app/Contents/bin
   /opt/local/bin
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}

@@ -22,18 +22,17 @@ brew "git"
 brew "libffi"
 brew "go"
 brew "hub"
-brew "openssl"
 brew "imagemagick", link: false
 brew "imagemagick@6", link: true
 brew "jq"
 brew "libyaml"
 brew "loc"
-brew "macvim"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
 brew "nushell"
 brew "nvm"
+brew "openssl"
 brew "pkg-config"
 brew "postgresql@10", restart_service: true, link: true
 brew "reattach-to-user-namespace"
@@ -57,12 +56,12 @@ cask "colorpicker-skalacolor"
 cask "dash"
 cask "discord"
 cask "docker"
-cask "dropbox"
 cask "fantastical"
 cask "firefox"
 cask "google-chrome"
 cask "iterm2-beta"
 cask "keyboard-maestro"
+cask "macvim"
 cask "microsoft-edge-dev"
 cask "minikube"
 cask "moom"
@@ -79,7 +78,6 @@ mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
-mas "Gladys", id: 1382386877
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
