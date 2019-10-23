@@ -78,6 +78,7 @@ mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
+mas "lire", id: 1482527526
 mas "Marked 2", id: 890031187
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
