@@ -29,7 +29,7 @@ brew "libyaml"
 brew "loc"
 brew "mas"
 brew "mosh"
-brew "mysql", restart_service: true
+brew "mysql", restart_service: true, link: false
 brew "nushell"
 brew "nvm"
 brew "openssl"
