@@ -29,7 +29,7 @@ brew "libyaml"
 brew "loc"
 brew "mas"
 brew "mosh"
-brew "mysql", restart_service: true, link: false
+brew "mysql", restart_service: true
 brew "nushell"
 brew "nvm"
 brew "openssl"
@@ -87,4 +87,5 @@ mas "Pixelmator", id: 407963104
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
+mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
