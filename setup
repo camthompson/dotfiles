@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md default-gems)
+  local ignorelist=(setup update README.md default-gems com.camthompson.macos.updateip.plist)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -13,6 +13,8 @@ not_ignored() {
 
   return 0
 }
+
+ln -s "$PWD/com.camthompson.macos.updateip.plist" "$HOME/Library/LaunchAgents"
 
 for f in *; do
   if not_ignored "$f"; then
