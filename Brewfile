@@ -30,10 +30,9 @@ brew "loc"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
+brew "pkg-config"
 brew "nushell"
 brew "nvm"
-brew "openssl"
-brew "pkg-config"
 brew "postgresql@10", restart_service: true, link: true
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
@@ -66,6 +65,7 @@ cask "moom"
 cask "safari-technology-preview"
 cask "screens-connect"
 cask "slack-beta"
+cask "superduper"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
@@ -76,6 +76,7 @@ mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
+mas "Gladys", id: 1382386877
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "lire", id: 1482527526
