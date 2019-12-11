@@ -22,7 +22,7 @@ brew "git"
 brew "libffi"
 brew "go"
 brew "hub"
-brew "imagemagick", link: false
+brew "imagemagick"
 brew "imagemagick@6", link: true
 brew "jq"
 brew "libyaml"
@@ -79,12 +79,12 @@ mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
-mas "lire", id: 1482527526
 mas "Marked 2", id: 890031187
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
+mas "Reeder", id: 1449412482
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
