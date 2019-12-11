@@ -88,5 +88,6 @@ mas "Reeder", id: 1449412482
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
+mas "Transmit", id: 1436522307
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
