@@ -8,6 +8,7 @@ tap "px4/px4"
 brew "automake"
 brew "avrdude"
 brew "gdbm"
+brew "openssl@1.1"
 brew "readline"
 brew "python"
 brew "awscli"
@@ -23,16 +24,16 @@ brew "libffi"
 brew "go"
 brew "hub"
 brew "imagemagick"
-brew "imagemagick@6", link: true
+brew "imagemagick@6"
 brew "jq"
 brew "libyaml"
 brew "loc"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
-brew "pkg-config"
 brew "nushell"
 brew "nvm"
+brew "pkg-config"
 brew "postgresql@10", restart_service: true, link: true
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
@@ -84,7 +85,6 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
-mas "Reeder", id: 1449412482
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
