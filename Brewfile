@@ -10,7 +10,6 @@ brew "avrdude"
 brew "gdbm"
 brew "openssl@1.1"
 brew "readline"
-brew "python"
 brew "awscli"
 brew "bison"
 brew "chruby"
@@ -21,6 +20,7 @@ brew "dfu-util"
 brew "ghostscript"
 brew "git"
 brew "libffi"
+brew "python"
 brew "go"
 brew "hub"
 brew "imagemagick"
@@ -63,6 +63,7 @@ cask "keyboard-maestro"
 cask "macvim"
 cask "microsoft-edge-dev"
 cask "moom"
+cask "racket"
 cask "safari-technology-preview"
 cask "screens-connect"
 cask "slack-beta"
@@ -78,6 +79,7 @@ mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
+mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
