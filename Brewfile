@@ -1,3 +1,4 @@
+tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
@@ -30,13 +31,13 @@ brew "libyaml"
 brew "loc"
 brew "mas"
 brew "mosh"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "nushell"
 brew "nvm"
 brew "pkg-config"
-brew "postgresql@10", restart_service: true, link: true
+brew "postgresql@10", link: true
 brew "reattach-to-user-namespace"
-brew "redis", restart_service: true
+brew "redis"
 brew "ruby-install"
 brew "teensy_loader_cli"
 brew "tmux"
@@ -44,6 +45,7 @@ brew "tree"
 brew "watchman"
 brew "wget"
 brew "zsh"
+brew "github/gh/gh"
 brew "osx-cross/avr/avr-gcc@8", link: true
 brew "px4/px4/gcc-arm-none-eabi"
 cask "1password"
@@ -87,6 +89,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
+mas "Raindrop.io for Safari", id: 957810159
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
