@@ -577,7 +577,11 @@ nnoremap c= :Switch<cr>
 " }}}
 
 " Test {{
-let test#strategy = 'vtr'
+if $TMUX
+  let test#strategy = 'vtr'
+else
+  let test#strategy = 'dispatch'
+endif
 nnoremap <leader>t :w<bar>TestFile<CR>
 nnoremap <leader>T :w<bar>TestNearest<CR>
 nnoremap <leader>a :w<bar>TestSuite<CR>
