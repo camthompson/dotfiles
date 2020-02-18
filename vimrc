@@ -10,6 +10,7 @@ call minpac#add('AndrewRadev/linediff.vim')
 call minpac#add('AndrewRadev/sideways.vim')
 call minpac#add('AndrewRadev/splitjoin.vim')
 call minpac#add('AndrewRadev/switch.vim')
+call minpac#add('christoomey/vim-tmux-runner')
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('elixir-lang/vim-elixir')
 call minpac#add('godlygeek/tabular')
@@ -576,7 +577,7 @@ nnoremap c= :Switch<cr>
 " }}}
 
 " Test {{
-let test#strategy = "dispatch"
+let test#strategy = 'vtr'
 nnoremap <leader>t :w<bar>TestFile<CR>
 nnoremap <leader>T :w<bar>TestNearest<CR>
 nnoremap <leader>a :w<bar>TestSuite<CR>
