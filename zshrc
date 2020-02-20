@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 if [ -f '/etc/zprofile' ]; then
   echo "/etc/zprofile is back. Delete it to keep it from trolling you."
 fi
