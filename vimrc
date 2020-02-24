@@ -577,7 +577,7 @@ nnoremap c= :Switch<cr>
 " }}}
 
 " Test {{
-if $TMUX
+if len($TMUX) > 0
   let test#strategy = 'vtr'
 else
   let test#strategy = 'dispatch'
