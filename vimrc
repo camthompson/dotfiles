@@ -517,7 +517,7 @@ map <leader>d <plug>Kwbd
 " }}}
 
 " QUnit {{{
-function! s:OpenQUnit()
+function! s:OpenQUnit(...)
   let l:test_name = ''
 
   for l:line in readfile(bufname('%'), '')
@@ -531,14 +531,19 @@ function! s:OpenQUnit()
   endfor
 
   if len(test_name)
-    silent execute "!open -a '/Applications/Google Chrome.app' 'http://localhost:4200/tests?module=".test_name."'"
+    if (a:0 > 0)
+      let l:port = a:1
+    else
+      let l:port = '4200'
+    endif
+    silent execute "!open -a '/Applications/Google Chrome.app' 'http://localhost:".port."/tests?module=".test_name."'"
     redraw!
   else
     echom 'No test module found'
   endif
 endfunction
 
-command! OpenQUnit call s:OpenQUnit()
+command! -nargs=? OpenQUnit call s:OpenQUnit(<f-args>)
 au FileType javascript,coffee nnoremap <buffer> <leader>r :OpenQUnit<cr>
 " }}}
 
