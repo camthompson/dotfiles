@@ -32,13 +32,12 @@ brew "libyaml"
 brew "loc"
 brew "mas"
 brew "mosh"
-brew "mysql"
+brew "mysql", restart_service: true
 brew "nushell"
-brew "nvm"
 brew "pkg-config"
-brew "postgresql@10", link: true
+brew "postgresql@11", restart_service: true
 brew "reattach-to-user-namespace"
-brew "redis"
+brew "redis", restart_service: true
 brew "ruby-install"
 brew "teensy_loader_cli"
 brew "tmux"
