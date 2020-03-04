@@ -82,6 +82,7 @@ mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
+mas "GoodNotes", id: 1480793815
 mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
