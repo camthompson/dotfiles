@@ -347,6 +347,12 @@ compdef mygit=git
 function mcd {
   mkdir -p "$*" && cd "$*"
 }
+
+function node-install {
+  mkdir -p "${HOME}/.nodes/node-${1}"
+  curl -O "https://nodejs.org/dist/v${1}/node-v${1}-darwin-x64.tar.gz"
+  tar xzvf "node-v${1}-darwin-x64.tar.gz" --strip-components 1 -C "${HOME}/.nodes/node-${1}"
+}
 # }}}
 
 # History {{{
