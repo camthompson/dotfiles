@@ -125,8 +125,6 @@ aug vimrc
         \ let b:start = executable('pry') ? 'pry -r "%:p"' : 'irb -r "%:p"' |
         \ if expand('%') =~# '_test\.rb$' |
         \   let b:dispatch = 'testrb %' |
-        \ elseif expand('%') =~# '_spec\.rb$' |
-        \   let b:dispatch = 'rspec %' |
         \ elseif !exists('b:dispatch') |
         \   let b:dispatch = 'ruby -wc %' |
         \ endif
@@ -582,11 +580,7 @@ nnoremap c= :Switch<cr>
 " }}}
 
 " Test {{
-if len($TMUX) > 0
-  let test#strategy = 'vtr'
-else
-  let test#strategy = 'dispatch'
-endif
+let test#strategy = 'dispatch'
 nnoremap <leader>t :w<bar>TestFile<CR>
 nnoremap <leader>T :w<bar>TestNearest<CR>
 nnoremap <leader>a :w<bar>TestSuite<CR>
