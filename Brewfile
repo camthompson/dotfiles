@@ -22,9 +22,10 @@ brew "dfu-util"
 brew "ghostscript"
 brew "git"
 brew "libffi"
-brew "python"
 brew "go"
+brew "grep"
 brew "hub"
+brew "python"
 brew "imagemagick"
 brew "imagemagick@6"
 brew "jq"
@@ -35,7 +36,8 @@ brew "mosh"
 brew "mysql", restart_service: true
 brew "nushell"
 brew "pkg-config"
-brew "postgresql@11", restart_service: true
+brew "postgresql@11", restart_service: true, link: true
+brew "putty"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
 brew "ruby-install"
