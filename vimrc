@@ -187,7 +187,6 @@ set pastetoggle=<F2> "F2 toggles pastemode
 set path+=./**  "search recursively downards
 set report=5 "threshold for showing when a number of lines are changed
 set scrolloff=5 "keep 5 lines above or below current line
-set shell=bash "zsh's path gets screwed up on OS X
 set shiftwidth=2 "< and > indent width
 set shortmess=aOstTAI "help avoid hit enter prompts
 set showbreak=|
