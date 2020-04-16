@@ -493,6 +493,7 @@ inoremap <expr><tab> CleverTab()
 
 " Dispatch {{{
 nnoremap g<space> :up<bar>Dispatch<cr>
+let g:dispatch_handlers = ['job', 'headless']
 " }}}
 
 " Expand Region {{{
