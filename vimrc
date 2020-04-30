@@ -357,8 +357,6 @@ function! WordProcessorMode()
   setlocal formatoptions=1
   setlocal spell spelllang=en_us
   setlocal formatprg=par
-  setlocal wrap
-  setlocal linebreak
   setlocal nolist
   setlocal tw=0
 endfu
