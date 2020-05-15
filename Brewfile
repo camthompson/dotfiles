@@ -17,6 +17,7 @@ brew "readline"
 brew "awscli"
 brew "bison"
 brew "chruby"
+brew "circleci"
 brew "ctags"
 brew "dfu-programmer"
 brew "dfu-util"
@@ -28,7 +29,6 @@ brew "grep"
 brew "hub"
 brew "python"
 brew "imagemagick"
-brew "imagemagick@6"
 brew "jq"
 brew "libyaml"
 brew "loc"
@@ -91,6 +91,7 @@ mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
+mas "GoodNotes", id: 1444383602
 mas "GoodNotes", id: 1480793815
 mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
