@@ -48,7 +48,6 @@ brew "tree"
 brew "watchman"
 brew "wget"
 brew "zsh"
-brew "github/gh/gh"
 brew "osx-cross/avr/avr-gcc@8", link: true
 brew "px4/px4/gcc-arm-none-eabi"
 brew "tkareine/chnode/chnode"
@@ -83,6 +82,7 @@ cask "virtualbox"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
 cask "zoomus"
+mas "Apple Configurator 2", id: 1037126344
 mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
