@@ -7,8 +7,7 @@ vim/dbext_history.txt
 pentadactyl/info
 irssi/sasl.auth
 irssi/saved_colors
-vim/pack/minpac
-vim/pack/bundle
+vim/bundle
 config/nvim/tmp/**/*
 !config/nvim/tmp/swp/.gitkeep
 !config/nvim/tmp/undo/.gitkeep

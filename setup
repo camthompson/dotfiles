@@ -23,7 +23,6 @@ for f in *; do
   fi
 done
 
-mkdir -p ~/.vim/pack/minpac/opt
-cd ~/.vim/pack/minpac/opt
-git clone https://github.com/k-takata/minpac.git
-vim +PackUpdate +qall
+mkdir -p $HOME/.cache/dein
+git clone https://github.com/Shougo/dein.vim $HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+vim +'call dein#install()' +qall
