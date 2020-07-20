@@ -358,6 +358,7 @@ function! ToggleTheme()
   endif
 endfunction
 command! ToggleTheme call ToggleTheme()
+nnoremap gt :ToggleTheme<cr>
 " }}}
 
 " WordProcessorMode {{{
