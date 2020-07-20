@@ -82,15 +82,11 @@ if dein#load_state('~/.cache/dein')
   call dein#add('wsdjeg/dein-ui.vim')
   call dein#add('zerowidth/vim-copy-as-rtf')
 
-  " My packages
-  call dein#add('~/.vim/bundle/vim-ember')
-  call dein#add('~/.vim/bundle/vim-ember-hbs')
-  call dein#add('~/.vim/bundle/zoomwin')
-
   call dein#end()
   call dein#save_state()
 endif
 " }}}
+
 
 filetype plugin indent on
 set ttyfast "improves copy/paste for terminals
