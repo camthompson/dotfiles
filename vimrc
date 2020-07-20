@@ -40,6 +40,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('othree/html5.vim')
   call dein#add('pangloss/vim-javascript')
   call dein#add('rust-lang/rust.vim')
+  call dein#add('sonph/onehalf', {'rtp': 'vim/'})
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('slim-template/vim-slim')
   call dein#add('tommcdo/vim-exchange')
@@ -153,10 +154,11 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let g:onedark_termcolors=16
-colo onedark
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+colo onehalflight
 
-set background=dark
 set backup "enable backup
 set backupdir=$HOME/.vim/tmp/backup// "backup file directory
 set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
@@ -346,16 +348,16 @@ command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap <leader>w :StripTrailingWhitespaces<CR>
 " }}}
 
-" ToggleBackground {{{
-function! ToggleBackground()
-  let dark=(&bg == 'dark')
+" ToggleTheme {{{
+function! ToggleTheme()
+  let dark=(g:colors_name == 'onehalfdark')
   if dark
-    set bg=light
+    colorscheme onehalflight
   else
-    set bg=dark
+    colorscheme onehalfdark
   endif
 endfunction
-command! ToggleBG call ToggleBackground()
+command! ToggleTheme call ToggleTheme()
 " }}}
 
 " WordProcessorMode {{{
