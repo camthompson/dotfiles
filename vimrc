@@ -87,6 +87,9 @@ if dein#load_state('~/.cache/dein')
 endif
 " }}}
 
+for p in glob('~/.vim/pack/*/start/*/doc', 1, 1)
+  exe 'helptags ' . p
+endfor
 
 filetype plugin indent on
 set ttyfast "improves copy/paste for terminals
