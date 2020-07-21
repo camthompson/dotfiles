@@ -31,6 +31,7 @@ brew "imagemagick"
 brew "jq"
 brew "libyaml"
 brew "loc"
+brew "lua"
 brew "mas"
 brew "mosh"
 brew "mysql", restart_service: true
@@ -38,7 +39,6 @@ brew "nushell"
 brew "pkg-config"
 brew "postgresql", restart_service: true
 brew "putty"
-brew "python"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
 brew "ruby-install"
