@@ -91,7 +91,6 @@ mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
 mas "GoodLinks", id: 1474335294
 mas "GoodNotes", id: 1444383602
-mas "GoodNotes", id: 1480793815
 mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
