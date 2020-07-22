@@ -153,11 +153,10 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
+let g:onedark_termcolors=16
 colo onedark
 
+set background=dark
 set backup "enable backup
 set backupdir=$HOME/.vim/tmp/backup// "backup file directory
 set backupskip=/tmp/*,/private/tmp/* "skip backups for these directories
@@ -345,6 +344,18 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap <leader>w :StripTrailingWhitespaces<CR>
+" }}}
+
+" ToggleBackground {{{
+function! ToggleBackground()
+  let dark=(&bg == 'dark')
+  if dark
+    set bg=light
+  else
+    set bg=dark
+  endif
+endfunction
+command! ToggleBG call ToggleBackground()
 " }}}
 
 " WordProcessorMode {{{
