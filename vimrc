@@ -1,90 +1,89 @@
 set nocompatible "no vi compatibility
 
 " Packages {{{
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('AndrewRadev/linediff.vim')
-  call dein#add('AndrewRadev/sideways.vim')
-  call dein#add('AndrewRadev/splitjoin.vim')
-  call dein#add('AndrewRadev/switch.vim')
-  call dein#add('christoomey/vim-tmux-runner')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('elixir-lang/vim-elixir')
-  call dein#add('godlygeek/tabular')
-  call dein#add('google/vim-jsonnet')
-  call dein#add('haya14busa/vim-asterisk')
-  call dein#add('haya14busa/is.vim')
-  call dein#add('henrik/vim-indexed-search')
-  call dein#add('idanarye/vim-merginal')
-  call dein#add('janko-m/vim-test')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('joshdick/onedark.vim')
-  call dein#add('junegunn/gv.vim')
-  call dein#add('kana/vim-textobj-entire')
-  call dein#add('kana/vim-textobj-fold')
-  call dein#add('kana/vim-textobj-indent')
-  call dein#add('kana/vim-textobj-line')
-  call dein#add('kana/vim-textobj-user')
-  call dein#add('mattn/gist-vim')
-  call dein#add('mattn/webapi-vim')
-  call dein#add('mbbill/undotree')
-  call dein#add('nelstrom/vim-markdown-folding')
-  call dein#add('nelstrom/vim-textobj-rubyblock')
-  call dein#add('ngmy/vim-rubocop')
-  call dein#add('othree/html5.vim')
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('rust-lang/rust.vim')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('slim-template/vim-slim')
-  call dein#add('tommcdo/vim-exchange')
-  call dein#add('tpope/vim-abolish')
-  call dein#add('tpope/vim-afterimage')
-  call dein#add('tpope/vim-bundler')
-  call dein#add('tpope/vim-capslock')
-  call dein#add('tpope/vim-characterize')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('tpope/vim-cucumber')
-  call dein#add('tpope/vim-dadbod')
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('tpope/vim-dotenv')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tpope/vim-eunuch')
-  call dein#add('tpope/vim-flagship')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-git')
-  call dein#add('tpope/vim-haml')
-  call dein#add('tpope/vim-jdaddy')
-  call dein#add('tpope/vim-markdown')
-  call dein#add('tpope/vim-projectionist')
-  call dein#add('tpope/vim-ragtag')
-  call dein#add('tpope/vim-rails')
-  call dein#add('tpope/vim-rake')
-  call dein#add('tpope/vim-repeat')
-  call dein#add('tpope/vim-rhubarb')
-  call dein#add('tpope/vim-rsi')
-  call dein#add('tpope/vim-scriptease')
-  call dein#add('tpope/vim-sensible')
-  call dein#add('tpope/vim-sleuth')
-  call dein#add('tpope/vim-speeddating')
-  call dein#add('tpope/vim-surround')
-  call dein#add('tpope/vim-tbone')
-  call dein#add('tpope/vim-unimpaired')
-  call dein#add('tpope/vim-vinegar')
-  call dein#add('vim-ruby/vim-ruby')
-  call dein#add('vim-scripts/kwbdi.vim')
-  call dein#add('wellle/targets.vim')
-  call dein#add('wsdjeg/dein-ui.vim')
-  call dein#add('zerowidth/vim-copy-as-rtf')
-
-  call dein#end()
-  call dein#save_state()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+call plug#begin('~/.vim/bundle')
+
+Plug 'airblade/vim-gitgutter'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
+Plug 'christoomey/vim-tmux-runner'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'godlygeek/tabular'
+Plug 'google/vim-jsonnet'
+Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/is.vim'
+Plug 'henrik/vim-indexed-search'
+Plug 'idanarye/vim-merginal'
+Plug 'janko-m/vim-test'
+Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/gv.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mbbill/undotree'
+Plug 'nelstrom/vim-markdown-folding'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'ngmy/vim-rubocop'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'slim-template/vim-slim'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-afterimage'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dotenv'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-flagship'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/kwbdi.vim'
+Plug 'wellle/targets.vim'
+Plug 'wsdjeg/dein-ui.vim'
+Plug 'zerowidth/vim-copy-as-rtf'
+
+call plug#end()
 " }}}
 
 for p in glob('~/.vim/pack/*/start/*/doc', 1, 1)
