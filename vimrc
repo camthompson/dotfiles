@@ -80,7 +80,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'wellle/targets.vim'
-Plug 'wsdjeg/dein-ui.vim'
 Plug 'zerowidth/vim-copy-as-rtf'
 
 call plug#end()
