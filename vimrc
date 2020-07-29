@@ -404,7 +404,6 @@ nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-=> <c-w>=
-nnoremap <c-p> <c-^>
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
 nnoremap Q gqip
