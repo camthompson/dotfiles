@@ -92,7 +92,6 @@ mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
-mas "GoodLinks", id: 1474335294
 mas "GoodNotes", id: 1444383602
 mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
@@ -104,6 +103,7 @@ mas "Parcel", id: 639968404
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
 mas "Raindrop.io for Safari", id: 957810159
+mas "Reeder", id: 1449412482
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
