@@ -94,7 +94,6 @@ mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
-mas "Drafts", id: 1435957248
 mas "Gladys", id: 1382386877
 mas "GoodNotes", id: 1444383602
 mas "HardG", id: 1493198738
