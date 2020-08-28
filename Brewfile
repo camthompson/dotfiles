@@ -102,7 +102,6 @@ mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Parcel", id: 639968404
 mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
