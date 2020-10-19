@@ -49,7 +49,7 @@ brew "tree"
 brew "watchman"
 brew "wget"
 brew "zsh"
-brew "px4/px4/gcc-arm-none-eabi"
+brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 brew "tkareine/chnode/chnode"
 cask "1password"
