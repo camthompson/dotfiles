@@ -87,7 +87,6 @@ cask "raindropio"
 cask "safari-technology-preview"
 cask "screens-connect"
 cask "slack-beta"
-cask "virtualbox"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
 cask "zoomus"
@@ -108,7 +107,7 @@ mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
 mas "Pixelmator", id: 407963104
 mas "Raindrop.io for Safari", id: 957810159
-mas "Reeder", id: 1449412482
+mas "Reeder", id: 1529448980
 mas "Screens", id: 1224268771
 mas "Shush", id: 496437906
 mas "Things", id: 904280696
