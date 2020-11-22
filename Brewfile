@@ -78,6 +78,7 @@ cask "iterm2-beta"
 cask "key-codes"
 cask "keyboard-maestro"
 cask "macvim"
+cask "mic-drop"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-edge-dev"
@@ -111,7 +112,6 @@ mas "Pixelmator", id: 407963104
 mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1529448980
 mas "Screens", id: 1224268771
-mas "Shush", id: 496437906
 mas "Things", id: 904280696
 mas "Transmit", id: 1436522307
 mas "Twitter", id: 1482454543
