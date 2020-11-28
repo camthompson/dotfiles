@@ -78,7 +78,6 @@ cask "iterm2-beta"
 cask "key-codes"
 cask "keyboard-maestro"
 cask "macvim"
-cask "mic-drop"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-edge-dev"
@@ -93,8 +92,8 @@ cask "visual-studio-code"
 cask "wkhtmltopdf"
 cask "zoomus"
 cask "zsa-wally"
+mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
-mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Gladys", id: 1382386877
@@ -103,6 +102,7 @@ mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
+mas "Mic Drop", id: 1489816366
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
