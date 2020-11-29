@@ -107,7 +107,8 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
-mas "Pixelmator", id: 407963104
+mas "PiPifier", id: 1160374471
+mas "Pixelmator Pro", id: 1289583905
 mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1529448980
 mas "Screens", id: 1224268771
