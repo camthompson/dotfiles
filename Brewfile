@@ -98,7 +98,6 @@ mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Gladys", id: 1382386877
 mas "GoodNotes", id: 1444383602
-mas "HardG", id: 1493198738
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
