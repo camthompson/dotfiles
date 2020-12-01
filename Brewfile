@@ -92,8 +92,8 @@ cask "visual-studio-code"
 cask "wkhtmltopdf"
 cask "zoomus"
 cask "zsa-wally"
-mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
+mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Gladys", id: 1382386877
