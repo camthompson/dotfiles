@@ -91,6 +91,7 @@ cask "screens-connect"
 cask "slack-beta"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
+cask "zoom"
 cask "zoomus"
 cask "zsa-wally"
 mas "Bear", id: 1091189122
