@@ -119,6 +119,7 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1529448980
 mas "Screens", id: 1224268771
+mas "Tabs to Links", id: 1451408472
 mas "Things", id: 904280696
 mas "Transmit", id: 1436522307
 mas "Twitter", id: 1482454543
