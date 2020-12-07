@@ -98,7 +98,6 @@ cask "wkhtmltopdf"
 cask "zoom"
 cask "zoomus"
 cask "zsa-wally"
-mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
