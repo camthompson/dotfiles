@@ -96,7 +96,6 @@ cask "slack-beta"
 cask "visual-studio-code"
 cask "wkhtmltopdf"
 cask "zoom"
-cask "zoomus"
 cask "zsa-wally"
 mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
