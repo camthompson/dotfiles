@@ -7,5 +7,5 @@ vim/dbext_history.txt
 irssi/sasl.auth
 irssi/saved_colors
 vim/pack/src
-vim/autoload/plug.vim
+vim/autoload/plug.vim*
 vim/bundle/*
