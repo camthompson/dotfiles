@@ -26,7 +26,7 @@
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [push]
-  default = tracking
+  default = current
 [diff]
   mnemonicprefix = true
   renames = copies
@@ -92,5 +92,6 @@
   wc = whatchanged -p --abbrev-commit --pretty=medium
 [pull]
   rebase = merges
+  default = current
 [grep]
   extendRegexp = true
