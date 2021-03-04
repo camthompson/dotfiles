@@ -41,7 +41,6 @@ Plug 'ngmy/vim-rubocop'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim'
-Plug 'Shougo/neocomplete.vim'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
@@ -473,22 +472,6 @@ let g:ctrlp_mruf_relative = 1
 nnoremap <leader><leader> :CtrlP<cr>
 nnoremap \\ :CtrlPBuffer<cr>
 nnoremap <localleader><localleader> :CtrlPMRU<cr>
-" }}}
-
-" Neocomplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#disable_auto_complete = 1
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-     return "\<tab>"
-   elseif pumvisible()
-     return "\<c-n>"
-   else
-     return neocomplete#start_manual_complete()
-   endif
-endfunction
-inoremap <expr><tab> CleverTab()
 " }}}
 
 " Dispatch {{{
