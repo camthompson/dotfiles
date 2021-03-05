@@ -40,7 +40,7 @@ brew "mosh"
 brew "mysql", restart_service: true
 brew "nushell"
 brew "pkg-config"
-brew "postgresql@12", restart_service: true, link: true
+brew "postgresql", restart_service: true
 brew "putty"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
