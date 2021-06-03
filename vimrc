@@ -417,7 +417,7 @@ xnoremap : ;
 nnoremap q; q:
 nnoremap <tab> :set hlsearch!<cr>
 nnoremap vv ^vg_
-nnoremap g<cr> :Gwrite<cr>
+nnoremap g<cr> :Gwrite<bar>w<cr>
 
 nnoremap gy :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -428,7 +428,7 @@ if !(has("gui_running"))
 endif
 
 function! MapCR()
-  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":up\<cr>")
+  nnoremap <expr> <cr> (&buftype is# "quickfix" ? "\<cr>" : ":w\<cr>")
 endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
@@ -476,7 +476,7 @@ nnoremap <localleader><localleader> :CtrlPMRU<cr>
 " }}}
 
 " Dispatch {{{
-nnoremap g<space> :up<bar>Dispatch<cr>
+nnoremap g<space> :w<bar>Dispatch<cr>
 " }}}
 
 " Expand Region {{{
