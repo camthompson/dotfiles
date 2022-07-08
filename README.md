@@ -18,13 +18,6 @@
 * `./update` will update submodules that contain ZSH dependencies
 * From Vim, `:PlugUpgrade` and `:PlugUpdate` update `vim-plug` and other Vim add-ons, respectively
 
-# Development
-1. `ruby-install $VERSION`
-2. `chruby $VERSION`
-3. `while read line; do gem install $line; done < default-gems`
-4. `nvm install $VERSION`
-5. `npm install -g yarn ember-cli`
-
 # Misc Setup
 1. `g clone camthompson/bin ~/bin`
 2. Edit `/etc/ssh/sshd_config` and disable `PasswordAuthentication` and `ChallengeResponseAuthentication`
