@@ -69,6 +69,7 @@
   lp = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
   m = merge --no-ff
   mff = merge --ff-only
+  ms = merge --squash
   o = checkout
   ob = checkout -b
   p = push
