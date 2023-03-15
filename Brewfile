@@ -90,9 +90,7 @@ cask "visual-studio-code"
 cask "zoom"
 cask "zsa-wally"
 mas "Bumpr", id: 1166066070
-mas "CARROT Weather", id: 993487541
 mas "Craft", id: 1487937127
-mas "Darkroom", id: 953286746
 mas "Hush", id: 1544743900
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
@@ -106,9 +104,6 @@ mas "Pins", id: 1547106997
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
-mas "Screens", id: 1224268771
 mas "Tabs to Links", id: 1451408472
 mas "Things", id: 904280696
-mas "Transmit", id: 1436522307
-mas "Twitter", id: 1482454543
 mas "xScope", id: 889428659
