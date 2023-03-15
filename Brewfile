@@ -89,7 +89,6 @@ cask "slack-beta"
 cask "visual-studio-code"
 cask "zoom"
 cask "zsa-wally"
-mas "Better", id: 1121192229
 mas "Bumpr", id: 1166066070
 mas "CARROT Weather", id: 993487541
 mas "Craft", id: 1487937127
