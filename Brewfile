@@ -53,7 +53,6 @@ brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 cask "1password"
 cask "alfred"
-cask "atom"
 cask "authy"
 cask "backblaze"
 cask "brave-browser"
