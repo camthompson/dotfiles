@@ -88,6 +88,7 @@ cask "screens-connect"
 cask "slack-beta"
 cask "visual-studio-code"
 cask "zoom"
+mas "1Blocker", id: 1365531024
 mas "Bumpr", id: 1166066070
 mas "Craft", id: 1487937127
 mas "Hush", id: 1544743900
