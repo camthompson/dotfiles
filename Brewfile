@@ -94,13 +94,11 @@ mas "CARROT Weather", id: 993487541
 mas "Craft", id: 1487937127
 mas "Darkroom", id: 953286746
 mas "Gladys", id: 1382386877
-mas "GoodNotes", id: 1444383602
 mas "Hush", id: 1544743900
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
 mas "Mic Drop", id: 1489816366
-mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pastel", id: 413897608
