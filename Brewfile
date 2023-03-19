@@ -38,6 +38,7 @@ brew "lua"
 brew "mas"
 brew "mosh"
 brew "nushell"
+brew "php"
 brew "pkg-config"
 brew "postgresql@14", restart_service: true
 brew "putty"
