@@ -452,7 +452,11 @@ noremap gk k
 
 " Plugins {{{
 " ALE {{{
-let g:ale_linters = {'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+let g:ale_linters =
+      \ {'javascript': ['eslint'],
+      \  'python': ['flake8', 'mypy'],
+      \  'typescript': ['tsserver', 'eslint'],
+      \  'typescript.tsx': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
