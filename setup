@@ -17,8 +17,6 @@ not_ignored() {
 mkdir -p "$HOME/.config"
 ln -s "$PWD/karabiner" "$HOME/.config/karabiner"
 
-ln -s "$PWD/com.camthompson.macos.updateip.plist" "$HOME/Library/LaunchAgents"
-
 for f in *; do
   if not_ignored "$f"; then
     rm -rf "$HOME/.$f"

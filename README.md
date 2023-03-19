@@ -28,5 +28,9 @@
 # Backblaze
 `open '/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app'`
 
+# Dynamic IP
+`mkdir -p "$HOME/Library/LaunchAgents"`
+`ln -s "$PWD/com.camthompson.macos.updateip.plist" "$HOME/Library/LaunchAgents/com.camthompson.macos.updateip.plist"`
+
 ## Credits
 A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
