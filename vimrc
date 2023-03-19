@@ -45,7 +45,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ngmy/vim-rubocop'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'Quramy/tsuquyomi'
 Plug 'rust-lang/rust.vim'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
