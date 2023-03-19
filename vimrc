@@ -28,6 +28,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'junegunn/gv.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
@@ -39,9 +40,11 @@ Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'nelsyeung/twig.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ngmy/vim-rubocop'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'Quramy/tsuquyomi'
 Plug 'rust-lang/rust.vim'
 Plug 'slim-template/vim-slim'
 Plug 'tommcdo/vim-exchange'
@@ -80,6 +83,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/kwbdi.vim'
+Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'zerowidth/vim-copy-as-rtf'
 
@@ -198,6 +202,7 @@ set showbreak=|
 set showmode "show mode
 set showtabline=1 "show tab line when more than one open
 set sidescrolloff=5 "keep 5 lines left or right of cursor
+set signcolumn=yes "recommended by coc
 set smartcase "stops ignoring case when capitals used
 set softtabstop=2 "treat 2 consecutive spaces as a tab
 set splitbelow "open splits below current window
@@ -210,6 +215,7 @@ set textwidth=79 "used for &colorcolumn
 set undodir=$HOME/.vim/tmp/undo// "undo file directory
 set undofile "persistent undo history
 set undolevels=1000 "number of undo levels to save
+set updatetime=300 "recommended by coc
 set virtualedit=block "allow cursor to be placed on nonexistent locations in block mode
 set wildignore+=*.jpg,*.gif,*.png,*.o,*.obj,*.bak,*.rbc
 set wildignore+=.git/*,.hg/*,.svn/*,*/swp/*,*/undo/*,Gemfile.lock
@@ -445,11 +451,45 @@ noremap gk k
 " }}}
 
 " Plugins {{{
+" ALE {{{
+let g:ale_linters = {'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 0
+let g:ale_javascript_eslint_executable = 'eslint --cache'
+nnoremap gj :ALENextWrap<cr>
+nnoremap gk :ALEPreviousWrap<cr>
+nnoremap g1 :ALEFirst<cr>
+" This mapping will kill all ALE-related processes (including tsserver). It's
+" necessary when those processes get confused. E.g., tsserver will sometimes
+" show type errors that don't actually exist. I don't know exactly why that
+" happens yet, but I think that it's related to renaming files.
+nnoremap g0 :ALEStopAllLSPs<cr>
+" }}}
+
 " Asertisk{{{
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+" }}}
+
+" COC {{{
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 " }}}
 
 " CtrlP {{{
@@ -570,6 +610,11 @@ nnoremap <leader>T :w<bar>TestNearest<CR>
 nnoremap <leader>a :w<bar>TestSuite<CR>
 nnoremap <leader>l :w<bar>TestLast<CR>
 " }}
+
+" Tsuquyomi {{{
+" vim-ale handles TypeScript quickfix, so tell Tsuquyomi not to do it.
+let g:tsuquyomi_disable_quickfix = 1
+" }}}
 
 " ZoomWin {{{
 nmap <leader>z <c-w>o
