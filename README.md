@@ -14,6 +14,7 @@
 ## Update
 * `./update` will update submodules that contain ZSH dependencies
 * From Vim, `:PlugUpgrade` and `:PlugUpdate` update `vim-plug` and other Vim add-ons, respectively
+* Also in Vim, `:CocUpdate` will update completion plugins
 
 # Misc Setup
 1. `git clone camthompson/bin ~/bin`
