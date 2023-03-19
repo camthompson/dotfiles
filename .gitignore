@@ -9,3 +9,4 @@ irssi/saved_colors
 vim/pack/src
 vim/autoload/plug.vim*
 vim/bundle/*
+karabiner/automatic_backups/

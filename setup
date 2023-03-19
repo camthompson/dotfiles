@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md com.camthompson.macos.updateip.plist)
+  local ignorelist=(setup update README.md com.camthompson.macos.updateip.plist karabiner)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -13,6 +13,9 @@ not_ignored() {
 
   return 0
 }
+
+mkdir -p "$HOME/.config"
+ln -s "$PWD/karabiner" "$HOME/.config/karabiner"
 
 ln -s "$PWD/com.camthompson.macos.updateip.plist" "$HOME/Library/LaunchAgents"
 
