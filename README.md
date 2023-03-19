@@ -10,6 +10,7 @@
 ## Setup
 1. `./setup` *This will overwrite things in your home directory*
 2. Clone my Vim plugins into `vim/pack/bundle/start`
+3. In Vim, `:PlugInstall` and `CocInstall`
 
 ## Update
 * `./update` will update submodules that contain ZSH dependencies
