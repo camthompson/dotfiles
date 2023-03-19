@@ -19,11 +19,8 @@
 * From Vim, `:PlugUpgrade` and `:PlugUpdate` update `vim-plug` and other Vim add-ons, respectively
 
 # Misc Setup
-1. `g clone camthompson/bin ~/bin`
-2. Edit `/etc/ssh/sshd_config` and disable `PasswordAuthentication` and `ChallengeResponseAuthentication`
-3. `sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist`
-4. `sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist`
-5. `sudo mv /etc/zprofile{,.bak}` to keep `path_helper` from screwing up `$PATH`
+1. `git clone camthompson/bin ~/bin`
+2. `sudo post-macos-update`
 
 # Backblaze
 `open '/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app'`
