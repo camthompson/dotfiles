@@ -1,6 +1,3 @@
-# New Computer Setup
-1. `sudo xcode-select --install`
-
 # Prereqs
 1. Install [Homebrew](brew.sh)
 2. `brew bundle`
