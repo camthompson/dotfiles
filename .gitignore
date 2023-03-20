@@ -11,3 +11,4 @@ vim/autoload/plug.vim*
 vim/bundle/*
 karabiner/automatic_backups/
 coc/extensions/node_modules/
+coc/extensions/coc-json-data/json-schema-cache
