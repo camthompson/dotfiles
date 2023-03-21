@@ -453,7 +453,9 @@ noremap gk k
 " Plugins {{{
 " ALE {{{
 let g:ale_linters =
-      \ {'javascript': ['eslint'],
+      \ {'html.handlebars': ['ember-template-lint'],
+      \  'html': [],
+      \  'javascript': ['eslint'],
       \  'python': ['flake8', 'mypy'],
       \  'typescript': ['tsserver', 'eslint'],
       \  'typescript.tsx': ['tsserver', 'eslint']}
