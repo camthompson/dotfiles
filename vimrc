@@ -541,6 +541,11 @@ else
 endif
 " }}}
 
+" Gutentags {{{
+let g:gutentags_ctags_exclude = ['*mypy*']
+" }}}
+
+
 " KWBD {{{
 map <leader>d <plug>Kwbd
 " }}}
