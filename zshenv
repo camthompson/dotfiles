@@ -22,11 +22,9 @@ fpath=(
 path=(
   $HOME/bin
   /Applications/MacVim.app/Contents/bin
-  /opt/local/bin
-  /usr/local/{bin,sbin}
+  /opt/homebrew/bin/
   /usr/{bin,sbin}
   /{bin,sbin}
-  /opt/X11/bin
   $path
 )
 
