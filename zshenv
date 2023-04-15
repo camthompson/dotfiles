@@ -23,6 +23,7 @@ path=(
   $HOME/bin
   /Applications/MacVim.app/Contents/bin
   /opt/homebrew/bin/
+  /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
   $path
