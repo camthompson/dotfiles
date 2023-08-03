@@ -11,22 +11,20 @@ tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "px4/px4"
 tap "qmk/qmk"
-brew "asdf"
-brew "automake"
-brew "gdbm"
-brew "openssl@1.1"
 brew "readline"
+brew "asdf"
+brew "openssl@1.1"
 brew "awscli"
 brew "bison"
 brew "blueutil"
 brew "gettext"
-brew "git"
-brew "libffi"
 brew "glib"
+brew "gdbm"
+brew "git"
 brew "grep"
 brew "hub"
 brew "jq"
-brew "libyaml"
+brew "libffi"
 brew "loc"
 brew "mas"
 brew "mosh"
@@ -77,12 +75,12 @@ cask "obsidian"
 cask "parcel-beta"
 cask "postman"
 cask "safari-technology-preview"
-cask "slack-beta"
 cask "visual-studio-code"
-cask "zoom"
 mas "1Blocker", id: 1365531024
+mas "1Password for Safari", id: 1569813296
 mas "Bumpr", id: 1166066070
 mas "Craft", id: 1487937127
+mas "Drafts", id: 1435957248
 mas "Hush", id: 1544743900
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
@@ -97,5 +95,6 @@ mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "Tabs to Links", id: 1451408472
+mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
 mas "xScope", id: 889428659
