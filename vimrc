@@ -455,7 +455,7 @@ let g:ale_linters =
       \ {'html.handlebars': ['ember-template-lint'],
       \  'html': [],
       \  'javascript': ['eslint'],
-      \  'python': ['flake8', 'mypy'],
+      \  'ruby': ['standardrb'],
       \  'typescript': ['tsserver', 'eslint'],
       \  'typescript.tsx': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
