@@ -28,7 +28,7 @@ brew "loc"
 brew "mas"
 brew "mosh"
 brew "pkg-config"
-brew "postgresql@14", restart_service: true
+brew "postgresql@12", restart_service: true
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
 brew "teensy_loader_cli"
