@@ -103,4 +103,5 @@ mas "Reeder", id: 1529448980
 mas "Tabs to Links", id: 1451408472
 mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
+mas "Wireguard", id: 1451685025
 mas "xScope", id: 889428659
