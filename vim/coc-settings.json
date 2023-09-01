@@ -1,5 +1,7 @@
 {
   "codeLens.enable": true,
   "solargraph.useBundler": true,
-  "suggest.noselect": true
+  "suggest.noselect": true,
+  "tsserver.useLocalTsdk": true,
+  "tsserver.tsdk": "${workspaceFolder}/node_modules/typescript/lib"
 }
