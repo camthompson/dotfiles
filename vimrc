@@ -364,11 +364,7 @@ command! ToggleBG call ToggleBackground()
 
 " WordProcessorMode {{{
 function! WordProcessorMode()
-  setlocal formatoptions=1
-  setlocal spell spelllang=en_us
-  setlocal formatprg=par
-  setlocal nolist
-  setlocal tw=0
+  setlocal nolist wrap linebreak breakat&vim tw=0
 endfu
 command! WP call WordProcessorMode()
 " }}}
