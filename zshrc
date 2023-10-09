@@ -57,8 +57,7 @@ alias d='dirs -v'
 alias f=fg
 alias bc='bc -q'
 alias ip='curl www.icanhazip.com'
-
-alias nombom='npm cache clean && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
+alias b='bundle exec '
 
 alias duh='du -ch'
 
