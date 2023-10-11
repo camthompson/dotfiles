@@ -456,8 +456,8 @@ let g:ale_linters =
       \  'typescript': ['tsserver', 'eslint'],
       \  'typescript.tsx': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_delay = 0
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
