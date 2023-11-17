@@ -16,6 +16,7 @@
   grep = auto
 [init]
   templatedir = ~/.gittemplate
+  defaultBranch = main
 [web]
   browser = open
 [credential]
