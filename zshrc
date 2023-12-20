@@ -58,6 +58,7 @@ alias f=fg
 alias bc='bc -q'
 alias ip='curl www.icanhazip.com'
 alias b='bundle exec '
+alias bec='bundle exec component'
 
 alias duh='du -ch'
 
