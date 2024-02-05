@@ -113,6 +113,7 @@ mas "Pins", id: 1547106997
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
+mas "Slack for Desktop:", id: 803453959
 mas "Tabs to Links", id: 1451408472
 mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
