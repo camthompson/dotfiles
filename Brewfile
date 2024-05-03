@@ -1,11 +1,8 @@
 tap "camthompson/casks"
-tap "centrifugal/centrifugo"
 tap "github/gh"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
@@ -34,7 +31,6 @@ brew "git"
 brew "grep"
 brew "helm"
 brew "hub"
-brew "imagemagick"
 brew "jq"
 brew "libffi"
 brew "loc"
@@ -56,7 +52,6 @@ brew "universal-ctags"
 brew "watchman"
 brew "wget"
 brew "zsh"
-brew "centrifugal/centrifugo/centrifugo"
 brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 cask "1password"
@@ -69,37 +64,31 @@ cask "colorpicker-skalacolor"
 cask "dash"
 cask "discord"
 cask "docker"
-cask "fantastical"
 cask "firefox"
-cask "firefox-developer-edition"
+cask "firefox@developer-edition"
 cask "font-cascadia-mono"
 cask "font-ia-writer-mono"
 cask "font-ibm-plex"
 cask "font-jetbrains-mono"
 cask "google-chrome"
-cask "google-chrome-canary"
-cask "google-cloud-sdk"
+cask "google-chrome@canary"
 cask "iterm2"
 cask "karabiner-elements"
 cask "key-codes"
 cask "keyboard-maestro"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
-cask "microsoft-edge-dev"
+cask "microsoft-edge@dev"
 cask "moom"
 cask "notion"
-cask "obsidian"
-cask "parcel-beta"
 cask "pop"
 cask "postman"
 cask "safari-technology-preview"
 cask "visual-studio-code"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
-mas "Bumpr", id: 1166066070
 mas "Craft", id: 1487937127
 mas "Drafts", id: 1435957248
-mas "Hush", id: 1544743900
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "Marked 2", id: 890031187
@@ -111,13 +100,11 @@ mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
 mas "Pins", id: 1547106997
 mas "PiPifier", id: 1160374471
-mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "Slack for Desktop:", id: 803453959
 mas "Tabs to Links", id: 1451408472
 mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
-mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
 vscode "bierner.markdown-mermaid"
