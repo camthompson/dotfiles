@@ -1,8 +1,8 @@
 [user]
   name = Cam Thompson
-  email = cam@camthompson.com
+  email = c.thompson@edacious.com
 [github]
-  user = camthompson
+  user = c-thompson-edacious
 [core]
   editor = vim -f
   excludesfile = ~/.cvsignore
