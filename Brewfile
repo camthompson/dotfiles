@@ -80,6 +80,7 @@ cask "moom"
 cask "notion"
 cask "pop"
 cask "postman"
+cask "pycharm"
 cask "safari-technology-preview"
 cask "visual-studio-code"
 mas "1Blocker", id: 1365531024
