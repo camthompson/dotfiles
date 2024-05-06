@@ -45,9 +45,6 @@ alias m='v -g'
 alias vd='v -d'
 alias vw='v -R'
 
-alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/logfile start'
-alias pgstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-
 alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias md='mkdir'
@@ -57,8 +54,6 @@ alias d='dirs -v'
 alias f=fg
 alias bc='bc -q'
 alias ip='curl www.icanhazip.com'
-alias b='bundle exec '
-alias bec='bundle exec component'
 
 alias duh='du -ch'
 
@@ -73,6 +68,18 @@ alias scp='noglob scp'
 alias sftp='noglob sftp'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
+alias start='sh start.sh'
+alias stop='sh stop.sh'
+alias logs='sh logs.sh'
+alias shell='sh shell.sh'
+alias restart='sh restart.sh'
+alias prisma='sh prisma.sh'
+alias precommit='sh precommit.sh'
+alias tests='sh test.sh'
+alias sso-sandbox="aws sso login --profile edacious-sandbox"
+alias sso-ops="aws sso login --profile edacious-ops"
+alias sso-prod="aws sso login --profile edacious-prod"
 # }}}
 
 # Colors {{{
