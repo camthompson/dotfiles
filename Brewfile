@@ -37,12 +37,11 @@ brew "macvim"
 brew "mas"
 brew "mosh"
 brew "nvm"
-brew "opensearch", restart_service: true
 brew "openssl@1.1"
 brew "pkg-config"
-brew "postgresql@14", restart_service: true
+brew "postgresql"
 brew "reattach-to-user-namespace"
-brew "redis", restart_service: true
+brew "redis"
 brew "teensy_loader_cli"
 brew "tmux"
 brew "tokei"
