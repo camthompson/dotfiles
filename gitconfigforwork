@@ -3,3 +3,5 @@
   email = c.thompson@edacious.com
 [github]
   user = c-thompson-edacious
+[core]
+  sshCommand = ssh -i ~/.ssh/id_edacious
