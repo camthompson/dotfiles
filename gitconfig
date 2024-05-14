@@ -97,3 +97,5 @@
   default = current
 [grep]
   extendRegexp = true
+[includeIf "gitdir:~/src/edacious/"]
+  path = ~/.gitconfigforwork
