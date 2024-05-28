@@ -101,5 +101,5 @@
   path = ~/.gitconfigforhome
 [includeIf "gitdir:~/src/"]
   path = ~/.gitconfigforhome
-[includeIf "gitdir:~/src/edacious/"]
+[includeIf "gitdir:~/work/"]
   path = ~/.gitconfigforwork
