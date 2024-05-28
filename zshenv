@@ -32,6 +32,7 @@ path=(
 cdpath=(
   $HOME
   $HOME/src
+  $HOME/src/edacious
 )
 
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
