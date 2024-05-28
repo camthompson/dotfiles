@@ -1,0 +1,7 @@
+[user]
+  name = Cam Thompson
+  email = cam@camthompson.com
+[github]
+  user = camthompson
+[core]
+  sshCommand = ssh -i ~/.ssh/id_rsa

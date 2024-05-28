@@ -97,5 +97,9 @@
   default = current
 [grep]
   extendRegexp = true
+[includeIf "gitdir:~/bin/"]
+  path = ~/.gitconfigforhome
+[includeIf "gitdir:~/src/"]
+  path = ~/.gitconfigforhome
 [includeIf "gitdir:~/src/edacious/"]
   path = ~/.gitconfigforwork

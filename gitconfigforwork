@@ -2,6 +2,6 @@
   name = Cam Thompson
   email = c.thompson@edacious.com
 [github]
-  user = c-thompson-edacious
+  user = camthompson
 [core]
   sshCommand = ssh -i ~/.ssh/id_edacious
