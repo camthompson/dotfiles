@@ -150,6 +150,7 @@ aug vimrc
   au FileType mail,markdown call WordProcessorMode()
   au FileType vim  setlocal keywordprg=:help nojoinspaces
   au FileType handlebars setlocal commentstring={{!%s}}
+  au FileType terraform setlocal filetype=tf
 aug END
 " }}}
 
