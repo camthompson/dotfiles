@@ -538,7 +538,7 @@ endif
 " }}}
 
 " Gutentags {{{
-let g:gutentags_ctags_exclude = ['*mypy*', 'dist\/*']
+let g:gutentags_ctags_exclude = ['*mypy*', 'dist\/*', 'build/*']
 " }}}
 
 
