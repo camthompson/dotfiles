@@ -14,6 +14,8 @@
   interactive = auto
   status = auto
   grep = auto
+[column]
+  ui = auto
 [init]
   templatedir = ~/.gittemplate
   defaultBranch = main
@@ -29,6 +31,8 @@
 [push]
   default = current
 [diff]
+  algorithm = histogram
+  colorMoved = plain
   mnemonicprefix = true
   renames = copies
   compactionHeuristic = true
@@ -38,6 +42,7 @@
 [branch]
   autosetupmerge = true
   autosetuprebase = always
+  sort = -committerdate
 [alias]
   a = add
   au = add -u
@@ -99,3 +104,19 @@
   extendRegexp = true
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfigforwork
+[tag]
+  sort = version:refname
+[push]
+  default = simple
+  autoSetupRemote = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
