@@ -31,7 +31,6 @@
 [push]
   default = current
 [diff]
-  algorithm = histogram
   colorMoved = plain
   mnemonicprefix = true
   renames = copies
