@@ -84,6 +84,7 @@ cask "iterm2"
 cask "karabiner-elements"
 cask "key-codes"
 cask "keyboard-maestro"
+cask "macwhisper"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-edge@dev"
@@ -93,13 +94,12 @@ cask "pop"
 cask "postman"
 cask "pycharm"
 cask "safari-technology-preview"
+cask "superwhisper"
 cask "visual-studio-code"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Craft", id: 1487937127
 mas "Drafts", id: 1435957248
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "Marked 2", id: 890031187
