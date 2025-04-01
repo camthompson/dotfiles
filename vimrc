@@ -17,6 +17,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'github/copilot.vim'
 Plug 'godlygeek/tabular'
 Plug 'google/vim-jsonnet'
@@ -158,8 +159,9 @@ aug END
 let mapleader = "\<space>"
 let maplocalleader = ','
 
-let g:onedark_termcolors=16
-colo onedark
+set termguicolors
+let g:tokyonight_style = 'night'
+colo tokyonight
 
 set background=dark
 set backup "enable backup
