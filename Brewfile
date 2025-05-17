@@ -96,6 +96,7 @@ cask "pycharm"
 cask "safari-technology-preview"
 cask "superwhisper"
 cask "visual-studio-code"
+cask "zwift"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Craft", id: 1487937127
