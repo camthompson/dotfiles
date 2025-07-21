@@ -1,8 +1,6 @@
 tap "camthompson/casks"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
