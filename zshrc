@@ -365,7 +365,7 @@ setopt NO_HIST_BEEP              # Don't beep when accessing non-existent histor
 
 # Prompt {{{
 autoload -Uz promptinit && promptinit
-prompt cet
+prompt cam
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)

@@ -296,13 +296,13 @@ endfunction
 function! ShortCWD()
   " Recalculate the filepath when cwd changes.
   let cwd = getcwd()
-  if exists("b:cet_cwd") && cwd != b:cet_cwd
-    unlet! b:cet_filepath
+  if exists("b:cam_cwd") && cwd != b:cam_cwd
+    unlet! b:cam_filepath
   endif
-  let b:cet_cwd = cwd
+  let b:cam_cwd = cwd
 
-  if exists('b:cet_filepath')
-    return b:cet_filepath
+  if exists('b:cam_filepath')
+    return b:cam_filepath
   endif
 
   let dirsep = has('win32') && ! &shellslash ? '\' : '/'
@@ -323,7 +323,7 @@ function! ShortCWD()
     let ret = ''
   endif
 
-  let b:cet_filepath = ret
+  let b:cam_filepath = ret
   return ret
 endfunction
 " }}}
