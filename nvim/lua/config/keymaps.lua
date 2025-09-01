@@ -11,3 +11,12 @@ vim.keymap.set("n", "<cr>", ":up<cr>", { desc = ":up" })
 
 -- Bind <leader>d to delete buffer in normal mode
 vim.keymap.set("n", "<leader>d", ":bdelete<cr>", { desc = "Delete buffer" })
+
+-- Bind %% to current buffer directory when writing command
+vim.keymap.set("c", "%%", function()
+  if vim.fn.getcmdtype() == ":" then
+    return vim.fn.fnameescape(vim.fn.expand("%:h")) .. "/"
+  else
+    return "%%"
+  end
+end, { expr = true })
