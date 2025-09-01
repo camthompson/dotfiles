@@ -6,7 +6,7 @@ return {
         {
           section = "terminal",
           cmd = "pokemon-colorscripts -n gengar --no-title; sleep .1",
-          indent = 15,
+          indent = 12,
           height = 20,
         },
         { section = "keys" },
