@@ -24,7 +24,7 @@ function prompt_cam_precmd {
 
   # Set tmux info if in tmux session
   if [[ -n "$TMUX" ]]; then
-    _prompt_cam_tmux=" [$(tmux display-message -p '#I:#P')]"
+    _prompt_cam_tmux=" [$(tmux display-message -p '#S:#I.#P')]"
   else
     _prompt_cam_tmux=""
   fi
