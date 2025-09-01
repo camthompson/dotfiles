@@ -21,6 +21,13 @@ function prompt_cam_precmd {
   prompt_cam_pwd
 
   git-info
+
+  # Set tmux info if in tmux session
+  if [[ -n "$TMUX" ]]; then
+    _prompt_cam_tmux=" [$(tmux display-message -p '#I:#P')]"
+  else
+    _prompt_cam_tmux=""
+  fi
 }
 
 function prompt_cam_setup {
@@ -54,7 +61,7 @@ function prompt_cam_setup {
   # Define prompts.
   PROMPT='%F{cyan}${_prompt_cam_pwd}'
   PROMPT+='${editor_info[keymap]} %f%b'
-  RPROMPT='${git_info[prompt]}%f%b'
+  RPROMPT='${git_info[prompt]}%F{blue}${_prompt_cam_tmux}%f%b'
 }
 
 prompt_cam_setup "$@"
