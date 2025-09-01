@@ -20,3 +20,6 @@ vim.keymap.set("c", "%%", function()
     return "%%"
   end
 end, { expr = true })
+
+-- Bind g<cr> to :Gwrite<cr>
+vim.keymap.set("n", "g<cr>", ":Gwrite<cr>", { desc = "Stage file" })
