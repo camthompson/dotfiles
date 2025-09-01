@@ -18,6 +18,7 @@ mkdir -p "$HOME/.config"
 ln -sf "$PWD/karabiner" "$HOME/.config"
 ln -sf "$PWD/coc" "$HOME/.config"
 ln -sf "$PWD/nvim" "$HOME/.config"
+ln -sf "$PWD/ghostty" "$HOME/.config"
 
 for f in *; do
   if not_ignored "$f"; then
