@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Disable LazyVim error maps
+vim.keymap.set("n", "[e", "<Plug>(unimpaired-move-up)")
+vim.keymap.set("n", "]e", "<Plug>(unimpaired-move-down)")
+vim.keymap.set("x", "]e", "<Plug>(unimpaired-move-selection-down)")
+vim.keymap.set("x", "[e", "<Plug>(unimpaired-move-selection-up)")
+
 -- Swap ; and : in normal and visual modes
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Command mode" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Repeat motion" })
