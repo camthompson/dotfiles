@@ -6,3 +6,5 @@ local opt = vim.opt
 
 opt.clipboard = "" -- Don't integrate with system clipboard
 opt.relativenumber = false -- Show absolute line numbers
+
+vim.g.lazyvim_python_lsp = "basedpyright"
