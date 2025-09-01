@@ -7,3 +7,6 @@ vim.keymap.set("n", ";", ":", { desc = "Command mode" })
 
 -- Bind <cr> to :up<cr> in normal mode
 vim.keymap.set("n", "<cr>", ":up<cr>", { desc = ":up" })
+
+-- Bind <leader>d to delete buffer in normal mode
+vim.keymap.set("n", "<leader>d", ":bdelete<cr>", { desc = "Delete buffer" })
