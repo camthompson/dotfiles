@@ -20,6 +20,7 @@
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.linting.eslint",
+    "lazyvim.plugins.extras.ui.indent-blankline",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "install_version": 8,
