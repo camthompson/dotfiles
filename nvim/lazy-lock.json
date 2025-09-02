@@ -10,6 +10,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
+  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "flit.nvim": { "branch": "main", "commit": "513e38abe61237c53a9e983e45595b1d2e7d5391" },
