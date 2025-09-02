@@ -6,6 +6,7 @@ local opt = vim.opt
 
 opt.clipboard = "" -- Don't integrate with system clipboard
 opt.relativenumber = false -- Show absolute line numbers
+opt.gdefault = true -- Global search by default
 
 vim.api.nvim_create_autocmd("User", {
   -- Hide cursor on dashboard
