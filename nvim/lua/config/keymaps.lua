@@ -53,3 +53,24 @@ vim.api.nvim_create_autocmd("CmdwinLeave", {
     map_cr()
   end,
 })
+
+-- Navigate to first/last non-blank character
+vim.keymap.set("n", "H", "g^", { desc = "Go to first non-blank character" })
+vim.keymap.set("x", "H", "g^", { desc = "Go to first non-blank character" })
+vim.keymap.set("n", "L", "g_", { desc = "Go to last non-blank character" })
+vim.keymap.set("x", "L", "g_", { desc = "Go to last non-blank character" })
+
+-- Faster scrolling
+vim.keymap.set("n", "<c-y>", "5<c-y>", { desc = "Scroll up 5 lines" })
+vim.keymap.set("n", "<c-e>", "5<c-e>", { desc = "Scroll down 5 lines" })
+
+-- Repeat last substitution with flags
+vim.keymap.set("n", "&", ":&&<cr>", { desc = "Repeat last substitution with flags" })
+vim.keymap.set("x", "&", ":&&<cr>", { desc = "Repeat last substitution with flags" })
+
+-- Format paragraph/selection
+vim.keymap.set("n", "Q", "gqip", { desc = "Format paragraph" })
+vim.keymap.set("x", "Q", "gq", { desc = "Format selection" })
+
+-- Select line content (excluding whitespace)
+vim.keymap.set("n", "vv", "^vg_", { desc = "Select line content" })
