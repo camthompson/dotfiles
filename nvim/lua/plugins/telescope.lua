@@ -8,4 +8,7 @@ return {
       },
     },
   },
+  keys = {
+    { ",,", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+  },
 }
