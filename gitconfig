@@ -48,11 +48,11 @@
   aa = add --all
   ap = add -p
   b = branch
-  c = commit --verbose
-  ca = commit --verbose -a
-  caa = commit --verbose -a --amend -C HEAD
-  cam = commit --verbose -am
-  cm = commit --verbose -m
+  c = commit --verbose -n
+  ca = commit --verbose -an
+  caa = commit --verbose -an --amend -C HEAD -n
+  cam = commit --verbose -anm
+  cm = commit --verbose -nm
   d = diff
   dc = diff --cached
   dh1 = diff HEAD~1
