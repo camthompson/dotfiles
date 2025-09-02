@@ -40,8 +40,7 @@ alias la='ls -ahGF'
 alias lal='ls -lhaGF'
 alias laf='ls -aGF'
 
-alias v=vim
-alias m='v -g'
+alias v=nvim
 alias vd='v -d'
 alias vw='v -R'
 
@@ -365,7 +364,7 @@ setopt NO_HIST_BEEP              # Don't beep when accessing non-existent histor
 
 # Prompt {{{
 autoload -Uz promptinit && promptinit
-prompt cet
+prompt cam
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)

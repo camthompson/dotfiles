@@ -6,31 +6,31 @@ function coalesce {
   return 1
 }
 
-function prompt_cet_pwd {
+function prompt_cam_pwd {
   local pwd="${PWD/#$HOME/~}"
 
   if [[ "$pwd" == (#m)[/~] ]]; then
-    _prompt_cet_pwd="$MATCH"
+    _prompt_cam_pwd="$MATCH"
     unset MATCH
   else
-    _prompt_cet_pwd="${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}/${pwd:t}"
+    _prompt_cam_pwd="${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}/${pwd:t}"
   fi
 }
 
-function prompt_cet_precmd {
-  prompt_cet_pwd
+function prompt_cam_precmd {
+  prompt_cam_pwd
 
   git-info
 }
 
-function prompt_cet_setup {
+function prompt_cam_setup {
   prompt_opts=(cr percent subst)
 
   # Load required functions.
   autoload -Uz add-zsh-hook
 
   # Add hook for calling git-info before each command.
-  add-zsh-hook precmd prompt_cet_precmd
+  add-zsh-hook precmd prompt_cam_precmd
 
   zstyle ':keymap:insert' format ' %b%f>'
   zstyle ':keymap:overwrite' format ' %F{red}>'
@@ -52,10 +52,10 @@ function prompt_cet_setup {
     'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='%F{cyan}${_prompt_cet_pwd}'
-  PROMPT+='${editor_info[keymap]} %f%b'
+  PROMPT='%F{cyan}${_prompt_cam_pwd}'
   RPROMPT='${git_info[prompt]}%f%b'
+  PROMPT+='${editor_info[keymap]} %f%b'
 }
 
-prompt_cet_setup "$@"
+prompt_cam_setup "$@"
 # vim:set ft=zsh:
