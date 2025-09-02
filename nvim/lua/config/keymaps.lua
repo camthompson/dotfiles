@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Disable LazyVim error maps
+-- Replace LazyVim error maps with unimpaired
 vim.keymap.set("n", "[e", "<Plug>(unimpaired-move-up)")
 vim.keymap.set("n", "]e", "<Plug>(unimpaired-move-down)")
 vim.keymap.set("x", "]e", "<Plug>(unimpaired-move-selection-down)")
@@ -11,9 +11,7 @@ vim.keymap.set("x", "[e", "<Plug>(unimpaired-move-selection-up)")
 -- Swap ; and : in normal and visual modes
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Command mode" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Repeat motion" })
-
--- Bind <cr> to :up<cr> in normal mode
-vim.keymap.set("n", "<cr>", ":up<cr>", { desc = ":up" })
+vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command history" })
 
 -- Bind <leader>d to delete buffer in normal mode
 vim.keymap.set("n", "<leader>d", ":bdelete<cr>", { desc = "Delete buffer" })
@@ -29,3 +27,29 @@ end, { expr = true })
 
 -- Bind g<cr> to :Gwrite<cr>
 vim.keymap.set("n", "g<cr>", ":Gwrite<cr>", { desc = "Stage file" })
+
+-- Bind <cr> to :w<cr> in normal mode (except in quickfix)
+local function map_cr()
+  vim.keymap.set("n", "<cr>", function()
+    if vim.bo.buftype == "quickfix" then
+      return "<cr>"
+    else
+      return ":w<cr>"
+    end
+  end, { expr = true })
+end
+
+map_cr()
+
+-- Unmap <cr> in command window, restore after leaving
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+  callback = function()
+    vim.keymap.del("n", "<cr>")
+  end,
+})
+
+vim.api.nvim_create_autocmd("CmdwinLeave", {
+  callback = function()
+    map_cr()
+  end,
+})
