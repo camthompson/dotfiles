@@ -249,6 +249,20 @@ function editor-info {
 }
 zle -N editor-info
 
+builtin typeset -ag precmd_functions
+precmd_functions+=(__set_beam_cursor)
+
+function __set_beam_cursor {
+    echo -ne '\e[6 q'
+}
+
+function __set_block_cursor {
+    echo -ne '\e[2 q'
+}
+
+builtin typeset -ag precmd_functions
+precmd_functions+=(__set_beam_cursor)
+
 function zle-keymap-select zle-line-init zle-line-finish {
   # The terminal must be in application mode when ZLE is active for $terminfo
   # values to be valid.
@@ -267,6 +281,11 @@ function zle-keymap-select zle-line-init zle-line-finish {
 
   # Update editor information.
   zle editor-info
+
+  case $KEYMAP in
+    vicmd) __set_block_cursor;;
+    viins|main) __set_beam_cursor;;
+  esac
 }
 zle -N zle-keymap-select
 zle -N zle-line-finish
