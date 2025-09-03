@@ -32,9 +32,6 @@ function prompt_cam_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_cam_precmd
 
-  zstyle ':keymap:insert' format ' %b%f>'
-  zstyle ':keymap:overwrite' format ' %F{red}>'
-  zstyle ':keymap:command' format ' %b%f<'
   zstyle ':git:action' format ':%F{red}%s'
   zstyle ':git:added' format ' %F{red}+'
   zstyle ':git:ahead' format ' %F{red}>'
@@ -52,9 +49,8 @@ function prompt_cam_setup {
     'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='%F{cyan}${_prompt_cam_pwd}'
+  PROMPT='%F{cyan}${_prompt_cam_pwd} %F{white}: '
   RPROMPT='${git_info[prompt]}%f%b'
-  PROMPT+='${editor_info[keymap]} %f%b'
 }
 
 prompt_cam_setup "$@"
