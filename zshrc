@@ -386,6 +386,38 @@ autoload -Uz promptinit && promptinit
 prompt cam
 # }}}
 
+# AWS Access {{{
+function aws-login() {
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+
+    if [ -z "$1" ]; then
+        echo "This function requires an AWS profile name"
+        exit 1
+    fi
+
+    unset AWS_PROFILE
+    export AWS_PROFILE=$1
+    echo "Set AWS_PROFILE to ${1}"
+
+    aws sts get-caller-identity &> /dev/null
+    EXIT_CODE="$?"  # $? is the exit code of the last statement
+
+    if [[ "$EXIT_CODE" == "0" ]]; then
+        # echo "AWS Session is stil valid."
+    else
+        echo "AWS Session expired. Refreshing Session."
+        aws sso login --profile $1
+    fi
+}
+
+alias aws-ops="aws-login edacious-ops"
+alias aws-org="aws-login edacious-org"
+alias aws-prod="aws-login edacious-prod"
+alias aws-sandbox="aws-login edacious-sandbox"
+# }}}
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
