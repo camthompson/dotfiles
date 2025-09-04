@@ -9,6 +9,6 @@ return {
     },
   },
   keys = {
-    { ",,", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+    { ",,", "<cmd>Telescope oldfiles cwd_only=true<cr>", desc = "Recent in cwd" },
   },
 }
