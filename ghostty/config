@@ -55,3 +55,4 @@ macos-titlebar-proxy-icon = hidden
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
+bold-is-bright = true
