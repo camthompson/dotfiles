@@ -18,7 +18,7 @@ return {
         {
           section = "terminal",
           cmd = "pokemon-colorscripts -n gengar --no-title; sleep .1",
-          indent = 12,
+          indent = 14,
           height = 20,
         },
         { section = "startup" },
