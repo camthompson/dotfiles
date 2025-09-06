@@ -74,3 +74,7 @@ vim.keymap.set("x", "Q", "gq", { desc = "Format selection" })
 
 -- Select line content (excluding whitespace)
 vim.keymap.set("n", "vv", "^vg_", { desc = "Select line content" })
+
+-- Unmap <M-j> in normal mode
+-- This handles an annoying problem where <esc> and then j too quickly reorders lines
+vim.keymap.del("n", "<M-j>")
