@@ -1,5 +1,5 @@
 return {
-  "nvim-lint",
+  "mfussenegger/nvim-lint",
   opts = {
     events = { "BufWritePost", "BufReadPost" },
   },
