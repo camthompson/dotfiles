@@ -49,7 +49,7 @@ function prompt_cam_setup {
     'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='%F{cyan}${_prompt_cam_pwd} %F{white}\ %f%b'
+  PROMPT='%F{cyan}${_prompt_cam_pwd} %F{white}%% %f%b'
   RPROMPT='${git_info[prompt]}%f%b'
 }
 
