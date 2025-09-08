@@ -75,6 +75,9 @@ vim.keymap.set("x", "Q", "gq", { desc = "Format selection" })
 -- Select line content (excluding whitespace)
 vim.keymap.set("n", "vv", "^vg_", { desc = "Select line content" })
 
+-- Show previous buffer
+vim.keymap.set("n", "<c-p>", ":bprevious<cr>", { desc = "Previous buffer" })
+
 -- Unmap <M-j> and <M-k> in normal mode
 -- This handles an annoying problem where <esc> and then j or k too quickly reorders lines
 vim.keymap.del("n", "<M-j>")
