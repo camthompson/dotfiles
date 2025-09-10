@@ -5,5 +5,6 @@
 local opt = vim.opt
 
 opt.clipboard = "" -- Don't integrate with system clipboard
-opt.relativenumber = false -- Show absolute line numbers
 opt.gdefault = true -- Global search by default
+opt.relativenumber = false -- Show absolute line numbers
+opt.timeoutlen = 1000 -- 1s to timeout after leader etc.
