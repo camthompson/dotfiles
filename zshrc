@@ -335,7 +335,7 @@ bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^[[3~' delete-char
 bindkey -M vicmd 'u' undo
 bindkey -M viins '^N' history-substring-search-down
-bindkey -M viins '^O' history-substring-search-up
+bindkey -M viins '^P' history-substring-search-up
 bindkey -M vicmd '^R' redo
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
