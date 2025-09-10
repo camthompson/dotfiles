@@ -2,6 +2,17 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Map ]E and [E to go between errors
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+vim.keymap.set("n", "]E", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+vim.keymap.set("n", "[E", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+
 -- Replace LazyVim error maps with unimpaired
 vim.keymap.set("n", "[e", "<Plug>(unimpaired-move-up)")
 vim.keymap.set("n", "]e", "<Plug>(unimpaired-move-down)")
