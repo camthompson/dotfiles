@@ -44,8 +44,7 @@
 font-family = "Cascadia Code NF"
 font-size = 14
 font-thicken = true
-# git clone https://github.com/folke/tokyonight.nvim.git ~/src/tokyonight.nvim
-theme = /Users/cam/src/tokyonight.nvim/extras/ghostty/tokyonight_moon
+theme = catppuccin-frappe.conf
 window-padding-x = 4
 window-padding-y = 4
 macos-icon = custom-style
