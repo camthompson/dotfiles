@@ -93,3 +93,7 @@ vim.keymap.set("n", "<c-p>", ":bprevious<cr>", { desc = "Previous buffer" })
 -- This handles an annoying problem where <esc> and then j or k too quickly reorders lines
 vim.keymap.del({ "n", "i", "v" }, "<A-j>")
 vim.keymap.del({ "n", "i", "v" }, "<A-k>")
+
+-- Sideways
+vim.keymap.set("n", "ch", ":SidewaysLeft<cr>")
+vim.keymap.set("n", "cl", ":SidewaysRight<cr>")
