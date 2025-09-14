@@ -1,4 +1,5 @@
 tap "camthompson/casks"
+tap "felixkratz/formulae"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
@@ -61,6 +62,7 @@ brew "universal-ctags"
 brew "watchman"
 brew "wget"
 brew "zsh"
+brew "felixkratz/formulae/sketchybar"
 brew "oven-sh/bun/bun"
 brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
