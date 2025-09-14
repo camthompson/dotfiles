@@ -43,13 +43,13 @@ function prompt_cam_setup {
   zstyle ':git:position' format ':%F{red}%p'
   zstyle ':git:renamed' format ' %F{red}R'
   zstyle ':git:stashed' format ' %F{red}='
-  zstyle ':git:unmerged' format ' %F{red}ß'
+  zstyle ':git:unmerged' format ' %F{red}ÔøΩ'
   zstyle ':git:untracked' format ' %F{red}?'
   zstyle ':git:keys' format \
     'prompt' "%A%B%S%a%d%m%r%U%u $(coalesce "%b" "%p" "%c")%s"
 
   # Define prompts.
-  PROMPT='%F{cyan}${_prompt_cam_pwd} %F{white}%% %f%b'
+  PROMPT='%F{cyan}${_prompt_cam_pwd} %F{white}‚ùØ %f%b'
   RPROMPT='${git_info[prompt]}%f%b'
 }
 
