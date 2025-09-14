@@ -382,8 +382,8 @@ setopt NO_HIST_BEEP              # Don't beep when accessing non-existent histor
 # }}}
 
 # Prompt {{{
-autoload -Uz promptinit && promptinit
-prompt cam
+# autoload -Uz promptinit && promptinit
+# prompt cam
 # }}}
 
 # AWS Access {{{
@@ -422,3 +422,5 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+eval "$(starship init zsh)"
