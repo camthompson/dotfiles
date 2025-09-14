@@ -50,6 +50,7 @@ window-padding-y = 4
 macos-icon = custom-style
 macos-icon-screen-color = #A29CBB
 macos-icon-ghost-color = #7D78A3
+macos-titlebar-style = "hidden"
 title = " "
 macos-titlebar-proxy-icon = hidden
 cursor-style = block
