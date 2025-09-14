@@ -52,6 +52,7 @@ brew "postgresql@14"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: :changed
 brew "ripgrep"
+brew "starship"
 brew "stern"
 brew "teensy_loader_cli"
 brew "tfenv"
