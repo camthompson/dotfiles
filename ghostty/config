@@ -57,3 +57,4 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 bold-is-bright = true
+quit-after-last-window-closed = true
