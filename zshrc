@@ -316,10 +316,13 @@ function aws-login() {
     fi
 }
 
-alias aws-ops="aws-login edacious-ops"
-alias aws-org="aws-login edacious-org"
-alias aws-prod="aws-login edacious-prod"
-alias aws-sandbox="aws-login edacious-sandbox"
+alias aws-ops="aws-login ops"
+# alias aws-org="aws-login org"
+alias aws-prod="aws-login prod"
+alias aws-sandbox="aws-login sandbox"
+alias sso-sandbox="aws sso login --profile sandbox"
+alias sso-ops="aws sso login --profile ops"
+alias sso-prod="aws sso login --profile prod"
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)

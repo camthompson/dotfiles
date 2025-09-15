@@ -9,9 +9,17 @@ disabled = false
 [fill]
 symbol = ' '
 
+[aws]
+symbol = ' ☁️'
+format = '[$symbol ($profile )]($style)'
+
 [kubernetes]
 disabled = false
-format = '[$symbol$context( \($namespace\))]($style)'
+format = '[$symbol$context]($style)'
+
+[[kubernetes.contexts]]
+context_pattern = "docker-desktop"
+context_alias = "dd"
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
