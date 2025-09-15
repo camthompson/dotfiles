@@ -1,4 +1,17 @@
+format="$all$fill$kubernetes$aws$line_break$character"
+right_format = ""
+add_newline = false
 palette = "catppuccin_frappe"
+
+[line_break]
+disabled = false
+
+[fill]
+symbol = ' '
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style)'
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
@@ -111,6 +124,3 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
-
-[kubernetes]
-disabled = false
