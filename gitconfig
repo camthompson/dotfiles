@@ -66,8 +66,8 @@
   gn = goodness
   gnc = goodness --cached
   h = !git l -1
-  l = !. ~/.githelpers && pretty_git_log
-  la = !. ~/.githelpers && pretty_git_log --all
+  l = log --oneline
+  la = l --all
   ls = ls-files
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
