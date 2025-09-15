@@ -86,4 +86,4 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("catppuccin-frappe")
+vim.cmd.colorscheme("catppuccin-mocha")

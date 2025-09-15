@@ -1,7 +1,7 @@
 format="$all$fill$kubernetes$aws$line_break$character"
 right_format = ""
 add_newline = false
-palette = "catppuccin_frappe"
+palette = "catppuccin_mocha"
 
 [aws]
 symbol = ' ∙ '

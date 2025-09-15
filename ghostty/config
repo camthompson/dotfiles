@@ -44,7 +44,7 @@
 font-family = "Cascadia Code NF"
 font-size = 14
 font-thicken = true
-theme = catppuccin-frappe.conf
+theme = catppuccin-mocha.conf
 window-padding-x = 5
 window-padding-y = 10, 5
 macos-icon = custom-style
