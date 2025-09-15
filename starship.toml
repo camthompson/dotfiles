@@ -7,6 +7,12 @@ palette = "catppuccin_frappe"
 symbol = ' as '
 format = '$symbol[$profile]($style)'
 
+[cmd_duration]
+disabled = true
+
+[directory]
+style = 'blue bold'
+
 [fill]
 symbol = ' '
 
@@ -17,6 +23,10 @@ format = '$symbol[$branch(:$remote_branch)]($style) '
 [kubernetes]
 disabled = false
 format = '[$context]($style)'
+
+[[kubernetes.contexts]]
+context_pattern = "docker-desktop"
+context_alias = "local"
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
