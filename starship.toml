@@ -1,10 +1,10 @@
 format="$directory$character"
 add_newline = false
-right_format = "$kubernetes$git_branch$git_status$aws"
+right_format = "$kubernetes$aws$git_branch$git_status"
 palette = "catppuccin_mocha"
 
 [aws]
-symbol = ''
+symbol = ' ∙ '
 format = '$symbol[$profile]($style)'
 style = 'yellow'
 
