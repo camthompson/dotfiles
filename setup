@@ -4,8 +4,8 @@ git submodule init
 git submodule update
 git clone https://github.com/folke/tokyonight.nvim.git ~/src/tokyonight.nvim
 cp ~/src/tokyonight.nvim/extras/ghostty/tokyonight* ghostty/themes
-git clone https://github.com/catppuccin/ghostty.git ~/src/catppucin-ghostty
-cp ~/src/catppucin-ghostty/themes/* ghostty/themes
+git clone https://github.com/catppuccin/ghostty.git ~/src/catppuccin-ghostty
+cp ~/src/catppuccin-ghostty/themes/* ghostty/themes
 
 not_ignored() {
   local ignorelist=(setup update README.md com.camthompson.macos.updateip.plist karabiner coc)
