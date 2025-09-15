@@ -298,10 +298,9 @@ function aws-login() {
 
     unset AWS_PROFILE
     export AWS_PROFILE=$1
-    echo "Set AWS_PROFILE to ${1}"
 
     aws sts get-caller-identity &> /dev/null
-    EXIT_CODE="$?"  # $? is the exit code of the last statement
+    EXIT_CODE="$?"
 
     if [[ "$EXIT_CODE" == "0" ]]; then
         # echo "AWS Session is stil valid."
@@ -310,14 +309,6 @@ function aws-login() {
         aws sso login --profile $1
     fi
 }
-
-alias aws-ops="aws-login ops"
-# alias aws-org="aws-login org"
-alias aws-prod="aws-login prod"
-alias aws-sandbox="aws-login sandbox"
-alias sso-sandbox="aws sso login --profile sandbox"
-alias sso-ops="aws sso login --profile ops"
-alias sso-prod="aws sso login --profile prod"
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
