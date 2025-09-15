@@ -6,13 +6,22 @@ palette = "catppuccin_mocha"
 [aws]
 symbol = ' ∙ '
 format = '$symbol[$profile]($style)'
+style = 'yellow'
+
+[character]
+success_symbol = '[❯](green)'
+error_symbol = '[❯](red)'
+vimcmd_symbol = '[❮](green)'
+vimcmd_replace_one_symbol = '[❮](purple)'
+vimcmd_replace_symbol = '[❮](purple)'
+vimcmd_visual_symbol = '[❮](yellow)'
 
 [cmd_duration]
 disabled = true
 
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
-style = 'blue bold'
+style = 'blue'
 
 [fill]
 symbol = ' '
@@ -20,13 +29,16 @@ symbol = ' '
 [git_branch]
 symbol = ' ∙ '
 format = '$symbol[$branch(:$remote_branch)]($style)'
+style = 'mauve'
 
 [git_status]
 format = '( [$all_status$ahead_behind]($style))'
+style = 'red'
 
 [kubernetes]
 disabled = false
 format = '[$context]($style)'
+style = 'cyan'
 
 [[kubernetes.contexts]]
 context_pattern = "docker-desktop"
