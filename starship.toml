@@ -1,10 +1,10 @@
-format="$all$fill$kubernetes$aws$line_break$character"
-right_format = ""
+format="$directory$character"
 add_newline = false
+right_format = "$kubernetes$git_branch$git_status$aws"
 palette = "catppuccin_mocha"
 
 [aws]
-symbol = ' ∙ '
+symbol = ''
 format = '$symbol[$profile]($style)'
 style = 'yellow'
 
@@ -20,7 +20,7 @@ vimcmd_visual_symbol = '[❮](yellow)'
 disabled = true
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
+format = '[$path]($style)[$read_only]($read_only_style) '
 style = 'blue'
 
 [fill]
