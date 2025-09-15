@@ -34,11 +34,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias l='ls -GF'
-alias ll='ls -lhGF'
-alias la='ls -ahGF'
-alias lal='ls -lhaGF'
-alias laf='ls -aGF'
+# alias l='ls -GF'
+# alias ll='ls -lhGF'
+# alias la='ls -ahGF'
+# alias lal='ls -lhaGF'
+# alias laf='ls -aGF'
 
 alias v=nvim
 alias vd='v -d'
@@ -67,6 +67,11 @@ alias scp='noglob scp'
 alias sftp='noglob sftp'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
+alias l='eza --git --icons'
+alias la='eza --git --icons -a'
+alias ll='eza --git --icons -l'
+alias lal='eza --git --icons -al'
 # }}}
 
 # Colors {{{
