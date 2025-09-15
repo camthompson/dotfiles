@@ -4,7 +4,7 @@ add_newline = false
 palette = "catppuccin_frappe"
 
 [aws]
-symbol = ':'
+symbol = ' ∙ '
 format = '$symbol[$profile]($style)'
 
 [cmd_duration]
@@ -18,8 +18,11 @@ style = 'blue bold'
 symbol = ' '
 
 [git_branch]
-symbol = ':'
+symbol = ' ∙ '
 format = '$symbol[$branch(:$remote_branch)]($style)'
+
+[git_status]
+format = '( [$all_status$ahead_behind]($style))'
 
 [kubernetes]
 disabled = false
