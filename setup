@@ -20,6 +20,7 @@ ln -sf "$PWD/coc" "$HOME/.config"
 ln -sf "$PWD/nvim" "$HOME/.config"
 ln -sf "$PWD/ghostty" "$HOME/.config"
 ln -sf "$PWD/starship.toml" "$HOME/.config/starship.toml"
+ln -sf "$PWD/borders" "$HOME/.config"
 
 for f in *; do
   if not_ignored "$f"; then
