@@ -4,21 +4,22 @@ add_newline = false
 palette = "catppuccin_frappe"
 
 [aws]
-symbol = ' as '
+symbol = ':'
 format = '$symbol[$profile]($style)'
 
 [cmd_duration]
 disabled = true
 
 [directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
 style = 'blue bold'
 
 [fill]
 symbol = ' '
 
 [git_branch]
-symbol = 'on '
-format = '$symbol[$branch(:$remote_branch)]($style) '
+symbol = ':'
+format = '$symbol[$branch(:$remote_branch)]($style)'
 
 [kubernetes]
 disabled = false
@@ -27,6 +28,12 @@ format = '[$context]($style)'
 [[kubernetes.contexts]]
 context_pattern = "docker-desktop"
 context_alias = "local"
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
