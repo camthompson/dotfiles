@@ -9,9 +9,9 @@ format = '$symbol[$profile]($style)'
 style = 'yellow'
 
 [character]
-success_symbol = '[❯](green)'
+success_symbol = '[❯](white)'
 error_symbol = '[❯](red)'
-vimcmd_symbol = '[❮](green)'
+vimcmd_symbol = '[❮](white)'
 vimcmd_replace_one_symbol = '[❮](purple)'
 vimcmd_replace_symbol = '[❮](purple)'
 vimcmd_visual_symbol = '[❮](yellow)'
