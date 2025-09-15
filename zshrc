@@ -285,11 +285,6 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 setopt NO_HIST_BEEP              # Don't beep when accessing non-existent history.
 # }}}
 
-# Prompt {{{
-# autoload -Uz promptinit && promptinit
-# prompt cam
-# }}}
-
 # AWS Access {{{
 function aws-login() {
     unset AWS_ACCESS_KEY_ID
@@ -330,4 +325,8 @@ source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
+# Prompt {{{
+# autoload -Uz promptinit && promptinit
+# prompt cam
 eval "$(starship init zsh)"
+# }}}
