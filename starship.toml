@@ -3,23 +3,20 @@ right_format = ""
 add_newline = false
 palette = "catppuccin_frappe"
 
-[line_break]
-disabled = false
+[aws]
+symbol = ' as '
+format = '$symbol[$profile]($style)'
 
 [fill]
 symbol = ' '
 
-[aws]
-symbol = ' ☁️'
-format = '[$symbol ($profile )]($style)'
+[git_branch]
+symbol = 'on '
+format = '$symbol[$branch(:$remote_branch)]($style) '
 
 [kubernetes]
 disabled = false
-format = '[$symbol$context]($style)'
-
-[[kubernetes.contexts]]
-context_pattern = "docker-desktop"
-context_alias = "dd"
+format = '[$context]($style)'
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
