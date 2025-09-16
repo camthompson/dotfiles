@@ -8,6 +8,7 @@
   excludesfile = ~/.cvsignore
   autocrlf = false
   pager = less -FXRS
+  sshCommand = "ssh -i ~/.ssh/id_personal"
 [color]
   branch = auto
   diff = auto
