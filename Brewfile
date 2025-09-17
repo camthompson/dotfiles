@@ -32,6 +32,7 @@ brew "eza"
 brew "fd"
 brew "gdbm"
 brew "gh"
+brew "git-delta"
 brew "grep"
 brew "helm"
 brew "htop"
@@ -41,6 +42,7 @@ brew "libffi"
 brew "libidn"
 brew "libyaml"
 brew "loc"
+brew "lsd"
 brew "macvim"
 brew "mas"
 brew "mosh"
@@ -56,6 +58,7 @@ brew "starship"
 brew "stern"
 brew "teensy_loader_cli"
 brew "tfenv"
+brew "tldr"
 brew "tmux"
 brew "tokei"
 brew "tree"
@@ -70,7 +73,6 @@ brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 cask "1password"
 cask "aerospace"
-cask "alfred"
 cask "authy"
 cask "backblaze"
 cask "bitwarden"
@@ -105,7 +107,7 @@ cask "moom"
 cask "notion"
 cask "pop-app"
 cask "postman"
-cask "pycharm"
+cask "raycast"
 cask "safari-technology-preview"
 cask "superwhisper"
 cask "visual-studio-code"
@@ -113,7 +115,6 @@ cask "zen"
 cask "zwift"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
-mas "Craft", id: 1487937127
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
@@ -121,7 +122,7 @@ mas "Marked 2", id: 890031187
 mas "Mic Drop", id: 1489816366
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Parcel", id: 639968404
+mas "Parcel", id: 375589283
 mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
 mas "Pins", id: 1547106997
