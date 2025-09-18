@@ -88,3 +88,15 @@ if [ -d "themes/catppuccin-lsd" ]; then
   ln -sf "$PWD/themes/catppuccin-lsd/themes/catppuccin-mocha/colors.yaml" "lsd/colors.yaml"
   echo "  ✓ lsd theme linked"
 fi
+
+# ghostty theme setup
+if [ -d "themes/catppuccin-ghostty" ]; then
+  # Create a combined config with base settings and theme
+  if [ -f "ghostty/config.base" ]; then
+    cat "ghostty/config.base" > "ghostty/config"
+    echo "" >> "ghostty/config"
+    echo "# Catppuccin Mocha theme (auto-generated from submodule)" >> "ghostty/config"
+    cat "themes/catppuccin-ghostty/themes/catppuccin-mocha.conf" >> "ghostty/config"
+    echo "  ✓ ghostty theme applied"
+  fi
+fi

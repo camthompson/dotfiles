@@ -13,3 +13,4 @@ karabiner/automatic_backups/
 coc/extensions/node_modules/
 coc/extensions/coc-json-data/json-schema-cache
 .claude/settings.local.json
+ghostty/config
