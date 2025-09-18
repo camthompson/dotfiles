@@ -70,6 +70,8 @@ alias l='eza --git --icons'
 alias la='eza --git --icons -a'
 alias ll='eza --git --icons -l'
 alias lal='eza --git --icons -al'
+alias lt='eza --git --icons --tree'
+alias lta='eza --git --icons --tree -'
 # }}}
 
 # Colors {{{
