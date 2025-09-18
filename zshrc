@@ -338,6 +338,16 @@ fi
 # Setup fzf key bindings and completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# fzf aliases
+alias p='cd $(find ~/src -type d -maxdepth 2 | fzf)'
+alias vp='vim $(fzf --preview "bat --color=always {}")'
+alias vh='vim $(history | fzf | sed "s/.*vim //g")'
+alias rgf='rg --files-with-matches --no-messages "" | fzf --preview "bat --color=always {}"'
+alias rgp='rg . | fzf --delimiter ":" --preview "bat --color=always {1} --highlight-line {2}"'
+alias pfk='ps aux | fzf | awk "{print \$2}" | xargs kill'
+alias gfo='git branch | fzf | xargs git checkout'
+alias gfs='git log --oneline | fzf --preview "git show --color=always {1}"'
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # Prompt {{{
