@@ -7,8 +7,10 @@
   editor = nvim -f
   excludesfile = ~/.cvsignore
   autocrlf = false
-  pager = less -FXRS
+  pager = delta
   sshCommand = "ssh -i ~/.ssh/id_personal"
+[interactive]
+  diffFilter = delta --color-only
 [color]
   branch = auto
   diff = auto
@@ -26,6 +28,7 @@
 [merge]
   tool = fugitive
   stat = true
+  conflictStyle = zdiff3
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [push]
@@ -116,3 +119,8 @@
 [rerere]
   enabled = true
   autoupdate = true
+[include]
+ path = ~/src/dotfiles/catppuccin-delta/catppuccin.gitconfig
+[delta]
+ features = catppuccin-mocha
+ navigate = true

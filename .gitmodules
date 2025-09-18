@@ -7,3 +7,6 @@
 [submodule "zsh/bundle/history-substring-search"]
 	path = zsh/bundle/history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "catppuccin-delta"]
+	path = catppuccin-delta
+	url = https://github.com/catppuccin/delta.git
