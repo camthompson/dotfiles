@@ -1,8 +1,6 @@
-gem-ctags
 gem-shut-the-fuck-up
 bundler
 rake
-awesome_print
 pry
 pry-editline
 pry-doc
@@ -12,16 +10,4 @@ pry-stack_explorer
 pry-rescue
 interactive_editor
 gem-browse
-rails
-brakeman
-haml
-sass
 clipboard
-rcodetools
-rubocop
-tmuxinator
-neovim
-papertrail
-overcommit
-rspec
-solargraph
