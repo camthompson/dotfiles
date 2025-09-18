@@ -5,22 +5,22 @@ git submodule update
 
 # Define items that should be linked to ~/.config
 config_items=(
-  "karabiner"
-  "nvim"
-  "ghostty"
-  "starship.toml"
-  "borders"
   "bat"
+  "btop"
   "eza"
+  "ghostty"
+  "karabiner"
   "lsd"
+  "nvim"
+  "starship.toml"
 )
 
 # Base ignore list (items that shouldn't be symlinked to home at all)
 base_ignorelist=(
+  "com.camthompson.macos.updateip.plist"
+  "README.md"
   "setup"
   "update"
-  "README.md"
-  "com.camthompson.macos.updateip.plist"
 )
 
 # Combine base ignore list with config items for the full ignore list
