@@ -1,13 +1,10 @@
 #!/usr/bin/env ruby
 
-Dir['zsh/bundle/*'].each do |d|
-  Dir.chdir(d) do
-    `git pull`
-  end
-end
-
-# Update theme submodules
-puts "Updating Catppuccin themes..."
+# Update all submodules (themes and zsh plugins)
+puts "Updating submodules..."
+puts "  Updating zsh plugins..."
+`git submodule update --remote zsh/bundle/`
+puts "  Updating Catppuccin themes..."
 `git submodule update --remote themes/`
 
 # Rebuild bat cache if themes were updated
