@@ -4,7 +4,7 @@ git submodule init
 git submodule update
 
 not_ignored() {
-  local ignorelist=(setup update README.md com.camthompson.macos.updateip.plist karabiner coc)
+  local ignorelist=(setup update README.md com.camthompson.macos.updateip.plist karabiner)
   for i in "${ignorelist[@]}"; do
     if [ "$1" = "$i" ]; then
       return 1
@@ -20,6 +20,8 @@ ln -sf "$PWD/nvim" "$HOME/.config"
 ln -sf "$PWD/ghostty" "$HOME/.config"
 ln -sf "$PWD/starship.toml" "$HOME/.config/starship.toml"
 ln -sf "$PWD/borders" "$HOME/.config"
+ln -sf "$PWD/bat" "$HOME/.config"
+ln -sf "$PWD/batconfig" "$HOME/.config/bat/config"
 
 for f in *; do
   if not_ignored "$f"; then
