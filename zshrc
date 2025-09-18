@@ -324,6 +324,20 @@ source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 # Source Catppuccin theme for fzf
 [[ -f $HOME/.zsh/catppuccin-fzf.sh ]] && source $HOME/.zsh/catppuccin-fzf.sh
 
+# Configure fzf to use fd and tmux popup
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+
+# Use tmux popup if inside tmux
+if [[ -n "$TMUX" ]]; then
+  export FZF_TMUX_OPTS='-p80%,60%'
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux"
+fi
+
+# Setup fzf key bindings and completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # Prompt {{{
