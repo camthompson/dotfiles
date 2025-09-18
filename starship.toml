@@ -8,6 +8,11 @@ symbol = '::'
 format = '$symbol[$profile]($style)'
 style = 'yellow'
 
+[aws.profile_aliases]
+edacious-sandbox = 'sandbox'
+edacious-production = 'production'
+edacious-ops = 'ops'
+
 [character]
 format = ' $symbol '
 success_symbol = '[❯](white)'
