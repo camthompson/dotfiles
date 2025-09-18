@@ -7,9 +7,6 @@
 [submodule "zsh/bundle/history-substring-search"]
 	path = zsh/bundle/history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "catppuccin-delta"]
-	path = catppuccin-delta
-	url = https://github.com/catppuccin/delta.git
 [submodule "themes/catppuccin-bat"]
 	path = themes/catppuccin-bat
 	url = https://github.com/catppuccin/bat.git
@@ -25,3 +22,6 @@
 [submodule "themes/catppuccin-ghostty"]
 	path = themes/catppuccin-ghostty
 	url = https://github.com/catppuccin/ghostty.git
+[submodule "themes/catppuccin-delta"]
+	path = themes/catppuccin-delta
+	url = https://github.com/catppuccin/delta.git
