@@ -22,6 +22,7 @@ ln -sf "$PWD/starship.toml" "$HOME/.config/starship.toml"
 ln -sf "$PWD/borders" "$HOME/.config"
 ln -sf "$PWD/bat" "$HOME/.config"
 ln -sf "$PWD/eza" "$HOME/.config"
+ln -sf "$PWD/lsd" "$HOME/.config"
 
 for f in *; do
   if not_ignored "$f"; then
