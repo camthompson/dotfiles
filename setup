@@ -114,3 +114,14 @@ if [ -d "themes/catppuccin-fzf" ]; then
   ln -sf "$PWD/themes/catppuccin-fzf/themes/catppuccin-fzf-mocha.sh" "zsh/catppuccin-fzf.sh"
   echo "  ✓ fzf theme linked"
 fi
+
+# starship theme setup
+if [ -d "themes/catppuccin-starship" ]; then
+  if [ -f "starship.toml.base" ]; then
+    cat "starship.toml.base" > "starship.toml"
+    echo "" >> "starship.toml"
+    echo "# Catppuccin Mocha palette (auto-generated from submodule)" >> "starship.toml"
+    cat "themes/catppuccin-starship/themes/mocha.toml" >> "starship.toml"
+    echo "  ✓ starship theme applied"
+  fi
+fi

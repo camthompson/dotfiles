@@ -31,3 +31,6 @@
 [submodule "themes/catppuccin-fzf"]
 	path = themes/catppuccin-fzf
 	url = https://github.com/catppuccin/fzf.git
+[submodule "themes/catppuccin-starship"]
+	path = themes/catppuccin-starship
+	url = https://github.com/catppuccin/starship.git
