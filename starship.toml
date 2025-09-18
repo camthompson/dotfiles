@@ -52,7 +52,8 @@ disabled = true
 
 [python]
 disabled = true
-# Catppuccin Mocha palette (auto-generated from submodule)
+
+# === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"

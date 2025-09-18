@@ -91,14 +91,17 @@ fi
 
 # ghostty theme setup
 if [ -d "themes/catppuccin-ghostty" ]; then
-  # Create a combined config with base settings and theme
-  if [ -f "ghostty/config.base" ]; then
-    cat "ghostty/config.base" > "ghostty/config"
-    echo "" >> "ghostty/config"
-    echo "# Catppuccin Mocha theme (auto-generated from submodule)" >> "ghostty/config"
-    cat "themes/catppuccin-ghostty/themes/catppuccin-mocha.conf" >> "ghostty/config"
-    echo "  ✓ ghostty theme applied"
+  # Remove everything after the theme marker and append new theme
+  theme_marker="# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
+  if grep -q "$theme_marker" "ghostty/config" 2>/dev/null; then
+    # Remove old theme section
+    sed -i.bak "/$theme_marker/,\$d" "ghostty/config"
   fi
+  # Append theme marker and content
+  echo "" >> "ghostty/config"
+  echo "$theme_marker" >> "ghostty/config"
+  cat "themes/catppuccin-ghostty/themes/catppuccin-mocha.conf" >> "ghostty/config"
+  echo "  ✓ ghostty theme applied"
 fi
 
 # zsh-syntax-highlighting theme setup
@@ -117,11 +120,15 @@ fi
 
 # starship theme setup
 if [ -d "themes/catppuccin-starship" ]; then
-  if [ -f "starship.toml.base" ]; then
-    cat "starship.toml.base" > "starship.toml"
-    echo "" >> "starship.toml"
-    echo "# Catppuccin Mocha palette (auto-generated from submodule)" >> "starship.toml"
-    cat "themes/catppuccin-starship/themes/mocha.toml" >> "starship.toml"
-    echo "  ✓ starship theme applied"
+  # Remove everything after the theme marker and append new theme
+  theme_marker="# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
+  if grep -q "$theme_marker" "starship.toml" 2>/dev/null; then
+    # Remove old theme section
+    sed -i.bak "/$theme_marker/,\$d" "starship.toml"
   fi
+  # Append theme marker and content
+  echo "" >> "starship.toml"
+  echo "$theme_marker" >> "starship.toml"
+  cat "themes/catppuccin-starship/themes/mocha.toml" >> "starship.toml"
+  echo "  ✓ starship theme applied"
 fi
