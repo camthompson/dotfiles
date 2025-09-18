@@ -321,6 +321,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Source Catppuccin theme for fzf
+[[ -f $HOME/.zsh/catppuccin-fzf.sh ]] && source $HOME/.zsh/catppuccin-fzf.sh
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # Prompt {{{

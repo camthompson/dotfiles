@@ -107,3 +107,10 @@ if [ -d "themes/catppuccin-zsh-syntax-highlighting" ]; then
   ln -sf "$PWD/themes/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh" "zsh/catppuccin-syntax-highlighting.zsh"
   echo "  ✓ zsh-syntax-highlighting theme linked"
 fi
+
+# fzf theme setup
+if [ -d "themes/catppuccin-fzf" ]; then
+  mkdir -p "zsh"
+  ln -sf "$PWD/themes/catppuccin-fzf/themes/catppuccin-fzf-mocha.sh" "zsh/catppuccin-fzf.sh"
+  echo "  ✓ fzf theme linked"
+fi

@@ -1,0 +1,1 @@
+/Users/cam/src/dotfiles/themes/catppuccin-fzf/themes/catppuccin-fzf-mocha.sh

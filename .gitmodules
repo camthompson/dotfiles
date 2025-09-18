@@ -28,3 +28,6 @@
 [submodule "themes/catppuccin-zsh-syntax-highlighting"]
 	path = themes/catppuccin-zsh-syntax-highlighting
 	url = https://github.com/catppuccin/zsh-syntax-highlighting.git
+[submodule "themes/catppuccin-fzf"]
+	path = themes/catppuccin-fzf
+	url = https://github.com/catppuccin/fzf.git
