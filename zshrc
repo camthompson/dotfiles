@@ -348,7 +348,7 @@ alias rgf='rg --files-with-matches --no-messages "" | fzf --preview "bat --color
 alias rgp='rg . | fzf --delimiter ":" --preview "bat --color=always {1} --highlight-line {2}"'
 alias pfk='ps aux | fzf | awk "{print \$2}" | xargs kill'
 alias gfo='git branch | fzf | xargs git checkout'
-alias gfs='git log --oneline | fzf --preview "git show --color=always {1}" | awk "{print \$1}" | xargs git show'
+alias gfs='git log --oneline | fzf --no-sort --preview "git show --color=always {1}" | awk "{print \$1}" | xargs git show'
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
