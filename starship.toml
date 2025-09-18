@@ -5,7 +5,7 @@ palette = "catppuccin_mocha"
 
 [aws]
 symbol = ' [∙](white) '
-format = '$symbol[$profile]($style)'
+format = '[$profile]($style)$symbol'
 style = 'yellow'
 
 [character]
@@ -27,7 +27,7 @@ style = 'blue'
 symbol = ' '
 
 [git_branch]
-symbol = ' [∙](white) '
+symbol = ''
 format = '$symbol[$branch(:$remote_branch)]($style)'
 style = 'mauve'
 
@@ -36,13 +36,15 @@ format = '( [$all_status$ahead_behind]($style))'
 style = 'red'
 
 [kubernetes]
+symbol = ' [∙](white) '
 disabled = false
-format = '[$context]($style)'
+format = '[$context]($style)[$symbol](white)'
 style = 'cyan'
 
 [[kubernetes.contexts]]
 context_pattern = "docker-desktop"
-context_alias = "local"
+symbol = ""
+context_alias = ""
 
 [nodejs]
 disabled = true
