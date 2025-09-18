@@ -100,3 +100,10 @@ if [ -d "themes/catppuccin-ghostty" ]; then
     echo "  ✓ ghostty theme applied"
   fi
 fi
+
+# zsh-syntax-highlighting theme setup
+if [ -d "themes/catppuccin-zsh-syntax-highlighting" ]; then
+  mkdir -p "zsh"
+  ln -sf "$PWD/themes/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh" "zsh/catppuccin-syntax-highlighting.zsh"
+  echo "  ✓ zsh-syntax-highlighting theme linked"
+fi

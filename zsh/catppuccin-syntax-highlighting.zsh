@@ -1,0 +1,1 @@
+/Users/cam/src/dotfiles/themes/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh

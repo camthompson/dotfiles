@@ -315,6 +315,10 @@ function aws-login() {
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Source Catppuccin theme for syntax highlighting (must be before plugin)
+[[ -f $HOME/.zsh/catppuccin-syntax-highlighting.zsh ]] && source $HOME/.zsh/catppuccin-syntax-highlighting.zsh
+
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
