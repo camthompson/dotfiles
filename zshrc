@@ -332,7 +332,9 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 # Use tmux popup if inside tmux
 if [[ -n "$TMUX" ]]; then
   export FZF_TMUX_OPTS='-p80%,60%'
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux"
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux --reverse"
+else
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse"
 fi
 
 # Setup fzf key bindings and completion
@@ -346,7 +348,7 @@ alias rgf='rg --files-with-matches --no-messages "" | fzf --preview "bat --color
 alias rgp='rg . | fzf --delimiter ":" --preview "bat --color=always {1} --highlight-line {2}"'
 alias pfk='ps aux | fzf | awk "{print \$2}" | xargs kill'
 alias gfo='git branch | fzf | xargs git checkout'
-alias gfs='git log --oneline | fzf --preview "git show --color=always {1}"'
+alias gfs='git log --oneline | fzf --preview "git show --color=always {1}" | awk "{print \$1}" | xargs git show'
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
