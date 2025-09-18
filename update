@@ -6,6 +6,10 @@ Dir['zsh/bundle/*'].each do |d|
   end
 end
 
+# Update theme submodules
+puts "Updating Catppuccin themes..."
+`git submodule update --remote themes/`
+
 `git pull`
 
 def push_to_github()

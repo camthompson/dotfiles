@@ -10,3 +10,15 @@
 [submodule "catppuccin-delta"]
 	path = catppuccin-delta
 	url = https://github.com/catppuccin/delta.git
+[submodule "themes/catppuccin-bat"]
+	path = themes/catppuccin-bat
+	url = https://github.com/catppuccin/bat.git
+[submodule "themes/catppuccin-btop"]
+	path = themes/catppuccin-btop
+	url = https://github.com/catppuccin/btop.git
+[submodule "themes/catppuccin-eza"]
+	path = themes/catppuccin-eza
+	url = https://github.com/catppuccin/eza.git
+[submodule "themes/catppuccin-lsd"]
+	path = themes/catppuccin-lsd
+	url = https://github.com/catppuccin/lsd.git

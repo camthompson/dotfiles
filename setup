@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Initialize and update all submodules including themes
 git submodule init
 git submodule update
 
@@ -21,6 +22,7 @@ base_ignorelist=(
   "README.md"
   "setup"
   "update"
+  "themes"
 )
 
 # Combine base ignore list with config items for the full ignore list
@@ -38,14 +40,47 @@ not_ignored() {
 mkdir -p "$HOME/.config"
 for item in "${config_items[@]}"; do
   if [ -e "$PWD/$item" ]; then
-    ln -sf "$PWD/$item" "$HOME/.config/$item"
+    rm -rf "$HOME/.config/$item"
+    ln -s "$PWD/$item" "$HOME/.config/$item"
   fi
 done
 
 # Link everything else to home directory with dot prefix
 for f in *; do
   if not_ignored "$f"; then
-    rm -rf "$HOME/.$f"
-    ln -s "$PWD/$f" "$HOME/.$f"
+    # Only create symlink if it doesn't already exist or points to wrong location
+    if [ ! -L "$HOME/.$f" ] || [ "$(readlink "$HOME/.$f")" != "$PWD/$f" ]; then
+      rm -rf "$HOME/.$f"
+      ln -s "$PWD/$f" "$HOME/.$f"
+    fi
   fi
 done
+
+# Set up theme files from submodules
+echo "Setting up Catppuccin themes..."
+
+# bat theme setup
+if [ -d "themes/catppuccin-bat" ]; then
+  mkdir -p "bat/themes"
+  ln -sf "$PWD/themes/catppuccin-bat/themes/Catppuccin Mocha.tmTheme" "bat/themes/Catppuccin Mocha.tmTheme"
+  echo "  ✓ bat theme linked"
+fi
+
+# btop theme setup
+if [ -d "themes/catppuccin-btop" ]; then
+  mkdir -p "btop/themes"
+  ln -sf "$PWD/themes/catppuccin-btop/themes/catppuccin_mocha.theme" "btop/themes/catppuccin_mocha.theme"
+  echo "  ✓ btop theme linked"
+fi
+
+# eza theme setup (using mocha-mauve variant)
+if [ -d "themes/catppuccin-eza" ]; then
+  ln -sf "$PWD/themes/catppuccin-eza/themes/mocha/catppuccin-mocha-mauve.yml" "eza/theme.yml"
+  echo "  ✓ eza theme linked (mocha-mauve)"
+fi
+
+# lsd theme setup
+if [ -d "themes/catppuccin-lsd" ]; then
+  ln -sf "$PWD/themes/catppuccin-lsd/themes/catppuccin-mocha/colors.yaml" "lsd/colors.yaml"
+  echo "  ✓ lsd theme linked"
+fi
