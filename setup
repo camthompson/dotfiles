@@ -64,6 +64,10 @@ if [ -d "themes/catppuccin-bat" ]; then
   mkdir -p "bat/themes"
   ln -sf "$PWD/themes/catppuccin-bat/themes/Catppuccin Mocha.tmTheme" "bat/themes/Catppuccin Mocha.tmTheme"
   echo "  ✓ bat theme linked"
+  # Rebuild bat cache for new theme
+  if command -v bat &> /dev/null; then
+    bat cache --build &> /dev/null && echo "  ✓ bat cache rebuilt"
+  fi
 fi
 
 # btop theme setup

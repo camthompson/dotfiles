@@ -10,6 +10,12 @@ end
 puts "Updating Catppuccin themes..."
 `git submodule update --remote themes/`
 
+# Rebuild bat cache if themes were updated
+if system("git diff --quiet HEAD themes/catppuccin-bat") == false
+  puts "Rebuilding bat cache..."
+  `bat cache --build 2>/dev/null`
+end
+
 `git pull`
 
 def push_to_github()
