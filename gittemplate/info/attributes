@@ -1,3 +1,0 @@
-Gemfile.lock merge=bundle
-db/schema.rb merge=railsschema
-*.rb diff=ruby

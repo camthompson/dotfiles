@@ -18,7 +18,6 @@
 [column]
   ui = auto
 [init]
-  templatedir = ~/.gittemplate
   defaultBranch = main
 [web]
   browser = open
