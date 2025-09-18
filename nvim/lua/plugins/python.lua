@@ -43,7 +43,7 @@ return {
   },
   -- Ensure Mason doesn't install Python LSPs
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       -- Add ruff for formatting
@@ -94,4 +94,3 @@ return {
     end,
   },
 }
-
