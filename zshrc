@@ -66,8 +66,6 @@ alias rsync='noglob rsync'
 alias scp='noglob scp'
 alias sftp='noglob sftp'
 
-alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
-
 alias l='eza --git --icons'
 alias la='eza --git --icons -a'
 alias ll='eza --git --icons -l'
