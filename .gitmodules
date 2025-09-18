@@ -7,6 +7,3 @@
 [submodule "zsh/bundle/history-substring-search"]
 	path = zsh/bundle/history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "bat"]
-	path = bat
-	url = https://github.com/catppuccin/bat.git
