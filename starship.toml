@@ -1,14 +1,15 @@
-format="$directory$character"
+format="$directory$kubernetes$aws$character"
 add_newline = false
-right_format = "$kubernetes$aws$git_branch$git_status"
+right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
 
 [aws]
-symbol = ' [∙](white) '
-format = '[$profile]($style)$symbol'
+symbol = '::'
+format = '$symbol[$profile]($style)'
 style = 'yellow'
 
 [character]
+format = ' $symbol '
 success_symbol = '[❯](white)'
 error_symbol = '[❯](red)'
 vimcmd_symbol = '[❮](white)'
@@ -20,7 +21,7 @@ vimcmd_visual_symbol = '[❮](yellow)'
 disabled = true
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = '[$path]($style)[$read_only]($read_only_style)'
 style = 'blue'
 
 [fill]
@@ -36,9 +37,9 @@ format = '( [$all_status$ahead_behind]($style))'
 style = 'red'
 
 [kubernetes]
-symbol = ' [∙](white) '
+symbol = '::'
 disabled = false
-format = '[$context]($style)[$symbol](white)'
+format = '$symbol(white)[$context]($style)'
 style = 'cyan'
 
 [[kubernetes.contexts]]
