@@ -34,12 +34,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# alias l='ls -GF'
-# alias ll='ls -lhGF'
-# alias la='ls -ahGF'
-# alias lal='ls -lhaGF'
-# alias laf='ls -aGF'
-
 alias v=nvim
 alias vd='v -d'
 alias vw='v -R'
