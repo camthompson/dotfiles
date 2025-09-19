@@ -373,7 +373,7 @@ ghprs() {
 
 alias kcd='kubectl config use-context docker-desktop'
 alias kcc='kubectl config use-context colima'
-alias colima-provision='colima start --cpu 8 --memory 16 --disk 50 --runtime containerd --kubernetes --vm-type vz --vz-rosetta --network-address --mount ~/work/eda:w --mount ~/work/gemyn:w --mount ~/work/python-edacious-common:w'
+alias colima-provision='colima start --cpu 8 --memory 16 --disk 50 --runtime containerd --kubernetes --vm-type vz --vz-rosetta --network-address --mount ~/work/eda:w --mount ~/work/gemyn:w --mount ~/work/python-edacious-common:w && kubectl config rename-context colima docker-desktop 2>/dev/null || true'
 
 # Prompt {{{
 # autoload -Uz promptinit && promptinit
