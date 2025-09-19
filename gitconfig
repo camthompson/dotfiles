@@ -125,3 +125,10 @@
  features = catppuccin-mocha
  navigate = true
  line-numbers = true
+ line-numbers-left-format = "{nm:>4}┊"
+ line-numbers-right-format = "{np:>4}│"
+ wrap-max-lines = unlimited
+ max-line-length = 0
+ side-by-side = true
+ file-modified-label = "modified:"
+ diff-so-fancy = true
