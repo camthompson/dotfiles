@@ -318,6 +318,10 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Override path separator colors to use cyan instead of red
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#89dceb,underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=#89dceb,underline'
+
 # Source Catppuccin theme for fzf
 [[ -f $HOME/.zsh/catppuccin-fzf.sh ]] && source $HOME/.zsh/catppuccin-fzf.sh
 
