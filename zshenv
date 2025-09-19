@@ -36,3 +36,5 @@ cdpath=(
 )
 
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
+
+alias docker='colima nerdctl --'
