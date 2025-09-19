@@ -57,8 +57,14 @@ function docker {
     # If we found an image name, import it to k3s
     if [[ -n "$image_name" ]]; then
       echo "Importing $image_name to k3s..."
-      colima nerdctl -- save "$image_name" | colima ssh -- sudo k3s ctr images import - >/dev/null 2>&1
-      echo "Image $image_name available in k3s"
+      # Use the k8s.io namespace which works reliably
+      # Run in background to avoid hanging the script, suppress all job control output
+      { colima nerdctl -- save "$image_name" 2>/dev/null | colima ssh -- sh -c "sudo ctr -n=k8s.io images import -" >/dev/null 2>&1; } &
+      # Disown the background job to prevent shell job notifications
+      disown
+      # Give it a moment to start
+      sleep 2
+      echo "Image import initiated for $image_name"
     fi
   else
     # For all other docker commands, just pass through
