@@ -333,10 +333,9 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 
 # Use tmux popup if inside tmux
 if [[ -n "$TMUX" ]]; then
-  export FZF_TMUX_OPTS='-p80%,60%'
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux --reverse"
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux 90%,70% --reverse"
 else
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse"
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --reverse --height=70%"
 fi
 
 # Setup fzf key bindings and completion
