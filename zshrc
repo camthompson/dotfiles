@@ -64,8 +64,9 @@ alias l='eza --git --icons'
 alias la='eza --git --icons -a'
 alias ll='eza --git --icons -l'
 alias lal='eza --git --icons -al'
-alias lt='eza --git --icons --tree'
-alias lta='eza --git --icons --tree -'
+lt() { eza --git --icons --tree ${1:+--level="$1"} }
+lta() { eza --git --icons --tree -a ${1:+--level="$1"} }
+ltd() { eza --git --icons --tree --only-dirs ${1:+--level="$1"} }
 # }}}
 
 # Colors {{{
