@@ -97,8 +97,10 @@ if [ -d "themes/catppuccin-ghostty" ]; then
     # Remove old theme section
     sed -i.bak "/$theme_marker/,\$d" "ghostty/config"
   fi
-  # Append theme marker and content
-  echo "" >> "ghostty/config"
+  # Append theme marker and content (no extra blank line if file already ends with newline)
+  if [ -s "ghostty/config" ] && [ "$(tail -c1 "ghostty/config" | wc -l)" -eq 0 ]; then
+    echo "" >> "ghostty/config"
+  fi
   echo "$theme_marker" >> "ghostty/config"
   cat "themes/catppuccin-ghostty/themes/catppuccin-mocha.conf" >> "ghostty/config"
   echo "  ✓ ghostty theme applied"
@@ -126,8 +128,10 @@ if [ -d "themes/catppuccin-starship" ]; then
     # Remove old theme section
     sed -i.bak "/$theme_marker/,\$d" "starship.toml"
   fi
-  # Append theme marker and content
-  echo "" >> "starship.toml"
+  # Append theme marker and content (no extra blank line if file already ends with newline)
+  if [ -s "starship.toml" ] && [ "$(tail -c1 "starship.toml" | wc -l)" -eq 0 ]; then
+    echo "" >> "starship.toml"
+  fi
   echo "$theme_marker" >> "starship.toml"
   cat "themes/catppuccin-starship/themes/mocha.toml" >> "starship.toml"
   echo "  ✓ starship theme applied"
