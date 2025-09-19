@@ -371,6 +371,8 @@ ghprs() {
   done
 }
 
+alias kdd='kubectl config use-context docker-desktop'
+
 # Prompt {{{
 # autoload -Uz promptinit && promptinit
 # prompt cam
