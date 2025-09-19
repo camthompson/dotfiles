@@ -1,4 +1,4 @@
-format="$directory$kubernetes$aws$character"
+format = "$directory$kubernetes$aws$character"
 add_newline = false
 right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
@@ -49,6 +49,11 @@ style = 'cyan'
 
 [[kubernetes.contexts]]
 context_pattern = "docker-desktop"
+symbol = ""
+context_alias = ""
+
+[[kubernetes.contexts]]
+context_pattern = "colima"
 symbol = ""
 context_alias = ""
 

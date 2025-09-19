@@ -372,6 +372,7 @@ ghprs() {
 }
 
 alias kcd='kubectl config use-context docker-desktop'
+alias kcc='kubectl config use-context colima'
 
 # Prompt {{{
 # autoload -Uz promptinit && promptinit

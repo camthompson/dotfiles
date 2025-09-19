@@ -52,7 +52,7 @@
   ap = add -p
   b = branch
   c = commit --verbose -n
-  ca = commit --verbose -an
+  ca = commit --verbose -an --amend -n
   caa = commit --verbose -an --amend -C HEAD -n
   cam = commit --verbose -anm
   cm = commit --verbose -nm

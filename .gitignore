@@ -14,3 +14,6 @@ coc/extensions/node_modules/
 coc/extensions/coc-json-data/json-schema-cache
 .claude/settings.local.json
 *.bak
+colima/_lima
+colima/ssh_config
+colima/default/
