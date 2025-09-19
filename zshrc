@@ -351,6 +351,7 @@ alias rgp='rg . | fzf --delimiter ":" --preview "bat --color=always {1} --highli
 alias pfk='ps aux | fzf | awk "{print \$2}" | xargs kill'
 alias gfo='git branch | fzf | xargs git checkout'
 alias gfs='git log --oneline | fzf --no-sort --preview "git show --color=always {1}" | awk "{print \$1}" | xargs git show'
+alias ghpr='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr view --web'
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
