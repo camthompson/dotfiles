@@ -7,18 +7,94 @@ puts "  Updating zsh plugins..."
 puts "  Updating Catppuccin themes..."
 `git submodule update --remote themes/`
 
-# Rebuild bat cache if themes were updated
-if system("git diff --quiet HEAD themes/catppuccin-bat") == false
-  puts "Rebuilding bat cache..."
-  `bat cache --build 2>/dev/null`
+# Track if any themes were updated
+theme_changes = []
+theme_changes << "bat" if system("git diff --quiet HEAD themes/catppuccin-bat") == false
+theme_changes << "btop" if system("git diff --quiet HEAD themes/catppuccin-btop") == false
+theme_changes << "eza" if system("git diff --quiet HEAD themes/catppuccin-eza") == false
+theme_changes << "lsd" if system("git diff --quiet HEAD themes/catppuccin-lsd") == false
+theme_changes << "ghostty" if system("git diff --quiet HEAD themes/catppuccin-ghostty") == false
+theme_changes << "starship" if system("git diff --quiet HEAD themes/catppuccin-starship") == false
+theme_changes << "zsh-syntax-highlighting" if system("git diff --quiet HEAD themes/catppuccin-zsh-syntax-highlighting") == false
+theme_changes << "fzf" if system("git diff --quiet HEAD themes/catppuccin-fzf") == false
+
+# Re-apply themes if any were updated
+if theme_changes.any?
+  puts "Theme updates detected for: #{theme_changes.join(', ')}"
+  puts "Re-applying theme configurations..."
+
+  # ghostty theme setup (inline)
+  if theme_changes.include?("ghostty") && File.directory?("themes/catppuccin-ghostty")
+    theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
+    config_file = "ghostty/config"
+
+    if File.exist?(config_file) && system("grep -q '#{theme_marker}' '#{config_file}' 2>/dev/null")
+      # Create backup and remove old theme section
+      `cp #{config_file} #{config_file}.bak`
+      `sed -i '' '/#{theme_marker}/,$d' '#{config_file}'`
+
+      # Append theme marker and content
+      File.open(config_file, 'a') do |f|
+        f.puts ""
+        f.puts theme_marker
+        f.write File.read("themes/catppuccin-ghostty/themes/catppuccin-mocha.conf")
+      end
+      puts "  ✓ ghostty theme updated"
+    end
+  end
+
+  # starship theme setup (inline)
+  if theme_changes.include?("starship") && File.directory?("themes/catppuccin-starship")
+    theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
+    config_file = "starship.toml"
+
+    if File.exist?(config_file) && system("grep -q '#{theme_marker}' '#{config_file}' 2>/dev/null")
+      # Create backup and remove old theme section
+      `cp #{config_file} #{config_file}.bak`
+      `sed -i '' '/#{theme_marker}/,$d' '#{config_file}'`
+
+      # Append theme marker and content
+      File.open(config_file, 'a') do |f|
+        f.puts ""
+        f.puts theme_marker
+        f.write File.read("themes/catppuccin-starship/themes/mocha.toml")
+      end
+      puts "  ✓ starship theme updated"
+    end
+  end
+
+  # Rebuild bat cache if bat theme was updated
+  if theme_changes.include?("bat")
+    puts "  Rebuilding bat cache..."
+    `bat cache --build 2>/dev/null`
+    puts "  ✓ bat cache rebuilt"
+  end
 end
 
 `git pull`
 
 def push_to_github()
-  `git add zsh/bundle`
-  `git commit -m 'ZSH plugin update'`
-  `git push`
+  # Check for all types of changes
+  has_plugin_changes = system("git diff --quiet HEAD zsh/bundle") == false
+  has_theme_submodule_changes = system("git diff --quiet HEAD themes/") == false
+  has_config_changes = system("git diff --quiet HEAD ghostty/config starship.toml") == false
+
+  if has_plugin_changes || has_theme_submodule_changes || has_config_changes
+    # Stage appropriate files
+    `git add zsh/bundle` if has_plugin_changes
+    `git add themes/` if has_theme_submodule_changes
+    `git add ghostty/config starship.toml` if has_config_changes
+
+    # Create descriptive commit message
+    changes = []
+    changes << "ZSH plugins" if has_plugin_changes
+    changes << "theme submodules" if has_theme_submodule_changes
+    changes << "theme configs" if has_config_changes
+
+    commit_msg = "Update #{changes.join(', ')}"
+    `git commit -m '#{commit_msg}'`
+    `git push`
+  end
 end
 
 push_to_github unless `git status` =~ /nothing to commit/
