@@ -58,6 +58,7 @@ disabled = true
 [python]
 disabled = true
 
+
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

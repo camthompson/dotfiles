@@ -311,16 +311,9 @@ function aws-login() {
 }
 # }}}
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-# Source Catppuccin theme for syntax highlighting (must be before plugin)
-[[ -f $HOME/.zsh/catppuccin-syntax-highlighting.zsh ]] && source $HOME/.zsh/catppuccin-syntax-highlighting.zsh
-
-source $HOME/.zsh/bundle/syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Override path separator colors to use cyan instead of red
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#89dceb,underline'
-ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=#89dceb,underline'
+# Fast syntax highlighting with Catppuccin theme
+fast_theme XDG:catppuccin-mocha &>/dev/null
+source $HOME/.zsh/bundle/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Source Catppuccin theme for fzf
 [[ -f $HOME/.zsh/catppuccin-fzf.sh ]] && source $HOME/.zsh/catppuccin-fzf.sh
