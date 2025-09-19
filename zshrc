@@ -354,6 +354,31 @@ alias ghpr='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" |
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
+# GitHub PR listing function
+ghprs() {
+  local since_date="${1:-$(date -v-2w +%Y-%m-%d)}"
+  local repos=("$HOME/work/argocd" "$HOME/work/cloud" "$HOME/work/eda" "$HOME/work/gemyn")
+
+  echo "Fetching PRs authored by you since $since_date..."
+  echo ""
+
+  for repo in "${repos[@]}"; do
+    local repo_name=$(basename "$repo")
+
+    if [[ -d "$repo" ]]; then
+      local prs=$(cd "$repo" && gh pr list --author "@me" --search "created:>=$since_date" --state all --json number,title,state,createdAt,url --limit 100 2>/dev/null)
+
+      if [[ -n "$prs" && "$prs" != "[]" ]]; then
+        echo "## $repo_name"
+        echo "$prs" | jq -r '.[] | "- #\(.number) - \(.title) (\(.state), \(.createdAt | split("T")[0]))"'
+        echo ""
+      fi
+    else
+      echo "Warning: Directory $repo does not exist" >&2
+    fi
+  done
+}
+
 # Prompt {{{
 # autoload -Uz promptinit && promptinit
 # prompt cam
