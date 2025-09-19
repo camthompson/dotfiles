@@ -371,7 +371,7 @@ ghprs() {
   done
 }
 
-alias kdd='kubectl config use-context docker-desktop'
+alias kcd='kubectl config use-context docker-desktop'
 
 # Prompt {{{
 # autoload -Uz promptinit && promptinit
