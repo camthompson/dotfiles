@@ -19,4 +19,13 @@ return {
   end,
   event = "VeryLazy",
   dependencies = { "catppuccin/nvim" },
+  keys = {
+    {
+      "<leader>i",
+      function()
+        require("incline").toggle()
+      end,
+      desc = "Toggle Incline",
+    },
+  },
 }
