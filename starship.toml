@@ -52,11 +52,6 @@ context_pattern = "docker-desktop"
 symbol = ""
 context_alias = ""
 
-[[kubernetes.contexts]]
-context_pattern = "colima"
-symbol = ""
-context_alias = ""
-
 [nodejs]
 disabled = true
 
