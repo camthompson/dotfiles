@@ -5,6 +5,7 @@ windows:
   - eda:
       root: ~/work/eda
       layout: main-horizontal
+      main-pane-height: 80%
       panes:
         - nvim:
             - v
@@ -14,6 +15,7 @@ windows:
   - gemyn:
       root: ~/work/gemyn
       layout: main-horizontal
+      main-pane-height: 80%
       panes:
         - nvim:
             - v
