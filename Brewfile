@@ -75,6 +75,7 @@ brew "oven-sh/bun/bun"
 brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 cask "1password"
+cask "aerospace"
 cask "authy"
 cask "backblaze"
 cask "bitwarden"
