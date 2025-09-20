@@ -158,3 +158,16 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+
+# Make Brave and Ghostty tile, everything else floats
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = ['layout tiling']
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['layout tiling']
+
+# Default: make all other windows float
+[[on-window-detected]]
+run = ['layout floating']
