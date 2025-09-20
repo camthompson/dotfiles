@@ -1,4 +1,4 @@
-format = "$directory$kubernetes$aws$jobs$character"
+format = '[\[](white)$directory$kubernetes$aws$jobs$character[\]](white) '
 add_newline = false
 right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
@@ -14,13 +14,13 @@ edacious-production = 'production'
 edacious-ops = 'ops'
 
 [character]
-format = ' $symbol '
-success_symbol = '[❯](white)'
-error_symbol = '[❯](red)'
-vimcmd_symbol = '[❮](white)'
-vimcmd_replace_one_symbol = '[❮](purple)'
-vimcmd_replace_symbol = '[❮](purple)'
-vimcmd_visual_symbol = '[❮](yellow)'
+format = '[—](white)$symbol'
+success_symbol = '[>](purple)'
+error_symbol = '[>](red)'
+vimcmd_symbol = '[<](white)'
+vimcmd_replace_one_symbol = '[<](purple)'
+vimcmd_replace_symbol = '[<](purple)'
+vimcmd_visual_symbol = '[<](yellow)'
 
 [cmd_duration]
 disabled = true
@@ -34,11 +34,11 @@ symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '$symbol[$branch(:$remote_branch)]($style)'
+format = '[\[](white)$symbol[$branch(:$remote_branch)]($style)[\]](white)'
 style = 'mauve'
 
 [git_status]
-format = '( [$all_status$ahead_behind]($style))'
+format = '(-[$all_status$ahead_behind]($style))'
 style = 'red'
 
 [jobs]
