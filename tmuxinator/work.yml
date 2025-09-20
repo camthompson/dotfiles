@@ -1,0 +1,21 @@
+name: work
+root: ~/
+
+windows:
+  - eda:
+      root: ~/work/eda
+      layout: main-horizontal
+      panes:
+        - nvim:
+            - v
+        - claude:
+            - claude
+
+  - gemyn:
+      root: ~/work/gemyn
+      layout: main-horizontal
+      panes:
+        - nvim:
+            - v
+        - claude:
+            - claude
