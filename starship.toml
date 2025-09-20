@@ -1,6 +1,6 @@
 format = "$directory$kubernetes$aws$jobs$character"
 add_newline = false
-right_format = "$git_branch$git_status"
+right_format = "$nodejs$python$git_branch$git_status"
 palette = "catppuccin_mocha"
 
 [aws]
@@ -38,7 +38,7 @@ format = '$symbol[$branch(:$remote_branch)]($style)'
 style = 'mauve'
 
 [git_status]
-format = '( [$all_status$ahead_behind]($style))'
+format = ':([$all_status$ahead_behind]($style))'
 style = 'red'
 
 [jobs]
@@ -57,10 +57,11 @@ symbol = ""
 context_alias = ""
 
 [nodejs]
-disabled = true
+format = '[$symbol($version)]($style):'
 
 [python]
-disabled = true
+symbol = ""
+format = '[${symbol}${pyenv_prefix}(${version})]($style):'
 
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
