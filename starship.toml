@@ -1,6 +1,6 @@
 format = '[\[](white)$directory$kubernetes$aws$jobs$character(white) '
 add_newline = false
-right_format = '[\[](white)$git_branch$git_status[\]](white)'
+right_format = '${custom.git_info}'
 palette = "catppuccin_mocha"
 
 [aws]
@@ -63,6 +63,18 @@ format = '[$symbol($version)]($style):'
 symbol = ""
 format = '[${symbol}${pyenv_prefix}(${version})]($style):'
 
+
+[custom.git_info]
+when = 'git rev-parse --is-inside-work-tree 2>/dev/null'
+command = '''
+branch=$(starship module git_branch 2>/dev/null)
+status=$(starship module git_status 2>/dev/null)
+if [ -n "$branch" ]; then
+  echo "[$branch$status]"
+fi
+'''
+format = '[$output](white)'
+shell = ['bash']
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 [palettes.catppuccin_mocha]
