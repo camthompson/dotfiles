@@ -38,7 +38,7 @@ format = '[\[](white)$symbol[$branch(:$remote_branch)]($style)[\]](white)'
 style = 'mauve'
 
 [git_status]
-format = '(-[$all_status$ahead_behind]($style))'
+format = '([-\[](white)[$all_status$ahead_behind]($style))[\]](white)'
 style = 'red'
 
 [jobs]
