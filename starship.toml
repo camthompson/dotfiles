@@ -1,4 +1,4 @@
-format = '[\[](white)$directory$kubernetes$aws$jobs$character[\]](white) '
+format = '[\[](white)$directory$kubernetes$aws$jobs$character(white) '
 add_newline = false
 right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
@@ -14,8 +14,8 @@ edacious-production = 'production'
 edacious-ops = 'ops'
 
 [character]
-format = '[—](white)$symbol'
-success_symbol = '[>](purple)'
+format = '[\]—\[](white)$symbol[\]](white)'
+success_symbol = '[>](green)'
 error_symbol = '[>](red)'
 vimcmd_symbol = '[<](white)'
 vimcmd_replace_one_symbol = '[<](purple)'
