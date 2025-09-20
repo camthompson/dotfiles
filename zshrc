@@ -379,6 +379,8 @@ ghprs() {
 alias kcd='kubectl config use-context docker-desktop'
 alias kcc='kubectl config rename-context colima docker-desktop; kubectl config use-context colima'
 
+alias work='tmuxinator start work'
+
 # Prompt {{{
 # autoload -Uz promptinit && promptinit
 # prompt cam
