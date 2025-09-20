@@ -1,4 +1,4 @@
-format = "$directory$kubernetes$aws$character"
+format = "$directory$kubernetes$aws$jobs$character"
 add_newline = false
 right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
@@ -40,6 +40,10 @@ style = 'mauve'
 [git_status]
 format = '( [$all_status$ahead_behind]($style))'
 style = 'red'
+
+[jobs]
+format = '[$symbol$number]($style)'
+style = "cyan"
 
 [kubernetes]
 symbol = '::'
