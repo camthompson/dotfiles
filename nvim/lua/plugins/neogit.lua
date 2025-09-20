@@ -7,4 +7,5 @@ return {
     -- Only one of these is needed.
     "nvim-telescope/telescope.nvim", -- optional
   },
+  event = "VeryLazy",
 }
