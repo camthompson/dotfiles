@@ -115,7 +115,13 @@ sshPort: 0
 # Colima mounts user's home directory by default to provide a familiar
 # user experience.
 # Colima default behaviour: $HOME and /tmp/colima are mounted as writable.
-mounts: []
+mounts:
+  - location: ~/work/eda
+    writable: true
+  - location: ~/work/gemyn
+    writable: true
+  - location: ~/work/python-edacious-common
+    writable: true
 
 # Specify a custom disk image for the virtual machine.
 diskImage: ""
