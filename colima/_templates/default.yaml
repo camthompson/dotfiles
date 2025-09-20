@@ -1,0 +1,124 @@
+# Custom Colima template based on colima-provision alias
+# Number of CPUs to be allocated to the virtual machine.
+cpu: 10
+
+# Size of the disk in GiB to be allocated to the virtual machine.
+# NOTE: value can only be increased after virtual machine has been created.
+disk: 10
+
+# Size of the memory in GiB to be allocated to the virtual machine.
+memory: 18
+
+# Architecture of the virtual machine (x86_64, aarch64, host).
+# NOTE: value cannot be changed after virtual machine is created.
+arch: host
+
+# Container runtime to be used (docker, containerd).
+# NOTE: value cannot be changed after virtual machine is created.
+runtime: docker
+
+# Set custom hostname for the virtual machine.
+hostname: ""
+
+# Kubernetes configuration for the virtual machine.
+kubernetes:
+  # Enable kubernetes.
+  enabled: true
+
+  # Kubernetes version to use.
+  # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
+  version: v1.33.3+k3s1
+
+  # Additional args to pass to k3s https://docs.k3s.io/cli/server
+  # Traefik is disabled by default
+  k3sArgs:
+    - --disable=traefik
+
+# Auto-activate on the Host for client access.
+# Setting to true does the following on startup
+#  - sets as active Docker context (for Docker runtime).
+#  - sets as active Kubernetes context (if Kubernetes is enabled).
+autoActivate: true
+
+# Network configurations for the virtual machine.
+network:
+  # Assign reachable IP address to the virtual machine.
+  # NOTE: this is currently macOS only and ignored on Linux.
+  address: true
+
+  # Custom DNS resolvers for the virtual machine.
+  dns: []
+
+  # DNS hostnames to resolve to custom targets using the internal resolver.
+  dnsHosts:
+    host.docker.internal: host.lima.internal
+
+  # Replicate host IP addresses in the VM. This enables port forwarding to specific
+  # host IP addresses.
+  hostAddresses: false
+
+# ===================================================================== #
+# ADVANCED CONFIGURATION
+# ===================================================================== #
+
+# Forward the host's SSH agent to the virtual machine.
+forwardAgent: false
+
+# Docker daemon configuration that maps directly to daemon.json.
+# https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file.
+# Colima default behaviour: buildkit enabled
+docker: {}
+
+# Virtual Machine type (qemu, vz)
+# NOTE: this is macOS 13 only. For Linux and macOS <13.0, qemu is always used.
+# vz is macOS virtualization framework and requires macOS 13
+# NOTE: value cannot be changed after virtual machine is created.
+vmType: vz
+
+# Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
+rosetta: true
+
+# Enable foreign architecture emulation via binfmt (e.g. amd64 on arm64, arm64 on amd64)
+binfmt: true
+
+# Enable nested virtualization for the virtual machine (requires m3 mac and vmType `vz`)
+nestedVirtualization: false
+
+# Volume mount driver for the virtual machine (virtiofs, 9p, sshfs).
+# virtiofs is limited to macOS and vmType `vz`. It is the fastest of the options.
+# NOTE: value cannot be changed after virtual machine is created.
+# Default: virtiofs (for vz), sshfs (for qemu)
+mountType: virtiofs
+
+# Propagate inotify file events to the VM.
+# NOTE: this is experimental.
+mountInotify: false
+
+# The CPU type for the virtual machine (requires vmType `qemu`).
+# Options available for host emulation can be checked with: `qemu-system-$(arch) -cpu help`.
+# Instructions are also supported by appending to the cpu type e.g. "qemu64,+ssse3".
+cpuType: host
+
+# Custom provision scripts for the virtual machine.
+# Provisioning scripts are executed on startup and therefore needs to be idempotent.
+provision: []
+
+# Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
+# SSH config will still be generated in $COLIMA_HOME/ssh_config regardless.
+sshConfig: true
+
+# The port number for the SSH server for the virtual machine.
+# When set to 0, a random available port is used.
+sshPort: 0
+
+# Configure volume mounts for the virtual machine.
+# Colima mounts user's home directory by default to provide a familiar
+# user experience.
+# Colima default behaviour: $HOME and /tmp/colima are mounted as writable.
+mounts: []
+
+# Specify a custom disk image for the virtual machine.
+diskImage: ""
+
+# Environment variables for the virtual machine.
+env: {}

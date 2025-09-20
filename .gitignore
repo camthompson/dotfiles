@@ -14,3 +14,8 @@ coc/extensions/node_modules/
 coc/extensions/coc-json-data/json-schema-cache
 .claude/settings.local.json
 *.bak
+
+# Colima runtime files (keep only templates)
+colima/*
+!colima/_templates/
+!colima/_templates/**
