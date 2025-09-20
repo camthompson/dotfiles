@@ -1,6 +1,6 @@
 format = "$directory$kubernetes$aws$jobs$character"
 add_newline = false
-right_format = "$nodejs$python$git_branch$git_status"
+right_format = "$git_branch$git_status"
 palette = "catppuccin_mocha"
 
 [aws]
