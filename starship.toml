@@ -4,7 +4,7 @@ right_format = '${custom.git_info}'
 palette = "catppuccin_mocha"
 
 [aws]
-symbol = '::'
+symbol = '-'
 format = '$symbol[$profile]($style)'
 style = 'yellow'
 
@@ -46,7 +46,7 @@ format = '[$symbol$number]($style)'
 style = "cyan"
 
 [kubernetes]
-symbol = '::'
+symbol = '-'
 disabled = false
 format = '$symbol(white)[$context]($style)'
 style = 'cyan'
