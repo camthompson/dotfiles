@@ -15,9 +15,9 @@ edacious-ops = 'ops'
 
 [character]
 format = '[—](white)$symbol[\]](white)'
-success_symbol = '[>](green)'
+success_symbol = '[>](purple)'
 error_symbol = '[>](red)'
-vimcmd_symbol = '[<](white)'
+vimcmd_symbol = '[<](purple)'
 vimcmd_replace_one_symbol = '[<](purple)'
 vimcmd_replace_symbol = '[<](purple)'
 vimcmd_visual_symbol = '[<](yellow)'
