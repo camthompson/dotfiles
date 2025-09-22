@@ -16,6 +16,7 @@ return {
         },
       },
     })
+    require("incline").disable()
   end,
   event = "VeryLazy",
   dependencies = { "catppuccin/nvim" },
