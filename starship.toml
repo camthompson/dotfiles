@@ -1,4 +1,4 @@
-format = '[\[](white)$directory$kubernetes$aws$jobs$character(white) '
+format = '[\[](white)$directory$kubernetes$aws$jobs$character[\]](white) '
 add_newline = false
 right_format = '${custom.git_info}'
 palette = "catppuccin_mocha"
@@ -15,13 +15,13 @@ edacious-production = 'production'
 edacious-ops = 'ops'
 
 [character]
-format = '[—](white)$symbol[\]](white)'
-success_symbol = '[>](purple)'
-error_symbol = '[>](red)'
-vimcmd_symbol = '[<](purple)'
-vimcmd_replace_one_symbol = '[<](purple)'
-vimcmd_replace_symbol = '[<](purple)'
-vimcmd_visual_symbol = '[<](yellow)'
+format = '[—](white)$symbol'
+success_symbol = '[%](yellow)'
+error_symbol = '[%](red)'
+vimcmd_symbol = '[N](purple)'
+vimcmd_replace_one_symbol = '[R](purple)'
+vimcmd_replace_symbol = '[R](purple)'
+vimcmd_visual_symbol = '[R](yellow)'
 
 [cmd_duration]
 disabled = true
