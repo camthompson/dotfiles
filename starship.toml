@@ -70,10 +70,10 @@ command = '''
 branch=$(starship module git_branch 2>/dev/null)
 status=$(starship module git_status 2>/dev/null)
 if [ -n "$branch" ]; then
-  echo "[$branch$status]"
+  echo "$branch$status"
 fi
 '''
-format = '[$output](white)'
+format = '[\[](white)$output[\]](white)'
 shell = ['bash']
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
