@@ -2,6 +2,7 @@ format = '[\[](white)$directory$kubernetes$aws$jobs$character(white) '
 add_newline = false
 right_format = '${custom.git_info}'
 palette = "catppuccin_mocha"
+continuation_prompt = '[>>](white) '
 
 [aws]
 symbol = '-'
