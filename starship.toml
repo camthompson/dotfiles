@@ -28,7 +28,7 @@ vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
 disabled = true
 
 [directory]
-format = '[ $path ]($style)[](fg:peach bg:black)'
+format = '[](fg:peach bg:base)[$path ]($style)[](fg:peach bg:black)'
 style = 'bold fg:base bg:peach'
 
 [fill]
@@ -36,7 +36,7 @@ symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '$symbol[ $branch(:$remote_branch) ]($style)'
+format = '$symbol[ $branch(:$remote_branch)[](fg:black bg:base)]($style)'
 style = 'fg:blue bg:black'
 
 [git_status]
