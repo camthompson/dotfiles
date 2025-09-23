@@ -28,6 +28,10 @@ vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
 disabled = true
 
 [directory]
+truncation_length = 3
+truncate_to_repo = true
+repo_root_style = 'bold fg:base bg:mauve'
+repo_root_format = '[](fg:mauve bg:base)[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[](fg:mauve bg:black)'
 format = '[](fg:mauve bg:base)[$path ]($style)[](fg:mauve bg:black)'
 style = 'bold fg:base bg:mauve'
 
