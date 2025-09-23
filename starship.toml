@@ -1,6 +1,7 @@
-format = '[\[](white)$directory$kubernetes$aws$jobs$character[\]](white) '
+#    
+format = '$directory$kubernetes$aws$jobs$character '
 add_newline = false
-right_format = '${custom.git_info}'
+right_format = '$git_status $git_branch'
 palette = "catppuccin_mocha"
 continuation_prompt = '[>>](white) '
 
@@ -15,44 +16,32 @@ edacious-production = 'production'
 edacious-ops = 'ops'
 
 [character]
-format = '$symbol'
-success_symbol = ''
-error_symbol = '[-](white)[!](red)'
-vimcmd_symbol = '[-](white)[N](purple)'
-vimcmd_replace_one_symbol = '[-](white)[R](purple)'
-vimcmd_replace_symbol = '[-](white)[R](purple)'
-vimcmd_visual_symbol = '[-](white)[R](yellow)'
+format = '[ $symbol ](bg:black)[](fg:black)'
+success_symbol = '[%](fg:white bg:black)'
+error_symbol = '[!](fg:red bg:black)'
+vimcmd_symbol = '[N](fg:blue bg:black)'
+vimcmd_replace_one_symbol = '[R](fg:red bg:black)'
+vimcmd_replace_symbol = '[R](fg:red bg:black)'
+vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
 
 [cmd_duration]
 disabled = true
 
-[custom.git_info]
-when = 'git rev-parse --is-inside-work-tree 2>/dev/null'
-command = '''
-branch=$(starship module git_branch 2>/dev/null)
-status=$(starship module git_status 2>/dev/null)
-if [ -n "$branch" ]; then
-  echo "$branch$status"
-fi
-'''
-format = '[\[](white)$output[\]](white)'
-shell = ['bash']
-
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
-style = 'blue'
+format = '[ $path ]($style)[](fg:mauve bg:black)'
+style = 'bold fg:base bg:mauve'
 
 [fill]
 symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '$symbol[$branch(:$remote_branch)]($style)'
-style = 'mauve'
+format = '[](fg:black bg:base)$symbol[ $branch(:$remote_branch) ]($style)'
+style = 'fg:blue bg:black'
 
 [git_status]
-format = '([-](white)[$all_status$ahead_behind]($style))'
-style = 'red'
+format = '([[](white) $all_status$ahead_behind]($style))'
+style = 'bold purple'
 
 [jobs]
 format = '[$symbol$number]($style)'
