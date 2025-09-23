@@ -1,4 +1,4 @@
-#    
+#        
 format = '$directory$kubernetes$aws$jobs$character '
 add_newline = false
 right_format = '${custom.git_status}$git_branch'
