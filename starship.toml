@@ -1,10 +1,9 @@
 #    
 format = '$directory$kubernetes$aws$jobs$character '
 add_newline = false
-right_format = '$git_status $git_branch'
+right_format = '${custom.git_status}$git_branch'
 palette = "catppuccin_mocha"
 continuation_prompt = '[>>](white) '
-# format = '[ $context]($style)[ ](fg:bright-white bg:black)'
 
 [aws]
 symbol = ''
@@ -29,20 +28,20 @@ vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
 disabled = true
 
 [directory]
-format = '[ $path ]($style)[](fg:mauve bg:black)'
-style = 'bold fg:base bg:mauve'
+format = '[ $path ]($style)[](fg:peach bg:black)'
+style = 'bold fg:base bg:peach'
 
 [fill]
 symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '[](fg:black bg:base)$symbol[ $branch(:$remote_branch) ]($style)'
-style = 'fg:mauve bg:black'
+format = '$symbol[ $branch(:$remote_branch) ]($style)'
+style = 'fg:blue bg:black'
 
 [git_status]
-format = '([[](bright-white) $all_status$ahead_behind]($style))'
-style = 'bold red'
+format = '([](fg:black bg:base)[ $all_status$ahead_behind]($style)[ ](fg:bright-white bg:black))'
+style = 'bold fg:purple bg:black'
 
 [jobs]
 format = '[$symbol$number]($style)'
@@ -69,6 +68,19 @@ format = '[$symbol($version)]($style):'
 symbol = ""
 format = '[${symbol}${pyenv_prefix}(${version})]($style):'
 
+
+[custom.git_status]
+when = 'git rev-parse --git-dir > /dev/null 2>&1'
+command = '''
+status=$(starship module git_status)
+if [ -z "$status" ]; then
+    echo ""
+else
+    echo " $status"
+fi
+'''
+format = '[$output](fg:black bg:base)'
+shell = ['sh']
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 [palettes.catppuccin_mocha]
