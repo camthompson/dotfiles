@@ -28,8 +28,8 @@ vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
 disabled = true
 
 [directory]
-format = '[](fg:peach bg:base)[$path ]($style)[](fg:peach bg:black)'
-style = 'bold fg:base bg:peach'
+format = '[](fg:mauve bg:base)[$path ]($style)[](fg:mauve bg:black)'
+style = 'bold fg:base bg:mauve'
 
 [fill]
 symbol = ' '
@@ -41,7 +41,7 @@ style = 'fg:blue bg:black'
 
 [git_status]
 format = '([](fg:black bg:base)[ $all_status$ahead_behind]($style)[ ](fg:bright-white bg:black))'
-style = 'bold fg:purple bg:black'
+style = 'bold fg:peach bg:black'
 
 [jobs]
 format = '[$symbol$number]($style)'
