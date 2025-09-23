@@ -8,12 +8,12 @@ continuation_prompt = '[>>](white) '
 
 [aws]
 symbol = ''
-format = '[ $profile]($style)[ ](fg:bright-white bg:black)'
+format = '([ $profile]($style)[ ](fg:bright-white bg:black))'
 style = 'fg:yellow bg:black'
 
 [aws.profile_aliases]
-edacious-sandbox = 'sandbox'
-edacious-production = 'production'
+edacious-sandbox = 'sb'
+edacious-production = 'prod'
 edacious-ops = 'ops'
 
 [character]
@@ -51,7 +51,7 @@ style = "cyan"
 [kubernetes]
 symbol = ''
 disabled = false
-format = '[ $context]($style)[ ](fg:bright-white bg:black)'
+format = '([ $context]($style)[ ](fg:bright-white bg:black))'
 style = 'fg:cyan bg:black'
 
 [[kubernetes.contexts]]
@@ -61,10 +61,6 @@ context_alias = ""
 [[kubernetes.contexts]]
 context_pattern = "sandbox"
 context_alias = "sb"
-
-[[kubernetes.contexts]]
-context_pattern = "prod"
-style = "fg:red bg:black"
 
 [nodejs]
 format = '[$symbol($version)]($style):'
