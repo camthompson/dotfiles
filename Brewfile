@@ -2,10 +2,8 @@ tap "camthompson/casks"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "nikitabobko/tap"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
-tap "oven-sh/bun"
 tap "px4/px4"
 tap "qmk/qmk"
 brew "brotli"
@@ -50,7 +48,7 @@ brew "neovim"
 brew "nvm"
 brew "openssl@1.1"
 brew "pkgconf"
-brew "postgresql@14"
+brew "postgresql@17"
 brew "reattach-to-user-namespace"
 brew "redis"
 brew "ripgrep"
@@ -66,10 +64,8 @@ brew "universal-ctags"
 brew "watchman"
 brew "wget"
 brew "yq"
-brew "zellij"
 brew "zsh"
 brew "hashicorp/tap/terraform"
-brew "oven-sh/bun/bun"
 brew "px4/px4/gcc-arm-none-eabi", link: false
 brew "qmk/qmk/qmk"
 cask "1password"
@@ -79,11 +75,8 @@ cask "bitwarden"
 cask "brave-browser"
 cask "brave-browser@beta"
 cask "brave-browser@nightly"
-cask "carbon-copy-cloner"
 cask "claude"
 cask "colorpicker-skalacolor"
-cask "cursor"
-cask "dash"
 cask "discord"
 cask "docker-desktop"
 cask "figma"
@@ -104,33 +97,23 @@ cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-edge@dev"
 cask "notion"
-cask "pop-app"
 cask "raycast"
 cask "safari-technology-preview"
 cask "superwhisper"
-cask "visual-studio-code"
 cask "zwift"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
-mas "Marked 2", id: 890031187
-mas "Mic Drop", id: 1489816366
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Parcel", id: 375589283
-mas "Pastel", id: 413897608
 mas "PCalc", id: 403504866
-mas "Pins", id: 1547106997
 mas "PiPifier", id: 1160374471
-mas "Reeder", id: 1529448980
 mas "Slack", id: 803453959
 mas "Tabs to Links", id: 1451408472
 mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
-vscode "bierner.markdown-mermaid"
-vscode "github.copilot"
-vscode "github.copilot-chat"
