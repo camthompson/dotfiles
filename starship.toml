@@ -38,7 +38,7 @@ symbol = ' '
 [git_branch]
 symbol = ''
 format = '[](fg:black bg:base)$symbol[ $branch(:$remote_branch) ]($style)'
-style = 'fg:blue bg:black'
+style = 'fg:mauve bg:black'
 
 [git_status]
 format = '([[](bright-white) $all_status$ahead_behind]($style))'
