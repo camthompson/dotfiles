@@ -41,7 +41,7 @@ style = 'fg:blue bg:black'
 
 [git_status]
 format = '([[](white) $all_status$ahead_behind]($style))'
-style = 'bold purple'
+style = 'bold red'
 
 [jobs]
 format = '[$symbol$number]($style)'
