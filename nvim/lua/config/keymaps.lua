@@ -94,3 +94,12 @@ vim.keymap.del({ "n", "i", "v" }, "<A-k>")
 -- Sideways
 vim.keymap.set("n", "ch", ":SidewaysLeft<cr>")
 vim.keymap.set("n", "cl", ":SidewaysRight<cr>")
+
+-- Yanky
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
