@@ -87,3 +87,7 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
 
 -- Set colorscheme
 vim.cmd.colorscheme("catppuccin-mocha")
+
+-- ripgrep
+vim.opt.grepprg = "rg --vimgrep --smart-case --hidden"
+vim.opt.grepformat = "%f:%l:%c:%m,%f"
