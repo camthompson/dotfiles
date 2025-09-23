@@ -15,13 +15,13 @@ edacious-production = 'production'
 edacious-ops = 'ops'
 
 [character]
-format = '[—](white)$symbol'
-success_symbol = '[%](yellow)'
-error_symbol = '[%](red)'
-vimcmd_symbol = '[N](purple)'
-vimcmd_replace_one_symbol = '[R](purple)'
-vimcmd_replace_symbol = '[R](purple)'
-vimcmd_visual_symbol = '[R](yellow)'
+format = '$symbol'
+success_symbol = ''
+error_symbol = '[-](white)[!](red)'
+vimcmd_symbol = '[-](white)[N](purple)'
+vimcmd_replace_one_symbol = '[-](white)[R](purple)'
+vimcmd_replace_symbol = '[-](white)[R](purple)'
+vimcmd_visual_symbol = '[-](white)[R](yellow)'
 
 [cmd_duration]
 disabled = true
