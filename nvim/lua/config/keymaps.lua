@@ -84,7 +84,7 @@ vim.keymap.set("x", "Q", "gq", { desc = "Format selection" })
 vim.keymap.set("n", "vv", "^vg_", { desc = "Select line content" })
 
 -- Show previous buffer
-vim.keymap.set("n", "gb", ":bprevious<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "g;", ":bprevious<cr>", { desc = "Previous buffer" })
 
 -- Unmap <A-j> and <A-k> from LazyVim
 -- This handles an annoying problem where <esc> and then j or k too quickly reorders lines
