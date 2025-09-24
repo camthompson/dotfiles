@@ -31,8 +31,8 @@ disabled = true
 truncation_length = 3
 truncate_to_repo = true
 repo_root_style = 'bold fg:base bg:mauve'
-repo_root_format = '[](fg:mauve bg:base)[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[](fg:mauve bg:black)'
-format = '[](fg:mauve bg:base)[$path ]($style)[](fg:mauve bg:black)'
+repo_root_format = '[ $before_root_path]($style)[$repo_root ]($repo_root_style)[$path]($style)[](fg:mauve bg:black)'
+format = '[ $path ]($style)[](fg:mauve bg:black)'
 style = 'bold fg:base bg:mauve'
 
 [fill]
@@ -40,7 +40,7 @@ symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '$symbol[ $branch(:$remote_branch)[](fg:black bg:base)]($style)'
+format = '$symbol[ $branch(:$remote_branch) ]($style)'
 style = 'fg:blue bg:black'
 
 [git_status]
