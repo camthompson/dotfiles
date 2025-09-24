@@ -48,7 +48,7 @@ brew "neovim"
 brew "nvm"
 brew "openssl@1.1"
 brew "pkgconf"
-brew "postgresql@17"
+brew "postgresql@17", link: true
 brew "reattach-to-user-namespace"
 brew "redis"
 brew "ripgrep"
