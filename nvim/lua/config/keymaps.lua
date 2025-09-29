@@ -103,3 +103,6 @@ vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+
+-- Diffview
+vim.keymap.set({ "n" }, "<leader>dv", ":DiffviewOpen main<cr>")
