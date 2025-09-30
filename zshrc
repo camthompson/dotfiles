@@ -227,7 +227,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 source $HOME/.zsh/bundle/history-substring-search/zsh-history-substring-search.zsh
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=white,fg=black'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=green,fg=#1e1e2e'
 
 function editor-info {
   # Clean up previous $editor_info.
