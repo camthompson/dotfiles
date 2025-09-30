@@ -254,9 +254,6 @@ function editor-info {
 }
 zle -N editor-info
 
-builtin typeset -ag precmd_functions
-precmd_functions+=(__set_beam_cursor)
-
 function __set_beam_cursor {
     echo -ne '\e[6 q'
 }
