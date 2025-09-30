@@ -44,8 +44,8 @@ format = '$symbol[ $branch(:$remote_branch) ]($style)'
 style = 'fg:blue bg:black'
 
 [git_status]
-format = '([](fg:black bg:base)[ $all_status$ahead_behind]($style)[ ](fg:bright-white bg:black))'
-style = 'bold fg:peach bg:black'
+format = '([](fg:peach bg:base)[ $all_status$ahead_behind ]($style)[](fg:black bg:peach))'
+style = 'bold fg:base bg:peach'
 
 [jobs]
 format = '[$symbol$number]($style)'
