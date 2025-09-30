@@ -229,6 +229,102 @@ export KEYTIMEOUT=1
 source $HOME/.zsh/bundle/history-substring-search/zsh-history-substring-search.zsh
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=white,fg=black'
 
+function editor-info {
+  # Clean up previous $editor_info.
+  unset editor_info
+  typeset -gA editor_info
+
+  if [[ "$KEYMAP" == 'vicmd' ]]; then
+    zstyle -s ':keymap:command' format 'REPLY'
+    editor_info[keymap]="$REPLY"
+  else
+    if [[ "$ZLE_STATE" == *overwrite* ]]; then
+      zstyle -s ':keymap:overwrite' format 'REPLY'
+      editor_info[keymap]="$REPLY"
+    else
+      zstyle -s ':keymap:insert' format 'REPLY'
+      editor_info[keymap]="$REPLY"
+    fi
+  fi
+
+  unset REPLY
+
+  zle reset-prompt
+  zle -R
+}
+zle -N editor-info
+
+builtin typeset -ag precmd_functions
+precmd_functions+=(__set_beam_cursor)
+
+function __set_beam_cursor {
+    echo -ne '\e[6 q'
+}
+
+function __set_block_cursor {
+    echo -ne '\e[2 q'
+}
+
+builtin typeset -ag precmd_functions
+precmd_functions+=(__set_beam_cursor)
+
+function zle-keymap-select zle-line-init zle-line-finish {
+  # The terminal must be in application mode when ZLE is active for $terminfo
+  # values to be valid.
+  if (( $+terminfo[smkx] && $+terminfo[rmkx] )); then
+    case "$0" in
+      (zle-line-init)
+        # Enable terminal application mode.
+        echoti smkx
+      ;;
+      (zle-line-finish)
+        # Disable terminal application mode.
+        echoti rmkx
+      ;;
+    esac
+  fi
+
+  # Update editor information.
+  zle editor-info
+
+  case $KEYMAP in
+    vicmd) __set_block_cursor;;
+    viins|main) __set_beam_cursor;;
+  esac
+}
+zle -N zle-keymap-select
+zle -N zle-line-finish
+zle -N zle-line-init
+
+# Toggles emacs overwrite mode and updates editor information.
+function overwrite-mode {
+  zle .overwrite-mode
+  zle editor-info
+}
+zle -N overwrite-mode
+
+# Enters vi insert mode and updates editor information.
+function vi-insert {
+  zle .vi-insert
+  zle editor-info
+}
+zle -N vi-insert
+
+# Moves to the first non-blank character then enters vi insert mode and updates
+# editor information.
+function vi-insert-bol {
+  zle .vi-insert-bol
+  zle editor-info
+}
+zle -N vi-insert-bol
+
+# Enters vi replace mode and updates editor information.
+function vi-replace  {
+  zle .vi-replace
+  zle editor-info
+}
+zle -N vi-replace
+
 bindkey -M vicmd v edit-command-line
 bindkey -M viins '^A' beginning-of-line
 bindkey -M viins '^B' backward-char
