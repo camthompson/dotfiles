@@ -69,7 +69,9 @@ return {
       },
       linters = {
         mypy_cluster = {
-          cmd = "/Users/cam/work/gemyn/mypy.sh",
+          cmd = function()
+            return vim.fn.getcwd() .. "/mypy.sh"
+          end,
           stdin = false,
           append_fname = false,
           args = {},
