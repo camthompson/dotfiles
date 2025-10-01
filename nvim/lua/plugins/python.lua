@@ -69,26 +69,36 @@ return {
       },
       linters = {
         mypy_cluster = {
-          cmd = "/Users/cam/work/gemyn/mypy-file.sh",
+          cmd = "/Users/cam/work/gemyn/mypy.sh",
           stdin = false,
-          append_fname = true,
+          append_fname = false,
           args = {},
           stream = "both",
           ignore_exitcode = true,
-          parser = function(output, _)
+          parser = function(output, bufnr)
             local diagnostics = {}
+            local current_file = vim.api.nvim_buf_get_name(bufnr)
+            local root = vim.fn.getcwd()
 
             for line in output:gmatch("[^\r\n]+") do
               local file, lnum, severity, msg = line:match("^(.+):(%d+): (%w+): (.+)$")
               if file and lnum then
-                local sev = severity == "error" and vim.diagnostic.severity.ERROR or vim.diagnostic.severity.WARN
-                table.insert(diagnostics, {
-                  lnum = tonumber(lnum) - 1,
-                  col = 0,
-                  severity = sev,
-                  message = msg,
-                  source = "mypy",
-                })
+                -- Normalize container path to local path for comparison
+                -- Container: //opt/gemyn/src/api/...
+                -- Local: /Users/cam/work/gemyn/src/api/...
+                local normalized_file = file:gsub("^//opt/gemyn/", root .. "/")
+
+                -- Only include diagnostics for the current file
+                if normalized_file == current_file then
+                  local sev = severity == "error" and vim.diagnostic.severity.ERROR or vim.diagnostic.severity.WARN
+                  table.insert(diagnostics, {
+                    lnum = tonumber(lnum) - 1,
+                    col = 0,
+                    severity = sev,
+                    message = msg,
+                    source = "mypy",
+                  })
+                end
               end
             end
             return diagnostics
