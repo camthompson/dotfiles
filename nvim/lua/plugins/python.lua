@@ -1,96 +1,100 @@
 return {
-  -- Completely disable all Python language servers
+  -- Configure Python LSP with diagnostics disabled
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      -- Disable all Python language servers
-      opts.servers = opts.servers or {}
-      opts.servers.basedpyright = false
-      opts.servers.pyright = false
-      opts.servers.pylsp = false
-      opts.servers.jedi_language_server = false
-      opts.servers.ruff = false
-      opts.servers.ruff_lsp = false
-
-      -- Also prevent setup if they somehow get through
-      opts.setup = opts.setup or {}
-      opts.setup.basedpyright = function()
-        return true
-      end
-      opts.setup.pyright = function()
-        return true
-      end
-      opts.setup.pylsp = function()
-        return true
-      end
-      opts.setup.jedi_language_server = function()
-        return true
-      end
-      opts.setup.ruff = function()
-        return true
-      end
-      opts.setup.ruff_lsp = function()
-        return true
-      end
-
-      return opts
-    end,
-  },
-  -- Disable venv-selector which might trigger LSP setup
-  {
-    "linux-cultist/venv-selector.nvim",
-    enabled = false,
-  },
-  -- Ensure Mason doesn't install Python LSPs
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      -- Add ruff for formatting
-      vim.list_extend(opts.ensure_installed, { "ruff" })
-
-      -- Remove any Python LSPs from ensure_installed
-      local python_lsps =
-        { "basedpyright", "pyright", "pylsp", "python-lsp-server", "jedi-language-server", "ruff-lsp" }
-      for i = #opts.ensure_installed, 1, -1 do
-        for _, lsp in ipairs(python_lsps) do
-          if opts.ensure_installed[i] == lsp then
-            table.remove(opts.ensure_installed, i)
-            break
-          end
-        end
-      end
-
-      return opts
-    end,
-  },
-  -- Configure Ruff for formatting only
-  {
-    "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = {
-        python = { "ruff_format" },
+      servers = {
+        -- Disable these LSPs
+        pyright = false,
+        pylsp = false,
+        ruff_lsp = false,
+        ruff = false,
+        -- Enable basedpyright with diagnostics disabled
+        basedpyright = {
+          on_attach = function(client, _)
+            client.server_capabilities.diagnosticProvider = false
+          end,
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "off",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
+              },
+            },
+          },
+        },
       },
     },
   },
-  -- Disable Python linting
+
+  -- Ensure basedpyright is installed
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "basedpyright",
+        "ruff",
+      },
+    },
+  },
+
+  -- Configure formatting with ruff
+  {
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      opts.formatters_by_ft = opts.formatters_by_ft or {}
+      opts.formatters_by_ft.python = { "ruff_format" }
+
+      opts.formatters = opts.formatters or {}
+      opts.formatters.ruff_format = {
+        command = "ruff",
+        args = function()
+          local root = vim.fn.getcwd()
+          return { "format", "--config", root .. "/src/pyproject.toml", "--stdin-filename", "$FILENAME", "-" }
+        end,
+        stdin = true,
+      }
+      return opts
+    end,
+  },
+
+  -- Configure linting with mypy
   {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
-        python = {},
+        python = { "mypy_cluster" },
+      },
+      linters = {
+        mypy_cluster = {
+          cmd = "/Users/cam/work/gemyn/mypy-file.sh",
+          stdin = false,
+          append_fname = true,
+          args = {},
+          stream = "both",
+          ignore_exitcode = true,
+          parser = function(output, _)
+            local diagnostics = {}
+
+            for line in output:gmatch("[^\r\n]+") do
+              local file, lnum, severity, msg = line:match("^(.+):(%d+): (%w+): (.+)$")
+              if file and lnum then
+                local sev = severity == "error" and vim.diagnostic.severity.ERROR or vim.diagnostic.severity.WARN
+                table.insert(diagnostics, {
+                  lnum = tonumber(lnum) - 1,
+                  col = 0,
+                  severity = sev,
+                  message = msg,
+                  source = "mypy",
+                })
+              end
+            end
+            return diagnostics
+          end,
+        },
       },
     },
-  },
-  -- Override LazyVim Python extra to disable LSPs
-  {
-    "LazyVim/LazyVim",
-    optional = true,
-    opts = function(_, opts)
-      -- Disable Python LSP in LazyVim
-      vim.g.lazyvim_python_lsp = false
-      vim.g.lazyvim_python_ruff = false
-      return opts
-    end,
   },
 }
