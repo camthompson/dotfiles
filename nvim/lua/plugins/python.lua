@@ -43,21 +43,21 @@ return {
   -- Configure formatting with ruff
   {
     "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft = opts.formatters_by_ft or {}
-      opts.formatters_by_ft.python = { "ruff_format" }
-
-      opts.formatters = opts.formatters or {}
-      opts.formatters.ruff_format = {
-        command = "ruff",
-        args = function()
-          local root = vim.fn.getcwd()
-          return { "format", "--config", root .. "/src/pyproject.toml", "--stdin-filename", "$FILENAME", "-" }
-        end,
-        stdin = true,
-      }
-      return opts
-    end,
+    opts = {
+      formatters_by_ft = {
+        python = { "ruff_format" },
+      },
+      formatters = {
+        ruff_format = {
+          command = "ruff",
+          args = function()
+            local root = vim.fn.getcwd()
+            return { "format", "--config", root .. "/src/pyproject.toml", "--stdin-filename", "$FILENAME", "-" }
+          end,
+          stdin = true,
+        },
+      },
+    },
   },
 
   -- Configure linting with mypy
