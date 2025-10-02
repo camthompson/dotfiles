@@ -100,6 +100,7 @@
   up = !sh -c 'git pull --rebase && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
   wc = whatchanged -p --abbrev-commit --pretty=medium
   wt = worktree
+  wta = "!f() { repo=$(basename \"$(git rev-parse --show-toplevel)\"); git worktree add \"../${repo}-$1\" \"$1\"; }; f"
 [pull]
   rebase = merges
   default = current
