@@ -34,7 +34,6 @@
 [push]
   default = current
 [diff]
-  colorMoved = plain
   mnemonicprefix = true
   renames = copies
   compactionHeuristic = true
