@@ -59,15 +59,11 @@
   d = diff
   dc = diff --cached
   dh1 = diff HEAD~1
-  div = divergence
   ds = diff --stat
   dss = diff --shortstat
   f = fetch
   fa = fetch --all
-  find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   g = grep
-  gn = goodness
-  gnc = goodness --cached
   h = !git l -1
   l = log --oneline
   la = l --all
@@ -86,19 +82,16 @@
   rb = rebase
   rbi = rebase --interactive
   rbc = rebase --continue
-  re = reset
   rm = rm
-  rs = rebase --skip
+  rs = reset
   rv = remote --verbose
   sa = stash apply
   sh = stash
-  show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\"  ] && git show $merge'"
   sl = stash list
   sm = submodule
+  sp = stash pop
   u = pull
   uncommit = reset HEAD^
-  up = !sh -c 'git pull --rebase && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-  wc = whatchanged -p --abbrev-commit --pretty=medium
   wt = worktree
   wta = "!f() { repo=$(basename \"$(git rev-parse --show-toplevel)\"); git worktree add \"../${repo}-$1\" \"$1\"; }; f"
 [pull]
