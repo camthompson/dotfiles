@@ -4,7 +4,7 @@ return {
   opts = {
     view = {
       default = {
-        layout = "diff2_horizontal",
+        layout = "diff2_vertical",
       },
     },
   },
