@@ -23,26 +23,6 @@ if theme_changes.any?
   puts "Theme updates detected for: #{theme_changes.join(', ')}"
   puts "Re-applying theme configurations..."
 
-  # ghostty theme setup (inline)
-  if theme_changes.include?("ghostty") && File.directory?("themes/catppuccin-ghostty")
-    theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
-    config_file = "ghostty/config"
-
-    if File.exist?(config_file) && system("grep -q '#{theme_marker}' '#{config_file}' 2>/dev/null")
-      # Create backup and remove old theme section
-      `cp #{config_file} #{config_file}.bak`
-      `sed -i '' '/#{theme_marker}/,$d' '#{config_file}'`
-
-      # Append theme marker and content
-      File.open(config_file, 'a') do |f|
-        f.puts ""
-        f.puts theme_marker
-        f.puts "theme = light:catppuccin-latte,dark:catppuccin-mocha"
-      end
-      puts "  ✓ ghostty theme updated (mocha for dark mode, latte for light mode)"
-    end
-  end
-
   # starship theme setup (inline)
   if theme_changes.include?("starship") && File.directory?("themes/catppuccin-starship")
     theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
