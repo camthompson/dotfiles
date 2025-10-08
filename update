@@ -37,9 +37,9 @@ if theme_changes.any?
       File.open(config_file, 'a') do |f|
         f.puts ""
         f.puts theme_marker
-        f.write File.read("themes/catppuccin-ghostty/themes/catppuccin-mocha.conf")
+        f.puts "theme = light:catppuccin-latte,dark:catppuccin-mocha"
       end
-      puts "  ✓ ghostty theme updated"
+      puts "  ✓ ghostty theme updated (mocha for dark mode, latte for light mode)"
     end
   end
 
