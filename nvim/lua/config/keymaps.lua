@@ -106,3 +106,7 @@ vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
 
 -- Diffview
 vim.keymap.set({ "n" }, "<leader>dv", ":DiffviewOpen main<cr>")
+
+-- Theme toggles
+vim.keymap.set("n", "<leader>td", ":colorscheme catppuccin-mocha<cr>", { desc = "Theme Dark (Mocha)" })
+vim.keymap.set("n", "<leader>tl", ":colorscheme catppuccin-latte<cr>", { desc = "Theme Light (Latte)" })
