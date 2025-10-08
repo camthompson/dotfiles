@@ -31,7 +31,7 @@ disabled = true
 truncation_length = 3
 truncate_to_repo = true
 repo_root_style = 'bold fg:base bg:mauve'
-repo_root_format = '[ $before_root_path]($style)[$repo_root ]($repo_root_style)[$path]($style)[](fg:mauve bg:black)'
+repo_root_format = '[ $before_root_path]($style)[$repo_root]($repo_root_style)[$path ]($style)[](fg:mauve bg:black)'
 format = '[ $path ]($style)[](fg:mauve bg:black)'
 style = 'bold fg:base bg:mauve'
 
