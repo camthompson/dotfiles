@@ -44,7 +44,7 @@ format = '$symbol[ $branch(:$remote_branch) ]($style)'
 style = 'fg:blue bg:black'
 
 [git_status]
-format = '([](fg:peach bg:base)[ $all_status$ahead_behind ]($style)[](fg:black bg:peach))'
+format = '([](fg:peach)[ $all_status$ahead_behind ]($style)[](fg:black bg:peach))'
 style = 'bold fg:base bg:peach'
 
 [jobs]
@@ -83,7 +83,7 @@ else
     echo " $status"
 fi
 '''
-format = '[$output](fg:black bg:base)'
+format = '[$output](fg:black)'
 shell = ['sh']
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
