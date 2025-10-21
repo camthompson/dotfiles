@@ -39,6 +39,7 @@ brew "helm"
 brew "icu4c@76"
 brew "imagemagick"
 brew "jq"
+brew "lazygit"
 brew "libffi"
 brew "libyaml"
 brew "loc"
@@ -103,6 +104,7 @@ cask "notion"
 cask "raycast"
 cask "safari-technology-preview"
 cask "superwhisper"
+cask "visual-studio-code"
 cask "zwift"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
@@ -120,3 +122,4 @@ mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
+vscode "anthropic.claude-code"
