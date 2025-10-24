@@ -116,8 +116,19 @@ fi
 
 # lazygit theme setup
 if [ -d "themes/catppuccin-lazygit" ]; then
-  ln -sf "$PWD/themes/catppuccin-lazygit/themes/mocha/mauve.yml" "lazygit/config.yml"
-  echo "  ✓ lazygit theme linked (mocha-mauve)"
+  # Remove everything after the theme marker and append new theme
+  theme_marker="# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
+  if grep -q "$theme_marker" "lazygit/config.yml" 2>/dev/null; then
+    # Remove old theme section
+    sed -i.bak "/$theme_marker/,\$d" "lazygit/config.yml"
+  fi
+  # Append theme marker and content
+  if [ -s "lazygit/config.yml" ] && [ "$(tail -c1 "lazygit/config.yml" | wc -l)" -eq 0 ]; then
+    echo "" >>"lazygit/config.yml"
+  fi
+  echo "$theme_marker" >>"lazygit/config.yml"
+  cat "themes/catppuccin-lazygit/themes/mocha/mauve.yml" >>"lazygit/config.yml"
+  echo "  ✓ lazygit config updated (mocha-mauve theme + delta pager)"
 fi
 
 # starship theme setup
