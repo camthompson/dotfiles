@@ -12,5 +12,6 @@ vim/bundle/*
 karabiner/automatic_backups/
 coc/extensions/node_modules/
 coc/extensions/coc-json-data/json-schema-cache
+lazygit/state.yml
 .claude/settings.local.json
 *.bak

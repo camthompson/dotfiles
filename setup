@@ -11,7 +11,6 @@ config_items=(
   "eza"
   "ghostty"
   "karabiner"
-  "lazygit"
   "lsd"
   "nvim"
   "starship.toml"
@@ -21,6 +20,7 @@ config_items=(
 # Base ignore list (items that shouldn't be symlinked to home at all)
 base_ignorelist=(
   "com.camthompson.macos.updateip.plist"
+  "lazygit"
   "README.md"
   "setup"
   "update"
@@ -46,6 +46,15 @@ for item in "${config_items[@]}"; do
     ln -s "$PWD/$item" "$HOME/.config/$item"
   fi
 done
+
+# Special handling for lazygit (macOS uses ~/Library/Application Support/lazygit)
+if [ -d "lazygit" ]; then
+  lazygit_config_dir="$HOME/Library/Application Support/lazygit"
+  if [ ! -L "$lazygit_config_dir" ] || [ "$(readlink "$lazygit_config_dir")" != "$PWD/lazygit" ]; then
+    rm -rf "$lazygit_config_dir"
+    ln -s "$PWD/lazygit" "$lazygit_config_dir"
+  fi
+fi
 
 # Link everything else to home directory with dot prefix
 for f in *; do
@@ -127,7 +136,7 @@ if [ -d "themes/catppuccin-lazygit" ]; then
     echo "" >>"lazygit/config.yml"
   fi
   echo "$theme_marker" >>"lazygit/config.yml"
-  cat "themes/catppuccin-lazygit/themes/mocha/mauve.yml" >>"lazygit/config.yml"
+  cat "themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml" >>"lazygit/config.yml"
   echo "  ✓ lazygit config updated (mocha-mauve theme + delta pager)"
 fi
 

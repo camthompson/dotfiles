@@ -38,7 +38,7 @@ if theme_changes.any?
       File.open(config_file, 'a') do |f|
         f.puts ""
         f.puts theme_marker
-        f.write File.read("themes/catppuccin-lazygit/themes/mocha/mauve.yml")
+        f.write File.read("themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml")
       end
       puts "  ✓ lazygit theme updated"
     end
