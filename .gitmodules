@@ -34,3 +34,6 @@
 [submodule "themes/catppuccin-fsh"]
 	path = themes/catppuccin-fsh
 	url = https://github.com/catppuccin/zsh-fsh.git
+[submodule "themes/catppuccin-lazygit"]
+	path = themes/catppuccin-lazygit
+	url = https://github.com/catppuccin/lazygit

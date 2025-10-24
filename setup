@@ -11,6 +11,7 @@ config_items=(
   "eza"
   "ghostty"
   "karabiner"
+  "lazygit"
   "lsd"
   "nvim"
   "starship.toml"
@@ -111,6 +112,12 @@ if [ -d "themes/catppuccin-fzf" ]; then
   mkdir -p "zsh"
   ln -sf "$PWD/themes/catppuccin-fzf/themes/catppuccin-fzf-mocha.sh" "zsh/catppuccin-fzf.sh"
   echo "  ✓ fzf theme linked"
+fi
+
+# lazygit theme setup
+if [ -d "themes/catppuccin-lazygit" ]; then
+  ln -sf "$PWD/themes/catppuccin-lazygit/themes/mocha/mauve.yml" "lazygit/config.yml"
+  echo "  ✓ lazygit theme linked (mocha-mauve)"
 fi
 
 # starship theme setup
