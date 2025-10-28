@@ -362,6 +362,10 @@ compdef mygit=git
 function mcd {
   mkdir -p "$*" && cd "$*"
 }
+
+function workuv {
+  GIT_SSH_COMMAND="ssh -i ~/.ssh/id_work" uv "$@"
+}
 # }}}
 
 # History {{{
