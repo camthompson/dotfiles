@@ -64,9 +64,39 @@ alias l='eza --git --icons'
 alias la='eza --git --icons -a'
 alias ll='eza --git --icons -l'
 alias lal='eza --git --icons -al'
-lt() { eza --git --icons --tree ${1:+--level="$1"} }
-lta() { eza --git --icons --tree -a ${1:+--level="$1"} }
-ltd() { eza --git --icons --tree --only-dirs ${1:+--level="$1"} }
+lt() {
+  local level="" dir=""
+  for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]]; then
+      level="$arg"
+    else
+      dir="$arg"
+    fi
+  done
+  eza --git --icons --tree ${level:+--level="$level"} ${dir:+"$dir"}
+}
+lta() {
+  local level="" dir=""
+  for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]]; then
+      level="$arg"
+    else
+      dir="$arg"
+    fi
+  done
+  eza --git --icons --tree -a ${level:+--level="$level"} ${dir:+"$dir"}
+}
+ltd() {
+  local level="" dir=""
+  for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]]; then
+      level="$arg"
+    else
+      dir="$arg"
+    fi
+  done
+  eza --git --icons --tree --only-dirs ${level:+--level="$level"} ${dir:+"$dir"}
+}
 # }}}
 
 # Colors {{{
