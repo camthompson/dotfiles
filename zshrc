@@ -285,11 +285,11 @@ function editor-info {
 zle -N editor-info
 
 function __set_beam_cursor {
-    echo -ne '\e[6 q'
+    echo -ne '\e[5 q'
 }
 
 function __set_block_cursor {
-    echo -ne '\e[2 q'
+    echo -ne '\e[1 q'
 }
 
 builtin typeset -ag precmd_functions
