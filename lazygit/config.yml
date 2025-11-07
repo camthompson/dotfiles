@@ -1,8 +1,7 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 gui:
   theme:
@@ -25,6 +24,5 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
-
   authorColors:
     '*': '#b4befe'
