@@ -6,4 +6,14 @@ return {
     { ",,", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
     { "<leader>;", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
   },
+  opts = {
+    winopts = {
+      preview = {
+        layout = "vertical",
+      },
+    },
+    fzf_opts = {
+      ["--layout"] = "reverse",
+    },
+  },
 }
