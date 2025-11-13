@@ -10,6 +10,7 @@ return {
     winopts = {
       preview = {
         layout = "vertical",
+        vertical = "down:80%",
       },
     },
     fzf_opts = {
