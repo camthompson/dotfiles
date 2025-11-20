@@ -22,7 +22,7 @@ return {
   dependencies = { "catppuccin/nvim" },
   keys = {
     {
-      "<leader>bi",
+      "<leader>uB",
       function()
         require("incline").toggle()
       end,
