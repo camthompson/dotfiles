@@ -123,6 +123,6 @@
  line-numbers-right-format = "{np:>4}│"
  wrap-max-lines = unlimited
  max-line-length = 0
- side-by-side = true
+ side-by-side = false
  file-modified-label = "modified:"
  diff-so-fancy = true
