@@ -4,6 +4,7 @@ return {
     dashboard = {
       enabled = false,
     },
+    image = {},
   },
   keys = {
     {
