@@ -49,6 +49,7 @@ brew "mas"
 brew "mosh"
 brew "neovim", args: ["HEAD"]
 brew "nvm"
+brew "opencode"
 brew "openssl@1.1"
 brew "pkgconf"
 brew "postgresql@17", link: true
@@ -108,6 +109,7 @@ cask "visual-studio-code"
 cask "zwift"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
+mas "Color Picker", id: 1545870783
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
