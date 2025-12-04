@@ -463,7 +463,7 @@ else
 fi
 
 # Setup fzf key bindings and completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # fzf aliases
 alias p='cd $(find ~/src -type d -maxdepth 2 | fzf)'
