@@ -477,7 +477,7 @@ fi
 source <(fzf --zsh)
 
 # fzf aliases
-alias p='cd $(find ~/src -type d -maxdepth 2 | fzf)'
+alias z='cd $(find ~/src -type d -maxdepth 2 | fzf)'
 alias vp='vim $(fzf --preview "bat --color=always {}")'
 alias vh='vim $(history | fzf | sed "s/.*vim //g")'
 alias rgf='rg --files-with-matches --no-messages "" | fzf --preview "bat --color=always {}"'
