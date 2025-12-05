@@ -477,7 +477,22 @@ fi
 source <(fzf --zsh)
 
 # fzf aliases
-alias z='cd $(find ~/src -type d -maxdepth 2 | fzf)'
+z() {
+  local dir query root
+  root="$PWD"
+  query=""
+
+  if [[ -n "$1" ]]; then
+    if [[ -d "$1" ]]; then
+      root="$(cd "$1" && pwd)"
+    else
+      query="$1"
+    fi
+  fi
+
+  dir=$(fd --type d --min-depth 1 --max-depth 2 . "$root" | sed "s|^${root}/||" | fzf ${query:+--query "$query"})
+  [[ -n "$dir" ]] && cd "$root/$dir"
+}
 alias vp='vim $(fzf --preview "bat --color=always {}")'
 alias vh='vim $(history | fzf | sed "s/.*vim //g")'
 alias rgf='rg --files-with-matches --no-messages "" | fzf --preview "bat --color=always {}"'
