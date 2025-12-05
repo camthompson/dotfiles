@@ -374,6 +374,17 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey -M viins ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
 bindkey -M viins '^U' backward-kill-line
+
+# Clear screen on empty enter
+clear-on-empty() {
+  if [[ -z $BUFFER ]]; then
+    zle clear-screen
+  else
+    zle accept-line
+  fi
+}
+zle -N clear-on-empty
+bindkey '^M' clear-on-empty
 # }}}
 
 # Functions {{{
