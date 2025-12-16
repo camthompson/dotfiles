@@ -27,7 +27,7 @@
 [credential]
   helper = osxkeychain
 [merge]
-  tool = fugitive
+	tool = vscode-diff
   stat = true
   conflictStyle = zdiff3
 [mergetool "fugitive"]
@@ -126,3 +126,5 @@
  side-by-side = false
  file-modified-label = "modified:"
  diff-so-fancy = true
+[mergetool "vscode-diff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
