@@ -104,8 +104,8 @@ vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
 
--- Diffview
-vim.keymap.set({ "n" }, "<leader>dv", ":DiffviewOpen main<cr>")
+-- vscode-diff
+vim.keymap.set({ "n" }, "<leader>gv", ":CodeDiff main<cr>", { desc = "CodeDiff main" })
 
 -- Theme toggles
 vim.keymap.set("n", "<leader>td", ":colorscheme catppuccin-mocha<cr>", { desc = "Theme Dark (Mocha)" })
