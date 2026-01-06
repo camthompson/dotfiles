@@ -10,3 +10,6 @@ opt.relativenumber = false -- Show absolute line numbers
 opt.timeoutlen = 1000 -- 1s to timeout after leader etc.
 
 vim.g.lazyvim_python_lsp = "basedpyright"
+
+-- Disable broken treesitter highlights for vim files (grammar/query mismatch)
+vim.treesitter.query.set("vim", "highlights", "")
