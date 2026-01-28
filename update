@@ -18,6 +18,7 @@ theme_changes << "lazygit" if system("git diff --quiet HEAD themes/catppuccin-la
 theme_changes << "starship" if system("git diff --quiet HEAD themes/catppuccin-starship") == false
 theme_changes << "fsh" if system("git diff --quiet HEAD themes/catppuccin-fsh") == false
 theme_changes << "fzf" if system("git diff --quiet HEAD themes/catppuccin-fzf") == false
+theme_changes << "k9s" if system("git diff --quiet HEAD themes/catppuccin-k9s") == false
 
 # Re-apply themes if any were updated
 if theme_changes.any?

@@ -109,6 +109,14 @@ if [ -d "themes/catppuccin-ghostty" ]; then
   echo "  ✓ ghostty themes linked (mocha for dark mode, latte for light mode)"
 fi
 
+# k9s theme setup (macOS uses ~/Library/Application Support/k9s/skins)
+if [ -d "themes/catppuccin-k9s" ]; then
+  k9s_skins_dir="$HOME/Library/Application Support/k9s/skins"
+  mkdir -p "$k9s_skins_dir"
+  ln -sf "$PWD/themes/catppuccin-k9s/dist/catppuccin-mocha.yaml" "$k9s_skins_dir/catppuccin-mocha.yaml"
+  echo "  ✓ k9s theme linked"
+fi
+
 # fast-syntax-highlighting theme setup
 if [ -d "themes/catppuccin-fsh" ]; then
   mkdir -p "$HOME/.config/fsh"
