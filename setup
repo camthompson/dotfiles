@@ -20,6 +20,7 @@ config_items=(
 # Base ignore list (items that shouldn't be symlinked to home at all)
 base_ignorelist=(
   "com.camthompson.macos.updateip.plist"
+  "k9s"
   "lazygit"
   "README.md"
   "setup"
@@ -109,12 +110,17 @@ if [ -d "themes/catppuccin-ghostty" ]; then
   echo "  ✓ ghostty themes linked (mocha for dark mode, latte for light mode)"
 fi
 
-# k9s theme setup (macOS uses ~/Library/Application Support/k9s/skins)
-if [ -d "themes/catppuccin-k9s" ]; then
-  k9s_skins_dir="$HOME/Library/Application Support/k9s/skins"
-  mkdir -p "$k9s_skins_dir"
-  ln -sf "$PWD/themes/catppuccin-k9s/dist/catppuccin-mocha.yaml" "$k9s_skins_dir/catppuccin-mocha.yaml"
-  echo "  ✓ k9s theme linked"
+# k9s config setup (macOS uses ~/Library/Application Support/k9s)
+if [ -d "k9s" ]; then
+  k9s_dir="$HOME/Library/Application Support/k9s"
+  mkdir -p "$k9s_dir" "$k9s_dir/skins"
+  ln -sf "$PWD/k9s/config.yaml" "$k9s_dir/config.yaml"
+  ln -sf "$PWD/k9s/aliases.yaml" "$k9s_dir/aliases.yaml"
+  if [ -d "themes/catppuccin-k9s" ]; then
+    ln -sf "$PWD/themes/catppuccin-k9s/dist/catppuccin-mocha.yaml" "$k9s_dir/skins/catppuccin-mocha.yaml"
+    echo "  ✓ k9s theme linked"
+  fi
+  echo "  ✓ k9s config linked"
 fi
 
 # fast-syntax-highlighting theme setup
