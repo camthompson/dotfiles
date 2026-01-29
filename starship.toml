@@ -1,14 +1,14 @@
 #        
-format = '$directory$kubernetes$aws$jobs$character '
+format = '[\[](fg:white)$directory$kubernetes$aws$jobs[\]](fg:white) $character '
 add_newline = false
-right_format = '${custom.git_status}$git_branch'
+right_format = '$git_status$git_branch'
 palette = "catppuccin_mocha"
 continuation_prompt = '[>>](white) '
 
 [aws]
 symbol = ''
-format = '([ $profile]($style)[ ](fg:bright-white bg:black))'
-style = 'fg:yellow bg:black'
+format = '[:](fg:white)[$profile]($style)'
+style = 'fg:yellow'
 
 [aws.profile_aliases]
 edacious-sandbox = 'sb'
@@ -16,13 +16,13 @@ edacious-production = 'prod'
 edacious-ops = 'ops'
 
 [character]
-format = '[ $symbol ](bg:black)[](fg:black)'
-success_symbol = '[❯](fg:green bg:black)'
-error_symbol = '[❯](fg:red bg:black)'
-vimcmd_symbol = '[❮](fg:blue bg:black)'
-vimcmd_replace_one_symbol = '[R](fg:red bg:black)'
-vimcmd_replace_symbol = '[R](fg:red bg:black)'
-vimcmd_visual_symbol = '[R](fg:yellow bg:black)'
+format = '$symbol'
+success_symbol = '[❯](fg:green)'
+error_symbol = '[❯](fg:red)'
+vimcmd_symbol = '[❮](fg:blue)'
+vimcmd_replace_one_symbol = '[R](fg:red)'
+vimcmd_replace_symbol = '[R](fg:red)'
+vimcmd_visual_symbol = '[R](fg:yellow)'
 
 [cmd_duration]
 disabled = true
@@ -30,22 +30,22 @@ disabled = true
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-repo_root_style = 'bold fg:base bg:mauve'
-repo_root_format = '[ $before_root_path]($style)[$repo_root]($repo_root_style)[$path ]($style)[](fg:mauve bg:black)'
-format = '[ $path ]($style)[](fg:mauve bg:black)'
-style = 'bold fg:base bg:mauve'
+repo_root_style = 'bold fg:mauve'
+repo_root_format = '[$repo_root]($repo_root_style)'
+format = '[$path]($style)'
+style = 'bold fg:mauve'
 
 [fill]
 symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '$symbol[ $branch(:$remote_branch) ]($style)'
-style = 'fg:blue bg:black'
+format = ' $symbol[[\[](fg:white)$branch(:$remote_branch)[\]](fg:white)]($style)'
+style = 'bold fg:blue bg:base'
 
 [git_status]
-format = '([](fg:peach)[ $all_status$ahead_behind ]($style)[](fg:black bg:peach))'
-style = 'bold fg:base bg:peach'
+format = '([$all_status$ahead_behind]($style))'
+style = 'bold fg:peach bg:base'
 
 [jobs]
 format = '[$symbol$number]($style)'
@@ -54,8 +54,8 @@ style = "cyan"
 [kubernetes]
 symbol = ''
 disabled = false
-format = '([ $context]($style)[ ](fg:bright-white bg:black))'
-style = 'fg:cyan bg:black'
+format = '([[:](fg:white)$context]($style))'
+style = 'fg:cyan'
 
 [[kubernetes.contexts]]
 context_pattern = "docker-desktop"
@@ -71,20 +71,6 @@ format = '[$symbol($version)]($style):'
 [python]
 symbol = ""
 format = '[${symbol}${pyenv_prefix}(${version})]($style):'
-
-
-[custom.git_status]
-when = 'git rev-parse --git-dir > /dev/null 2>&1'
-command = '''
-status=$(starship module git_status)
-if [ -z "$status" ]; then
-    echo ""
-else
-    echo " $status"
-fi
-'''
-format = '[$output](fg:black)'
-shell = ['sh']
 
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 [palettes.catppuccin_mocha]
