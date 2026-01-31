@@ -1,7 +1,7 @@
 #        
 format = '[\[](fg:white)$directory$kubernetes$aws$jobs[\]](fg:white) $character '
 add_newline = false
-right_format = '$git_status$git_branch'
+right_format = '$git_status [\[](fg:white)$git_branch[\]](fg:white)'
 palette = "catppuccin_mocha"
 continuation_prompt = '[>>](white) '
 
@@ -17,7 +17,7 @@ edacious-ops = 'ops'
 
 [character]
 format = '$symbol'
-success_symbol = '[❯](fg:purple)'
+success_symbol = '[❯](fg:mauve)'
 error_symbol = '[❯](fg:red)'
 vimcmd_symbol = '[❮](fg:purple)'
 vimcmd_replace_one_symbol = '[R](fg:red)'
@@ -30,18 +30,17 @@ disabled = true
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-repo_root_style = 'bold fg:blue'
 repo_root_format = '[$repo_root]($repo_root_style)'
 format = '[$path]($style)'
-style = 'bold fg:blue'
+style = 'bold fg:cyan'
 
 [fill]
 symbol = ' '
 
 [git_branch]
 symbol = ''
-format = ' $symbol[[\[](fg:white)$branch(:$remote_branch)[\]](fg:white)]($style)'
-style = 'bold fg:mauve bg:base'
+format = '[$branch(:$remote_branch)]($style)'
+style = 'bold fg:cyan'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
