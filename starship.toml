@@ -1,7 +1,7 @@
 #        
 format = '[\[](fg:white)$directory$kubernetes$aws$jobs[\]](fg:white) $character '
 add_newline = false
-right_format = '$git_status [\[](fg:white)$git_branch[\]](fg:white)'
+right_format = '$git_status $git_branch'
 palette = "catppuccin_mocha"
 continuation_prompt = '[>>](white) '
 
@@ -39,7 +39,7 @@ symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '[$branch(:$remote_branch)]($style)'
+format = '[[\[](fg:white)$branch(:$remote_branch)]($style)[\]](fg:white)'
 style = 'bold fg:cyan'
 
 [git_status]
