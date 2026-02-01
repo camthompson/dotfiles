@@ -32,7 +32,7 @@ truncation_length = 3
 truncate_to_repo = true
 repo_root_format = '[$repo_root]($repo_root_style)'
 format = '[$path]($style)'
-style = 'bold fg:pink'
+style = 'bold fg:mauve'
 
 [fill]
 symbol = ' '
@@ -40,7 +40,7 @@ symbol = ' '
 [git_branch]
 symbol = ''
 format = '[[\[](fg:white)$branch(:$remote_branch)]($style)[\]](fg:white)'
-style = 'bold fg:pink'
+style = 'bold fg:mauve'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
