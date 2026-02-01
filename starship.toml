@@ -1,5 +1,5 @@
 #        
-format = '[\[](fg:mauve)$directory$kubernetes$aws$jobs[\]](fg:mauve) $character '
+format = '[\[](fg:white)$directory$kubernetes$aws$jobs[\]](fg:white) $character '
 add_newline = false
 right_format = '$git_status $git_branch'
 palette = "catppuccin_mocha"
@@ -32,15 +32,15 @@ truncation_length = 3
 truncate_to_repo = true
 repo_root_format = '[$repo_root]($repo_root_style)'
 format = '[$path]($style)'
-style = 'bold fg:lavender'
+style = 'bold fg:cyan'
 
 [fill]
 symbol = ' '
 
 [git_branch]
 symbol = ''
-format = '[[\[](fg:mauve)$branch(:$remote_branch)]($style)[\]](fg:mauve)'
-style = 'bold fg:lavender'
+format = '[[\[](fg:white)$branch(:$remote_branch)]($style)[\]](fg:white)'
+style = 'bold fg:cyan'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
