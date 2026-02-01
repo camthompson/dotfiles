@@ -50,6 +50,7 @@ brew "macvim"
 brew "mas"
 brew "mosh"
 brew "neovim", args: ["HEAD"]
+brew "nginx"
 brew "nvm"
 brew "ripgrep"
 brew "opencode"
