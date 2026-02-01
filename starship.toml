@@ -17,9 +17,9 @@ edacious-ops = 'ops'
 
 [character]
 format = '$symbol'
-success_symbol = '[❯❯](fg:sky)'
-error_symbol = '[❯❯](fg:red)'
-vimcmd_symbol = '[❮❮](fg:sky)'
+success_symbol = '[❯❯](fg:peach)'
+error_symbol = '[❯❯](fg:peach)'
+vimcmd_symbol = '[❮❮](fg:peach)'
 vimcmd_replace_one_symbol = '[R](fg:red)'
 vimcmd_replace_symbol = '[R](fg:red)'
 vimcmd_visual_symbol = '[R](fg:yellow)'
@@ -44,7 +44,7 @@ style = 'bold fg:lavender'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
-style = 'bold fg:sky'
+style = 'bold fg:peach'
 
 [jobs]
 format = '[$symbol$number]($style)'
