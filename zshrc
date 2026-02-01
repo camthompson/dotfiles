@@ -539,3 +539,5 @@ alias work='tmuxinator start work'
 # prompt cam
 eval "$(starship init zsh)"
 # }}}
+
+. "$HOME/.local/bin/env"
