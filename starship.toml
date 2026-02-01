@@ -17,9 +17,9 @@ edacious-ops = 'ops'
 
 [character]
 format = '$symbol'
-success_symbol = '[❯❯](fg:peach)'
-error_symbol = '[❯❯](fg:peach)'
-vimcmd_symbol = '[❮❮](fg:peach)'
+success_symbol = '[❯❯](fg:cyan)'
+error_symbol = '[❯❯](fg:cyan)'
+vimcmd_symbol = '[❮❮](fg:cyan)'
 vimcmd_replace_one_symbol = '[R](fg:red)'
 vimcmd_replace_symbol = '[R](fg:red)'
 vimcmd_visual_symbol = '[R](fg:yellow)'
@@ -32,7 +32,7 @@ truncation_length = 3
 truncate_to_repo = true
 repo_root_format = '[$repo_root]($repo_root_style)'
 format = '[$path]($style)'
-style = 'bold fg:cyan'
+style = 'bold fg:pink'
 
 [fill]
 symbol = ' '
@@ -40,7 +40,7 @@ symbol = ' '
 [git_branch]
 symbol = ''
 format = '[[\[](fg:white)$branch(:$remote_branch)]($style)[\]](fg:white)'
-style = 'bold fg:cyan'
+style = 'bold fg:pink'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
