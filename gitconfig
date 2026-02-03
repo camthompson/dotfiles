@@ -94,6 +94,8 @@
   uncommit = reset HEAD^
   wt = worktree
   wta = "!f() { repo=$(basename \"$(git rev-parse --show-toplevel)\"); git worktree add \"../${repo}-$1\" \"$1\"; }; f"
+  wtls = worktree list
+  wtrm = worktree remove
 [pull]
   rebase = merges
   default = current
