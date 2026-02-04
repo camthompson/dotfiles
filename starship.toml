@@ -17,9 +17,9 @@ edacious-ops = 'ops'
 
 [character]
 format = '$symbol'
-success_symbol = '[❯❯](fg:peach)'
-error_symbol = '[❯❯](fg:peach)'
-vimcmd_symbol = '[❮❮](fg:peach)'
+success_symbol = '[❯❯](fg:mauve)'
+error_symbol = '[❯❯](fg:mauve)'
+vimcmd_symbol = '[❮❮](fg:mauve)'
 vimcmd_replace_one_symbol = '[R](fg:red)'
 vimcmd_replace_symbol = '[R](fg:red)'
 vimcmd_visual_symbol = '[R](fg:yellow)'
