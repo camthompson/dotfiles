@@ -507,8 +507,8 @@ alias oc='opencode'
 alias occ='opencode --continue'
 ocs() {
   local session
-  session=$(opencode session list | fzf)
-  [[ -n "$session" ]] && opencode session --session "$session"
+  session=$(opencode session list --format json | jq -r '.[] | "\(.id)\t\(.title)"' | fzf | cut -f1)
+  [[ -n "$session" ]] && opencode --session "$session"
 }
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
