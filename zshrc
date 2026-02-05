@@ -503,6 +503,14 @@ alias gfs='git log --oneline | fzf --no-sort --preview "git show --color=always 
 alias ghpr='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr view --web'
 alias ghco='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr checkout'
 
+alias oc='opencode'
+alias occ='opencode --continue'
+ocs() {
+  local session
+  session=$(opencode session list | fzf)
+  [[ -n "$session" ]] && opencode session --session "$session"
+}
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # GitHub PR listing function
