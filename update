@@ -29,6 +29,7 @@ theme_changes << "bat" if system("git diff --quiet HEAD themes/catppuccin-bat") 
 theme_changes << "btop" if system("git diff --quiet HEAD themes/catppuccin-btop") == false
 theme_changes << "eza" if system("git diff --quiet HEAD themes/catppuccin-eza") == false
 theme_changes << "lsd" if system("git diff --quiet HEAD themes/catppuccin-lsd") == false
+theme_changes << "glamour" if system("git diff --quiet HEAD themes/catppuccin-glamour") == false
 theme_changes << "ghostty" if system("git diff --quiet HEAD themes/catppuccin-ghostty") == false
 theme_changes << "lazygit" if system("git diff --quiet HEAD themes/catppuccin-lazygit") == false
 theme_changes << "starship" if system("git diff --quiet HEAD themes/catppuccin-starship") == false

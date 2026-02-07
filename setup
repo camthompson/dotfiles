@@ -27,6 +27,7 @@ config_items=(
   "btop"
   "eza"
   "ghostty"
+  "glow"
   "karabiner"
   "lsd"
   "nvim"
@@ -148,6 +149,12 @@ if [ -d "themes/catppuccin-fsh" ]; then
   mkdir -p "$HOME/.config/fsh"
   ln -sf "$PWD/themes/catppuccin-fsh/themes/catppuccin-mocha.ini" "$HOME/.config/fsh/catppuccin-mocha.ini"
   echo "  ✓ fast-syntax-highlighting theme linked"
+fi
+
+# glow theme setup
+if [ -d "themes/catppuccin-glamour" ]; then
+  ln -sf "$PWD/themes/catppuccin-glamour/themes/catppuccin-mocha.json" "glow/catppuccin-mocha.json"
+  echo "  ✓ glow theme linked (catppuccin-mocha)"
 fi
 
 # fzf theme setup

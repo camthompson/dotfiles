@@ -40,3 +40,6 @@
 [submodule "themes/catppuccin-k9s"]
 	path = themes/catppuccin-k9s
 	url = https://github.com/catppuccin/k9s.git
+[submodule "themes/catppuccin-glamour"]
+	path = themes/catppuccin-glamour
+	url = https://github.com/catppuccin/glamour.git
