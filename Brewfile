@@ -1,4 +1,3 @@
-tap "camthompson/casks"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
