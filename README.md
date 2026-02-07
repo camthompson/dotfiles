@@ -102,6 +102,15 @@ After it finishes, review the changes with `git diff` and commit anything you wa
 
 To update Neovim plugins separately, open Neovim and run `:Lazy` to open the LazyVim plugin manager.
 
+## Customization
+
+If you want to add your own settings without modifying tracked files, both zsh and tmux support `.local` overrides that are sourced automatically:
+
+- **`~/.zshrc.local`** -- sourced at the end of `zshrc`. Add your own aliases, environment variables, or PATH entries here.
+- **`~/.tmux.conf.local`** -- sourced at the end of `tmux.conf`. Override keybindings, status bar settings, etc.
+
+These files are not tracked by git, so they'll survive updates and won't show up as changes in the repo.
+
 ## Gotchas
 
 A few things that might trip you up if you're used to defaults:
