@@ -37,5 +37,6 @@ cdpath=(
 )
 
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export GLOW_STYLE="$HOME/.config/glow/catppuccin-mocha.json"
 
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local
