@@ -1,32 +1,108 @@
-# Prereqs
+# dotfiles
 
-1. Install [Homebrew](brew.sh)
-2. `brew bundle`
-3. `sudo su`
-4. `echo '/usr/local/bin/zsh' >> /etc/shells`
-5. `exit`
-6. `chsh -s /usr/local/bin/zsh`
+![screenshot](screenshot.png)
 
-# Dotfiles
+My macOS terminal setup. Everything is themed with [Catppuccin Mocha](https://github.com/catppuccin/catppuccin) and managed as symlinks from this repo into `~` and `~/.config/`. Catppuccin themes are pulled in as git submodules and applied automatically by the setup script.
+
+## What's Included
+
+| Tool | Description |
+|------|-------------|
+| [Ghostty](https://ghostty.org) | GPU-accelerated terminal emulator |
+| [zsh](https://www.zsh.org) | Shell with [fast-syntax-highlighting](https://github.com/zdharber/fast-syntax-highlighting), history-substring-search, and tab completions |
+| [Starship](https://starship.rs) | Minimal, fast prompt with git status, Kubernetes context, and AWS profile |
+| [tmux](https://github.com/tmux/tmux) | Terminal multiplexer (prefix `C-y`, integrated with vim-tmux-navigator) |
+| [Neovim](https://neovim.io) | Editor via the [LazyVim](https://lazyvim.org) distribution -- Copilot, fzf-lua, neo-tree, harpoon, and ~40 plugin configs |
+| [Git](https://git-scm.com) | Configured with delta for diffs, lazygit for TUI, and extensive aliases |
+| [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git operations |
+| [delta](https://github.com/dandavella/delta) | Syntax-highlighted git diffs, blame, and merge conflicts |
+| [bat](https://github.com/sharkdp/bat) | `cat` replacement with syntax highlighting and git integration |
+| [eza](https://github.com/eza-community/eza) | Modern `ls` replacement with git status and icons |
+| [fzf](https://github.com/junegunn/fzf) | Fuzzy finder -- integrated into file, branch, PR, and process selection |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast code search, paired with fzf for interactive grep |
+| [asdf](https://asdf-vm.com) | Runtime version manager for Ruby, Python, and Node |
+| [btop](https://github.com/aristocratos/btop) | System and process monitor |
+
+## Key Aliases
+
+These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll use most:
+
+| Alias | What it does |
+|-------|-------------|
+| `v` | Opens Neovim (`nvim`) |
+| `vp` | Fuzzy-find a file with preview, open in Neovim |
+| `g` | Git shorthand -- bare `g` runs `git status -s`; `g <args>` passes through to git |
+| `gfo` | Fuzzy-find a git branch and check it out |
+| `ghpr` | Fuzzy-find a GitHub PR, preview it, open in browser |
+| `ghco` | Fuzzy-find a GitHub PR and check it out locally |
+| `l` / `ll` / `la` | List files with `eza` (git status + icons; `ll` = long, `la` = all) |
+| `z` | Fuzzy directory jump (fd + fzf) |
+| `rgf` / `rgp` | Fuzzy file search / fuzzy content search with bat preview |
+| `pfk` | Fuzzy-find a running process and kill it |
+| `work` | Start the work tmux layout via tmuxinator |
+| `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
+
+### Git aliases
+
+The most common git aliases are in [`gitconfig`](gitconfig). Highlights:
+
+| Alias | Command |
+|-------|---------|
+| `g a` | `git add` |
+| `g au` | `git add -u` |
+| `g b` | `git branch` |
+| `g c` | `git commit --verbose` |
+| `g d` / `g dc` | `git diff` / `git diff --cached` |
+| `g f` / `g fa` | `git fetch` / `git fetch --all` |
+| `g l` / `g la` | `git log --oneline` / `--all` |
+| `g o` / `g ob` | `git checkout` / `git checkout -b` |
+| `g p` | `git push` |
+| `g u` | `git pull` |
+| `g sh` / `g sp` | `git stash` / `git stash pop` |
+
+See [`gitconfig`](gitconfig) for the full list (~40 aliases).
+
+## Prerequisites
+
+1. Install [Homebrew](https://brew.sh)
+2. `brew bundle` to install everything from the [Brewfile](Brewfile)
+3. Set zsh as your default shell:
+   ```
+   sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
+   chsh -s /usr/local/bin/zsh
+   ```
 
 ## Setup
 
-1. `./setup` _This will overwrite things in your home directory_
+```
+./setup
+```
 
-## Update
+This script:
+- Initializes all git submodules (ZSH plugins and Catppuccin themes)
+- Symlinks tool configs (`bat`, `btop`, `ghostty`, `nvim`, `starship.toml`, etc.) into `~/.config/`
+- Symlinks shell dotfiles (`zshrc`, `gitconfig`, `tmux.conf`, etc.) into `~/` with a `.` prefix
+- Links Catppuccin theme files from submodules into each tool's config directory
+- Sets up lazygit and k9s configs in `~/Library/Application Support/`
 
-- `./update` will update submodules that contain ZSH dependencies
-- In NeoVim, `:Lazy` will open the plugin update interface
+> **Warning:** This will replace existing dotfiles in `~` and `~/.config/` with symlinks pointing to this repo. If you have configs you want to keep, back them up first. Read through the [`setup`](setup) script to see exactly which files are affected.
 
-# Misc Setup
+## Updating
 
-1. `git clone camthompson/bin ~/bin`
-2. `sudo post-macos-update`
+```
+./update
+```
 
-# Backblaze
+This script:
+- Pulls the latest ZSH plugins and Catppuccin theme submodules
+- Re-applies any changed theme configurations (lazygit, starship, bat cache)
+- Runs `git pull` to fetch upstream dotfile changes
+- Auto-commits and pushes submodule/theme updates if any were found
 
-`open '/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app'`
+> **Warning:** The update script will auto-commit and push changes to your remote. If you've forked this repo, review incoming changes before running `./update` -- especially after a fresh `git pull` brings in new config. Always check `git diff` to understand what changed.
+
+To update Neovim plugins separately, open Neovim and run `:Lazy` to open the LazyVim plugin manager.
 
 ## Credits
 
-A lot of the ZSH stuff is pretty shamelessly ripped from [prezto](https://github.com/sorin-ionescu/prezto).
+The ZSH configuration draws heavily from [prezto](https://github.com/sorin-ionescu/prezto).
