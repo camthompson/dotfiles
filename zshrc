@@ -536,7 +536,13 @@ function p() {
   local cmd
   case "${file:e:l}" in
     md|markdown)  cmd="glow -p \"$file\"" ;;
-    png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)  cmd="chafa \"$file\"" ;;
+    png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)
+      if [[ -n "$TMUX" ]]; then
+        cmd="chafa -f symbols \"$file\""
+      else
+        cmd="chafa \"$file\""
+      fi
+      ;;
     *)  cmd="bat --color=always --style=numbers \"$file\"" ;;
   esac
 
