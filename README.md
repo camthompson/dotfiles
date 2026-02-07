@@ -20,7 +20,9 @@ My macOS terminal setup. Everything is themed with [Catppuccin Mocha](https://gi
 | [eza](https://github.com/eza-community/eza) | Modern `ls` replacement with git status and icons |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder -- integrated into file, branch, PR, and process selection |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast code search, paired with fzf for interactive grep |
-| [asdf](https://asdf-vm.com) | Runtime version manager for Ruby, Python, and Node |
+| [atuin](https://github.com/atuinsh/atuin) | SQLite-backed shell history with fuzzy search and context filtering |
+| [mise](https://mise.jdx.dev) | Runtime version manager and per-directory env vars (replaces asdf + direnv) |
+| [yazi](https://github.com/sxyazi/yazi) | Terminal file manager with vim keybindings and image previews |
 | [btop](https://github.com/aristocratos/btop) | System and process monitor |
 
 ## Key Aliases
@@ -36,6 +38,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `ghpr` | Fuzzy-find a GitHub PR, preview it, open in browser |
 | `ghco` | Fuzzy-find a GitHub PR and check it out locally |
 | `l` / `ll` / `la` | List files with `eza` (git status + icons; `ll` = long, `la` = all) |
+| `y` | Open yazi file manager (cd to last directory on exit) |
 | `z` | Fuzzy directory jump (fd + fzf) |
 | `rgf` / `rgp` | Fuzzy file search / fuzzy content search with bat preview |
 | `pfk` | Fuzzy-find a running process and kill it |
