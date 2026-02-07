@@ -35,4 +35,6 @@ cdpath=(
   $HOME/work
 )
 
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 [[ -s $HOME/.zshenv.local ]] && source $HOME/.zshenv.local

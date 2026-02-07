@@ -15,3 +15,7 @@ coc/extensions/coc-json-data/json-schema-cache
 lazygit/state.yml
 .claude/settings.local.json
 *.bak
+Brewfile.lock.json
+.DS_Store
+*.zwc
+.zcompdump*

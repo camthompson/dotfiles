@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
 
+# Ensure we're running from the dotfiles repo root
+script_dir = File.expand_path(File.dirname(__FILE__))
+Dir.chdir(script_dir)
+
+unless File.exist?("update") && File.exist?("zshrc")
+  $stderr.puts "Error: must run from dotfiles repository root"
+  exit 1
+end
+
 print "This will update submodules and pull changes. Type 'yes' to confirm: "
 confirmation = gets&.chomp
 unless confirmation == "yes"

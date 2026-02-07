@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Ensure we're running from the dotfiles repo root
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR" || exit 1
+
+if [ ! -f "setup" ] || [ ! -f "zshrc" ]; then
+  echo "Error: must run from dotfiles repository root" >&2
+  exit 1
+fi
+
 echo "This will overwrite existing dotfiles in ~ and ~/.config/ with symlinks to this repo."
 echo -n "Are you sure you want to continue? Type 'yes' to confirm: "
 read confirmation
@@ -31,6 +40,9 @@ base_ignorelist=(
   "k9s"
   "lazygit"
   "README.md"
+  "Brewfile"
+  "demo.tsx"
+  "screenshot.png"
   "setup"
   "update"
   "themes"

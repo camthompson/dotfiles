@@ -100,7 +100,6 @@ ltd() {
 # }}}
 
 # Colors {{{
-export GREP_OPTIONS='--color=auto'
 export ACK_COLOR_MATCH='red'
 
 export LESS_TERMCAP_mb=$'\E[01;31m'      # Begins blinking.
@@ -393,7 +392,7 @@ for func ($HOME/.zsh/func/$~func_glob) autoload -Uz $func; unset func func_glob
 
 function mygit {
   if [[ $# > 0  ]]; then
-    git $@
+    git "$@"
   else
     git status --short --ignore-submodules
   fi
@@ -436,7 +435,7 @@ function aws-login() {
 
     if [ -z "$1" ]; then
         echo "This function requires an AWS profile name"
-        exit 1
+        return 1
     fi
 
     unset AWS_PROFILE
@@ -464,7 +463,9 @@ source $HOME/.zsh/bundle/fast-syntax-highlighting/fast-syntax-highlighting.plugi
 # Configure fzf to use fd and tmux popup
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
 
 # Use tmux popup if inside tmux
 if [[ -n "$TMUX" ]]; then
