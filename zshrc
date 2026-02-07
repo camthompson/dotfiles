@@ -519,6 +519,34 @@ function y() {
   rm -f -- "$tmp"
 }
 
+# preview file (markdown via glow, images via chafa, code via bat)
+# in tmux: opens in a floating popup. outside tmux: outputs directly.
+function p() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: p <file>"
+    return 1
+  fi
+
+  local file="$1"
+  if [[ ! -f "$file" ]]; then
+    echo "File not found: $file"
+    return 1
+  fi
+
+  local cmd
+  case "${file:e:l}" in
+    md|markdown)  cmd="glow -p \"$file\"" ;;
+    png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)  cmd="chafa \"$file\"" ;;
+    *)  cmd="bat --color=always --style=numbers \"$file\"" ;;
+  esac
+
+  if [[ -n "$TMUX" ]]; then
+    tmux popup -w 80% -h 80% -E "$cmd"
+  else
+    eval "$cmd"
+  fi
+}
+
 alias oc='opencode'
 alias occ='opencode --continue'
 ocs() {
