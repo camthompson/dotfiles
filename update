@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-print "This will update submodules, pull changes, and may auto-commit and push. Type 'yes' to confirm: "
+print "This will update submodules and pull changes. Type 'yes' to confirm: "
 confirmation = gets&.chomp
 unless confirmation == "yes"
   puts "Aborted."
@@ -82,28 +82,4 @@ end
 
 `git pull`
 
-def push_to_github()
-  # Check for all types of changes
-  has_plugin_changes = system("git diff --quiet HEAD zsh/bundle") == false
-  has_theme_submodule_changes = system("git diff --quiet HEAD themes/") == false
-  has_config_changes = system("git diff --quiet HEAD ghostty/config starship.toml") == false
-
-  if has_plugin_changes || has_theme_submodule_changes || has_config_changes
-    # Stage appropriate files
-    `git add zsh/bundle` if has_plugin_changes
-    `git add themes/` if has_theme_submodule_changes
-    `git add ghostty/config starship.toml` if has_config_changes
-
-    # Create descriptive commit message
-    changes = []
-    changes << "ZSH plugins" if has_plugin_changes
-    changes << "theme submodules" if has_theme_submodule_changes
-    changes << "theme configs" if has_config_changes
-
-    commit_msg = "Update #{changes.join(', ')}"
-    `git commit -m '#{commit_msg}'`
-    `git push`
-  end
-end
-
-push_to_github unless `git status` =~ /nothing to commit/
+puts "Done. Run `git status` to review any changes."
