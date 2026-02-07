@@ -2,6 +2,15 @@ git:
   pagers:
     - colorArg: always
       pager: delta --dark --paging=never
+customCommands:
+  - key: b
+    context: files
+    command: gh browse -- {{.SelectedFile.Name}}
+    description: Open file on GitHub
+  - key: b
+    context: commits
+    command: gh browse {{.SelectedLocalCommit.Hash}}
+    description: Open commit on GitHub
 # === CATPPUCCIN THEME START (auto-generated, do not edit below) ===
 gui:
   theme:
