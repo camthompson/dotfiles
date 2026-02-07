@@ -554,9 +554,9 @@ alias work='tmuxinator start work'
 eval "$(starship init zsh)"
 # }}}
 
-# direnv
-if command -v direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
+# mise (runtime version manager + direnv replacement)
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
 fi
 
 . "$HOME/.local/bin/env"
