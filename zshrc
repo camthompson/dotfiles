@@ -509,6 +509,16 @@ alias gfs='git log --oneline | fzf --no-sort --preview "git show --color=always 
 alias ghpr='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr view --web'
 alias ghco='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr checkout'
 
+# yazi (cd to last directory on exit)
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 alias oc='opencode'
 alias occ='opencode --continue'
 ocs() {
