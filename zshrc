@@ -533,16 +533,17 @@ function p() {
     return 1
   fi
 
-  local cmd
+  local cmd use_popup=true
   case "${file:e:l}" in
     md|markdown)  cmd="glow -p \"$file\"" ;;
     png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)
-      cmd="chafa \"$file\"; read -n 1 -s -r -p '(press any key to close)'"
+      cmd="chafa \"$file\""
+      use_popup=false
       ;;
     *)  cmd="bat --color=always --style=numbers \"$file\"" ;;
   esac
 
-  if [[ -n "$TMUX" ]]; then
+  if [[ "$use_popup" == true ]] && [[ -n "$TMUX" ]]; then
     tmux popup -w 80% -h 80% -E "$cmd"
   else
     eval "$cmd"
