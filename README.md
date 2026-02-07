@@ -23,6 +23,8 @@ My macOS terminal setup. Everything is themed with [Catppuccin Mocha](https://gi
 | [atuin](https://github.com/atuinsh/atuin) | SQLite-backed shell history with fuzzy search and context filtering |
 | [mise](https://mise.jdx.dev) | Runtime version manager and per-directory env vars (replaces asdf + direnv) |
 | [yazi](https://github.com/sxyazi/yazi) | Terminal file manager with vim keybindings and image previews |
+| [glow](https://github.com/charmbracelet/glow) | Markdown renderer for the terminal (Catppuccin themed via [glamour](https://github.com/catppuccin/glamour)) |
+| [chafa](https://hpjansson.org/chafa/) | Terminal image viewer (used by the `p` preview command and yazi) |
 | [btop](https://github.com/aristocratos/btop) | System and process monitor |
 
 ## Key Aliases
@@ -41,6 +43,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `y` | Open yazi file manager (cd to last directory on exit) |
 | `z` | Fuzzy directory jump (fd + fzf) |
 | `rgf` / `rgp` | Fuzzy file search / fuzzy content search with bat preview |
+| `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
 | `work` | Start the work tmux layout via tmuxinator |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
