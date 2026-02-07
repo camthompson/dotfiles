@@ -538,7 +538,7 @@ function p() {
     md|markdown)  cmd="glow -p \"$file\"" ;;
     png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)
       if [[ -n "$TMUX" ]]; then
-        cmd="chafa -f symbols \"$file\""
+        cmd="chafa -f symbols \"$file\"; read -n 1 -s -r -p '(press any key to close)'"
       else
         cmd="chafa \"$file\""
       fi
