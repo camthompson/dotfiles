@@ -38,6 +38,7 @@
   mnemonicprefix = true
   renames = copies
   compactionHeuristic = true
+  algorithm = histogram
 [advice]
   statusHints = false
   pushNonFastForward = false
@@ -99,6 +100,13 @@
 [pull]
   rebase = merges
   default = current
+[rebase]
+  autoSquash = true
+  updateRefs = true
+[log]
+  date = auto:human
+[help]
+  autocorrect = prompt
 [grep]
   extendRegexp = true
 [includeIf "gitdir:~/work/"]
