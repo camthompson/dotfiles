@@ -5,6 +5,7 @@ fi
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
+export MANPAGER='nvim +Man!'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 if [[ -z "$LANG" ]]; then
