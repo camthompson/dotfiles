@@ -477,6 +477,11 @@ fi
 # Setup fzf key bindings and completion
 source <(fzf --zsh)
 
+# Atuin (shell history)
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 # fzf aliases
 z() {
   local dir query root
