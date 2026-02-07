@@ -85,7 +85,7 @@ This script:
 - Links Catppuccin theme files from submodules into each tool's config directory
 - Sets up lazygit and k9s configs in `~/Library/Application Support/`
 
-> **Warning:** This will replace existing dotfiles in `~` and `~/.config/` with symlinks pointing to this repo. If you have configs you want to keep, back them up first. Read through the [`setup`](setup) script to see exactly which files are affected.
+> **Warning:** This script `rm -rf`s existing files and directories at each target path before creating symlinks. If you have a real `~/.config/nvim` directory (or any other config), it will be **permanently deleted**, not just overwritten. Back up anything you want to keep before running this. Read through the [`setup`](setup) script to see exactly which paths are affected.
 
 ## Updating
 
@@ -97,11 +97,18 @@ This script:
 - Pulls the latest ZSH plugins and Catppuccin theme submodules
 - Re-applies any changed theme configurations (lazygit, starship, bat cache)
 - Runs `git pull` to fetch upstream dotfile changes
-- Auto-commits and pushes submodule/theme updates if any were found
 
-> **Warning:** The update script will auto-commit and push changes to your remote. If you've forked this repo, review incoming changes before running `./update` -- especially after a fresh `git pull` brings in new config. Always check `git diff` to understand what changed.
+After it finishes, review the changes with `git diff` and commit anything you want to keep.
 
 To update Neovim plugins separately, open Neovim and run `:Lazy` to open the LazyVim plugin manager.
+
+## Gotchas
+
+A few things that might trip you up if you're used to defaults:
+
+- **tmux prefix is `C-y`** (not the default `C-b`). There's also a secondary prefix bound to `C-space`. See [`tmux.conf`](tmux.conf).
+- **`;` and `:` are swapped in Neovim**, so you tap `;` to enter command mode. See [`nvim/lua/config/keymaps.lua`](nvim/lua/config/keymaps.lua).
+- **The `g` alias disables zsh globbing** via `noglob`, so wildcards (`*`, `?`) in git commands are passed through literally instead of being expanded by the shell.
 
 ## Credits
 
