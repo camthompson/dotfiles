@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo "This will overwrite existing dotfiles in ~ and ~/.config/ with symlinks to this repo."
+echo -n "Are you sure you want to continue? Type 'yes' to confirm: "
+read confirmation
+if [ "$confirmation" != "yes" ]; then
+  echo "Aborted."
+  exit 1
+fi
+
 # Initialize and update all submodules including themes
 git submodule init
 git submodule update

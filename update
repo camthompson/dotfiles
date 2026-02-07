@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby
 
+print "This will update submodules, pull changes, and may auto-commit and push. Type 'yes' to confirm: "
+confirmation = gets&.chomp
+unless confirmation == "yes"
+  puts "Aborted."
+  exit 1
+end
+
 # Update all submodules (themes and zsh plugins)
 puts "Updating submodules..."
 puts "  Updating zsh plugins..."
