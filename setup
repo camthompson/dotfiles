@@ -23,6 +23,7 @@ git submodule update
 
 # Define items that should be linked to ~/.config
 config_items=(
+  "atuin"
   "bat"
   "btop"
   "eza"
