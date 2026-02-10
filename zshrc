@@ -533,18 +533,19 @@ function p() {
     return 1
   fi
 
+  local absfile="${file:A}"
   local cmd use_popup=true
   case "${file:e:l}" in
-    md|markdown)  cmd="glow -p \"$file\"" ;;
+    md|markdown)  cmd="glow -p ${(q)absfile}" ;;
     png|jpg|jpeg|gif|webp|svg|bmp|ico|tiff)
-      cmd="chafa \"$file\""
+      cmd="chafa ${(q)absfile}"
       use_popup=false
       ;;
-    *)  cmd="bat --color=always --style=numbers \"$file\"" ;;
+    *)  cmd="bat --color=always --style=numbers ${(q)absfile}" ;;
   esac
 
   if [[ "$use_popup" == true ]] && [[ -n "$TMUX" ]]; then
-    tmux popup -w 80% -h 80% -E "$cmd"
+    tmux popup -w 80% -h 80% -E "PATH=\"$PATH\" $cmd"
   else
     eval "$cmd"
   fi
