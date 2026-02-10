@@ -25,6 +25,7 @@ puts "  Updating Catppuccin themes..."
 
 # Track if any themes were updated
 theme_changes = []
+theme_changes << "atuin" if system("git diff --quiet HEAD themes/catppuccin-atuin") == false
 theme_changes << "bat" if system("git diff --quiet HEAD themes/catppuccin-bat") == false
 theme_changes << "btop" if system("git diff --quiet HEAD themes/catppuccin-btop") == false
 theme_changes << "eza" if system("git diff --quiet HEAD themes/catppuccin-eza") == false

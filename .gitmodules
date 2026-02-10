@@ -43,3 +43,6 @@
 [submodule "themes/catppuccin-glamour"]
 	path = themes/catppuccin-glamour
 	url = https://github.com/catppuccin/glamour.git
+[submodule "themes/catppuccin-atuin"]
+	path = themes/catppuccin-atuin
+	url = https://github.com/catppuccin/atuin.git

@@ -158,6 +158,13 @@ if [ -d "themes/catppuccin-glamour" ]; then
   echo "  ✓ glow theme linked (catppuccin-mocha)"
 fi
 
+# atuin theme setup
+if [ -d "themes/catppuccin-atuin" ]; then
+  mkdir -p "atuin/themes"
+  ln -sf "$PWD/themes/catppuccin-atuin/themes/mocha/catppuccin-mocha-mauve.toml" "atuin/themes/catppuccin-mocha-mauve.toml"
+  echo "  ✓ atuin theme linked (mocha-mauve)"
+fi
+
 # fzf theme setup
 if [ -d "themes/catppuccin-fzf" ]; then
   mkdir -p "zsh"
