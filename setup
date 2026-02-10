@@ -41,6 +41,7 @@ base_ignorelist=(
   "com.camthompson.macos.updateip.plist"
   "k9s"
   "lazygit"
+  "opencode.json"
   "README.md"
   "Brewfile"
   "demo.tsx"
@@ -69,6 +70,13 @@ for item in "${config_items[@]}"; do
     ln -s "$PWD/$item" "$HOME/.config/$item"
   fi
 done
+
+# Special handling for opencode (config goes to ~/.config/opencode/opencode.json)
+if [ -f "opencode.json" ]; then
+  mkdir -p "$HOME/.config/opencode"
+  rm -f "$HOME/.config/opencode/opencode.json"
+  ln -s "$PWD/opencode.json" "$HOME/.config/opencode/opencode.json"
+fi
 
 # Special handling for lazygit (macOS uses ~/Library/Application Support/lazygit)
 if [ -d "lazygit" ]; then
