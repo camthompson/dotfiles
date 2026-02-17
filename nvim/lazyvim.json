@@ -21,6 +21,7 @@
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lsp.neoconf",
     "lazyvim.plugins.extras.ui.indent-blankline",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
