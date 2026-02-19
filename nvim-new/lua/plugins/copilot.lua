@@ -30,6 +30,9 @@ return {
     optional = true,
     event = "VeryLazy",
     opts = function(_, opts)
+      if not opts.sections or not opts.sections.lualine_x then
+        return
+      end
       local sk_icons = {
         Error = { " ", "DiagnosticError" },
         Inactive = { " ", "MsgArea" },
