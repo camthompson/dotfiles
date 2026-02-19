@@ -3,8 +3,6 @@ return {
   branch = "next",
   cmd = { "CodeDiff" },
   config = function()
-    require("vscode-diff").setup({
-      -- your config...
-    })
+    require("vscode-diff").setup({})
   end,
 }

@@ -1,4 +1,1 @@
-return {
-  "AndrewRadev/splitjoin.vim",
-  event = "VeryLazy",
-}
+return { "AndrewRadev/splitjoin.vim", event = "VeryLazy" }

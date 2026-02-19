@@ -1,3 +1,8 @@
+-- Leaders must be set before lazy
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -14,35 +19,26 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Load core options before plugins
+require("core.options")
+
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import/override with your plugins
     { import = "plugins" },
   },
   defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = true,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
+    version = false,
   },
-  install = { colorscheme = { "tokyonight", "habamax", "catppuccin" } },
+  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+    enabled = true,
+    notify = false,
+  },
   performance = {
     rtp = {
-      -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -51,6 +47,19 @@ require("lazy").setup({
     },
   },
 })
+
+-- Load keymaps and autocmds after plugins
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  once = true,
+  callback = function()
+    require("core.keymaps")
+    require("core.autocmds")
+  end,
+})
+
+-- Set colorscheme
+vim.cmd.colorscheme("catppuccin-mocha")
 
 -- Hide cursor on dashboard
 vim.api.nvim_create_autocmd("User", {
@@ -70,7 +79,6 @@ vim.api.nvim_create_autocmd("User", {
     local hl = vim.api.nvim_get_hl(0, { name = "Cursor", create = true })
     hl.blend = 0
     vim.api.nvim_set_hl(0, "Cursor", hl)
-    -- vim.opt.guicursor.append("a:Cursor/lCursor")
     vim.cmd("set guicursor+=a:Cursor/lCursor")
   end,
 })
@@ -84,10 +92,3 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
     vim.cmd("set guicursor+=a:Cursor/lCursor")
   end,
 })
-
--- Set colorscheme
-vim.cmd.colorscheme("catppuccin-mocha")
-
--- ripgrep
-vim.opt.grepprg = "rg --vimgrep --smart-case --hidden"
-vim.opt.grepformat = "%f:%l:%c:%m,%f"

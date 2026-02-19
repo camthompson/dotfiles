@@ -1,4 +1,1 @@
-return {
-  "tommcdo/vim-exchange",
-  event = "VeryLazy",
-}
+return { "tommcdo/vim-exchange", event = "VeryLazy" }
