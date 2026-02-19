@@ -143,20 +143,22 @@ return {
           -- Copilot status
           {
             function()
-              return " "
+              return icons.kinds.Copilot
             end,
             cond = function()
-              local status = require("core.util").copilot_status
-              local clients = vim.lsp.get_clients({ name = "copilot", bufnr = 0 })
-              return #clients > 0 and status[clients[1].id] ~= nil
+              return #vim.lsp.get_clients({ name = "copilot", bufnr = 0 }) > 0
             end,
             color = function()
-              local colors = { ok = "Special", error = "DiagnosticError", pending = "DiagnosticWarn" }
-              local status = require("core.util").copilot_status
-              local clients = vim.lsp.get_clients({ name = "copilot", bufnr = 0 })
-              local s = #clients > 0 and status[clients[1].id] or "ok"
-              return { fg = Snacks.util.color(colors[s] or colors.ok) }
+              return { fg = Snacks.util.color("Special") }
             end,
+            separator = "",
+            padding = { left = 1, right = 0 },
+          },
+          {
+            function() return ":" end,
+            cond = function() return #vim.lsp.get_clients({ name = "copilot", bufnr = 0 }) > 0 end,
+            padding = 0,
+            separator = "",
           },
           Snacks.profiler.status(),
           -- stylua: ignore

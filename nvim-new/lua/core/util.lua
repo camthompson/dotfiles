@@ -21,9 +21,4 @@ function M.format(opts)
   }, opts))
 end
 
---- Copilot LSP status, keyed by client_id.
---- Populated by the didChangeStatus handler in copilot.lua.
----@type table<number, "ok"|"error"|"pending">
-M.copilot_status = {}
-
 return M

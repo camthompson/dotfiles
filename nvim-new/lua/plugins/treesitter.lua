@@ -19,7 +19,7 @@ return {
         "javascript",
         "jsdoc",
         "json",
-        "jsonc",
+        "json5",
         "lua",
         "luadoc",
         "luap",
@@ -38,26 +38,9 @@ return {
         "yaml",
       },
     },
+    build = ":TSUpdate",
     config = function(_, opts)
-      local TS = require("nvim-treesitter")
-      if not TS.get_installed then
-        vim.notify("Please restart Neovim and run `:TSUpdate`", vim.log.levels.ERROR)
-        return
-      end
-      TS.setup(opts)
-
-      -- Install missing parsers
-      local installed = TS.get_installed()
-      local installed_set = {}
-      for _, lang in ipairs(installed) do
-        installed_set[lang] = true
-      end
-      local to_install = vim.tbl_filter(function(lang)
-        return not installed_set[lang]
-      end, opts.ensure_installed or {})
-      if #to_install > 0 then
-        TS.install(to_install, { summary = true })
-      end
+      require("nvim-treesitter").setup(opts)
 
       -- Enable treesitter highlighting and indentation via FileType autocmd
       vim.api.nvim_create_autocmd("FileType", {

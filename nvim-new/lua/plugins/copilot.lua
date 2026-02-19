@@ -8,19 +8,6 @@ return {
       },
       setup = {
         copilot = function()
-          local status = require("core.util").copilot_status
-          vim.lsp.config("copilot", {
-            handlers = {
-              didChangeStatus = function(err, res, ctx)
-                if err then
-                  return
-                end
-                status[ctx.client_id] = res.kind ~= "Normal" and "error"
-                  or res.busy and "pending"
-                  or "ok"
-              end,
-            },
-          })
           vim.lsp.enable("copilot")
           vim.schedule(function()
             vim.lsp.inline_completion.enable()
