@@ -112,20 +112,19 @@ Work through these in order. Fix issues as you find them.
 1. **lang-typescript.lua** calls `require("lint.parser")` at file load time.
    If nvim-lint isn't loaded yet, this will error. Fix: wrap in a function.
 
-2. **Lualine** looks slightly different — no `root_dir()` component, uses
-   built-in `filename` with `path=1` instead of `pretty_path()`.
+2. ~~**Lualine** looks slightly different~~ — **Fixed.** Ported `root_dir()`
+   and `pretty_path()` from LazyVim into `lualine.lua`.
 
 3. **Sidekick** may have issues if it expects `LazyVim.cmp.map` for Tab
    keymap integration. Test the `<Tab>` key behavior in completion.
 
-4. **Format toggle** (`<leader>uf` / `<leader>uF`) is not yet wired up.
-   LazyVim had `LazyVim.format.snacks_toggle()` — you'll need to create
-   a custom Snacks toggle for conform format-on-save, or just use
-   `:ConformToggle` if that exists.
+4. ~~**Format toggle**~~ — **Fixed.** `<leader>uf` (buffer) and `<leader>uF`
+   (global) are wired up via Snacks toggles. `format_on_save` in conform
+   checks `vim.b.autoformat` / `vim.g.autoformat`.
 
-5. **Copilot native** (LSP-based) requires Neovim >= 0.12. The current
-   config uses `zbirenbaum/copilot.lua` instead. If you want native LSP
-   copilot, you'll need to configure it differently.
+5. ~~**Copilot native**~~ — **Fixed.** Switched from `zbirenbaum/copilot.lua`
+   to native LSP copilot via `vim.lsp.inline_completion`. Blink ghost text
+   disabled to avoid conflicts. Sidekick status shown in lualine.
 
 ## Swap-Over (once everything works)
 

@@ -129,6 +129,29 @@ Snacks.toggle.profiler_highlights():map("<leader>dph")
 if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map("<leader>uh")
 end
+Snacks.toggle.new({
+  name = "Auto Format (Global)",
+  get = function()
+    return vim.g.autoformat == nil or vim.g.autoformat
+  end,
+  set = function(state)
+    vim.g.autoformat = state
+    vim.b.autoformat = nil
+  end,
+}):map("<leader>uF")
+Snacks.toggle.new({
+  name = "Auto Format (Buffer)",
+  get = function()
+    local baf = vim.b.autoformat
+    if baf ~= nil then
+      return baf
+    end
+    return vim.g.autoformat == nil or vim.g.autoformat
+  end,
+  set = function(state)
+    vim.b.autoformat = state
+  end,
+}):map("<leader>uf")
 
 -- Lazygit
 if vim.fn.executable("lazygit") == 1 then

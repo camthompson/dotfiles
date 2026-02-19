@@ -1,4 +1,101 @@
 local icons = require("core.icons")
+local util = require("core.util")
+
+--- Simplified pretty_path component adapted from LazyVim.
+--- Truncates to `length` segments, bolds filename, highlights modified/readonly.
+local function pretty_path(opts)
+  opts = vim.tbl_extend("force", {
+    modified_hl = "MatchParen",
+    directory_hl = "",
+    filename_hl = "Bold",
+    modified_sign = "",
+    readonly_icon = " 󰌾 ",
+    length = 3,
+  }, opts or {})
+
+  local function hl(component, text, hl_group)
+    if not hl_group or hl_group == "" then
+      return text
+    end
+    component.hl_cache = component.hl_cache or {}
+    local lualine_hl = component.hl_cache[hl_group]
+    if not lualine_hl then
+      local utils = require("lualine.utils.utils")
+      local gui = vim.tbl_filter(function(x) return x end, {
+        utils.extract_highlight_colors(hl_group, "bold") and "bold",
+        utils.extract_highlight_colors(hl_group, "italic") and "italic",
+      })
+      lualine_hl = component:create_hl({
+        fg = utils.extract_highlight_colors(hl_group, "fg"),
+        gui = #gui > 0 and table.concat(gui, ",") or nil,
+      }, "PP_" .. hl_group)
+      component.hl_cache[hl_group] = lualine_hl
+    end
+    return component:format_hl(lualine_hl) .. text:gsub("%%", "%%%%") .. component:get_default_hl()
+  end
+
+  return function(self)
+    local path = vim.fn.expand("%:p")
+    if path == "" then
+      return ""
+    end
+
+    local cwd = vim.uv.cwd() or ""
+    if cwd ~= "" and path:find(cwd, 1, true) == 1 then
+      path = path:sub(#cwd + 2)
+    end
+
+    local sep = "/"
+    local parts = vim.split(path, sep)
+
+    if opts.length > 0 and #parts > opts.length then
+      parts = { parts[1], "…", unpack(parts, #parts - opts.length + 2, #parts) }
+    end
+
+    if opts.modified_hl and vim.bo.modified then
+      parts[#parts] = parts[#parts] .. opts.modified_sign
+      parts[#parts] = hl(self, parts[#parts], opts.modified_hl)
+    else
+      parts[#parts] = hl(self, parts[#parts], opts.filename_hl)
+    end
+
+    local dir = ""
+    if #parts > 1 then
+      dir = table.concat({ unpack(parts, 1, #parts - 1) }, sep)
+      dir = hl(self, dir .. sep, opts.directory_hl)
+    end
+
+    local readonly = ""
+    if vim.bo.readonly then
+      readonly = hl(self, opts.readonly_icon, opts.modified_hl)
+    end
+    return dir .. parts[#parts] .. readonly
+  end
+end
+
+--- Root dir component — shows project root basename when it differs from cwd.
+local function root_dir()
+  local function get()
+    local cwd = vim.uv.cwd() or ""
+    local root = util.root()
+    if root == cwd then
+      return nil
+    end
+    return vim.fs.basename(root)
+  end
+
+  return {
+    function()
+      return "󱉭 " .. get()
+    end,
+    cond = function()
+      return get() ~= nil
+    end,
+    color = function()
+      return { fg = Snacks.util.color("Special") }
+    end,
+  }
+end
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -29,6 +126,7 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
         lualine_c = {
+          root_dir(),
           {
             "diagnostics",
             symbols = {
@@ -39,7 +137,7 @@ return {
             },
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename", path = 1 },
+          { pretty_path() },
         },
         lualine_x = {
           Snacks.profiler.status(),
