@@ -34,7 +34,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias v=nvim
+alias v='NVIM_APPNAME=nvim-new nvim'
 alias vd='v -d'
 alias vw='v -R'
 
