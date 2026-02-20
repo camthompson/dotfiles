@@ -81,7 +81,15 @@ return {
       keymap = {
         preset = "enter",
         ["<C-y>"] = { "select_and_accept" },
-        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<Tab>"] = {
+          function(cmp)
+            if vim.lsp.inline_completion.get() then
+              return true
+            end
+          end,
+          "snippet_forward",
+          "fallback",
+        },
       },
     },
   },
