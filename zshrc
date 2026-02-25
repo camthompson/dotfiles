@@ -559,6 +559,9 @@ ocs() {
   [[ -n "$session" ]] && opencode --session "$session"
 }
 
+alias cc='claude --continue'
+alias cr='claude --resume'
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # GitHub PR listing function
