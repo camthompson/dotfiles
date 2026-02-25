@@ -63,9 +63,12 @@ return {
       },
       formatters = {
         oxfmt = {
-          command = "oxfmt",
-          args = { "--stdin-filepath", "$FILENAME" },
-          stdin = true,
+          command = "npx",
+          args = { "oxfmt", "$FILENAME" },
+          stdin = false,
+          condition = function(self, ctx)
+            return vim.fs.find(".oxfmtrc.json", { path = ctx.dirname, upward = true })[1] ~= nil
+          end,
         },
       },
     },
@@ -83,8 +86,8 @@ return {
       },
       linters = {
         oxlint = {
-          cmd = "oxlint",
-          args = { "--format", "unix" },
+          cmd = "npx",
+          args = { "oxlint", "--format", "unix" },
           stdin = false,
           stream = "stdout",
           ignore_exitcode = true,
