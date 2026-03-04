@@ -69,7 +69,6 @@ brew "postgresql@17", link: true
 brew "procs"
 brew "redis"
 brew "sox"
-brew "speedtest-cli"
 brew "starship"
 brew "stern"
 brew "stylua"
