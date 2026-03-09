@@ -5,7 +5,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Post Esc if Caps is tapped, Control if held.",
+                        "description": "Post Esc if Left Control is tapped, Control if held.",
                         "manipulators": [
                             {
                                 "from": {
