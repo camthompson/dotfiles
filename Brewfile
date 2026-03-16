@@ -56,6 +56,7 @@ brew "macvim"
 brew "mas"
 brew "mise"
 brew "mosh"
+brew "tree-sitter"
 brew "neovim", args: ["HEAD"]
 brew "nginx"
 brew "nvm"
