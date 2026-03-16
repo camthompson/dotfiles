@@ -90,11 +90,13 @@ return {
             desc = desc:sub(1, 1):upper() .. desc:sub(2)
             desc = (key:sub(1, 1) == "[" and "Prev " or "Next ") .. desc
             desc = desc .. (key:sub(2, 2) == key:sub(2, 2):upper() and " End" or " Start")
-            if not (vim.wo.diff and key:find("[cC]")) then
-              vim.keymap.set({ "n", "x", "o" }, key, function()
+            vim.keymap.set({ "n", "x", "o" }, key, function()
+              if vim.wo.diff and key:find("[cC]") then
+                vim.cmd("normal! " .. key)
+              else
                 require("nvim-treesitter-textobjects.move")[method](query, "textobjects")
-              end, { buffer = buf, desc = desc, silent = true })
-            end
+              end
+            end, { buffer = buf, desc = desc, silent = true })
           end
         end
       end
