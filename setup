@@ -27,6 +27,7 @@ config_items=(
   "bat"
   "btop"
   "eza"
+  "gh-dash"
   "ghostty"
   "glow"
   "karabiner"
@@ -38,6 +39,8 @@ config_items=(
 
 # Base ignore list (items that shouldn't be symlinked to home at all)
 base_ignorelist=(
+  ".git"
+  "claude"
   "com.camthompson.macos.updateip.plist"
   "k9s"
   "lazygit"
@@ -195,6 +198,12 @@ if [ -d "themes/catppuccin-lazygit" ]; then
   echo "$theme_marker" >>"lazygit/config.yml"
   cat "themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml" >>"lazygit/config.yml"
   echo "  ✓ lazygit config updated (mocha-mauve theme + delta pager)"
+fi
+
+# Install gh extensions
+if command -v gh &>/dev/null; then
+  echo "Installing gh extensions..."
+  gh extension install dlvhdr/gh-dash 2>/dev/null && echo "  ✓ gh-dash installed" || echo "  ✓ gh-dash already installed"
 fi
 
 # starship theme setup

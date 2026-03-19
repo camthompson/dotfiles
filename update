@@ -91,6 +91,11 @@ if theme_changes.any?
   end
 end
 
+# Upgrade gh extensions
+puts "Upgrading gh extensions..."
+`gh extension upgrade --all 2>/dev/null`
+puts "  ✓ gh extensions upgraded"
+
 `git pull`
 
 puts "Done. Run `git status` to review any changes."
