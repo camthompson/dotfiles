@@ -598,7 +598,28 @@ ghprs() {
 
 alias kcd='kubectl config use-context docker-desktop'
 
-alias work='tmuxinator start work'
+function work() {
+  local session="work"
+
+  # Attach if session already exists
+  if tmux has-session -t "$session" 2>/dev/null; then
+    tmux attach-session -t "$session"
+    return
+  fi
+
+  # First window: gh-dash
+  tmux new-session -d -s "$session" -c "$HOME/work"
+  tmux send-keys -t "$session" 'ghd' C-m
+
+  # One window per repo from $WORK_REPOS (set in ~/.zshrc.local)
+  for repo in ${(s: :)WORK_REPOS}; do
+    local name="${repo:t}"
+    tmux new-window -t "$session" -n "$name" -c "$repo"
+  done
+
+  tmux select-window -t "$session:1"
+  tmux attach-session -t "$session"
+}
 
 # Prompt {{{
 # autoload -Uz promptinit && promptinit

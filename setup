@@ -34,7 +34,6 @@ config_items=(
   "lsd"
   "nvim"
   "starship.toml"
-  "tmuxinator"
 )
 
 # Base ignore list (items that shouldn't be symlinked to home at all)

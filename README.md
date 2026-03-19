@@ -45,7 +45,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `rgf` / `rgp` | Fuzzy file search / fuzzy content search with bat preview |
 | `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
-| `work` | Start the work tmux layout via tmuxinator |
+| `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
 
 ### Git aliases
