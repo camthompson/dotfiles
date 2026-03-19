@@ -299,8 +299,8 @@ map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 map("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
 map("n", "<c-n>", "<Plug>(YankyNextEntry)")
 
--- vscode-diff
-map({ "n" }, "<leader>gr", ":CodeDiff main<cr>", { desc = "CodeDiff main" })
+-- diff vs main
+map({ "n" }, "<leader>gr", ":DiffviewOpen origin/main...HEAD<cr>", { desc = "Diff vs main" })
 
 -- Theme toggles
 map("n", "<leader>td", ":colorscheme catppuccin-mocha<cr>", { desc = "Theme Dark (Mocha)" })
