@@ -508,7 +508,13 @@ alias gfo='git branch | fzf | xargs git checkout'
 alias gfs='git log --oneline | fzf --no-sort --preview "git show --color=always {1}" | awk "{print \$1}" | xargs git show'
 alias ghpr='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr view --web'
 alias ghco='gh pr list --limit 100 | fzf --preview "gh pr view {1} --comments" | awk "{print \$1}" | xargs gh pr checkout'
-alias ghd='gh dash'
+function ghd() {
+    if [[ "$PWD" = "$HOME/work"* ]] && [[ -f "$HOME/work/.gh-dash.yml" ]]; then
+        gh dash --config "$HOME/work/.gh-dash.yml" "$@"
+    else
+        gh dash "$@"
+    fi
+}
 
 # yazi (cd to last directory on exit)
 function y() {
