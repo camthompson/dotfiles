@@ -40,7 +40,7 @@ symbol = ' '
 [git_branch]
 symbol = ''
 format = '[[\[](fg:white)$branch(:$remote_branch)]($style)[\]](fg:white)'
-style = 'bold fg:sapphire'
+style = 'bold fg:lavender'
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
