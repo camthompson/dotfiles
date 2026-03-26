@@ -45,7 +45,7 @@ style = 'bold fg:lavender'
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
 stashed = '≡'
-style = 'bold fg:mauve'
+style = 'bold fg:maroon'
 
 [jobs]
 format = '[$symbol$number]($style)'
