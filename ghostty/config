@@ -41,8 +41,9 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-font-family = "Monaspace Neon NF"
-font-size = 15
+font-family = "Cascadia Code NF"
+font-size = 14
+font-thicken = true
 window-padding-x = 10
 window-padding-y = 10
 macos-titlebar-style = "hidden"
