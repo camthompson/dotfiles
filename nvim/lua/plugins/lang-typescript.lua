@@ -51,52 +51,15 @@ return {
     },
   },
 
-  -- Formatting with oxfmt
+  -- Linting with oxlint (native LSP)
   {
-    "stevearc/conform.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
-      formatters_by_ft = {
-        javascript = { "oxfmt" },
-        javascriptreact = { "oxfmt" },
-        typescript = { "oxfmt" },
-        typescriptreact = { "oxfmt" },
-      },
-      formatters = {
-        oxfmt = {
-          command = "npx",
-          args = { "oxfmt", "$FILENAME" },
-          stdin = false,
-          condition = function(self, ctx)
-            return vim.fs.find(".oxfmtrc.json", { path = ctx.dirname, upward = true })[1] ~= nil
-          end,
-        },
-      },
-    },
-  },
-
-  -- Linting with oxlint
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        javascript = { "oxlint" },
-        javascriptreact = { "oxlint" },
-        typescript = { "oxlint" },
-        typescriptreact = { "oxlint" },
-      },
-      linters = {
+      servers = {
         oxlint = {
-          cmd = "npx",
-          args = { "oxlint", "--format", "unix" },
-          stdin = false,
-          stream = "stdout",
-          ignore_exitcode = true,
-          parser = require("lint.parser").from_pattern(
-            "([^:]+):(%d+):(%d+): (.+)",
-            { "file", "lnum", "col", "message" },
-            nil,
-            { severity = vim.diagnostic.severity.WARN }
-          ),
+          settings = {
+            fixKind = "all",
+          },
         },
       },
     },
