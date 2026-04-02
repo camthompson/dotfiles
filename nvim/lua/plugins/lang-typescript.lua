@@ -7,12 +7,35 @@ return {
     },
   },
 
-  -- LSP: vtsls
+  -- LSP: vtsls (default) or tsgo (set vim.g.ts_lsp = "tsgo" to use)
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        vtsls = {
+    opts = function(_, opts)
+      local ts_lsp = vim.g.ts_lsp or "vtsls"
+      opts.servers = opts.servers or {}
+
+      if ts_lsp == "tsgo" then
+        opts.servers.tsgo = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
+                parameterNames = {
+                  enabled = "literals",
+                  suppressWhenArgumentMatchesName = true,
+                },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
+        }
+        -- Disable vtsls when using tsgo
+        opts.servers.vtsls = { enabled = false }
+      else
+        opts.servers.vtsls = {
           settings = {
             complete_function_calls = true,
             vtsls = {
@@ -38,9 +61,9 @@ return {
               },
             },
           },
-        },
-      },
-    },
+        }
+      end
+    end,
   },
 
   -- Mason
