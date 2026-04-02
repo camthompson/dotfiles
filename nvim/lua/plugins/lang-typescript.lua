@@ -47,7 +47,7 @@ return {
   {
     "mason-org/mason.nvim",
     opts = {
-      ensure_installed = { "vtsls" },
+      ensure_installed = { "vtsls", "oxfmt" },
     },
   },
 
@@ -61,6 +61,19 @@ return {
             fixKind = "all",
           },
         },
+      },
+    },
+  },
+
+  -- Formatting with oxfmt (Mason-installed, conform built-in)
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        javascript = { "oxfmt" },
+        javascriptreact = { "oxfmt" },
+        typescript = { "oxfmt" },
+        typescriptreact = { "oxfmt" },
       },
     },
   },
