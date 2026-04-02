@@ -1,0 +1,10 @@
+[tools]
+node = "24.14.0"
+python = "3.14.0"
+"npm:oxlint" = "latest"
+"npm:oxfmt" = "latest"
+"npm:tree-sitter-cli" = "latest"
+"npm:linearis" = "latest"
+
+[settings]
+npm.package_manager = "pnpm"

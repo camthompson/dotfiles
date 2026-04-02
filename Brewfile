@@ -64,6 +64,7 @@ brew "ripgrep"
 brew "opencode"
 brew "openssl@1.1"
 brew "pkgconf"
+brew "pnpm"
 brew "poppler"
 brew "postgresql@17", link: true
 brew "procs"

@@ -32,7 +32,9 @@ config_items=(
   "glow"
   "karabiner"
   "lsd"
+  "mise"
   "nvim"
+  "pnpm"
   "starship.toml"
 )
 
@@ -197,6 +199,12 @@ if [ -d "themes/catppuccin-lazygit" ]; then
   echo "$theme_marker" >>"lazygit/config.yml"
   cat "themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml" >>"lazygit/config.yml"
   echo "  ✓ lazygit config updated (mocha-mauve theme + delta pager)"
+fi
+
+# Trust mise global config and install tools
+if command -v mise &>/dev/null; then
+  mise trust "$HOME/.config/mise/config.toml"
+  mise install
 fi
 
 # Install gh extensions
