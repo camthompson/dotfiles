@@ -4,6 +4,7 @@ local opt = vim.opt
 vim.g.autoformat = true
 vim.g.snacks_animate = true
 vim.g.markdown_recommended_style = 0
+vim.g.ts_lsp = "tsgo"
 
 opt.autowrite = true
 opt.clipboard = "" -- Don't integrate with system clipboard (user override)
