@@ -5,6 +5,7 @@ python = "3.14.0"
 "npm:oxfmt" = "latest"
 "npm:tree-sitter-cli" = "latest"
 "npm:linearis" = "latest"
+"npm:@playwright/cli" = "latest"
 
 [settings]
 npm.package_manager = "pnpm"
