@@ -1,5 +1,5 @@
 #        
-format = '[\[](fg:white)$directory$kubernetes$aws$jobs[\]](fg:white) $character '
+format = '[\[](fg:white)$directory$kubernetes$aws${custom.slot}$jobs[\]](fg:white) $character '
 add_newline = false
 right_format = '$git_status $git_branch'
 palette = "catppuccin_mocha"
@@ -23,6 +23,12 @@ vimcmd_symbol = '[❮❮](fg:peach)'
 vimcmd_replace_one_symbol = '[R](fg:red)'
 vimcmd_replace_symbol = '[R](fg:red)'
 vimcmd_visual_symbol = '[R](fg:yellow)'
+
+[custom.slot]
+command = 'echo "slot-$LOCAL_SLOT"'
+when = '[ -n "$LOCAL_SLOT" ] && [ "$LOCAL_SLOT" != "0" ]'
+format = '[:](fg:white)[$output]($style)'
+style = 'fg:mauve'
 
 [cmd_duration]
 disabled = true
