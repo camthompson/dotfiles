@@ -53,6 +53,7 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   once = true,
   callback = function()
+    vim.cmd.packadd("nvim.undotree")
     require("core.keymaps")
     require("core.autocmds")
   end,
