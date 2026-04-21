@@ -609,6 +609,7 @@ function work() {
 
   # First window: gh-dash
   tmux new-session -d -s "$session" -c "$HOME/work"
+  tmux rename-window -t "$session" 'github'
   tmux send-keys -t "$session" 'ghd' C-m
 
   # One window per repo from $WORK_REPOS (set in ~/.zshrc.local)
