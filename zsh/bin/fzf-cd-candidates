@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+# Emit directory candidates for fzf-cd-widget (Alt-C).
+# - Inside a git repo: list dirs in the repo (gitignore-respecting, shallow).
+# - Outside: curated favourites + immediate children of ~/src and ~/work.
+
+if root=$(git rev-parse --show-toplevel 2>/dev/null); then
+  fd --type d --hidden --max-depth 2 --exclude .git . "$root"
+else
+  local fav
+  for fav in \
+    "$HOME" \
+    "$HOME/.config" \
+    "$HOME/Downloads" \
+    "$HOME/Obsidian"
+  do
+    [[ -d $fav ]] && print -- "$fav"
+  done
+  fd --type d --min-depth 1 --max-depth 1 . "$HOME/src" "$HOME/work" 2>/dev/null
+fi

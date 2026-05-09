@@ -464,7 +464,7 @@ source $HOME/.zsh/bundle/fast-syntax-highlighting/fast-syntax-highlighting.plugi
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND="$HOME/.zsh/bin/fzf-cd-candidates"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
 
 # Use tmux popup if inside tmux
