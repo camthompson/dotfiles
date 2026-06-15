@@ -214,6 +214,17 @@ if command -v gh &>/dev/null; then
   gh extension install dlvhdr/gh-dash 2>/dev/null && echo "  ✓ gh-dash installed" || echo "  ✓ gh-dash already installed"
 fi
 
+# Trust third-party Homebrew taps from the Brewfile. Homebrew 6.0+ refuses to
+# load formulae/casks from non-official taps until they're trusted, so do this
+# before running `brew bundle install`.
+if command -v brew &>/dev/null && [ -f "Brewfile" ]; then
+  echo "Trusting Homebrew taps from Brewfile..."
+  while IFS= read -r tap; do
+    [ -z "$tap" ] && continue
+    brew trust --tap "$tap" &>/dev/null && echo "  ✓ trusted $tap"
+  done < <(grep '^tap ' Brewfile | sed -E 's/^tap "([^"]+)".*/\1/')
+fi
+
 # starship theme setup
 if [ -d "themes/catppuccin-starship" ]; then
   # Remove everything after the theme marker and append new theme
