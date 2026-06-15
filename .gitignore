@@ -19,3 +19,8 @@ Brewfile.lock.json
 .DS_Store
 *.zwc
 .zcompdump*
+
+# Colima runtime files (keep only templates)
+colima/*
+!colima/_templates/
+!colima/_templates/**
