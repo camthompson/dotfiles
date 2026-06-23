@@ -1,5 +1,5 @@
 [tools]
-node = "24.14.0"
+node = "24.17.0"
 python = "3.14.0"
 "npm:oxlint" = "latest"
 "npm:oxfmt" = "latest"
