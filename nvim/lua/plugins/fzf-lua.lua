@@ -9,8 +9,6 @@ return {
       local config = fzf.config
       local actions = fzf.actions
 
-      -- Quickfix
-      config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
       config.defaults.keymap.fzf["ctrl-u"] = "half-page-up"
       config.defaults.keymap.fzf["ctrl-d"] = "half-page-down"
       config.defaults.keymap.fzf["ctrl-x"] = "jump"
@@ -19,9 +17,9 @@ return {
       config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
       config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
 
-      -- Trouble integration
+      -- Send results to Trouble (marked items if any, otherwise all)
       if pcall(require, "trouble") then
-        config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
+        config.defaults.actions.files["ctrl-q"] = require("trouble.sources.fzf").actions.open
       end
 
       -- Image previewer
