@@ -7,17 +7,17 @@ return {
     },
   },
 
-  -- LSP: vtsls (default) or tsgo (set vim.g.ts_lsp = "tsgo" to use)
+  -- LSP: vtsls (default) or the native compiler's LSP (set vim.g.ts_lsp = "tsc" to use)
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
       local ts_lsp = vim.g.ts_lsp or "vtsls"
       opts.servers = opts.servers or {}
 
-      if ts_lsp == "tsgo" then
-        opts.servers.tsgo = {
+      if ts_lsp == "tsc" then
+        opts.servers.tsc = {
           settings = {
-            typescript = {
+            ["js/ts"] = {
               inlayHints = {
                 enumMemberValues = { enabled = true },
                 functionLikeReturnTypes = { enabled = false },
@@ -32,7 +32,7 @@ return {
             },
           },
         }
-        -- Disable vtsls when using tsgo
+        -- Disable vtsls when using tsc
         opts.servers.vtsls = { enabled = false }
       else
         opts.servers.vtsls = {
