@@ -198,8 +198,6 @@ cask "brave-browser@beta"
 cask "brave-browser@nightly"
 # Anthropic's official Claude AI desktop app
 cask "claude"
-# Terminal-based AI coding assistant
-cask "claude-code"
 cask "colorpicker-skalacolor"
 # Voice and text chat software
 cask "discord"

@@ -214,6 +214,13 @@ if command -v gh &>/dev/null; then
   gh extension install dlvhdr/gh-dash 2>/dev/null && echo "  ✓ gh-dash installed" || echo "  ✓ gh-dash already installed"
 fi
 
+# Install Claude Code via the native installer (auto-updates itself; the
+# Homebrew cask lags behind releases)
+if ! command -v claude &>/dev/null; then
+  echo "Installing Claude Code..."
+  curl -fsSL https://claude.ai/install.sh | bash
+fi
+
 # Trust third-party Homebrew taps from the Brewfile. Homebrew 6.0+ refuses to
 # load formulae/casks from non-official taps until they're trusted, so do this
 # before running `brew bundle install`.
