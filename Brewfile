@@ -31,6 +31,8 @@ brew "btop"
 brew "gettext"
 # Core application library for C
 brew "glib"
+# TIFF library and utilities
+brew "libtiff"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
 # Cross-platform make
