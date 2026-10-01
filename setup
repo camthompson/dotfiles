@@ -212,6 +212,7 @@ fi
 if command -v gh &>/dev/null; then
   echo "Installing gh extensions..."
   gh extension install dlvhdr/gh-dash 2>/dev/null && echo "  ✓ gh-dash installed" || echo "  ✓ gh-dash already installed"
+  gh extension install github/gh-stack 2>/dev/null && echo "  ✓ gh-stack installed" || echo "  ✓ gh-stack already installed"
 fi
 
 # Install Claude Code via the native installer (auto-updates itself; the
