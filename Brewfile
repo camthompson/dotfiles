@@ -137,6 +137,8 @@ brew "poppler"
 brew "postgresql@17", link: true
 # Modern replacement for ps written in Rust
 brew "procs"
+# CLI companion with 200+ commands across 33+ Datadog products
+brew "pup"
 # Persistent key-value database, with built-in net interface
 brew "redis"
 # SOund eXchange: universal sound sample translator

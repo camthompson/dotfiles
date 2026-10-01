@@ -9,13 +9,13 @@ My macOS terminal setup. Everything is themed with [Catppuccin Mocha](https://gi
 | Tool | Description |
 |------|-------------|
 | [Ghostty](https://ghostty.org) | GPU-accelerated terminal emulator |
-| [zsh](https://www.zsh.org) | Shell with [fast-syntax-highlighting](https://github.com/zdharber/fast-syntax-highlighting), history-substring-search, and tab completions |
+| [zsh](https://www.zsh.org) | Shell with [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting), history-substring-search, and tab completions |
 | [Starship](https://starship.rs) | Minimal, fast prompt with git status, Kubernetes context, and AWS profile |
 | [tmux](https://github.com/tmux/tmux) | Terminal multiplexer (prefix `C-y`, integrated with vim-tmux-navigator) |
-| [Neovim](https://neovim.io) | Editor via the [LazyVim](https://lazyvim.org) distribution -- Copilot, fzf-lua, neo-tree, harpoon, and ~40 plugin configs |
+| [Neovim](https://neovim.io) | Editor with a self-managed [lazy.nvim](https://github.com/folke/lazy.nvim) config -- Copilot, fzf-lua, neo-tree, harpoon, and ~60 plugin configs |
 | [Git](https://git-scm.com) | Configured with delta for diffs, lazygit for TUI, and extensive aliases |
 | [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git operations |
-| [delta](https://github.com/dandavella/delta) | Syntax-highlighted git diffs, blame, and merge conflicts |
+| [delta](https://github.com/dandavison/delta) | Syntax-highlighted git diffs, blame, and merge conflicts |
 | [bat](https://github.com/sharkdp/bat) | `cat` replacement with syntax highlighting and git integration |
 | [eza](https://github.com/eza-community/eza) | Modern `ls` replacement with git status and icons |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder -- integrated into file, branch, PR, and process selection |
@@ -106,7 +106,7 @@ This script:
 
 After it finishes, review the changes with `git diff` and commit anything you want to keep.
 
-To update Neovim plugins separately, open Neovim and run `:Lazy` to open the LazyVim plugin manager.
+To update Neovim plugins separately, open Neovim and run `:Lazy` to open the lazy.nvim plugin manager.
 
 ## Customization
 
@@ -122,7 +122,7 @@ These files are not tracked by git, so they'll survive updates and won't show up
 A few things that might trip you up if you're used to defaults:
 
 - **tmux prefix is `C-y`** (not the default `C-b`). There's also a secondary prefix bound to `C-space`. See [`tmux.conf`](tmux.conf).
-- **`;` and `:` are swapped in Neovim**, so you tap `;` to enter command mode. See [`nvim/lua/config/keymaps.lua`](nvim/lua/config/keymaps.lua).
+- **`;` and `:` are swapped in Neovim**, so you tap `;` to enter command mode. See [`nvim/lua/core/keymaps.lua`](nvim/lua/core/keymaps.lua).
 - **The `g` alias disables zsh globbing** via `noglob`, so wildcards (`*`, `?`) in git commands are passed through literally instead of being expanded by the shell.
 
 ## Credits
