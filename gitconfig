@@ -8,7 +8,6 @@
   excludesfile = ~/.cvsignore
   autocrlf = false
   pager = delta
-  sshCommand = "ssh -i ~/.ssh/id_personal"
   bigFileThreshold = 1m
 [interactive]
   diffFilter = delta --color-only
