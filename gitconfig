@@ -110,8 +110,6 @@
   extendRegexp = true
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfigforwork
-[includeIf "hasconfig:remote.*.url:git@github.com:Edacious-PBC/**"]
-  path = ~/.gitconfigforwork
 [url "git@github-edacious:Edacious-PBC/"]
   insteadOf = git@github.com:Edacious-PBC/
 [tag]
