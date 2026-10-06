@@ -111,6 +111,8 @@
   extendRegexp = true
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfigforwork
+[includeIf "hasconfig:remote.*.url:git@github.com:Edacious-PBC/**"]
+  path = ~/.gitconfigforwork
 [tag]
   sort = version:refname
 [push]
