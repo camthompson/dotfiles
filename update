@@ -43,44 +43,29 @@ if theme_changes.any?
   puts "Theme updates detected for: #{theme_changes.join(', ')}"
   puts "Re-applying theme configurations..."
 
-  # lazygit theme setup (inline)
-  if theme_changes.include?("lazygit") && File.directory?("themes/catppuccin-lazygit")
+  # Replace everything from the theme marker to the end of config_file with
+  # the current theme file. Trailing blank lines above the marker are trimmed
+  # so repeated runs do not accumulate empty lines.
+  apply_theme = lambda do |name, config_file, theme_file|
     theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
-    config_file = "lazygit/config.yml"
+    return unless File.exist?(config_file)
 
-    if File.exist?(config_file) && system("grep -q '#{theme_marker}' '#{config_file}' 2>/dev/null")
-      # Create backup and remove old theme section
-      `cp #{config_file} #{config_file}.bak`
-      `sed -i '' '/#{theme_marker}/,$d' '#{config_file}'`
+    contents = File.read(config_file)
+    marker_at = contents.index(theme_marker)
+    return unless marker_at
 
-      # Append theme marker and content
-      File.open(config_file, 'a') do |f|
-        f.puts ""
-        f.puts theme_marker
-        f.write File.read("themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml")
-      end
-      puts "  ✓ lazygit theme updated"
-    end
+    `cp #{config_file} #{config_file}.bak`
+    head = contents[0...marker_at].rstrip
+    File.write(config_file, "#{head}\n\n#{theme_marker}\n#{File.read(theme_file)}")
+    puts "  ✓ #{name} theme updated"
   end
 
-  # starship theme setup (inline)
+  if theme_changes.include?("lazygit") && File.directory?("themes/catppuccin-lazygit")
+    apply_theme.call("lazygit", "lazygit/config.yml", "themes/catppuccin-lazygit/themes-mergable/mocha/mauve.yml")
+  end
+
   if theme_changes.include?("starship") && File.directory?("themes/catppuccin-starship")
-    theme_marker = "# === CATPPUCCIN THEME START (auto-generated, do not edit below) ==="
-    config_file = "starship.toml"
-
-    if File.exist?(config_file) && system("grep -q '#{theme_marker}' '#{config_file}' 2>/dev/null")
-      # Create backup and remove old theme section
-      `cp #{config_file} #{config_file}.bak`
-      `sed -i '' '/#{theme_marker}/,$d' '#{config_file}'`
-
-      # Append theme marker and content
-      File.open(config_file, 'a') do |f|
-        f.puts ""
-        f.puts theme_marker
-        f.write File.read("themes/catppuccin-starship/themes/mocha.toml")
-      end
-      puts "  ✓ starship theme updated"
-    end
+    apply_theme.call("starship", "starship.toml", "themes/catppuccin-starship/themes/mocha.toml")
   end
 
   # Rebuild bat cache if bat theme was updated
