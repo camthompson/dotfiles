@@ -13,6 +13,7 @@ karabiner/automatic_backups/
 coc/extensions/node_modules/
 coc/extensions/coc-json-data/json-schema-cache
 lazygit/state.yml
+lazygit/github_pull_requests.json
 .claude/settings.local.json
 *.bak
 Brewfile.lock.json
