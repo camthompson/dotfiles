@@ -11,3 +11,5 @@ Thumbs.db
 .vscode/settings.json
 .env
 .env.local
+
+**/.claude/settings.local.json
