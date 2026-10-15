@@ -46,7 +46,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
 | `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
-| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name (see [Claude sessions](#claude-sessions)) |
+| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts (see [Claude sessions](#claude-sessions)) |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
 
 ### Git aliases
@@ -71,22 +71,28 @@ See [`gitconfig`](gitconfig) for the full list (~40 aliases).
 
 ## Claude sessions
 
-`cl` (in [`zsh/func/cl`](zsh/func/cl)) starts Claude Code sessions you can find again. The first word is a short slug that becomes both the tmux window name and the Claude session name, so the window title stays put and `claude --resume` knows the session by the same word. Any further words are the opening prompt.
+`cl` (in [`zsh/func/cl`](zsh/func/cl)) starts Claude Code sessions you can find again. The first word is a short slug that becomes both the tmux window name and the Claude session name, so the window title stays put and `claude --resume` knows the session by the same word. A bare number is a ticket and expands to `eng-<number>` (`CL_TICKET_PREFIX` changes the prefix). Any further words are the prompt.
 
 ```sh
 cl eng-2108 implement the live items endpoint from the ENG-2108 spec
 cl -d ~/work/gemyn py-pin pin the python 3.14 patch version
-cl eng-2108          # later: switch to its window, or resume it if the window is gone
+cl 2108              # later: switch to its window, or resume it if the window is gone
+cl 2108 run the tests  # same, and send that as the next message
+cl                   # pick a known session with fzf, most recent first
 cl -l                # list known sessions; * marks ones with an open window
+clw 2108             # cl 2108 "what are the next steps for eng-2108?"
+clr 2108             # cl 2108 "review prs open for eng-2108; don't run checks"
 ```
 
-What happens on `cl <name>`:
+What happens on `cl <name> [prompt]`:
 
-1. A window named `<name>` is already open in this tmux session: switch to it. This avoids resuming one transcript in two terminals, which interleaves both into one history.
-2. `<name>` has been used before: open a new window in the directory the session started in and run `claude --resume <name>`. A `-d` or prompt given here is ignored with a note.
+1. A window named `<name>` is already open in this tmux session: switch to it, and type the prompt into it if there is one. This avoids resuming one transcript in two terminals, which interleaves both into one history.
+2. `<name>` has been used before: open a new window in the directory the session started in and run `claude --resume <name> [prompt]`. A `-d` given here is ignored with a note.
 3. Otherwise: open a new window in `-d DIR` (default: the current directory), run `claude --name <name> [prompt]`, and record the session.
 
 Windows named at creation have tmux's `automatic-rename` turned off, so the title stays stable even though Claude rewrites the terminal title on every turn. Outside tmux, `cl` runs `claude` in the current terminal instead.
+
+`clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are one-line wrappers that fix the prompt for a ticket; copy one to add another.
 
 To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
 

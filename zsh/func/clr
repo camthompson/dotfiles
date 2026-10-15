@@ -1,0 +1,10 @@
+# clr: open the session for a ticket and review its open pull requests.
+# `clr 1234` is `cl 1234 "review prs open for eng-1234; don't run checks"`.
+
+emulate -L zsh
+local -A opt
+zparseopts -D -M -A opt d:
+(( ARGC == 1 )) || { print -u2 'usage: clr [-d DIR] <ticket>'; return 1; }
+local name=$1
+[[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
+cl ${opt[-d]:+-d "$opt[-d]"} "$name" "review prs open for $name; don't run checks"

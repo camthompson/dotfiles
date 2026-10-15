@@ -2,8 +2,10 @@
 #
 # The first word is a short slug. It becomes both the tmux window name and the
 # Claude session name (`claude --name`), so the window title stays stable and
-# `cl <slug>` finds the session again later. Any further words are the opening
-# prompt for a new session.
+# `cl <slug>` finds the session again later. A bare number is a ticket and
+# expands to `${CL_TICKET_PREFIX:-eng}-<number>`. Any further words are the
+# prompt: the opening prompt for a new session, or the next message for an
+# existing one.
 #
 # Sessions are recorded in a tab-separated ledger (name, directory, created)
 # so completion and reopening don't depend on Claude's transcript format.
@@ -16,17 +18,22 @@ zparseopts -D -M -A opt d: l h
 
 local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
 
-if (( ${+opt[-h]} )) || { (( ! ${+opt[-l]} )) && (( ARGC == 0 )); }; then
+if (( ${+opt[-h]} )); then
   cat <<USAGE
 usage: cl [-d DIR] <name> [prompt...]
+       cl
        cl -l
 
 Open a Claude Code session named <name> in a tmux window of the same name.
-If a window called <name> is already open in this tmux session, switch to it.
-If <name> was used before, resume that session in the directory it started in.
-Otherwise start a new session in DIR (default: the current directory) and send
-any remaining words as the first prompt.
+A bare number expands to ${CL_TICKET_PREFIX:-eng}-<number>.
+If a window called <name> is already open in this tmux session, switch to it
+and type the prompt, if any, into it.
+If <name> was used before, resume that session in the directory it started in
+and send the prompt, if any.
+Otherwise start a new session in DIR (default: the current directory) with the
+prompt as its first message.
 
+With no arguments, pick a known session with fzf, most recent first.
 Outside tmux, claude runs in the current terminal instead of a new window.
 
 Options:
@@ -34,35 +41,51 @@ Options:
   -l      List known sessions. A leading * marks ones with an open window.
   -h      Show this help.
 USAGE
-  (( ${+opt[-h]} )) && return 0
-  return 1
+  return 0
 fi
+
+local -a open
+[[ -n $TMUX ]] && open=(${(f)"$(tmux list-windows -F '#W')"})
 
 if (( ${+opt[-l]} )); then
   [[ -s $ledger ]] || { print "no sessions recorded in $ledger"; return 0; }
-  local -a open
-  [[ -n $TMUX ]] && open=(${(f)"$(tmux list-windows -F '#W')"})
-  local line name dir created
+  local name dir created
   while IFS=$'\t' read -r name dir created; do
     printf '%s %-20s %s  %s\n' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created"
   done < "$ledger"
   return 0
 fi
 
+if (( ARGC == 0 )); then
+  [[ -s $ledger ]] || { print -u2 "cl: no sessions recorded yet"; return 1; }
+  local -a rows
+  local name dir created
+  while IFS=$'\t' read -r name dir created; do
+    rows=("$(printf '%s\t%-20s\t%s\t%s' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created")" $rows)
+  done < "$ledger"
+  local choice
+  choice=$(print -l $rows | fzf --delimiter '\t' --tabstop 1 --header '* open' --nth 2) || return 1
+  cl "${${(s:	:)choice}[2]// /}"
+  return
+fi
+
 local name=$1; shift
 local prompt="$*"
+
+[[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
 
 if [[ $name != [A-Za-z0-9][A-Za-z0-9._-]# ]]; then
   print -u2 "cl: name must be letters, digits, dot, dash, or underscore: $name"
   return 1
 fi
 
-# Already open in this tmux session: just go there.
+# Already open in this tmux session: go there, and hand over the prompt.
 local win
 if [[ -n $TMUX ]]; then
   win=$(tmux list-windows -F '#{window_id} #W' | awk -v n="$name" '$2 == n { print $1; exit }')
   if [[ -n $win ]]; then
     tmux select-window -t "$win"
+    [[ -n $prompt ]] && tmux send-keys -t "$win" -l "$prompt" && tmux send-keys -t "$win" Enter
     return
   fi
 fi
@@ -78,10 +101,6 @@ if [[ -s $ledger ]]; then
     if [[ -n $opt[-d] && ${~opt[-d]:A} != $dir ]]; then
       print -u2 "cl: $name already lives in ${dir/#$HOME/~}; ignoring -d"
     fi
-    if [[ -n $prompt ]]; then
-      print -u2 "cl: $name already exists; ignoring the prompt (resuming instead)"
-      prompt=
-    fi
   fi
 fi
 
@@ -95,8 +114,8 @@ if [[ -n $known ]]; then
   cmd=(claude --resume "$name")
 else
   cmd=(claude --name "$name")
-  [[ -n $prompt ]] && cmd+=("$prompt")
 fi
+[[ -n $prompt ]] && cmd+=("$prompt")
 
 if [[ -z $known ]]; then
   mkdir -p "${ledger:h}"
