@@ -19,12 +19,13 @@ Claude session name. A bare number is a ticket: `2108` is `eng-2108`
 | `cl <name> <prompt>` | Same, and send `prompt` as the next message |
 | `cl -d DIR <name> ...` | Start a new session in `DIR` instead of the current directory |
 | `cl -w <name> ...` | Same, but in a new window named `<name>` (`clw -w`, `clr -w` too) |
+| `cl -n <name> ...` | Start a fresh session under `<name>` even if one exists; it replaces the old one as what `cl <name>` resumes |
 | `cl` | Pick a known session with fzf, most recent first |
 | `cl -l` | List known sessions; `*` marks ones with an open window |
-| `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"` |
-| `clr <ticket>` | `cl <ticket> "review prs open for eng-<ticket>; don't run checks"` |
-| `cli` (or bare `clw`) | Pick an open Linear issue assigned to you with fzf, then `clw` it; `ctrl-a` toggles every open issue on the team (`-a` starts there) |
-| `clp` (or bare `clr`) | Pick an open GitHub PR waiting on your review with fzf, then review it in a session named after its ticket (or `<repo>-pr<n>`), started in the repo's `$WORK_REPOS` checkout; `ctrl-a` toggles every open PR in your orgs |
+| `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"`; resumes the ticket's session, `-n` starts fresh |
+| `clr <ticket>` | `cl -n <ticket> "review prs open for eng-<ticket>; don't run checks"`; a fresh session each time, `-r` resumes |
+| `cli` (or bare `clw`) | Pick an open Linear issue assigned to you with fzf, then `clw -n` it; `ctrl-a` toggles every open issue on the team (`-a` starts there), `-r` resumes instead |
+| `clp` (or bare `clr`) | Pick an open GitHub PR waiting on your review with fzf, then review it in a fresh session named after its ticket (or `<repo>-pr<n>`), started in the repo's `$WORK_REPOS` checkout; `ctrl-a` toggles every open PR in your orgs, `-r` resumes instead |
 | `claude-pick` | fzf over *running* Claude sessions in tmux, with a pane preview; jumps to the chosen pane |
 | `cc` | `claude --continue`: most recent session in this directory |
 | `cr [name]` | `claude --resume`: the session picker, or a named session |
@@ -54,7 +55,7 @@ Prefix is `C-y` (also `C-space`).
 A window running a `cl` session keeps its name until claude exits. Other
 windows show the running command, or the directory name when it is a shell.
 
-Where things live: `~/.local/state/cl/sessions` (the `cl` ledger),
+Where things live: `~/.local/state/cl/sessions` (the `cl` ledger: name, directory, created, session id),
 `~/.claude/sessions/` (Claude's registry of running processes),
 `~/.claude/projects/` (transcripts).
 MD

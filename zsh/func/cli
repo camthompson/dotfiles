@@ -3,31 +3,34 @@
 # Lists open issues on the team named by CL_TICKET_PREFIX (default eng),
 # assigned to you. Typing filters the list; ctrl-a swaps in every open issue on
 # the team, with the same filter still applied, and swaps back. The chosen
-# issue is handed to `clw`, so `cli` ends up as
-# `cl eng-1234 "what are the next steps for eng-1234?"`. Bare `clw` runs this.
+# issue is handed to `clw -n`, so `cli` ends up as
+# `cl -n eng-1234 "what are the next steps for eng-1234?"`: a fresh session,
+# unless -r says to resume the issue's existing one. Bare `clw` runs this.
 
 emulate -L zsh
 setopt pipe_fail
 
 local -A opt
-zparseopts -D -M -A opt d: w a h
+zparseopts -D -M -A opt d: w a r h
 
 if (( ${+opt[-h]} )); then
   cat <<USAGE
-usage: cli [-a] [-w] [-d DIR]
+usage: cli [-a] [-r] [-w] [-d DIR]
 
 Pick an open Linear issue assigned to you and run clw on it. Type to filter;
 ctrl-a toggles between your issues and every open issue on the team.
+Each pick starts a fresh session.
 
 Options:
   -a      Start with every open issue, not only yours.
+  -r      Resume the issue's existing session instead of starting a new one.
   -w      Open the session in a new tmux window.
   -d DIR  Directory to start a new session in.
   -h      Show this help.
 USAGE
   return 0
 fi
-(( ARGC == 0 )) || { print -u2 'usage: cli [-a] [-w] [-d DIR]'; return 1; }
+(( ARGC == 0 )) || { print -u2 'usage: cli [-a] [-r] [-w] [-d DIR]'; return 1; }
 
 local team=${CL_TICKET_PREFIX:-eng}
 local states='-s triage -s backlog -s unstarted -s started'
@@ -59,6 +62,7 @@ choice=$(eval "$list" | fzf \
 
 local id=${${=choice}[1]}
 local -a args
+(( ${+opt[-r]} )) || args+=(-n)
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
 clw "${args[@]}" "${(L)id}"

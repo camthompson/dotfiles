@@ -7,20 +7,23 @@
 # prompt: the opening prompt for a new session, or the next message for an
 # existing one.
 #
-# Sessions are recorded in a tab-separated ledger (name, directory, created)
-# so completion and reopening don't depend on Claude's transcript format.
+# Sessions are recorded in a tab-separated ledger (name, directory, created,
+# session id) so completion and reopening don't depend on Claude's transcript
+# format. New sessions get a UUID up front and are resumed by it, so a name can
+# be reused for a fresh session (-n) without `--resume` becoming ambiguous.
+# Lines written before the id column resume by name.
 
 emulate -L zsh
 setopt pipe_fail extended_glob
 
 local -A opt
-zparseopts -D -M -A opt d: w l h
+zparseopts -D -M -A opt d: w n l h
 
 local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
 
 if (( ${+opt[-h]} )); then
   cat <<USAGE
-usage: cl [-w] [-d DIR] <name> [prompt...]
+usage: cl [-n] [-w] [-d DIR] <name> [prompt...]
        cl
        cl -l
 
@@ -41,6 +44,9 @@ With no arguments, pick a known session with fzf, most recent first.
 Outside tmux, claude runs in the current terminal instead of a new window.
 
 Options:
+  -n      Start a new session even if <name> is known or its window is open.
+          It starts where the old one did unless -d says otherwise, and
+          replaces it as the session <name> resumes.
   -w      Open a new window instead of running in the current one.
   -d DIR  Directory to start a new session in.
   -l      List known sessions. A leading * marks ones with an open window.
@@ -54,8 +60,8 @@ local -a open
 
 if (( ${+opt[-l]} )); then
   [[ -s $ledger ]] || { print "no sessions recorded in $ledger"; return 0; }
-  local name dir created
-  while IFS=$'\t' read -r name dir created; do
+  local name dir created id
+  while IFS=$'\t' read -r name dir created id; do
     printf '%s %-20s %s  %s\n' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created"
   done < "$ledger"
   return 0
@@ -64,8 +70,8 @@ fi
 if (( ARGC == 0 )); then
   [[ -s $ledger ]] || { print -u2 "cl: no sessions recorded yet"; return 1; }
   local -a rows
-  local name dir created
-  while IFS=$'\t' read -r name dir created; do
+  local name dir created id
+  while IFS=$'\t' read -r name dir created id; do
     rows=("$(printf '%s\t%-20s\t%s\t%s' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created")" $rows)
   done < "$ledger"
   local choice
@@ -86,7 +92,7 @@ fi
 
 # Already open in this tmux session: go there, and hand over the prompt.
 local win
-if [[ -n $TMUX ]]; then
+if [[ -n $TMUX && ! ${+opt[-n]} -eq 1 ]]; then
   win=$(tmux list-windows -F '#{window_id} #W' | awk -v n="$name" '$2 == n { print $1; exit }')
   if [[ -n $win ]]; then
     tmux select-window -t "$win"
@@ -95,36 +101,43 @@ if [[ -n $TMUX ]]; then
   fi
 fi
 
-# Known session: resume it where it started.
-local dir known=
+# Known session: resume it where it started, or with -n start over there.
+local dir id known=
 if [[ -s $ledger ]]; then
   local -a hit
-  hit=(${(f)"$(awk -F'\t' -v n="$name" '$1 == n { print $2; exit }' "$ledger")"})
+  hit=(${(f)"$(awk -F'\t' -v n="$name" '$1 == n { print $2; print $4; exit }' "$ledger")"})
   if (( $#hit )); then
     known=1
     dir=$hit[1]
-    if [[ -n $opt[-d] && ${~opt[-d]:A} != $dir ]]; then
+    id=$hit[2]
+    if [[ -n $opt[-d] && ! ${+opt[-n]} -eq 1 && ${~opt[-d]:A} != $dir ]]; then
       print -u2 "cl: $name already lives in ${dir/#$HOME/~}; ignoring -d"
     fi
   fi
 fi
 
-if [[ -z $known ]]; then
-  dir=${~${opt[-d]:-$PWD}:A}
+local fresh=
+if [[ -z $known || ${+opt[-n]} -eq 1 ]]; then
+  fresh=1
+  dir=${~${opt[-d]:-${dir:-$PWD}}:A}
   [[ -d $dir ]] || { print -u2 "cl: no such directory: $dir"; return 1; }
+  id=${(L)"$(uuidgen)"}
 fi
 
 local -a cmd
-if [[ -n $known ]]; then
-  cmd=(claude --resume "$name")
+if [[ -n $fresh ]]; then
+  cmd=(claude --name "$name" --session-id "$id")
 else
-  cmd=(claude --name "$name")
+  cmd=(claude --resume "${id:-$name}")
 fi
 [[ -n $prompt ]] && cmd+=("$prompt")
 
-if [[ -z $known ]]; then
+if [[ -n $fresh ]]; then
   mkdir -p "${ledger:h}"
-  printf '%s\t%s\t%s\n' "$name" "$dir" "$(date +%Y-%m-%dT%H:%M)" >> "$ledger"
+  if [[ -n $known ]]; then
+    awk -F'\t' -v n="$name" '$1 != n' "$ledger" > "$ledger.tmp" && mv "$ledger.tmp" "$ledger"
+  fi
+  printf '%s\t%s\t%s\t%s\n' "$name" "$dir" "$(date +%Y-%m-%dT%H:%M)" "$id" >> "$ledger"
 fi
 
 if [[ -z $TMUX ]]; then

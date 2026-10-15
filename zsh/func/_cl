@@ -9,8 +9,8 @@ function _cl_sessions() {
   local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
   [[ -s $ledger ]] || return 1
   local -a sessions
-  local name dir created
-  while IFS=$'\t' read -r name dir created; do
+  local name dir created id
+  while IFS=$'\t' read -r name dir created id; do
     sessions+=("${name}:${dir/#$HOME/~}")
   done < "$ledger"
   _describe -t sessions 'claude session' sessions
@@ -18,21 +18,40 @@ function _cl_sessions() {
 
 function _cl() {
   case $service in
-    cli|clp)
+    cli)
       _arguments -s \
-        '-a[start with every open item, not only yours]' \
+        '-a[start with every open issue, not only yours]' \
+        '-r[resume the existing session instead of starting fresh]' \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
         '-h[show help]'
       ;;
-    clw|clr)
+    clp)
       _arguments -s \
+        '-a[start with every open pull request, not only ones waiting on you]' \
+        '-r[resume the existing session instead of starting fresh]' \
+        '-w[open a new window]' \
+        '-d[directory to start a new session in]:directory:_directories' \
+        '-h[show help]'
+      ;;
+    clr)
+      _arguments -s \
+        '-r[resume the existing session instead of starting fresh]' \
+        '-w[open a new window]' \
+        '-d[directory to start a new session in]:directory:_directories' \
+        '1::ticket or session name (none: pick with fzf):_cl_sessions'
+      ;;
+    clw)
+      _arguments -s \
+        '-n[start a new session even if the ticket is known]' \
+        '-r[with no ticket: resume the picked issue'"'"'s session]' \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
         '1::ticket or session name (none: pick with fzf):_cl_sessions'
       ;;
     *)
       _arguments -s \
+        '-n[start a new session even if the name is known]' \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
         '-l[list known sessions]' \

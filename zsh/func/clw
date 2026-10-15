@@ -1,15 +1,17 @@
 # clw: open the session for a ticket and ask what to do next.
-# `clw 1234` is `cl 1234 "what are the next steps for eng-1234?"`.
-# With no ticket, pick a Linear issue with cli first.
+# `clw 1234` is `cl 1234 "what are the next steps for eng-1234?"`, resuming the
+# ticket's session when there is one; -n starts a fresh one instead.
+# With no ticket, pick a Linear issue with cli first (fresh unless -r).
 
 emulate -L zsh
 local -A opt
-zparseopts -D -M -A opt d: w
+zparseopts -D -M -A opt d: w n r
 local -a args
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
-(( ARGC == 0 )) && { cli "${args[@]}"; return }
-(( ARGC == 1 )) || { print -u2 'usage: clw [-w] [-d DIR] [ticket]'; return 1; }
+(( ARGC == 0 )) && { cli ${opt[-r]+-r} "${args[@]}"; return }
+(( ARGC == 1 )) || { print -u2 'usage: clw [-n] [-w] [-d DIR] [ticket]'; return 1; }
+(( ${+opt[-n]} )) && args+=(-n)
 local name=$1
 [[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
 cl "${args[@]}" "$name" "what are the next steps for $name?"

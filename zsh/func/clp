@@ -6,17 +6,18 @@
 # like `clr` does for a ticket: named after the ticket in its branch name (or
 # title) when there is one, otherwise `<repo>-pr<number>`, started in the
 # repo's checkout from $WORK_REPOS when there is one, with the prompt
-# `review <url>; don't run checks`. Bare `clr` runs this.
+# `review <url>; don't run checks`. Like clr, it starts a fresh session each
+# time unless -r says to resume the existing one. Bare `clr` runs this.
 
 emulate -L zsh
 setopt pipe_fail
 
 local -A opt
-zparseopts -D -M -A opt d: w a h
+zparseopts -D -M -A opt d: w a r h
 
 if (( ${+opt[-h]} )); then
   cat <<USAGE
-usage: clp [-a] [-w] [-d DIR]
+usage: clp [-a] [-r] [-w] [-d DIR]
 
 Pick an open GitHub pull request that is waiting on your review and open a
 Claude session to review it. Type to filter; ctrl-a toggles between pull
@@ -25,16 +26,18 @@ requests waiting on you and every open pull request in your organizations.
 The session is named after the ticket in the branch name or title, such as
 ${CL_TICKET_PREFIX:-eng}-1234, or <repo>-pr<number> when there is none. A new
 session starts in the repo's directory from \$WORK_REPOS when one matches.
+Each pick starts a fresh session, so a rerun after changes reviews clean.
 
 Options:
   -a      Start with every open pull request, not only ones waiting on you.
+  -r      Resume the ticket's existing session instead of starting a new one.
   -w      Open the session in a new tmux window.
   -d DIR  Directory to start a new session in.
   -h      Show this help.
 USAGE
   return 0
 fi
-(( ARGC == 0 )) || { print -u2 'usage: clp [-a] [-w] [-d DIR]'; return 1; }
+(( ARGC == 0 )) || { print -u2 'usage: clp [-a] [-r] [-w] [-d DIR]'; return 1; }
 
 local fields='number,title,repository,author,url,isDraft'
 local fmt='.[] | [.url, .repository.name, "#\(.number)", .author.login, (if .isDraft then "[draft] " else "" end) + .title] | @tsv'
@@ -92,6 +95,7 @@ if [[ -z $dir ]]; then
 fi
 
 local -a args
+(( ${+opt[-r]} )) || args+=(-n)
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $dir ]] && args+=(-d "$dir")
 cl "${args[@]}" "$name" "review $url; don't run checks"
