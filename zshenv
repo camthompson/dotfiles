@@ -22,6 +22,7 @@ fpath=(
 
 path=(
   $HOME/bin
+  $HOME/.zsh/bin
   /Applications/MacVim.app/Contents/bin
   /opt/homebrew/bin/
   /usr/local/{bin,sbin}
