@@ -139,3 +139,5 @@
  diff-so-fancy = true
 [mergetool "diffview"]
 	cmd = nvim -c \"DiffviewOpen\"
+[url "ssh://git@github-edacious/Edacious-PBC/"]
+	insteadOf = ssh://git@github.com/Edacious-PBC/
