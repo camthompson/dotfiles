@@ -46,7 +46,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
 | `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
-| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts (see [Claude sessions](#claude-sessions)) |
+| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts, `cli`/`clp` pick a Linear issue or GitHub PR with fzf first (see [Claude sessions](#claude-sessions)) |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
 | `cheatsheet` | Print the Claude session commands and tmux shortcuts above, rendered with glow |
 
@@ -84,6 +84,8 @@ cl                   # pick a known session with fzf, most recent first
 cl -l                # list known sessions; * marks ones with an open window
 clw 2108             # cl 2108 "what are the next steps for eng-2108?"
 clr 2108             # cl 2108 "review prs open for eng-2108; don't run checks"
+cli                  # pick an open Linear issue assigned to you with fzf, then clw it (bare clw does the same)
+clp                  # pick an open GitHub PR waiting on your review with fzf, then review it (bare clr does the same)
 ```
 
 What happens on `cl <name> [prompt]`:
@@ -96,7 +98,9 @@ Renaming a window turns off tmux's `automatic-rename` for it, so the title stays
 
 `clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are one-line wrappers that fix the prompt for a ticket; copy one to add another.
 
-All three run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
+`cli` and `clp` ([`zsh/func/cli`](zsh/func/cli), [`zsh/func/clp`](zsh/func/clp)) pick the ticket for you. `cli` lists the open Linear issues assigned to you on the `CL_TICKET_PREFIX` team through the [`linear`](https://github.com/schpet/linear-cli) CLI, with the issue rendered in the preview; choosing one runs `clw` on it. `clp` lists the open GitHub pull requests waiting on your review through `gh search prs`, with `gh pr view` in the preview; choosing one opens a session named after the ticket in the branch name or title (`eng-2108`), or `<repo>-pr<number>` when there is none, started in the repo's checkout from `$WORK_REPOS` when one matches, with the prompt `review <url>; don't run checks`. In both, typing filters the list and `ctrl-a` toggles between your items and every open issue on the team or every open pull request in your organizations, keeping the filter; `-a` starts on the wide list. Both take `-w` and `-d` like `clw` and `clr`, and `clw` or `clr` with no ticket runs the matching picker, the way bare `cl` picks a known session.
+
+All of these run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
 To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
 

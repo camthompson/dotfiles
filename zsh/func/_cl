@@ -1,8 +1,9 @@
-#compdef cl clw clr
+#compdef cl clw clr cli clp
 #autoload
 
 # Completes session names from the cl ledger, with each session's directory
-# as the description.
+# as the description. cli and clp take no positional arguments: they pick
+# their issue or pull request with fzf.
 
 function _cl_sessions() {
   local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
@@ -17,11 +18,18 @@ function _cl_sessions() {
 
 function _cl() {
   case $service in
+    cli|clp)
+      _arguments -s \
+        '-a[start with every open item, not only yours]' \
+        '-w[open a new window]' \
+        '-d[directory to start a new session in]:directory:_directories' \
+        '-h[show help]'
+      ;;
     clw|clr)
       _arguments -s \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
-        '1:ticket or session name:_cl_sessions'
+        '1::ticket or session name (none: pick with fzf):_cl_sessions'
       ;;
     *)
       _arguments -s \

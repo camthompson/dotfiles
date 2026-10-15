@@ -1,0 +1,64 @@
+# cli: pick a Linear issue with fzf and start working on it with clw.
+#
+# Lists open issues on the team named by CL_TICKET_PREFIX (default eng),
+# assigned to you. Typing filters the list; ctrl-a swaps in every open issue on
+# the team, with the same filter still applied, and swaps back. The chosen
+# issue is handed to `clw`, so `cli` ends up as
+# `cl eng-1234 "what are the next steps for eng-1234?"`. Bare `clw` runs this.
+
+emulate -L zsh
+setopt pipe_fail
+
+local -A opt
+zparseopts -D -M -A opt d: w a h
+
+if (( ${+opt[-h]} )); then
+  cat <<USAGE
+usage: cli [-a] [-w] [-d DIR]
+
+Pick an open Linear issue assigned to you and run clw on it. Type to filter;
+ctrl-a toggles between your issues and every open issue on the team.
+
+Options:
+  -a      Start with every open issue, not only yours.
+  -w      Open the session in a new tmux window.
+  -d DIR  Directory to start a new session in.
+  -h      Show this help.
+USAGE
+  return 0
+fi
+(( ARGC == 0 )) || { print -u2 'usage: cli [-a] [-w] [-d DIR]'; return 1; }
+
+local team=${CL_TICKET_PREFIX:-eng}
+local states='-s triage -s backlog -s unstarted -s started'
+local fmt='.[] | [.identifier, .state.name, (.assignee.displayName // "-"), .title] | @tsv'
+
+# Exported so fzf's reload actions, which run in a child shell, can see them.
+local -x CLI_MINE="linear issue list --json --team $team $states --limit all | jq -r '$fmt' | column -t -s \$'\\t'"
+local -x CLI_ALL="linear issue list --json --team $team $states --limit all -A | jq -r '$fmt' | column -t -s \$'\\t'"
+
+local toggle='if [ "$FZF_PROMPT" = "mine> " ]; then
+  echo "change-prompt(all> )+change-header(ctrl-a: my issues)+reload(eval \"\$CLI_ALL\")"
+else
+  echo "change-prompt(mine> )+change-header(ctrl-a: all issues)+reload(eval \"\$CLI_MINE\")"
+fi'
+
+local preview='linear issue view --no-pager --no-download {1} | { command -v glow >/dev/null && glow -w $FZF_PREVIEW_COLUMNS - || cat; }'
+
+local prompt='mine> ' header='ctrl-a: all issues' list=$CLI_MINE
+if (( ${+opt[-a]} )); then
+  prompt='all> ' header='ctrl-a: my issues' list=$CLI_ALL
+fi
+
+local choice
+choice=$(eval "$list" | fzf \
+  --prompt "$prompt" --header "$header" \
+  --bind "ctrl-a:transform:$toggle" \
+  --preview "$preview" \
+  --preview-window 'down,60%,border-top,wrap') || return 1
+
+local id=${${=choice}[1]}
+local -a args
+(( ${+opt[-w]} )) && args+=(-w)
+[[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
+clw "${args[@]}" "${(L)id}"

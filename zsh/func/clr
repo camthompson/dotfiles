@@ -1,10 +1,15 @@
 # clr: open the session for a ticket and review its open pull requests.
 # `clr 1234` is `cl 1234 "review prs open for eng-1234; don't run checks"`.
+# With no ticket, pick a pull request with clp first.
 
 emulate -L zsh
 local -A opt
 zparseopts -D -M -A opt d: w
-(( ARGC == 1 )) || { print -u2 'usage: clr [-w] [-d DIR] <ticket>'; return 1; }
+local -a args
+(( ${+opt[-w]} )) && args+=(-w)
+[[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
+(( ARGC == 0 )) && { clp "${args[@]}"; return }
+(( ARGC == 1 )) || { print -u2 'usage: clr [-w] [-d DIR] [ticket]'; return 1; }
 local name=$1
 [[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
-cl ${opt[-w]+-w} ${opt[-d]:+-d "$opt[-d]"} "$name" "review prs open for $name; don't run checks"
+cl "${args[@]}" "$name" "review prs open for $name; don't run checks"
