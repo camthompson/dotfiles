@@ -88,6 +88,8 @@ What happens on `cl <name>`:
 
 Windows named at creation have tmux's `automatic-rename` turned off, so the title stays stable even though Claude rewrites the terminal title on every turn. Outside tmux, `cl` runs `claude` in the current terminal instead.
 
+To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
+
 Known sessions live in a tab-separated ledger at `~/.local/state/cl/sessions` (name, directory, created). Tab completion reads it, so neither completion nor reopening depends on the format of Claude's transcript files. Delete a line to forget a session.
 
 ## Prerequisites

@@ -1,0 +1,45 @@
+#!/usr/bin/env zsh
+# claude-pick: pick a running Claude Code session with fzf and jump to its pane.
+#
+# Meant to run inside a tmux popup (see tmux.conf). Reads the registry Claude
+# Code keeps for its running processes, one JSON file per pid, which records
+# the session's display name, working directory, idle/busy status, and the
+# tmux pane it runs in. Dead pids and panes that no longer exist are dropped.
+
+emulate -L zsh
+setopt pipe_fail extended_glob
+
+local registry=${CLAUDE_CONFIG_DIR:-$HOME/.claude}/sessions
+local -a panes rows
+panes=(${(f)"$(tmux list-panes -a -F '#{pane_id}')"})
+
+local f pid state name cwd pane glyph
+for f in $registry/*.json(N); do
+  pid=${${f:t}%.json}
+  kill -0 $pid 2>/dev/null || continue
+  IFS=$'\t' read -r state name cwd pane < <(
+    jq -r --arg home "$HOME" \
+      '[.status, .name, (.cwd | sub("^\($home)"; "~")), ((.tmux // "") | sub("^.*\\."; ""))] | @tsv' "$f"
+  )
+  [[ -n $pane && -n ${panes[(r)$pane]} ]] || continue
+  case $state in
+    busy) glyph='●' ;;
+    *)    glyph='○' ;;
+  esac
+  rows+=("$(printf '%s\t%-20s\t%s\t%s' "$glyph" "$name" "$cwd" "$pane")")
+done
+
+if (( ! $#rows )); then
+  tmux display-message 'no claude sessions running in tmux'
+  exit 0
+fi
+
+local choice
+choice=$(print -l ${(o)rows} | fzf \
+  --no-tmux --reverse --ansi \
+  --delimiter '\t' --with-nth 1,2,3 --tabstop 1 \
+  --header '● busy  ○ idle' \
+  --preview 'tmux capture-pane -p -e -t {4} | tail -n ${FZF_PREVIEW_LINES:-40}' \
+  --preview-window 'right,60%,border-left') || exit 0
+
+tmux switch-client -t "${choice##*$'\t'}"
