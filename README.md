@@ -46,6 +46,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
 | `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
+| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name (see [Claude sessions](#claude-sessions)) |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
 
 ### Git aliases
@@ -67,6 +68,27 @@ The most common git aliases are in [`gitconfig`](gitconfig). Highlights:
 | `g sh` / `g sp` | `git stash` / `git stash pop` |
 
 See [`gitconfig`](gitconfig) for the full list (~40 aliases).
+
+## Claude sessions
+
+`cl` (in [`zsh/func/cl`](zsh/func/cl)) starts Claude Code sessions you can find again. The first word is a short slug that becomes both the tmux window name and the Claude session name, so the window title stays put and `claude --resume` knows the session by the same word. Any further words are the opening prompt.
+
+```sh
+cl eng-2108 implement the live items endpoint from the ENG-2108 spec
+cl -d ~/work/gemyn py-pin pin the python 3.14 patch version
+cl eng-2108          # later: switch to its window, or resume it if the window is gone
+cl -l                # list known sessions; * marks ones with an open window
+```
+
+What happens on `cl <name>`:
+
+1. A window named `<name>` is already open in this tmux session: switch to it. This avoids resuming one transcript in two terminals, which interleaves both into one history.
+2. `<name>` has been used before: open a new window in the directory the session started in and run `claude --resume <name>`. A `-d` or prompt given here is ignored with a note.
+3. Otherwise: open a new window in `-d DIR` (default: the current directory), run `claude --name <name> [prompt]`, and record the session.
+
+Windows named at creation have tmux's `automatic-rename` turned off, so the title stays stable even though Claude rewrites the terminal title on every turn. Outside tmux, `cl` runs `claude` in the current terminal instead.
+
+Known sessions live in a tab-separated ledger at `~/.local/state/cl/sessions` (name, directory, created). Tab completion reads it, so neither completion nor reopening depends on the format of Claude's transcript files. Delete a line to forget a session.
 
 ## Prerequisites
 

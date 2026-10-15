@@ -1,0 +1,115 @@
+# cl: open or reopen a named Claude Code session in its own tmux window.
+#
+# The first word is a short slug. It becomes both the tmux window name and the
+# Claude session name (`claude --name`), so the window title stays stable and
+# `cl <slug>` finds the session again later. Any further words are the opening
+# prompt for a new session.
+#
+# Sessions are recorded in a tab-separated ledger (name, directory, created)
+# so completion and reopening don't depend on Claude's transcript format.
+
+emulate -L zsh
+setopt pipe_fail extended_glob
+
+local -A opt
+zparseopts -D -M -A opt d: l h
+
+local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
+
+if (( ${+opt[-h]} )) || { (( ! ${+opt[-l]} )) && (( ARGC == 0 )); }; then
+  cat <<USAGE
+usage: cl [-d DIR] <name> [prompt...]
+       cl -l
+
+Open a Claude Code session named <name> in a tmux window of the same name.
+If a window called <name> is already open in this tmux session, switch to it.
+If <name> was used before, resume that session in the directory it started in.
+Otherwise start a new session in DIR (default: the current directory) and send
+any remaining words as the first prompt.
+
+Outside tmux, claude runs in the current terminal instead of a new window.
+
+Options:
+  -d DIR  Directory to start a new session in.
+  -l      List known sessions. A leading * marks ones with an open window.
+  -h      Show this help.
+USAGE
+  (( ${+opt[-h]} )) && return 0
+  return 1
+fi
+
+if (( ${+opt[-l]} )); then
+  [[ -s $ledger ]] || { print "no sessions recorded in $ledger"; return 0; }
+  local -a open
+  [[ -n $TMUX ]] && open=(${(f)"$(tmux list-windows -F '#W')"})
+  local line name dir created
+  while IFS=$'\t' read -r name dir created; do
+    printf '%s %-20s %s  %s\n' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created"
+  done < "$ledger"
+  return 0
+fi
+
+local name=$1; shift
+local prompt="$*"
+
+if [[ $name != [A-Za-z0-9][A-Za-z0-9._-]# ]]; then
+  print -u2 "cl: name must be letters, digits, dot, dash, or underscore: $name"
+  return 1
+fi
+
+# Already open in this tmux session: just go there.
+local win
+if [[ -n $TMUX ]]; then
+  win=$(tmux list-windows -F '#{window_id} #W' | awk -v n="$name" '$2 == n { print $1; exit }')
+  if [[ -n $win ]]; then
+    tmux select-window -t "$win"
+    return
+  fi
+fi
+
+# Known session: resume it where it started.
+local dir known=
+if [[ -s $ledger ]]; then
+  local -a hit
+  hit=(${(f)"$(awk -F'\t' -v n="$name" '$1 == n { print $2; exit }' "$ledger")"})
+  if (( $#hit )); then
+    known=1
+    dir=$hit[1]
+    if [[ -n $opt[-d] && ${~opt[-d]:A} != $dir ]]; then
+      print -u2 "cl: $name already lives in ${dir/#$HOME/~}; ignoring -d"
+    fi
+    if [[ -n $prompt ]]; then
+      print -u2 "cl: $name already exists; ignoring the prompt (resuming instead)"
+      prompt=
+    fi
+  fi
+fi
+
+if [[ -z $known ]]; then
+  dir=${~${opt[-d]:-$PWD}:A}
+  [[ -d $dir ]] || { print -u2 "cl: no such directory: $dir"; return 1; }
+fi
+
+local -a cmd
+if [[ -n $known ]]; then
+  cmd=(claude --resume "$name")
+else
+  cmd=(claude --name "$name")
+  [[ -n $prompt ]] && cmd+=("$prompt")
+fi
+
+if [[ -z $known ]]; then
+  mkdir -p "${ledger:h}"
+  printf '%s\t%s\t%s\n' "$name" "$dir" "$(date +%Y-%m-%dT%H:%M)" >> "$ledger"
+fi
+
+if [[ -z $TMUX ]]; then
+  cd "$dir" && "${cmd[@]}"
+  return
+fi
+
+# A window named at creation has automatic-rename off, so the title sticks.
+# Sending the command to a shell (rather than running it as the window's
+# process) leaves a shell behind when claude exits.
+win=$(tmux new-window -P -F '#{window_id}' -n "$name" -c "$dir")
+tmux send-keys -t "$win" "${(j: :)${(q)cmd[@]}}" C-m

@@ -1,0 +1,27 @@
+#compdef cl
+#autoload
+
+# Completes session names from the cl ledger, with each session's directory
+# as the description.
+
+function _cl_sessions() {
+  local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
+  [[ -s $ledger ]] || return 1
+  local -a sessions
+  local name dir created
+  while IFS=$'\t' read -r name dir created; do
+    sessions+=("${name}:${dir/#$HOME/~}")
+  done < "$ledger"
+  _describe -t sessions 'claude session' sessions
+}
+
+function _cl() {
+  _arguments -s \
+    '-d[directory to start a new session in]:directory:_directories' \
+    '-l[list known sessions]' \
+    '-h[show help]' \
+    '1:session name:_cl_sessions' \
+    '*:prompt:'
+}
+
+_cl "$@"
