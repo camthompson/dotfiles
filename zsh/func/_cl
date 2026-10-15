@@ -19,11 +19,13 @@ function _cl() {
   case $service in
     clw|clr)
       _arguments -s \
+        '-i[run in the current window]' \
         '-d[directory to start a new session in]:directory:_directories' \
         '1:ticket or session name:_cl_sessions'
       ;;
     *)
       _arguments -s \
+        '-i[run in the current window]' \
         '-d[directory to start a new session in]:directory:_directories' \
         '-l[list known sessions]' \
         '-h[show help]' \

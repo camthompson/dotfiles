@@ -3,8 +3,8 @@
 
 emulate -L zsh
 local -A opt
-zparseopts -D -M -A opt d:
-(( ARGC == 1 )) || { print -u2 'usage: clr [-d DIR] <ticket>'; return 1; }
+zparseopts -D -M -A opt d: i
+(( ARGC == 1 )) || { print -u2 'usage: clr [-i] [-d DIR] <ticket>'; return 1; }
 local name=$1
 [[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
-cl ${opt[-d]:+-d "$opt[-d]"} "$name" "review prs open for $name; don't run checks"
+cl ${opt[-i]+-i} ${opt[-d]:+-d "$opt[-d]"} "$name" "review prs open for $name; don't run checks"

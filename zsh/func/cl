@@ -14,13 +14,13 @@ emulate -L zsh
 setopt pipe_fail extended_glob
 
 local -A opt
-zparseopts -D -M -A opt d: l h
+zparseopts -D -M -A opt d: i l h
 
 local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
 
 if (( ${+opt[-h]} )); then
   cat <<USAGE
-usage: cl [-d DIR] <name> [prompt...]
+usage: cl [-i] [-d DIR] <name> [prompt...]
        cl
        cl -l
 
@@ -33,10 +33,15 @@ and send the prompt, if any.
 Otherwise start a new session in DIR (default: the current directory) with the
 prompt as its first message.
 
+New and resumed sessions open in a new tmux window named <name>. With -i they
+run in the current window instead, which is renamed to <name> until claude
+exits.
+
 With no arguments, pick a known session with fzf, most recent first.
 Outside tmux, claude runs in the current terminal instead of a new window.
 
 Options:
+  -i      Run in the current window instead of opening a new one.
   -d DIR  Directory to start a new session in.
   -l      List known sessions. A leading * marks ones with an open window.
   -h      Show this help.
@@ -125,6 +130,18 @@ fi
 if [[ -z $TMUX ]]; then
   cd "$dir" && "${cmd[@]}"
   return
+fi
+
+# In place: rename this window, which also turns off automatic-rename for it,
+# run claude here, and let the name float again afterwards.
+if (( ${+opt[-i]} )); then
+  tmux rename-window -t "$TMUX_PANE" "$name"
+  pushd -q "$dir"
+  "${cmd[@]}"
+  local rc=$?
+  popd -q
+  tmux set-window-option -t "$TMUX_PANE" automatic-rename on
+  return $rc
 fi
 
 # A window named at creation has automatic-rename off, so the title sticks.

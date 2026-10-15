@@ -18,6 +18,7 @@ Claude session name. A bare number is a ticket: `2108` is `eng-2108`
 | `cl <name>` | Switch to its window if open; otherwise resume it where it started |
 | `cl <name> <prompt>` | Same, and send `prompt` as the next message |
 | `cl -d DIR <name> ...` | Start a new session in `DIR` instead of the current directory |
+| `cl -i <name> ...` | Same, but in the current window, renamed `<name>` while claude runs (`clw -i`, `clr -i` too) |
 | `cl` | Pick a known session with fzf, most recent first |
 | `cl -l` | List known sessions; `*` marks ones with an open window |
 | `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"` |
