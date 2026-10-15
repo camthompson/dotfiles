@@ -48,6 +48,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
 | `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts (see [Claude sessions](#claude-sessions)) |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
+| `cheatsheet` | Print the Claude session commands and tmux shortcuts above, rendered with glow |
 
 ### Git aliases
 
@@ -95,6 +96,8 @@ Windows named at creation have tmux's `automatic-rename` turned off, so the titl
 `clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are one-line wrappers that fix the prompt for a ticket; copy one to add another.
 
 To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
+
+`cheatsheet` ([`zsh/bin/cheatsheet`](zsh/bin/cheatsheet)) prints all of this, plus the tmux keys, as a paged reference in the terminal.
 
 Known sessions live in a tab-separated ledger at `~/.local/state/cl/sessions` (name, directory, created). Tab completion reads it, so neither completion nor reopening depends on the format of Claude's transcript files. Delete a line to forget a session.
 

@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+# cheatsheet: print the Claude and tmux session commands and their shortcuts.
+# Rendered with glow when it is installed, paged when printing to a terminal.
+
+emulate -L zsh
+
+local md
+md=$(cat <<'MD'
+# Claude sessions
+
+Sessions you can find again. The slug is the tmux window name *and* the
+Claude session name. A bare number is a ticket: `2108` is `eng-2108`
+(`CL_TICKET_PREFIX` changes the prefix).
+
+| Command | What it does |
+|---|---|
+| `cl <name> [prompt]` | New session named `<name>` in a window of the same name, with `prompt` as the first message |
+| `cl <name>` | Switch to its window if open; otherwise resume it where it started |
+| `cl <name> <prompt>` | Same, and send `prompt` as the next message |
+| `cl -d DIR <name> ...` | Start a new session in `DIR` instead of the current directory |
+| `cl` | Pick a known session with fzf, most recent first |
+| `cl -l` | List known sessions; `*` marks ones with an open window |
+| `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"` |
+| `clr <ticket>` | `cl <ticket> "review prs open for eng-<ticket>; don't run checks"` |
+| `claude-pick` | fzf over *running* Claude sessions in tmux, with a pane preview; jumps to the chosen pane |
+| `cc` | `claude --continue`: most recent session in this directory |
+| `cr [name]` | `claude --resume`: the session picker, or a named session |
+
+Inside Claude: `/rename <name>` names the current session, `/resume <name>`
+switches to another, `/branch` forks the conversation.
+
+# tmux
+
+Prefix is `C-y` (also `C-space`).
+
+| Keys | What it does |
+|---|---|
+| `prefix C-c` | Pick a running Claude session (`claude-pick` in a popup) |
+| `prefix t` | Shell in a popup |
+| `prefix c` | New window |
+| `prefix C` | New window, prompting for a command |
+| `prefix "` | Rename the current window |
+| `prefix (` / `prefix {` | Previous / next window |
+| `prefix <` / `prefix >` | Move the window left / right |
+| `prefix s` / `prefix v` | Split below / right, in the current directory |
+| `C-h` `C-j` `C-k` `C-l` | Move between panes (and vim splits) |
+| `prefix V` | Copy mode; `v` selects, `y` yanks, `Enter` copies to the clipboard |
+| `prefix P` / `prefix Y` | Paste from / copy to the system clipboard |
+| `prefix r` | Reload `tmux.conf` |
+
+Window names set by `cl` never change. Other windows show the running
+command, or the directory name when it is a shell.
+
+Where things live: `~/.local/state/cl/sessions` (the `cl` ledger),
+`~/.claude/sessions/` (Claude's registry of running processes),
+`~/.claude/projects/` (transcripts).
+MD
+)
+
+if (( $+commands[glow] )); then
+  if [[ -t 1 ]]; then
+    print -r -- "$md" | glow -p -w "${COLUMNS:-100}" -
+  else
+    print -r -- "$md" | glow -w 100 -
+  fi
+else
+  print -r -- "$md"
+fi
