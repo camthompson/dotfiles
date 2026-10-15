@@ -3,8 +3,8 @@
 
 emulate -L zsh
 local -A opt
-zparseopts -D -M -A opt d: i
-(( ARGC == 1 )) || { print -u2 'usage: clw [-i] [-d DIR] <ticket>'; return 1; }
+zparseopts -D -M -A opt d: w
+(( ARGC == 1 )) || { print -u2 'usage: clw [-w] [-d DIR] <ticket>'; return 1; }
 local name=$1
 [[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
-cl ${opt[-i]+-i} ${opt[-d]:+-d "$opt[-d]"} "$name" "what are the next steps for $name?"
+cl ${opt[-w]+-w} ${opt[-d]:+-d "$opt[-d]"} "$name" "what are the next steps for $name?"

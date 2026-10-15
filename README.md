@@ -77,7 +77,7 @@ See [`gitconfig`](gitconfig) for the full list (~40 aliases).
 ```sh
 cl eng-2108 implement the live items endpoint from the ENG-2108 spec
 cl -d ~/work/gemyn py-pin pin the python 3.14 patch version
-cl -i py-pin         # same, but in the current window, renamed py-pin while claude runs
+cl -w py-pin         # same, but in a new window instead of this one
 cl 2108              # later: switch to its window, or resume it if the window is gone
 cl 2108 run the tests  # same, and send that as the next message
 cl                   # pick a known session with fzf, most recent first
@@ -89,14 +89,14 @@ clr 2108             # cl 2108 "review prs open for eng-2108; don't run checks"
 What happens on `cl <name> [prompt]`:
 
 1. A window named `<name>` is already open in this tmux session: switch to it, and type the prompt into it if there is one. This avoids resuming one transcript in two terminals, which interleaves both into one history.
-2. `<name>` has been used before: open a new window in the directory the session started in and run `claude --resume <name> [prompt]`. A `-d` given here is ignored with a note.
-3. Otherwise: open a new window in `-d DIR` (default: the current directory), run `claude --name <name> [prompt]`, and record the session.
+2. `<name>` has been used before: rename this window to `<name>` and run `claude --resume <name> [prompt]` from the directory the session started in. A `-d` given here is ignored with a note.
+3. Otherwise: rename this window to `<name>`, run `claude --name <name> [prompt]` from `-d DIR` (default: the current directory), and record the session.
 
-Windows named at creation have tmux's `automatic-rename` turned off, so the title stays stable even though Claude rewrites the terminal title on every turn. Outside tmux, `cl` runs `claude` in the current terminal instead.
+Renaming a window turns off tmux's `automatic-rename` for it, so the title stays stable even though Claude rewrites the terminal title on every turn; `cl` turns it back on when `claude` exits. With `-w`, steps 2 and 3 open a new window named `<name>` instead, which has the same stable-title property. Outside tmux, `cl` just runs `claude` in the current terminal.
 
 `clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are one-line wrappers that fix the prompt for a ticket; copy one to add another.
 
-All three take `-i` to run `claude` in the current window instead of opening one. The window is renamed to the slug for the life of the session, then goes back to automatic naming.
+All three run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
 To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
 

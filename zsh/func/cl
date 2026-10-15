@@ -14,13 +14,13 @@ emulate -L zsh
 setopt pipe_fail extended_glob
 
 local -A opt
-zparseopts -D -M -A opt d: i l h
+zparseopts -D -M -A opt d: w l h
 
 local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
 
 if (( ${+opt[-h]} )); then
   cat <<USAGE
-usage: cl [-i] [-d DIR] <name> [prompt...]
+usage: cl [-w] [-d DIR] <name> [prompt...]
        cl
        cl -l
 
@@ -33,15 +33,15 @@ and send the prompt, if any.
 Otherwise start a new session in DIR (default: the current directory) with the
 prompt as its first message.
 
-New and resumed sessions open in a new tmux window named <name>. With -i they
-run in the current window instead, which is renamed to <name> until claude
-exits.
+New and resumed sessions run in the current tmux window, which is renamed to
+<name> until claude exits. With -w they open in a new window named <name>
+instead.
 
 With no arguments, pick a known session with fzf, most recent first.
 Outside tmux, claude runs in the current terminal instead of a new window.
 
 Options:
-  -i      Run in the current window instead of opening a new one.
+  -w      Open a new window instead of running in the current one.
   -d DIR  Directory to start a new session in.
   -l      List known sessions. A leading * marks ones with an open window.
   -h      Show this help.
@@ -132,20 +132,21 @@ if [[ -z $TMUX ]]; then
   return
 fi
 
-# In place: rename this window, which also turns off automatic-rename for it,
-# run claude here, and let the name float again afterwards.
-if (( ${+opt[-i]} )); then
-  tmux rename-window -t "$TMUX_PANE" "$name"
-  pushd -q "$dir"
-  "${cmd[@]}"
-  local rc=$?
-  popd -q
-  tmux set-window-option -t "$TMUX_PANE" automatic-rename on
-  return $rc
+# New window: a window named at creation has automatic-rename off, so the
+# title sticks. Sending the command to a shell (rather than running it as the
+# window's process) leaves a shell behind when claude exits.
+if (( ${+opt[-w]} )); then
+  win=$(tmux new-window -P -F '#{window_id}' -n "$name" -c "$dir")
+  tmux send-keys -t "$win" "${(j: :)${(q)cmd[@]}}" C-m
+  return
 fi
 
-# A window named at creation has automatic-rename off, so the title sticks.
-# Sending the command to a shell (rather than running it as the window's
-# process) leaves a shell behind when claude exits.
-win=$(tmux new-window -P -F '#{window_id}' -n "$name" -c "$dir")
-tmux send-keys -t "$win" "${(j: :)${(q)cmd[@]}}" C-m
+# In place: rename this window, which also turns off automatic-rename for it,
+# run claude here, and let the name float again afterwards.
+tmux rename-window -t "$TMUX_PANE" "$name"
+pushd -q "$dir"
+"${cmd[@]}"
+local rc=$?
+popd -q
+tmux set-window-option -t "$TMUX_PANE" automatic-rename on
+return $rc

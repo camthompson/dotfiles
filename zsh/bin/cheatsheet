@@ -14,11 +14,11 @@ Claude session name. A bare number is a ticket: `2108` is `eng-2108`
 
 | Command | What it does |
 |---|---|
-| `cl <name> [prompt]` | New session named `<name>` in a window of the same name, with `prompt` as the first message |
+| `cl <name> [prompt]` | New session named `<name>` in this window, renamed to match, with `prompt` as the first message |
 | `cl <name>` | Switch to its window if open; otherwise resume it where it started |
 | `cl <name> <prompt>` | Same, and send `prompt` as the next message |
 | `cl -d DIR <name> ...` | Start a new session in `DIR` instead of the current directory |
-| `cl -i <name> ...` | Same, but in the current window, renamed `<name>` while claude runs (`clw -i`, `clr -i` too) |
+| `cl -w <name> ...` | Same, but in a new window named `<name>` (`clw -w`, `clr -w` too) |
 | `cl` | Pick a known session with fzf, most recent first |
 | `cl -l` | List known sessions; `*` marks ones with an open window |
 | `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"` |
@@ -49,8 +49,8 @@ Prefix is `C-y` (also `C-space`).
 | `prefix P` / `prefix Y` | Paste from / copy to the system clipboard |
 | `prefix r` | Reload `tmux.conf` |
 
-Window names set by `cl` never change. Other windows show the running
-command, or the directory name when it is a shell.
+A window running a `cl` session keeps its name until claude exits. Other
+windows show the running command, or the directory name when it is a shell.
 
 Where things live: `~/.local/state/cl/sessions` (the `cl` ledger),
 `~/.claude/sessions/` (Claude's registry of running processes),
