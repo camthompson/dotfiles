@@ -105,7 +105,7 @@ Renaming a window turns off tmux's `automatic-rename` for it, so the title stays
 
 All of these run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
-To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
+To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane below the list. The popup is sized to fit: the list plus a preview half the height of the terminal. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
 
 `cheatsheet` ([`zsh/bin/cheatsheet`](zsh/bin/cheatsheet)) prints all of this, plus the tmux keys, as a paged reference in the terminal.
 

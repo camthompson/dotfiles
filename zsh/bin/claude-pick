@@ -1,10 +1,17 @@
 #!/usr/bin/env zsh
 # claude-pick: pick a running Claude Code session with fzf and jump to its pane.
 #
-# Meant to run inside a tmux popup (see tmux.conf). Reads the registry Claude
-# Code keeps for its running processes, one JSON file per pid, which records
-# the session's display name, working directory, idle/busy status, and the
-# tmux pane it runs in. Dead pids and panes that no longer exist are dropped.
+# Reads the registry Claude Code keeps for its running processes, one JSON
+# file per pid, which records the session's display name, working directory,
+# idle/busy status, and the tmux pane it runs in. Dead pids and panes that no
+# longer exist are dropped.
+#
+# Run from a tmux binding (see tmux.conf), it opens a popup sized to fit: the
+# session list on top and a preview of the chosen pane below it, half the
+# client's height, so the popup has no blank space of its own. It then runs
+# itself inside the popup with --in-popup <preview lines>. Dropping trailing
+# blank lines from the pane capture before taking its tail keeps the preview
+# full when a pane's conversation is shorter than the pane.
 
 emulate -L zsh
 setopt pipe_fail extended_glob
@@ -34,12 +41,31 @@ if (( ! $#rows )); then
   exit 0
 fi
 
+local preview_lines
+if [[ $1 == --in-popup ]]; then
+  preview_lines=${2:-40}
+else
+  # Popup height: the list rows, fzf's header, info and prompt lines, the
+  # preview and its top border, and the popup's own two border lines.
+  preview_lines=$(( $(tmux display -p '#{client_height}') / 2 ))
+  (( preview_lines < 15 )) && preview_lines=15
+  exec tmux display-popup -E -w 80% -h $(( $#rows + 3 + preview_lines + 1 + 2 )) \
+    "$0 --in-popup $preview_lines"
+fi
+
+local preview='lines=("${(@f)$(tmux capture-pane -p -e -t {4})}")
+while (( $#lines )) && [[ -z ${lines[-1]//[[:space:]]/} ]]; do lines[-1]=(); done
+n=${FZF_PREVIEW_LINES:-40}; (( n > $#lines )) && n=$#lines
+(( n )) && print -l -- "${(@)lines[-n,-1]}"'
+
+# --height 100% overrides any --height in FZF_DEFAULT_OPTS, which would leave
+# the rest of the popup blank.
 local choice
 choice=$(print -l ${(o)rows} | fzf \
-  --no-tmux --reverse --ansi \
+  --no-tmux --height 100% --reverse --ansi \
   --delimiter '\t' --with-nth 1,2,3 --tabstop 1 \
   --header '● busy  ○ idle' \
-  --preview 'tmux capture-pane -p -e -t {4} | tail -n ${FZF_PREVIEW_LINES:-40}' \
-  --preview-window 'right,60%,border-left') || exit 0
+  --preview "$preview" \
+  --preview-window "down,$preview_lines,border-top") || exit 0
 
 tmux switch-client -t "${choice##*$'\t'}"
