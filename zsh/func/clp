@@ -1,8 +1,8 @@
 # clp: pick an open GitHub pull request with fzf and start reviewing it.
 #
-# Lists open pull requests waiting on your review. Typing filters the list;
-# ctrl-a swaps in every open pull request in your organizations, with the same
-# filter still applied, and swaps back. The chosen pull request opens a session
+# Lists open pull requests that are yours: waiting on your review, or opened
+# by you. Typing filters the list; ctrl-a swaps in every open pull request in
+# your organizations, with the same filter still applied, and swaps back. The chosen pull request opens a session
 # like `clr` does for a ticket: named after the ticket in its branch name (or
 # title) when there is one, otherwise `<repo>-pr<number>`, started in the
 # repo's checkout from $WORK_REPOS when there is one, with the prompt
@@ -19,9 +19,10 @@ if (( ${+opt[-h]} )); then
   cat <<USAGE
 usage: clp [-a] [-r] [-w] [-d DIR]
 
-Pick an open GitHub pull request that is waiting on your review and open a
-Claude session to review it. Type to filter; ctrl-a toggles between pull
-requests waiting on you and every open pull request in your organizations.
+Pick an open GitHub pull request that is waiting on your review or that you
+opened, and open a Claude session to review it. Type to filter; ctrl-a
+toggles between your pull requests and every open pull request in your
+organizations.
 
 The session is named after the ticket in the branch name or title, such as
 ${CL_TICKET_PREFIX:-eng}-1234, or <repo>-pr<number> when there is none. A new
@@ -29,7 +30,7 @@ session starts in the repo's directory from \$WORK_REPOS when one matches.
 Each pick starts a fresh session, so a rerun after changes reviews clean.
 
 Options:
-  -a      Start with every open pull request, not only ones waiting on you.
+  -a      Start with every open pull request, not only yours.
   -r      Resume the ticket's existing session instead of starting a new one.
   -w      Open the session in a new tmux window.
   -d DIR  Directory to start a new session in.
@@ -39,17 +40,23 @@ USAGE
 fi
 (( ARGC == 0 )) || { print -u2 'usage: clp [-a] [-r] [-w] [-d DIR]'; return 1; }
 
-local fields='number,title,repository,author,url,isDraft'
-local fmt='.[] | [.url, .repository.name, "#\(.number)", .author.login, (if .isDraft then "[draft] " else "" end) + .title] | @tsv'
+# Each row leads with the update time so two searches can be merged into one
+# list, newest first; it is cut off before display.
+local fields='number,title,repository,author,url,isDraft,updatedAt'
+local fmt='.[] | [.updatedAt, .url, .repository.name, "#\(.number)", .author.login, (if .isDraft then "[draft] " else "" end) + .title] | @tsv'
+local search="gh search prs --state=open --sort updated --limit 100 --json $fields --jq '$fmt'"
+local show="cut -f2- | column -t -s \$'\\t'"
 
 # Exported so fzf's reload actions, which run in a child shell, can see them.
-# With no organizations, "all" falls back to pull requests that involve you,
-# since --owner with nothing after it would search all of GitHub.
-local -x CLP_MINE="gh search prs --state=open --review-requested=@me --sort updated --limit 100 --json $fields --jq '$fmt' | column -t -s \$'\\t'"
-local -x CLP_ALL="o=\$(gh api user/orgs --jq '.[].login' | sed 's/^/--owner=/'); gh search prs --state=open \${=o:---involves=@me} --sort updated --limit 100 --json $fields --jq '$fmt' | column -t -s \$'\\t'"
+# "mine" is pull requests waiting on your review plus ones you opened, merged
+# by update time and deduplicated by URL. With no organizations, "all" falls
+# back to pull requests that involve you, since --owner with nothing after it
+# would search all of GitHub.
+local -x CLP_MINE="{ $search --review-requested=@me; $search --author=@me; } | sort -r | awk -F'\\t' '!seen[\$2]++' | $show"
+local -x CLP_ALL="o=\$(gh api user/orgs --jq '.[].login' | sed 's/^/--owner=/'); $search \${=o:---involves=@me} | $show"
 
 local toggle='if [ "$FZF_PROMPT" = "mine> " ]; then
-  echo "change-prompt(all> )+change-header(ctrl-a: waiting on me)+reload(eval \"\$CLP_ALL\")"
+  echo "change-prompt(all> )+change-header(ctrl-a: mine)+reload(eval \"\$CLP_ALL\")"
 else
   echo "change-prompt(mine> )+change-header(ctrl-a: all open)+reload(eval \"\$CLP_MINE\")"
 fi'
@@ -58,7 +65,7 @@ local preview='GH_FORCE_TTY=$FZF_PREVIEW_COLUMNS gh pr view --comments {1}'
 
 local prompt='mine> ' header='ctrl-a: all open' list=$CLP_MINE
 if (( ${+opt[-a]} )); then
-  prompt='all> ' header='ctrl-a: waiting on me' list=$CLP_ALL
+  prompt='all> ' header='ctrl-a: mine' list=$CLP_ALL
 fi
 
 local choice

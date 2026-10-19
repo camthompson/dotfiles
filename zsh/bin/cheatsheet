@@ -25,7 +25,7 @@ Claude session name. A bare number is a ticket: `2108` is `eng-2108`
 | `clw <ticket>` | `cl <ticket> "what are the next steps for eng-<ticket>?"`; resumes the ticket's session, `-n` starts fresh |
 | `clr <ticket>` | `cl -n <ticket> "review prs open for eng-<ticket>; don't run checks"`; a fresh session each time, `-r` resumes |
 | `cli` (or bare `clw`) | Pick an open Linear issue assigned to you with fzf, then `clw -n` it; `ctrl-a` toggles every open issue on the team (`-a` starts there), `-r` resumes instead |
-| `clp` (or bare `clr`) | Pick an open GitHub PR waiting on your review with fzf, then review it in a fresh session named after its ticket (or `<repo>-pr<n>`), started in the repo's `$WORK_REPOS` checkout; `ctrl-a` toggles every open PR in your orgs, `-r` resumes instead |
+| `clp` (or bare `clr`) | Pick an open GitHub PR waiting on your review or opened by you with fzf, then review it in a fresh session named after its ticket (or `<repo>-pr<n>`), started in the repo's `$WORK_REPOS` checkout; `ctrl-a` toggles every open PR in your orgs, `-r` resumes instead |
 | `claude-pick` | fzf over *running* Claude sessions in tmux, with a pane preview; jumps to the chosen pane |
 | `cc` | `claude --continue`: most recent session in this directory |
 | `cr [name]` | `claude --resume`: the session picker, or a named session |

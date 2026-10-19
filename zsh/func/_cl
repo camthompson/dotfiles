@@ -28,7 +28,7 @@ function _cl() {
       ;;
     clp)
       _arguments -s \
-        '-a[start with every open pull request, not only ones waiting on you]' \
+        '-a[start with every open pull request, not only yours]' \
         '-r[resume the existing session instead of starting fresh]' \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
