@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+# claude-attn: flag the tmux window a Claude Code session runs in when it
+# needs you, and clear the flag when you respond.
+#
+# Run from Claude Code hooks (see ~/.claude/settings.json), so it inherits
+# TMUX_PANE from the session that fired. The flag is the window option @attn,
+# set to the state given as the first argument:
+#
+#   permission   a tool is waiting for approval (PermissionRequest)
+#   done         the turn ended (Stop)
+#   clear        you answered (UserPromptSubmit, PostToolUse)
+#
+# tmux.conf renders @attn as a glyph after the window name, and claude-pick
+# lists flagged sessions first. When the window isn't the one you're looking
+# at, the hook also shows a one-line message in the status bar.
+
+emulate -L zsh
+
+local state=$1
+cat > /dev/null  # drain the hook's JSON so Claude Code never blocks writing it
+
+[[ -n $TMUX_PANE ]] || exit 0
+
+case $state in
+  clear)
+    tmux set-option -wu -t "$TMUX_PANE" @attn 2>/dev/null
+    ;;
+  permission|done)
+    local active name
+    IFS=$'\t' read -r active name < <(tmux display-message -p -t "$TMUX_PANE" $'#{window_active}\t#W')
+    [[ $active == 1 ]] && exit 0
+    tmux set-option -w -t "$TMUX_PANE" @attn "$state"
+    case $state in
+      permission) tmux display-message -t "$TMUX_PANE" "$name needs permission" ;;
+      done)       tmux display-message -t "$TMUX_PANE" "$name is done" ;;
+    esac
+    ;;
+  *)
+    print -u2 "usage: claude-attn permission|done|clear"
+    exit 1
+    ;;
+esac
