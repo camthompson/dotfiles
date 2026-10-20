@@ -1,42 +1,63 @@
 #!/usr/bin/env zsh
-# claude-attn: flag the tmux window a Claude Code session runs in when it
-# needs you, and clear the flag when you respond.
+# claude-attn: keep the tmux window a Claude Code session runs in labelled
+# with what the session is doing.
 #
 # Run from Claude Code hooks (see ~/.claude/settings.json), so it inherits
-# TMUX_PANE from the session that fired. The flag is the window option @attn,
-# set to the state given as the first argument:
+# TMUX_PANE from the session that fired. The first argument is the hook event;
+# it sets the window option @claude to one of four states:
 #
-#   permission   a tool is waiting for approval (PermissionRequest)
-#   done         the turn ended (Stop)
-#   clear        you answered (UserPromptSubmit, PostToolUse)
+#   event        hook               @claude
+#   start        SessionStart       idle
+#   prompt       UserPromptSubmit   busy
+#   permission   PermissionRequest  permission  a tool is waiting for approval
+#   tool         PostToolUse        busy        the prompt was answered
+#   stop         Stop               idle if you're looking at the window,
+#                                   done if not
+#   end          SessionEnd         (unset)
 #
-# tmux.conf renders @attn as a glyph after the window name, and claude-pick
-# lists flagged sessions first. When the window isn't the one you're looking
+# tmux.conf renders @claude as a glyph after the window name (● busy, ○ idle,
+# ? permission, ✓ done), and claude-pick lists sessions by the same state,
+# needing you first. For permission and done in a window you aren't looking
 # at, the hook also shows a one-line message in the status bar.
+#
+# Interrupting a turn with Escape fires Stop, so the state recovers. Cancelling
+# a permission prompt with Escape fires nothing, so ? stays until the next
+# prompt; you're looking at that window when you cancel, so it's harmless.
 
 emulate -L zsh
 
-local state=$1
+local event=$1
 cat > /dev/null  # drain the hook's JSON so Claude Code never blocks writing it
 
 [[ -n $TMUX_PANE ]] || exit 0
 
-case $state in
-  clear)
-    tmux set-option -wu -t "$TMUX_PANE" @attn 2>/dev/null
+local active name
+IFS=$'\t' read -r active name < <(tmux display-message -p -t "$TMUX_PANE" $'#{window_active}\t#W')
+
+case $event in
+  start)
+    tmux set-option -w -t "$TMUX_PANE" @claude idle
     ;;
-  permission|done)
-    local active name
-    IFS=$'\t' read -r active name < <(tmux display-message -p -t "$TMUX_PANE" $'#{window_active}\t#W')
-    [[ $active == 1 ]] && exit 0
-    tmux set-option -w -t "$TMUX_PANE" @attn "$state"
-    case $state in
-      permission) tmux display-message -t "$TMUX_PANE" "$name needs permission" ;;
-      done)       tmux display-message -t "$TMUX_PANE" "$name is done" ;;
-    esac
+  prompt|tool)
+    tmux set-option -w -t "$TMUX_PANE" @claude busy
+    ;;
+  permission)
+    tmux set-option -w -t "$TMUX_PANE" @claude permission
+    [[ $active == 1 ]] || tmux display-message -t "$TMUX_PANE" "$name needs permission"
+    ;;
+  stop)
+    if [[ $active == 1 ]]; then
+      tmux set-option -w -t "$TMUX_PANE" @claude idle
+    else
+      tmux set-option -w -t "$TMUX_PANE" @claude done
+      tmux display-message -t "$TMUX_PANE" "$name is done"
+    fi
+    ;;
+  end)
+    tmux set-option -wu -t "$TMUX_PANE" @claude 2>/dev/null
     ;;
   *)
-    print -u2 "usage: claude-attn permission|done|clear"
+    print -u2 "usage: claude-attn start|prompt|permission|tool|stop|end"
     exit 1
     ;;
 esac

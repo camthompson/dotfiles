@@ -4,9 +4,11 @@
 # Reads the registry Claude Code keeps for its running processes, one JSON
 # file per pid, which records the session's display name, working directory,
 # idle/busy status, and the tmux pane it runs in. Dead pids and panes that no
-# longer exist are dropped. A window flagged by claude-attn (its @attn option,
-# set from Claude Code hooks) shows ? for a pending permission or ✓ for a
-# finished turn, and sorts to the top.
+# longer exist are dropped. The state shown is the window's @claude option,
+# which claude-attn keeps from Claude Code hooks: ? for a pending permission,
+# ✓ for a turn that finished while you were elsewhere, ● busy, ○ idle. Sessions
+# started before the hooks existed have no option and fall back to the
+# registry's busy/idle status. Sessions needing you sort first.
 #
 # Run from a tmux binding (see tmux.conf), it opens a popup sized to fit: the
 # session list on top and a preview of the chosen pane below it, half the
@@ -22,7 +24,7 @@ local registry=${CLAUDE_CONFIG_DIR:-$HOME/.claude}/sessions
 local -a panes rows
 panes=(${(f)"$(tmux list-panes -a -F '#{pane_id}')"})
 
-local f pid state name cwd pane attn glyph rank
+local f pid state name cwd pane glyph rank
 for f in $registry/*.json(N); do
   pid=${${f:t}%.json}
   kill -0 $pid 2>/dev/null || continue
@@ -31,12 +33,12 @@ for f in $registry/*.json(N); do
       '[.status, .name, (.cwd | sub("^\($home)"; "~")), ((.tmux // "") | sub("^.*\\."; ""))] | @tsv' "$f"
   )
   [[ -n $pane && -n ${panes[(r)$pane]} ]] || continue
-  attn=$(tmux show-options -wqv -t "$pane" @attn)
-  case $attn:$state in
-    permission:*) rank=0 glyph='?' ;;
-    done:*)       rank=1 glyph='✓' ;;
-    *:busy)       rank=3 glyph='●' ;;
-    *)            rank=2 glyph='○' ;;
+  state=${"$(tmux show-options -wqv -t "$pane" @claude)":-$state}
+  case $state in
+    permission) rank=0 glyph='?' ;;
+    done)       rank=1 glyph='✓' ;;
+    busy)       rank=3 glyph='●' ;;
+    *)          rank=2 glyph='○' ;;
   esac
   rows+=("$(printf '%s\t%s\t%-20s\t%s\t%s' "$rank" "$glyph" "$name" "$cwd" "$pane")")
 done
