@@ -1,24 +1,30 @@
 #!/usr/bin/env zsh
-# claude-attn: keep the tmux window a Claude Code session runs in labelled
-# with what the session is doing.
+# claude-attn: keep a tmux window labelled with what the process in it is
+# doing.
 #
-# Run from Claude Code hooks (see ~/.claude/settings.json), so it inherits
-# TMUX_PANE from the session that fired. The first argument is the hook event;
-# it sets the window option @claude to one of four states:
+# Run from Claude Code hooks (see ~/.claude/settings.json) and, with -s, from
+# the zsh preexec and precmd hooks in ~/.zshrc, so it inherits TMUX_PANE from
+# the session or shell that fired. The event sets the window option @claude,
+# or @shell with -s, to one of four states:
 #
-#   event        hook               @claude
+#   event        hook               state
 #   start        SessionStart       idle
+#                preexec            (for programs that wait on you)
 #   prompt       UserPromptSubmit   busy
+#                preexec            (for everything else)
 #   permission   PermissionRequest  permission  a tool is waiting for approval
 #   tool         PostToolUse        busy        the prompt was answered
 #   stop         Stop               idle if you're looking at the window,
-#                                   done if not
+#                precmd             done if not
 #   end          SessionEnd         (unset)
 #
-# tmux.conf renders @claude as a glyph after the window name (● busy, ○ idle,
-# ? permission, ✓ done), and claude-pick lists sessions by the same state,
-# needing you first. For permission and done in a window you aren't looking
-# at, the hook also shows a one-line message in the status bar.
+# tmux.conf renders the state as a glyph after the window name, @claude first
+# so a running session wins over the shell that launched it: ● busy, ○ idle,
+# ? permission, ✓ done for Claude; ▶ busy, ▷ idle, ✓ done for a shell.
+# claude-pick lists sessions by @claude, needing you first. For permission and
+# done in a window you aren't looking at, the hook also shows a one-line
+# message in the status bar; -q sets the state without the message, which
+# precmd uses for short commands.
 #
 # Interrupting a turn with Escape fires Stop, so the state recovers. Cancelling
 # a permission prompt with Escape fires nothing, so ? stays until the next
@@ -26,8 +32,18 @@
 
 emulate -L zsh
 
+local opt option=@claude quiet=0
+while getopts sq opt; do
+  case $opt in
+    s) option=@shell ;;
+    q) quiet=1 ;;
+    *) exit 1 ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
 local event=$1
-cat > /dev/null  # drain the hook's JSON so Claude Code never blocks writing it
+
+[[ -t 0 ]] || cat > /dev/null  # drain a hook's JSON so Claude Code never blocks writing it
 
 [[ -n $TMUX_PANE ]] || exit 0
 
@@ -36,28 +52,28 @@ IFS=$'\t' read -r active name < <(tmux display-message -p -t "$TMUX_PANE" $'#{wi
 
 case $event in
   start)
-    tmux set-option -w -t "$TMUX_PANE" @claude idle
+    tmux set-option -w -t "$TMUX_PANE" $option idle
     ;;
   prompt|tool)
-    tmux set-option -w -t "$TMUX_PANE" @claude busy
+    tmux set-option -w -t "$TMUX_PANE" $option busy
     ;;
   permission)
-    tmux set-option -w -t "$TMUX_PANE" @claude permission
+    tmux set-option -w -t "$TMUX_PANE" $option permission
     [[ $active == 1 ]] || tmux display-message -t "$TMUX_PANE" "$name needs permission"
     ;;
   stop)
     if [[ $active == 1 ]]; then
-      tmux set-option -w -t "$TMUX_PANE" @claude idle
+      tmux set-option -w -t "$TMUX_PANE" $option idle
     else
-      tmux set-option -w -t "$TMUX_PANE" @claude done
-      tmux display-message -t "$TMUX_PANE" "$name is done"
+      tmux set-option -w -t "$TMUX_PANE" $option done
+      (( quiet )) || tmux display-message -t "$TMUX_PANE" "$name is done"
     fi
     ;;
   end)
-    tmux set-option -wu -t "$TMUX_PANE" @claude 2>/dev/null
+    tmux set-option -wu -t "$TMUX_PANE" $option 2>/dev/null
     ;;
   *)
-    print -u2 "usage: claude-attn start|prompt|permission|tool|stop|end"
+    print -u2 "usage: claude-attn [-s] [-q] start|prompt|permission|tool|stop|end"
     exit 1
     ;;
 esac

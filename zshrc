@@ -294,6 +294,45 @@ function __set_block_cursor {
 builtin typeset -ag precmd_functions
 precmd_functions+=(__set_beam_cursor)
 
+# Label the tmux window with what the shell is doing, the way claude-attn does
+# for Claude Code sessions: ▶ while a command runs, ▷ at the prompt, ✓ when a
+# command finished while you were in another window. Programs in
+# __attn_interactive wait on you, so they count as at the prompt. The
+# "is done" message only shows for commands that ran at least ten seconds.
+if [[ -n $TMUX_PANE ]]; then
+  typeset -ga __attn_interactive=(vim vi view nvim less more man fzf ssh mosh
+    lazygit k9s btop htop top glow bat tig)
+  typeset -gi __attn_started=-1
+
+  function __attn_preexec {
+    __attn_started=$SECONDS
+    # $2 is the command with aliases expanded; skip leading VAR=value and sudo
+    # to find the program.
+    local -a words=(${(z)2})
+    while (( $#words > 1 )) && [[ $words[1] == (*=*|sudo) ]]; do
+      shift words
+    done
+    if (( ${__attn_interactive[(Ie)${words[1]:t}]} )); then
+      claude-attn -s start
+    else
+      claude-attn -s prompt
+    fi
+  }
+
+  function __attn_precmd {
+    if (( __attn_started >= 0 && SECONDS - __attn_started >= 10 )); then
+      claude-attn -s stop
+    else
+      claude-attn -s -q stop
+    fi
+    __attn_started=-1
+  }
+
+  builtin typeset -ag preexec_functions
+  preexec_functions+=(__attn_preexec)
+  precmd_functions+=(__attn_precmd)
+fi
+
 function zle-keymap-select zle-line-init zle-line-finish {
   # The terminal must be in application mode when ZLE is active for $terminfo
   # values to be valid.
