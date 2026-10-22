@@ -6,8 +6,10 @@
 # like `clr` does for a ticket: named after the ticket in its branch name (or
 # title) when there is one, otherwise `<repo>-pr<number>`, started in the
 # repo's checkout from $WORK_REPOS when there is one, with the prompt
-# `review <url>; don't run checks`. Like clr, it starts a fresh session each
-# time unless -r says to resume the existing one. Bare `clr` runs this.
+# `review <url>; don't run checks`, or `review <url> and any other prs open
+# for eng-1234; don't run checks` when it has a ticket. Like clr, it starts a
+# fresh session each time unless -r says to resume the existing one. Bare
+# `clr` runs this.
 
 emulate -L zsh
 setopt pipe_fail
@@ -80,9 +82,10 @@ local -a row
 row=(${=choice})
 local url=$row[1] repo=$row[2] number=${row[3]#\#}
 
-# Name the session after the ticket when the branch or title carries one.
+# Name the session after the ticket when the branch or title carries one, and
+# review the ticket's other open pull requests alongside the chosen one.
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
-local branch title name
+local branch title name request="review $url; don't run checks"
 branch=$(gh pr view "$url" --json headRefName --jq .headRefName 2>/dev/null)
 title=${row[5,-1]}
 if [[ ${(L)branch} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
@@ -92,6 +95,8 @@ elif [[ ${(L)title} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
 else
   name="$repo-pr$number"
 fi
+[[ $name == $prefix-<-> ]] &&
+  request="review $url and any other prs open for $name; don't run checks"
 
 # Start new sessions in the repo's checkout when $WORK_REPOS has one.
 local dir=$opt[-d] r
@@ -105,4 +110,4 @@ local -a args
 (( ${+opt[-r]} )) || args+=(-n)
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $dir ]] && args+=(-d "$dir")
-cl "${args[@]}" "$name" "review $url; don't run checks"
+cl "${args[@]}" "$name" "$request"
