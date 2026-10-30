@@ -320,7 +320,11 @@ if [[ -n $TMUX_PANE ]]; then
   }
 
   function __attn_precmd {
-    if (( __attn_started >= 0 && SECONDS - __attn_started >= 10 )); then
+    if (( __attn_started < 0 )); then
+      # No command ran: a fresh shell, or Ctrl-C at an empty prompt. stop
+      # would mark a window you aren't looking at as done.
+      claude-attn -s start
+    elif (( SECONDS - __attn_started >= 10 )); then
       claude-attn -s stop
     else
       claude-attn -s -q stop

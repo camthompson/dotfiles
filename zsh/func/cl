@@ -62,7 +62,7 @@ if (( ${+opt[-l]} )); then
   [[ -s $ledger ]] || { print "no sessions recorded in $ledger"; return 0; }
   local name dir created id
   while IFS=$'\t' read -r name dir created id; do
-    printf '%s %-20s %s  %s\n' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created"
+    printf '%s %-20s %s  %s\n' "${open[(re)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created"
   done < "$ledger"
   return 0
 fi
@@ -72,7 +72,7 @@ if (( ARGC == 0 )); then
   local -a rows
   local name dir created id
   while IFS=$'\t' read -r name dir created id; do
-    rows=("$(printf '%s\t%-20s\t%s\t%s' "${open[(r)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created")" $rows)
+    rows=("$(printf '%s\t%-20s\t%s\t%s' "${open[(re)$name]:+*}" "$name" "${dir/#$HOME/~}" "$created")" $rows)
   done < "$ledger"
   local choice
   choice=$(print -l $rows | fzf --delimiter '\t' --tabstop 1 --header '* open' --nth 2) || return 1
@@ -90,14 +90,27 @@ if [[ $name != [A-Za-z0-9][A-Za-z0-9._-]# ]]; then
   return 1
 fi
 
-# Already open in this tmux session: go there, and hand over the prompt.
-local win
+# Already open in this tmux session. If claude is running there, go there and
+# hand over the prompt. If the window has fallen back to a shell (a -w window
+# keeps its name after claude exits), remember it so the session can be
+# started or resumed in that window instead of typing the prompt into zsh.
+local win reuse=
 if [[ -n $TMUX && ! ${+opt[-n]} -eq 1 ]]; then
-  win=$(tmux list-windows -F '#{window_id} #W' | awk -v n="$name" '$2 == n { print $1; exit }')
+  local wcmd
+  IFS=' ' read -r win wcmd < <(
+    tmux list-windows -F '#{window_id} #W #{pane_current_command}' |
+      awk -v n="$name" '$2 == n { print $1, $3; exit }'
+  )
   if [[ -n $win ]]; then
-    tmux select-window -t "$win"
-    [[ -n $prompt ]] && tmux send-keys -t "$win" -l "$prompt" && tmux send-keys -t "$win" Enter
-    return
+    if [[ $wcmd == claude || $wcmd == <->.<->.<-> ]]; then
+      tmux select-window -t "$win"
+      [[ -n $prompt ]] && tmux send-keys -t "$win" -l "$prompt" && tmux send-keys -t "$win" Enter
+      return
+    elif [[ $wcmd == (zsh|bash|fish|sh) ]]; then
+      reuse=$win
+    else
+      print -u2 "cl: window $name is running $wcmd; starting elsewhere"
+    fi
   fi
 fi
 
@@ -142,6 +155,13 @@ fi
 
 if [[ -z $TMUX ]]; then
   cd "$dir" && "${cmd[@]}"
+  return
+fi
+
+# A window of this name sitting at a shell prompt: run the session there.
+if [[ -n $reuse ]]; then
+  tmux select-window -t "$reuse"
+  tmux send-keys -t "$reuse" "cd ${(q)dir} && ${(j: :)${(q)cmd[@]}}" C-m
   return
 fi
 

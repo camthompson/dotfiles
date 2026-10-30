@@ -10,21 +10,38 @@
 #   event        hook               state
 #   start        SessionStart       idle
 #                preexec            (for programs that wait on you)
+#                precmd             (for a fresh shell, nothing having run)
 #   prompt       UserPromptSubmit   busy
 #                preexec            (for everything else)
 #   permission   PermissionRequest  permission  a tool is waiting for approval
+#   question     PreToolUse         permission  AskUserQuestion or ExitPlanMode
+#                Notification                   is waiting for an answer
 #   tool         PostToolUse        busy        the prompt was answered
 #   stop         Stop               idle if you're looking at the window,
 #                precmd             done if not
 #   end          SessionEnd         (unset)
+#   seen         tmux hooks         done -> idle for every window on screen
 #
 # tmux.conf renders the state as a glyph after the window name, @claude first
 # so a running session wins over the shell that launched it: ● busy, ○ idle,
 # ? permission, ✓ done for Claude; ▶ busy, ▷ idle, ✓ done for a shell.
 # claude-pick lists sessions by @claude, needing you first. For permission and
 # done in a window you aren't looking at, the hook also shows a one-line
-# message in the status bar; -q sets the state without the message, which
-# precmd uses for short commands.
+# message in the status bar of every client; -q sets the state without the
+# message, which precmd uses for short commands.
+#
+# "Looking at the window" means it is the current window of a session a client
+# is attached to. window_active alone is not enough: every session has a
+# current window, attached or not.
+#
+# The seen event runs from tmux's session-window-changed, client-session-changed
+# and client-attached hooks (see tmux.conf), so a ✓ clears as soon as the
+# window comes on screen instead of waiting for the next prompt. It takes no
+# pane: it walks every window.
+#
+# A Claude session that is killed never fires SessionEnd, which would leave
+# @claude set and hiding the shell's state for good. precmd's stop drops
+# @claude when no pane in the window runs claude any more.
 #
 # Interrupting a turn with Escape fires Stop, so the state recovers. Cancelling
 # a permission prompt with Escape fires nothing, so ? stays until the next
@@ -45,10 +62,38 @@ local event=$1
 
 [[ -t 0 ]] || cat > /dev/null  # drain a hook's JSON so Claude Code never blocks writing it
 
+# Does this pane's command look like Claude Code? The native installer names
+# the binary after its version, so a bare version number counts.
+function is_claude { [[ $1 == claude || $1 == <->.<->.<-> ]] }
+
+# Show a message on every attached client, not only the one tmux guesses from
+# the target, which may be attached to another session than the one you're
+# looking at.
+function tell {
+  local c
+  for c in ${(f)"$(tmux list-clients -F '#{client_name}')"}; do
+    tmux display-message -c "$c" "$1"
+  done
+}
+
+if [[ $event == seen ]]; then
+  local wid active attached claude shell
+  while IFS=$'\t' read -r wid active attached claude shell; do
+    [[ $active == 1 && $attached != 0 ]] || continue
+    [[ $claude == done ]] && tmux set-option -w -t "$wid" @claude idle
+    [[ $shell == done ]] && tmux set-option -w -t "$wid" @shell idle
+  done < <(tmux list-windows -a -F $'#{window_id}\t#{window_active}\t#{session_attached}\t#{@claude}\t#{@shell}')
+  exit 0
+fi
+
 [[ -n $TMUX_PANE ]] || exit 0
 
-local active name
-IFS=$'\t' read -r active name < <(tmux display-message -p -t "$TMUX_PANE" $'#{window_active}\t#W')
+local active attached name claude
+IFS=$'\t' read -r active attached name claude < <(
+  tmux display-message -p -t "$TMUX_PANE" $'#{window_active}\t#{session_attached}\t#W\t#{@claude}'
+)
+local looking=0
+[[ $active == 1 && $attached != 0 ]] && looking=1
 
 case $event in
   start)
@@ -59,21 +104,34 @@ case $event in
     ;;
   permission)
     tmux set-option -w -t "$TMUX_PANE" $option permission
-    [[ $active == 1 ]] || tmux display-message -t "$TMUX_PANE" "$name needs permission"
+    (( looking )) || tell "$name needs permission"
+    ;;
+  question)
+    tmux set-option -w -t "$TMUX_PANE" $option permission
+    (( looking )) || tell "$name has a question"
     ;;
   stop)
-    if [[ $active == 1 ]]; then
+    if (( looking )); then
       tmux set-option -w -t "$TMUX_PANE" $option idle
     else
       tmux set-option -w -t "$TMUX_PANE" $option done
-      (( quiet )) || tmux display-message -t "$TMUX_PANE" "$name is done"
+      (( quiet )) || tell "$name is done"
+    fi
+    # A shell back at its prompt with @claude still set: the session that set
+    # it may have been killed before SessionEnd could unset it.
+    if [[ $option == @shell && -n $claude ]]; then
+      local cmd running=0
+      for cmd in ${(f)"$(tmux list-panes -t "$TMUX_PANE" -F '#{pane_current_command}')"}; do
+        is_claude "$cmd" && running=1
+      done
+      (( running )) || tmux set-option -wu -t "$TMUX_PANE" @claude 2>/dev/null
     fi
     ;;
   end)
     tmux set-option -wu -t "$TMUX_PANE" $option 2>/dev/null
     ;;
   *)
-    print -u2 "usage: claude-attn [-s] [-q] start|prompt|permission|tool|stop|end"
+    print -u2 "usage: claude-attn [-s] [-q] start|prompt|permission|question|tool|stop|end|seen"
     exit 1
     ;;
 esac
