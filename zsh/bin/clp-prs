@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+# clp-prs: list the open pull requests a GitHub search matches, for clp.
+#
+# Takes search terms, such as `review-requested:@me` or `org:Edacious-PBC`,
+# and prints one tab-separated row per pull request, newest update first:
+# update time, url, repository, #number, author, checks, review, title.
+# `gh search prs` cannot report checks or reviews, so this runs the same
+# search through the GraphQL API, which can.
+#
+# checks is the state of the latest commit's checks: ✓ passed, ✗ failed,
+# ● still running, - none. review is the review decision: approved,
+# changes (requested), needs-review, draft, or - when nobody has been asked.
+# GitHub leaves the decision empty on some fresh pull requests and in
+# repositories that require no review, so when it is empty the latest
+# reviews and any pending review requests stand in for it.
+
+emulate -L zsh
+setopt pipe_fail
+
+(( ARGC )) || { print -u2 'usage: clp-prs <search terms>...'; return 1; }
+
+local query='query($q: String!) {
+  search(query: $q, type: ISSUE, first: 100) {
+    nodes {
+      ... on PullRequest {
+        updatedAt url number title isDraft
+        author { login }
+        repository { name }
+        reviewDecision
+        reviewRequests { totalCount }
+        latestOpinionatedReviews(first: 10) { nodes { state } }
+        commits(last: 1) { nodes { commit { statusCheckRollup { state } } } }
+      }
+    }
+  }
+}'
+
+local row='.data.search.nodes[]
+  | (.commits.nodes[0].commit.statusCheckRollup.state // "") as $checks
+  | ([.latestOpinionatedReviews.nodes[].state]) as $reviews
+  | (.reviewDecision
+      // (if $reviews | index("CHANGES_REQUESTED") then "CHANGES_REQUESTED"
+          elif $reviews | index("APPROVED") then "APPROVED"
+          elif .reviewRequests.totalCount > 0 then "REVIEW_REQUIRED"
+          else "" end)) as $review
+  | [ .updatedAt, .url, .repository.name, "#\(.number)", (.author.login // "-"),
+      ({SUCCESS: "✓", FAILURE: "✗", ERROR: "✗", PENDING: "●", EXPECTED: "●"}[$checks] // "-"),
+      (if .isDraft then "draft"
+       else {APPROVED: "approved", CHANGES_REQUESTED: "changes", REVIEW_REQUIRED: "needs-review"}[$review] // "-" end),
+      .title ]
+  | @tsv'
+
+gh api graphql -f q="is:pr is:open sort:updated-desc $*" -f query="$query" --jq "$row"

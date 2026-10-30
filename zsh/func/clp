@@ -42,20 +42,20 @@ USAGE
 fi
 (( ARGC == 0 )) || { print -u2 'usage: clp [-a] [-r] [-w] [-d DIR]'; return 1; }
 
-# Each row leads with the update time so two searches can be merged into one
-# list, newest first; it is cut off before display.
-local fields='number,title,repository,author,url,isDraft,updatedAt'
-local fmt='.[] | [.updatedAt, .url, .repository.name, "#\(.number)", .author.login, (if .isDraft then "[draft] " else "" end) + .title] | @tsv'
-local search="gh search prs --state=open --sort updated --limit 100 --json $fields --jq '$fmt'"
+# clp-prs prints a row per pull request: update time, url, repository,
+# number, author, checks, review, title. The time leads so two searches can
+# be merged into one list, newest first; it is cut off before display. The
+# checks and review columns show where each pull request stands: ✓ ✗ ● - for
+# its checks, and approved, changes, needs-review, draft or - for its review.
 local show="cut -f2- | column -t -s \$'\\t'"
 
 # Exported so fzf's reload actions, which run in a child shell, can see them.
 # "mine" is pull requests waiting on your review plus ones you opened, merged
 # by update time and deduplicated by URL. With no organizations, "all" falls
-# back to pull requests that involve you, since --owner with nothing after it
+# back to pull requests that involve you, since an empty organization list
 # would search all of GitHub.
-local -x CLP_MINE="{ $search --review-requested=@me; $search --author=@me; } | sort -r | awk -F'\\t' '!seen[\$2]++' | $show"
-local -x CLP_ALL="o=\$(gh api user/orgs --jq '.[].login' | sed 's/^/--owner=/'); $search \${=o:---involves=@me} | $show"
+local -x CLP_MINE="{ clp-prs review-requested:@me; clp-prs author:@me; } | sort -r | awk -F'\\t' '!seen[\$2]++' | $show"
+local -x CLP_ALL="o=\$(gh api user/orgs --jq '.[].login' | sed 's/^/org:/'); clp-prs \${=o:-involves:@me} | $show"
 
 local toggle='if [ "$FZF_PROMPT" = "mine> " ]; then
   echo "change-prompt(all> )+change-header(ctrl-a: mine)+reload(eval \"\$CLP_ALL\")"
@@ -87,7 +87,7 @@ local url=$row[1] repo=$row[2] number=${row[3]#\#}
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
 local branch title name request="review $url; don't run checks"
 branch=$(gh pr view "$url" --json headRefName --jq .headRefName 2>/dev/null)
-title=${row[5,-1]}
+title=${row[7,-1]}  # after author, checks and review
 if [[ ${(L)branch} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
   name="$prefix-$match[2]"
 elif [[ ${(L)title} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
