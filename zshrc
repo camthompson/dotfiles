@@ -496,9 +496,11 @@ function aws-login() {
 }
 # }}}
 
-# Fast syntax highlighting with Catppuccin theme
-fast_theme XDG:catppuccin-mocha &>/dev/null
+# Fast syntax highlighting with Catppuccin theme. fast-theme persists its
+# choice in ~/.cache/fsh and the plugin loads that on startup, so re-apply
+# ours whenever the cache has drifted (it's a no-op otherwise).
 source $HOME/.zsh/bundle/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+[[ "$FAST_THEME_NAME" == "catppuccin-mocha" ]] || fast-theme XDG:catppuccin-mocha &>/dev/null
 
 # Source Catppuccin theme for fzf
 [[ -f $HOME/.zsh/catppuccin-fzf.sh ]] && source $HOME/.zsh/catppuccin-fzf.sh
