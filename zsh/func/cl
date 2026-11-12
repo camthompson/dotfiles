@@ -3,9 +3,13 @@
 # The first word is a short slug. It becomes both the tmux window name and the
 # Claude session name (`claude --name`), so the window title stays stable and
 # `cl <slug>` finds the session again later. A bare number is a ticket and
-# expands to `${CL_TICKET_PREFIX:-eng}-<number>`. Any further words are the
-# prompt: the opening prompt for a new session, or the next message for an
-# existing one.
+# expands to `wrk-<number>`, the ticket's work session, which is also what clw
+# opens. Any further words are the prompt: the opening prompt for a new
+# session, or the next message for an existing one.
+#
+# By convention a slug starts with what the session is for: wrk- (a diff),
+# rvw- (a review), ask- (an answer), doc- (a document), ops- (a live system),
+# pln- (a plan), etc- (anything else). cl doesn't enforce it.
 #
 # Sessions are recorded in a tab-separated ledger (name, directory, created,
 # session id) so completion and reopening don't depend on Claude's transcript
@@ -28,7 +32,9 @@ usage: cl [-n] [-w] [-d DIR] <name> [prompt...]
        cl -l
 
 Open a Claude Code session named <name> in a tmux window of the same name.
-A bare number expands to ${CL_TICKET_PREFIX:-eng}-<number>.
+A bare number is a ticket and expands to wrk-<number>, its work session.
+By convention <name> starts with what the session is for: wrk-, rvw-, ask-,
+doc-, ops-, pln- or etc-.
 If a window called <name> is already open in this tmux session, switch to it
 and type the prompt, if any, into it.
 If <name> was used before, resume that session in the directory it started in
@@ -83,7 +89,7 @@ fi
 local name=$1; shift
 local prompt="$*"
 
-[[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
+[[ $name == <-> ]] && name="wrk-$name"
 
 if [[ $name != [A-Za-z0-9][A-Za-z0-9._-]# ]]; then
   print -u2 "cl: name must be letters, digits, dot, dash, or underscore: $name"

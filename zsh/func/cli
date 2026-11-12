@@ -4,7 +4,7 @@
 # assigned to you. Typing filters the list; ctrl-a swaps in every open issue on
 # the team, with the same filter still applied, and swaps back. The chosen
 # issue is handed to `clw -n`, so `cli` ends up as
-# `cl -n 1234-work "what are the next steps for eng-1234?"`: a fresh work
+# `cl -n wrk-1234 "what are the next steps for eng-1234?"`: a fresh work
 # session, unless -r says to resume the issue's existing one. Bare `clw` runs
 # this.
 
@@ -20,7 +20,7 @@ usage: cli [-a] [-r] [-w] [-d DIR]
 
 Pick an open Linear issue assigned to you and run clw on it. Type to filter;
 ctrl-a toggles between your issues and every open issue on the team.
-Each pick starts a fresh session named after the issue, such as 1234-work for
+Each pick starts a fresh session named after the issue, such as wrk-1234 for
 ${CL_TICKET_PREFIX:-eng}-1234.
 
 Options:

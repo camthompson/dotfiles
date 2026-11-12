@@ -1,10 +1,10 @@
 # clw: open the work session for a ticket and ask what to do next.
-# `clw 1234` is `cl 1234-work "what are the next steps for eng-1234?"`,
+# `clw 1234` is `cl wrk-1234 "what are the next steps for eng-1234?"`,
 # resuming the ticket's work session when there is one; -n starts a fresh one
-# instead. The session is named `<number>-work` so it sits beside the
-# `<number>-review` session clr opens instead of replacing it. The ticket can
-# also be given as `eng-1234`, `1234-work` or `1234-review`. Any other name is
-# used as it is.
+# instead. The session is named `wrk-<number>` so it sits beside the
+# `rvw-<number>` session clr opens instead of replacing it. The ticket can
+# also be given as `eng-1234`, `wrk-1234` or `rvw-1234`. Any other name is
+# used as it is. Plain `cl 1234` opens the same session without the prompt.
 # With no ticket, pick a Linear issue with cli first (fresh unless -r).
 
 emulate -L zsh
@@ -19,7 +19,7 @@ local -a args
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
 local name=$1 subject=$1
 local MATCH MBEGIN MEND; local -a match mbegin mend
-if [[ ${(L)1} =~ "^(${prefix}-)?([0-9]+)(-(work|review))?\$" ]]; then
-  subject="$prefix-$match[2]" name="$match[2]-work"
+if [[ ${(L)1} =~ "^((${prefix}|wrk|rvw)-)?([0-9]+)\$" ]]; then
+  subject="$prefix-$match[3]" name="wrk-$match[3]"
 fi
 cl "${args[@]}" "$name" "what are the next steps for $subject?"

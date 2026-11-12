@@ -72,20 +72,33 @@ See [`gitconfig`](gitconfig) for the full list (~40 aliases).
 
 ## Claude sessions
 
-`cl` (in [`zsh/func/cl`](zsh/func/cl)) starts Claude Code sessions you can find again. The first word is a short slug that becomes both the tmux window name and the Claude session name, so the window title stays put and `claude --resume` knows the session by the same word. A bare number is a ticket and expands to `eng-<number>` (`CL_TICKET_PREFIX` changes the prefix). Any further words are the prompt.
+`cl` (in [`zsh/func/cl`](zsh/func/cl)) starts Claude Code sessions you can find again. The first word is a short slug that becomes both the tmux window name and the Claude session name, so the window title stays put and `claude --resume` knows the session by the same word. A bare number is a ticket and expands to `wrk-<number>`, the ticket's work session. Any further words are the prompt.
+
+A slug starts with a prefix that says what the session is for:
+
+| Prefix | The session produces | Example |
+|---|---|---|
+| `wrk-` | a diff | `wrk-2108`, `wrk-py-pin` |
+| `rvw-` | a verdict on someone's work | `rvw-2108`, `rvw-gemyn-41` |
+| `ask-` | an answer, no changes | `ask-5xxs` |
+| `doc-` | a document | `doc-deps-policy` |
+| `ops-` | a change to a live system | `ops-rollout` |
+| `pln-` | a list or a plan | `pln-triage` |
+| `etc-` | anything else | `etc-scratch` |
+
+The prefixes are a convention: `cl` takes any name. `clw`, `clr`, `cli` and `clp` apply `wrk-` and `rvw-` themselves. Tab completion on `cl ask-` lists one kind of session, and so does typing the prefix in the bare `cl` picker.
 
 ```sh
-cl eng-2108 implement the live items endpoint from the ENG-2108 spec
-cl -d ~/work/gemyn py-pin pin the python 3.14 patch version
-cl -w py-pin         # same, but in a new window instead of this one
-cl 2108              # later: switch to its window, or resume it if the window is gone
+cl wrk-2108 implement the live items endpoint from the ENG-2108 spec
+cl -d ~/work/gemyn wrk-py-pin pin the python 3.14 patch version
+cl -w wrk-py-pin     # same, but in a new window instead of this one
+cl 2108              # later: switch to wrk-2108's window, or resume it if the window is gone
 cl 2108 run the tests  # same, and send that as the next message
-cl -n 2108           # start over: a fresh session named eng-2108, which cl 2108 resumes from now on
+cl -n 2108           # start over: a fresh session named wrk-2108, which cl 2108 resumes from now on
 cl                   # pick a known session with fzf, most recent first
 cl -l                # list known sessions; * marks ones with an open window
-clw 2108             # cl 2108-work "what are the next steps for eng-2108?" (clw -n starts fresh)
-clr 2108             # cl -n 2108-review "review prs open for eng-2108; don't run checks" (clr -r resumes)
-cl 2108-work run the tests  # send the work session its next message
+clw 2108             # cl wrk-2108 "what are the next steps for eng-2108?" (clw -n starts fresh)
+clr 2108             # cl -n rvw-2108 "review prs open for eng-2108; don't run checks" (clr -r resumes)
 cli                  # pick an open Linear issue assigned to you with fzf, then clw -n it (bare clw does the same)
 clp                  # pick an open GitHub PR waiting on your review or opened by you with fzf, then review it and its ticket's other open PRs fresh (bare clr does the same)
 ```
@@ -96,13 +109,13 @@ What happens on `cl <name> [prompt]`:
 2. `<name>` has been used before: rename this window to `<name>` and run `claude --resume <name> [prompt]` from the directory the session started in. A `-d` given here is ignored with a note.
 3. Otherwise: rename this window to `<name>`, run `claude --name <name> --session-id <uuid> [prompt]` from `-d DIR` (default: the current directory), and record the session.
 
-`-n` skips steps 1 and 2 and starts a fresh session under the same name, in the directory the old one used unless `-d` says otherwise. The new session replaces the old one in the ledger, so `cl <name>` resumes the newest. Each new session gets its UUID up front and is resumed by it, which is what lets a name be reused without `claude --resume` having to guess between two sessions called `eng-2108`.
+`-n` skips steps 1 and 2 and starts a fresh session under the same name, in the directory the old one used unless `-d` says otherwise. The new session replaces the old one in the ledger, so `cl <name>` resumes the newest. Each new session gets its UUID up front and is resumed by it, which is what lets a name be reused without `claude --resume` having to guess between two sessions called `wrk-2108`.
 
 Renaming a window turns off tmux's `automatic-rename` for it, so the title stays stable even though Claude rewrites the terminal title on every turn; `cl` turns it back on when `claude` exits. With `-w`, steps 2 and 3 open a new window named `<name>` instead, which has the same stable-title property. Outside tmux, `cl` just runs `claude` in the current terminal.
 
-`clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are small wrappers that fix the prompt and the session name for a ticket; copy one to add another. Each names its session after the ticket number and the kind of work, `2108-work` for `clw` and `2108-review` for `clr`, so a ticket's work and review sessions sit side by side as separate windows and ledger entries, and a review never replaces the work session. Both take the ticket as `2108`, `eng-2108`, or either session name; any other name is used as it is. `clw` resumes the ticket's work session, since the next steps build on what came before, and `clw -n` starts fresh. `clr` starts a fresh session every time, since a rerun after changes should not carry the last review's conclusions, and `clr -r` resumes. Plain `cl 2108` is still its own session, `eng-2108`.
+`clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are small wrappers that fix the prompt and the session name for a ticket; copy one to add another. Each names its session after the kind of work and the ticket number, `wrk-2108` for `clw` and `rvw-2108` for `clr`, so a ticket's work and review sessions sit side by side as separate windows and ledger entries, and a review never replaces the work session. Both take the ticket as `2108`, `eng-2108`, or either session name; any other name is used as it is. The prompt names the ticket as `eng-2108`; `CL_TICKET_PREFIX` changes the `eng`. `clw` resumes the ticket's work session, since the next steps build on what came before, and `clw -n` starts fresh. `clr` starts a fresh session every time, since a rerun after changes should not carry the last review's conclusions, and `clr -r` resumes. Plain `cl 2108` opens the same session as `clw 2108`, without the prompt.
 
-`cli` and `clp` ([`zsh/func/cli`](zsh/func/cli), [`zsh/func/clp`](zsh/func/clp)) pick the ticket for you. `cli` lists the open Linear issues assigned to you on the `CL_TICKET_PREFIX` team through the [`linear`](https://github.com/schpet/linear-cli) CLI, with the issue rendered in the preview; choosing one runs `clw` on it. `clp` lists the open GitHub pull requests waiting on your review and the ones you opened, newest update first, through `gh search prs`, with `gh pr view` in the preview; choosing one opens a session named after the ticket in the branch name or title (`2108-review` for `eng-2108`), or `<repo>-pr<number>` when there is none, started in the repo's checkout from `$WORK_REPOS` when one matches, with the prompt `review <url> and any other prs open for eng-2108; don't run checks`, or `review <url>; don't run checks` when there is no ticket. In both, typing filters the list and `ctrl-a` toggles between your items and every open issue on the team or every open pull request in your organizations, keeping the filter; `-a` starts on the wide list. Both start a fresh session for the pick and take `-r` to resume the existing one instead, plus `-w` and `-d` like `clw` and `clr`. `clw` or `clr` with no ticket runs the matching picker, the way bare `cl` picks a known session.
+`cli` and `clp` ([`zsh/func/cli`](zsh/func/cli), [`zsh/func/clp`](zsh/func/clp)) pick the ticket for you. `cli` lists the open Linear issues assigned to you on the `CL_TICKET_PREFIX` team through the [`linear`](https://github.com/schpet/linear-cli) CLI, with the issue rendered in the preview; choosing one runs `clw` on it. `clp` lists the open GitHub pull requests waiting on your review and the ones you opened, newest update first, through `gh search prs`, with `gh pr view` in the preview; choosing one opens a session named after the ticket in the branch name or title (`rvw-2108` for `eng-2108`), or `rvw-<repo>-<number>` when there is none, started in the repo's checkout from `$WORK_REPOS` when one matches, with the prompt `review <url> and any other prs open for eng-2108; don't run checks`, or `review <url>; don't run checks` when there is no ticket. In both, typing filters the list and `ctrl-a` toggles between your items and every open issue on the team or every open pull request in your organizations, keeping the filter; `-a` starts on the wide list. Both start a fresh session for the pick and take `-r` to resume the existing one instead, plus `-w` and `-d` like `clw` and `clr`. `clw` or `clr` with no ticket runs the matching picker, the way bare `cl` picks a known session.
 
 All of these run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
