@@ -1,7 +1,11 @@
-# clr: open a fresh session for a ticket and review its open pull requests.
-# `clr 1234` is `cl -n 1234 "review prs open for eng-1234; don't run checks"`:
-# a new session each time, so a rerun after changes starts without the last
-# review's context. -r resumes the ticket's existing session instead.
+# clr: open a fresh review session for a ticket and review its open pull
+# requests. `clr 1234` is
+# `cl -n 1234-review "review prs open for eng-1234; don't run checks"`: a new
+# session each time, so a rerun after changes starts without the last review's
+# context. -r resumes the ticket's existing review session instead. The
+# session is named `<number>-review` so it sits beside the `<number>-work`
+# session clw opens instead of replacing it. The ticket can also be given as
+# `eng-1234`, `1234-review` or `1234-work`. Any other name is used as it is.
 # With no ticket, pick a pull request with clp first.
 
 emulate -L zsh
@@ -13,6 +17,10 @@ local -a args
 (( ARGC == 0 )) && { clp ${opt[-r]+-r} "${args[@]}"; return }
 (( ARGC == 1 )) || { print -u2 'usage: clr [-r] [-w] [-d DIR] [ticket]'; return 1; }
 (( ${+opt[-r]} )) || args+=(-n)
-local name=$1
-[[ $name == <-> ]] && name="${CL_TICKET_PREFIX:-eng}-$name"
-cl "${args[@]}" "$name" "review prs open for $name; don't run checks"
+local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
+local name=$1 subject=$1
+local MATCH MBEGIN MEND; local -a match mbegin mend
+if [[ ${(L)1} =~ "^(${prefix}-)?([0-9]+)(-(work|review))?\$" ]]; then
+  subject="$prefix-$match[2]" name="$match[2]-review"
+fi
+cl "${args[@]}" "$name" "review prs open for $subject; don't run checks"
