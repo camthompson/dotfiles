@@ -44,6 +44,7 @@ function _cl() {
       ;;
     clr)
       _arguments -s \
+        '-a[with no ticket: start the picker on every open pull request]' \
         '-r[resume the existing session instead of starting fresh]' \
         '-w[open a new window]' \
         '-d[directory to start a new session in]:directory:_directories' \
@@ -51,6 +52,7 @@ function _cl() {
       ;;
     clw)
       _arguments -s \
+        '-a[with no ticket: start the picker on every open issue]' \
         '-n[start a new session even if the ticket is known]' \
         '-r[with no ticket: resume the picked issue'"'"'s session]' \
         '-w[open a new window]' \

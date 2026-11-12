@@ -6,16 +6,18 @@
 # session is named `rvw-<number>` so it sits beside the `wrk-<number>` session
 # clw opens instead of replacing it. The ticket can also be given as
 # `eng-1234`, `rvw-1234` or `wrk-1234`. Any other name is used as it is.
-# With no ticket, pick a pull request with clp first.
+# With no ticket, pick a pull request with clp first (-a starts the picker on
+# every open pull request, not only yours).
 
 emulate -L zsh
 local -A opt
-zparseopts -D -M -A opt d: w r
+zparseopts -D -M -A opt d: w r a
 local -a args
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
-(( ARGC == 0 )) && { clp ${opt[-r]+-r} "${args[@]}"; return }
-(( ARGC == 1 )) || { print -u2 'usage: clr [-r] [-w] [-d DIR] [ticket]'; return 1; }
+(( ARGC == 0 )) && { clp ${opt[-r]+-r} ${opt[-a]+-a} "${args[@]}"; return }
+(( ARGC == 1 )) || { print -u2 'usage: clr [-r] [-w] [-d DIR] <ticket>
+       clr [-a] [-r] [-w] [-d DIR]'; return 1; }
 (( ${+opt[-r]} )) || args+=(-n)
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
 local name=$1 subject=$1

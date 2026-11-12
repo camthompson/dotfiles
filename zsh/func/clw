@@ -5,16 +5,18 @@
 # `rvw-<number>` session clr opens instead of replacing it. The ticket can
 # also be given as `eng-1234`, `wrk-1234` or `rvw-1234`. Any other name is
 # used as it is. Plain `cl 1234` opens the same session without the prompt.
-# With no ticket, pick a Linear issue with cli first (fresh unless -r).
+# With no ticket, pick a Linear issue with cli first (fresh unless -r; -a
+# starts the picker on every open issue, not only yours).
 
 emulate -L zsh
 local -A opt
-zparseopts -D -M -A opt d: w n r
+zparseopts -D -M -A opt d: w n r a
 local -a args
 (( ${+opt[-w]} )) && args+=(-w)
 [[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
-(( ARGC == 0 )) && { cli ${opt[-r]+-r} "${args[@]}"; return }
-(( ARGC == 1 )) || { print -u2 'usage: clw [-n] [-w] [-d DIR] [ticket]'; return 1; }
+(( ARGC == 0 )) && { cli ${opt[-r]+-r} ${opt[-a]+-a} "${args[@]}"; return }
+(( ARGC == 1 )) || { print -u2 'usage: clw [-n] [-w] [-d DIR] <ticket>
+       clw [-a] [-r] [-w] [-d DIR]'; return 1; }
 (( ${+opt[-n]} )) && args+=(-n)
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
 local name=$1 subject=$1
