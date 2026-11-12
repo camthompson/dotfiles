@@ -1,0 +1,25 @@
+# ct: start a scratch Claude session without naming it.
+# `ct [prompt...]` is `cl tmp-<MMDD>-<HHMM> [prompt...]`, such as
+# `tmp-1112-1423`: a new session in the current directory, recorded in the
+# ledger like any other, so `cl tmp-<tab>` finds it again. A second `ct` in
+# the same minute gets `-2` on the end, the third `-3`, so each has its own
+# session.
+
+emulate -L zsh
+local -A opt
+zparseopts -D -F -M -A opt d: w h || return 1
+if (( ${+opt[-h]} )); then
+  print 'usage: ct [-w] [-d DIR] [prompt...]'
+  print 'Start a scratch Claude session named tmp-<MMDD>-<HHMM>.'
+  return 0
+fi
+local -a args
+(( ${+opt[-w]} )) && args+=(-w)
+[[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
+local ledger="${XDG_STATE_HOME:-$HOME/.local/state}/cl/sessions"
+local base="tmp-$(date +%m%d-%H%M)" n=1
+local name=$base
+while [[ -s $ledger ]] && grep -q "^$name	" "$ledger"; do
+  name="$base-$(( ++n ))"
+done
+cl "${args[@]}" "$name" "$@"

@@ -9,7 +9,8 @@
 #
 # By convention a slug starts with what the session is for: wrk- (a diff),
 # rvw- (a review), ask- (an answer), doc- (a document), ops- (a live system),
-# pln- (a plan), etc- (anything else). cl doesn't enforce it.
+# pln- (a plan), tmp- (scratch, named by ct), etc- (anything else). cl doesn't
+# enforce it.
 #
 # Sessions are recorded in a tab-separated ledger (name, directory, created,
 # session id) so completion and reopening don't depend on Claude's transcript
@@ -34,7 +35,7 @@ usage: cl [-n] [-w] [-d DIR] <name> [prompt...]
 Open a Claude Code session named <name> in a tmux window of the same name.
 A bare number is a ticket and expands to wrk-<number>, its work session.
 By convention <name> starts with what the session is for: wrk-, rvw-, ask-,
-doc-, ops-, pln- or etc-.
+doc-, ops-, pln-, tmp- or etc-.
 If a window called <name> is already open in this tmux session, switch to it
 and type the prompt, if any, into it.
 If <name> was used before, resume that session in the directory it started in

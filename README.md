@@ -46,7 +46,7 @@ These are defined in [`zshrc`](zshrc). A curated selection of the ones you'll us
 | `p <file>` | Preview a file -- markdown via glow, images via chafa, code via bat (opens in tmux popup when available) |
 | `pfk` | Fuzzy-find a running process and kill it |
 | `work` | Start (or reattach to) the work tmux session with gh-dash and repo windows driven by `$WORK_REPOS` |
-| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts, `cli`/`clp` pick a Linear issue or GitHub PR with fzf first (see [Claude sessions](#claude-sessions)) |
+| `cl <name> [prompt]` | Open or reopen a named Claude Code session in a tmux window of the same name; `clw`/`clr <ticket>` are prompt shortcuts, `cli`/`clp` pick a Linear issue or GitHub PR with fzf first, `ct` starts a scratch session it names itself (see [Claude sessions](#claude-sessions)) |
 | `..` / `...` / `....` | Navigate up 1, 2, or 3 directories |
 | `cheatsheet` | Print the Claude session commands and tmux shortcuts above, rendered with glow |
 
@@ -84,7 +84,8 @@ A slug starts with a prefix that says what the session is for:
 | `doc-` | a document | `doc-deps-policy` |
 | `ops-` | a change to a live system | `ops-rollout` |
 | `pln-` | a list or a plan | `pln-triage` |
-| `etc-` | anything else | `etc-scratch` |
+| `tmp-` | nothing worth naming; `ct` names these | `tmp-1112-1423` |
+| `etc-` | anything else | `etc-dotfiles` |
 
 The prefixes are a convention: `cl` takes any name. `clw`, `clr`, `cli` and `clp` apply `wrk-` and `rvw-` themselves. Tab completion on `cl ask-` lists one kind of session, and so does typing the prefix in the bare `cl` picker.
 
@@ -100,6 +101,7 @@ cl -l                # list known sessions; * marks ones with an open window
 clw 2108             # cl wrk-2108 "what are the next steps for eng-2108?" (clw -n starts fresh)
 clr 2108             # cl -n rvw-2108 "review prs open for eng-2108; don't run checks" (clr -r resumes)
 cli                  # pick an open Linear issue assigned to you with fzf, then clw -n it (bare clw does the same)
+ct what does jq's @tsv do with nulls?  # scratch session named tmp-<MMDD>-<HHMM>, no name needed
 clp                  # pick an open GitHub PR waiting on your review or opened by you with fzf, then review it and its ticket's other open PRs fresh (bare clr does the same)
 ```
 
@@ -116,6 +118,8 @@ Renaming a window turns off tmux's `automatic-rename` for it, so the title stays
 `clw` and `clr` ([`zsh/func/clw`](zsh/func/clw), [`zsh/func/clr`](zsh/func/clr)) are small wrappers that fix the prompt and the session name for a ticket; copy one to add another. Each names its session after the kind of work and the ticket number, `wrk-2108` for `clw` and `rvw-2108` for `clr`, so a ticket's work and review sessions sit side by side as separate windows and ledger entries, and a review never replaces the work session. Both take the ticket as `2108`, `eng-2108`, or either session name; any other name is used as it is. The prompt names the ticket as `eng-2108`; `CL_TICKET_PREFIX` changes the `eng`. `clw` resumes the ticket's work session, since the next steps build on what came before, and `clw -n` starts fresh. `clr` starts a fresh session every time, since a rerun after changes should not carry the last review's conclusions, and `clr -r` resumes. Plain `cl 2108` opens the same session as `clw 2108`, without the prompt.
 
 `cli` and `clp` ([`zsh/func/cli`](zsh/func/cli), [`zsh/func/clp`](zsh/func/clp)) pick the ticket for you. `cli` lists the open Linear issues assigned to you on the `CL_TICKET_PREFIX` team through the [`linear`](https://github.com/schpet/linear-cli) CLI, with the issue rendered in the preview; choosing one runs `clw` on it. `clp` lists the open GitHub pull requests waiting on your review and the ones you opened, newest update first, through `gh search prs`, with `gh pr view` in the preview; choosing one opens a session named after the ticket in the branch name or title (`rvw-2108` for `eng-2108`), or `rvw-<repo>-<number>` when there is none, started in the repo's checkout from `$WORK_REPOS` when one matches, with the prompt `review <url> and any other prs open for eng-2108; don't run checks`, or `review <url>; don't run checks` when there is no ticket. In both, typing filters the list and `ctrl-a` toggles between your items and every open issue on the team or every open pull request in your organizations, keeping the filter; `-a` starts on the wide list. Both start a fresh session for the pick and take `-r` to resume the existing one instead, plus `-w` and `-d` like `clw` and `clr`. `clw` or `clr` with no ticket runs the matching picker, the way bare `cl` picks a known session.
+
+`ct` ([`zsh/func/ct`](zsh/func/ct)) is for a session not worth naming. It makes up the name, `tmp-<MMDD>-<HHMM>` from the current time, and every word after it is the prompt. The session starts in the current directory, or `-d DIR`, and is recorded in the ledger like any other, so `cl tmp-<tab>` finds it again. A second `ct` in the same minute gets `-2` on the end.
 
 All of these run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
