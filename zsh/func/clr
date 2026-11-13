@@ -7,7 +7,8 @@
 # clw opens instead of replacing it. The ticket can also be given as
 # `eng-1234`, `rvw-1234` or `wrk-1234`. Any other name is used as it is.
 # With no ticket, pick a pull request with clp first (-a starts the picker on
-# every open pull request, not only yours).
+# every open pull request, not only yours). In tmux the picker takes several
+# pull requests: the first opens here and each of the others in a new window.
 
 emulate -L zsh
 local -A opt

@@ -6,7 +6,9 @@
 # also be given as `eng-1234`, `wrk-1234` or `rvw-1234`. Any other name is
 # used as it is. Plain `cl 1234` opens the same session without the prompt.
 # With no ticket, pick a Linear issue with cli first (fresh unless -r; -a
-# starts the picker on every open issue, not only yours).
+# starts the picker on every open issue, not only yours). In tmux the picker
+# takes several issues: the first opens here and each of the others in a new
+# window.
 
 emulate -L zsh
 local -A opt

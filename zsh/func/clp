@@ -9,8 +9,9 @@
 # $WORK_REPOS when there is one, with the prompt
 # `review <url>; don't run checks`, or `review <url> and any other prs open
 # for eng-1234; don't run checks` when it has a ticket. Like clr, it starts a
-# fresh session each time unless -r says to resume the existing one. Bare
-# `clr` runs this.
+# fresh session each time unless -r says to resume the existing one. In tmux,
+# tab marks several pull requests: the first one marked opens the same way,
+# and each of the others opens in a new tmux window. Bare `clr` runs this.
 
 emulate -L zsh
 setopt pipe_fail
@@ -32,6 +33,10 @@ rvw-1234 for ${CL_TICKET_PREFIX:-eng}-1234, or rvw-<repo>-<number> when there
 is none. A new session starts in the repo's directory from \$WORK_REPOS when
 one matches.
 Each pick starts a fresh session, so a rerun after changes reviews clean.
+
+In tmux, tab marks several pull requests. The first one marked opens as a
+single pick does, and each of the others opens in a new tmux window. Picks on
+the same ticket share one session.
 
 Options:
   -a      Start with every open pull request, not only yours.
@@ -60,58 +65,86 @@ local show="cut -f2- | column -t -s \$'\\t'"
 local -x CLP_MINE="{ clp-prs review-requested:@me; clp-prs author:@me; } | sort -r | awk -F'\\t' '!seen[\$2]++' | $show"
 local -x CLP_ALL="o=\$(gh api user/orgs --jq '.[].login' | sed 's/^/org:/'); clp-prs \${=o:-involves:@me} | $show"
 
+# In tmux, tab marks more than one pull request, since the others can open in
+# new windows. reload-sync and --id-nth keep the marks across ctrl-a by
+# matching rows on the URL.
+local hint= reload=reload
+local -a multi
+if [[ -n $TMUX ]]; then
+  hint='tab: mark several, ' reload=reload-sync multi=(--multi --id-nth 1)
+fi
+
 local toggle='if [ "$FZF_PROMPT" = "mine> " ]; then
-  echo "change-prompt(all> )+change-header(ctrl-a: mine)+reload(eval \"\$CLP_ALL\")"
+  echo "change-prompt(all> )+change-header('$hint'ctrl-a: mine)+'$reload'(eval \"\$CLP_ALL\")"
 else
-  echo "change-prompt(mine> )+change-header(ctrl-a: all open)+reload(eval \"\$CLP_MINE\")"
+  echo "change-prompt(mine> )+change-header('$hint'ctrl-a: all open)+'$reload'(eval \"\$CLP_MINE\")"
 fi'
 
 local preview='GH_FORCE_TTY=$FZF_PREVIEW_COLUMNS gh pr view --comments {1}'
 
-local prompt='mine> ' header='ctrl-a: all open' list=$CLP_MINE
+local prompt='mine> ' header="${hint}ctrl-a: all open" list=$CLP_MINE
 if (( ${+opt[-a]} )); then
-  prompt='all> ' header='ctrl-a: mine' list=$CLP_ALL
+  prompt='all> ' header="${hint}ctrl-a: mine" list=$CLP_ALL
 fi
 
 local choice
-choice=$(eval "$list" | fzf \
+choice=$(eval "$list" | fzf $multi \
   --prompt "$prompt" --header "$header" \
   --with-nth 2.. \
   --bind "ctrl-a:transform:$toggle" \
   --preview "$preview" \
   --preview-window 'down,60%,border-top,wrap') || return 1
 
-local -a row
-row=(${=choice})
-local url=$row[1] repo=$row[2] number=${row[3]#\#}
-
-# Name the session after the ticket when the branch or title carries one, and
-# review the ticket's other open pull requests alongside the chosen one.
+# Work out the session for each pick: its name, prompt and directory.
 local prefix=${(L)${CL_TICKET_PREFIX:-eng}}
-local branch title ticket name="rvw-$repo-$number" request="review $url; don't run checks"
+local -a row names requests dirs
+local line url repo number branch title ticket name request dir r
 local MATCH MBEGIN MEND; local -a match mbegin mend
-branch=$(gh pr view "$url" --json headRefName --jq .headRefName 2>/dev/null)
-title=${row[7,-1]}  # after author, checks and review
-if [[ ${(L)branch} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
-  ticket=$match[2]
-elif [[ ${(L)title} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
-  ticket=$match[2]
-fi
-if [[ -n $ticket ]]; then
-  name="rvw-$ticket"
-  request="review $url and any other prs open for $prefix-$ticket; don't run checks"
-fi
+for line in ${(f)choice}; do
+  row=(${=line})
+  url=$row[1] repo=$row[2] number=${row[3]#\#}
 
-# Start new sessions in the repo's checkout when $WORK_REPOS has one.
-local dir=$opt[-d] r
-if [[ -z $dir ]]; then
-  for r in ${(s: :)WORK_REPOS}; do
-    [[ ${r:t} == $repo && -d $r ]] && { dir=$r; break; }
-  done
-fi
+  # Name the session after the ticket when the branch or title carries one,
+  # and review the ticket's other open pull requests alongside the chosen one.
+  ticket= name="rvw-$repo-$number" request="review $url; don't run checks"
+  branch=$(gh pr view "$url" --json headRefName --jq .headRefName 2>/dev/null)
+  title=${row[7,-1]}  # after author, checks and review
+  if [[ ${(L)branch} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
+    ticket=$match[2]
+  elif [[ ${(L)title} =~ "(^|[^[:alnum:]])${prefix}-([0-9]+)([^0-9]|$)" ]]; then
+    ticket=$match[2]
+  fi
+  if [[ -n $ticket ]]; then
+    name="rvw-$ticket"
+    request="review $url and any other prs open for $prefix-$ticket; don't run checks"
+  fi
 
-local -a args
-(( ${+opt[-r]} )) || args+=(-n)
-(( ${+opt[-w]} )) && args+=(-w)
-[[ -n $dir ]] && args+=(-d "$dir")
-cl "${args[@]}" "$name" "$request"
+  # Two picks on one ticket would share a session name, and the first one's
+  # prompt already covers the ticket's other pull requests.
+  (( ${names[(Ie)$name]} )) && continue
+
+  # Start new sessions in the repo's checkout when $WORK_REPOS has one.
+  dir=$opt[-d]
+  if [[ -z $dir ]]; then
+    for r in ${(s: :)WORK_REPOS}; do
+      [[ ${r:t} == $repo && -d $r ]] && { dir=$r; break; }
+    done
+  fi
+
+  names+=("$name") requests+=("$request") dirs+=("$dir")
+done
+
+# Each pick after the first gets a window of its own. The first goes
+# last: cl moves to every window it opens, so come back to this one, and it
+# opens the way a single pick does.
+local -a order args
+local i
+order=({1..$#names}); order=($order[2,-1] 1)
+for i in $order; do
+  args=()
+  (( ${+opt[-r]} )) || args+=(-n)
+  (( i > 1 || ${+opt[-w]} )) && args+=(-w)
+  [[ -n $dirs[i] ]] && args+=(-d "$dirs[i]")
+  (( i == 1 && $#names > 1 )) && tmux select-window -t "$TMUX_PANE"
+  cl "${args[@]}" "$names[i]" "$requests[i]"
+done

@@ -5,8 +5,9 @@
 # the team, with the same filter still applied, and swaps back. The chosen
 # issue is handed to `clw -n`, so `cli` ends up as
 # `cl -n wrk-1234 "what are the next steps for eng-1234?"`: a fresh work
-# session, unless -r says to resume the issue's existing one. Bare `clw` runs
-# this.
+# session, unless -r says to resume the issue's existing one. In tmux, tab
+# marks several issues: the first one marked opens the same way, and each of
+# the others opens in a new tmux window. Bare `clw` runs this.
 
 emulate -L zsh
 setopt pipe_fail
@@ -22,6 +23,9 @@ Pick an open Linear issue assigned to you and run clw on it. Type to filter;
 ctrl-a toggles between your issues and every open issue on the team.
 Each pick starts a fresh session named after the issue, such as wrk-1234 for
 ${CL_TICKET_PREFIX:-eng}-1234.
+
+In tmux, tab marks several issues. The first one marked opens as a single
+pick does, and each of the others opens in a new tmux window.
 
 Options:
   -a      Start with every open issue, not only yours.
@@ -43,29 +47,50 @@ local fmt='.[] | [.identifier, .state.name, (.assignee.displayName // "-"), .tit
 local -x CLI_MINE="linear issue list --json --team $team $states --limit all | jq -r '$fmt' | column -t -s \$'\\t'"
 local -x CLI_ALL="linear issue list --json --team $team $states --limit all -A | jq -r '$fmt' | column -t -s \$'\\t'"
 
+# In tmux, tab marks more than one issue, since the others can open in new
+# windows. reload-sync and --id-nth keep the marks across ctrl-a by matching
+# rows on the issue id.
+local hint= reload=reload
+local -a multi
+if [[ -n $TMUX ]]; then
+  hint='tab: mark several, ' reload=reload-sync multi=(--multi --id-nth 1)
+fi
+
 local toggle='if [ "$FZF_PROMPT" = "mine> " ]; then
-  echo "change-prompt(all> )+change-header(ctrl-a: my issues)+reload(eval \"\$CLI_ALL\")"
+  echo "change-prompt(all> )+change-header('$hint'ctrl-a: my issues)+'$reload'(eval \"\$CLI_ALL\")"
 else
-  echo "change-prompt(mine> )+change-header(ctrl-a: all issues)+reload(eval \"\$CLI_MINE\")"
+  echo "change-prompt(mine> )+change-header('$hint'ctrl-a: all issues)+'$reload'(eval \"\$CLI_MINE\")"
 fi'
 
 local preview='linear issue view --no-pager --no-download {1} | { command -v glow >/dev/null && glow -w $FZF_PREVIEW_COLUMNS - || cat; }'
 
-local prompt='mine> ' header='ctrl-a: all issues' list=$CLI_MINE
+local prompt='mine> ' header="${hint}ctrl-a: all issues" list=$CLI_MINE
 if (( ${+opt[-a]} )); then
-  prompt='all> ' header='ctrl-a: my issues' list=$CLI_ALL
+  prompt='all> ' header="${hint}ctrl-a: my issues" list=$CLI_ALL
 fi
 
 local choice
-choice=$(eval "$list" | fzf \
+choice=$(eval "$list" | fzf $multi \
   --prompt "$prompt" --header "$header" \
   --bind "ctrl-a:transform:$toggle" \
   --preview "$preview" \
   --preview-window 'down,60%,border-top,wrap') || return 1
 
-local id=${${=choice}[1]}
+local -a ids
+local line
+for line in ${(f)choice}; do ids+=(${(L)${${=line}[1]}}); done
+
 local -a args
 (( ${+opt[-r]} )) || args+=(-n)
-(( ${+opt[-w]} )) && args+=(-w)
 [[ -n $opt[-d] ]] && args+=(-d "$opt[-d]")
-clw "${args[@]}" "${(L)id}"
+
+# Each pick after the first gets a window of its own. cl moves to
+# every window it opens, so come back to this one for the first pick, which
+# opens the way a single pick does.
+if (( $#ids > 1 )); then
+  local id
+  for id in $ids[2,-1]; do clw "${args[@]}" -w "$id"; done
+  tmux select-window -t "$TMUX_PANE"
+fi
+(( ${+opt[-w]} )) && args+=(-w)
+clw "${args[@]}" "$ids[1]"
