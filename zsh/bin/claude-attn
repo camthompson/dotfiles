@@ -135,7 +135,11 @@ case $event in
     tmux set-option -w -t "$TMUX_PANE" $option idle
     # In the background, detached from the hook's output, so the session
     # doesn't wait on it.
-    [[ -n $CLAUDE_ATTN_FOLLOW && $option == @claude ]] && follow_name 25 &> /dev/null &!
+    # An if, not `[[ ]] && ... &!`: zsh backgrounds only the last command of
+    # that list, so a false test would be the hook's exit status.
+    if [[ -n $CLAUDE_ATTN_FOLLOW && $option == @claude ]]; then
+      follow_name 25 &> /dev/null &!
+    fi
     ;;
   prompt|tool)
     tmux set-option -w -t "$TMUX_PANE" $option busy
@@ -155,7 +159,9 @@ case $event in
       tmux set-option -w -t "$TMUX_PANE" $option done
       (( quiet )) || tell "$name is done"
     fi
-    [[ -n $CLAUDE_ATTN_FOLLOW && $option == @claude ]] && follow_name 1
+    if [[ -n $CLAUDE_ATTN_FOLLOW && $option == @claude ]]; then
+      follow_name 1
+    fi
     # A shell back at its prompt with @claude still set: the session that set
     # it may have been killed before SessionEnd could unset it.
     if [[ $option == @shell && -n $claude ]]; then
