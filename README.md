@@ -126,6 +126,8 @@ In tmux, either picker takes several items: `tab` marks each one and `enter` ope
 
 All of these run `claude` in the current window, renamed to the slug for the life of the session and back to automatic naming afterwards. `-w` opens a new window named after the slug instead.
 
+`cr` ([`zsh/func/cr`](zsh/func/cr)) is `claude --resume` with the same window naming: it opens Claude's own session picker, or resumes `cr <name>`, and the window takes the session's name once you have chosen, then goes back to automatic naming when `claude` exits. The session isn't known until you pick, so the rename comes from the `SessionStart` hook: `cr` sets `CLAUDE_ATTN_FOLLOW`, and [`zsh/bin/claude-attn`](zsh/bin/claude-attn) reads the name from Claude Code's registry of running sessions. It follows `/resume` and `/rename` inside that session too. A session that was never named leaves the window's name alone.
+
 To jump between running sessions, `prefix C-c` opens an fzf popup listing every Claude Code process in tmux, started by `cl` or not, with its name, directory, and whether it is busy, and a preview of its pane below the list. The popup is sized to fit: the list plus a preview half the height of the terminal. Choosing one switches to that pane, across tmux sessions too. The list comes from the registry Claude Code keeps at `~/.claude/sessions/`, one JSON file per running process, via [`zsh/bin/claude-pick`](zsh/bin/claude-pick).
 
 `cheatsheet` ([`zsh/bin/cheatsheet`](zsh/bin/cheatsheet)) prints all of this, plus the tmux keys, as a paged reference in the terminal.

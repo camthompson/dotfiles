@@ -612,7 +612,7 @@ ocs() {
 }
 
 alias cc='claude --continue'
-alias cr='claude --resume'
+# cr is a function: ~/.zsh/func/cr
 
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 

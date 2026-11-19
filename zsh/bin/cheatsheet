@@ -44,7 +44,7 @@ A slug starts with what the session is for. `cl` doesn't enforce it.
 | `ct [prompt]` | Scratch session named `tmp-<MMDD>-<HHMM>` in this directory, no name needed; `-w` and `-d` as for `cl` |
 | `claude-pick` | fzf over *running* Claude sessions in tmux, with a pane preview; jumps to the chosen pane |
 | `cc` | `claude --continue`: most recent session in this directory |
-| `cr [name]` | `claude --resume`: the session picker, or a named session |
+| `cr [name]` | `claude --resume`: the session picker, or a named session; the window takes the session's name until claude exits |
 
 Inside Claude: `/rename <name>` names the current session, `/resume <name>`
 switches to another, `/branch` forks the conversation.

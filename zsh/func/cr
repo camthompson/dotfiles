@@ -1,0 +1,26 @@
+# cr: `claude --resume`, with the tmux window named after the session.
+#
+# `cr` opens Claude's session picker and `cr <name>` resumes a named session,
+# as the alias this replaces did. Which session it will be isn't known until
+# you pick, so the rename happens from inside: CLAUDE_ATTN_FOLLOW asks
+# claude-attn, which Claude Code's hooks already run, to rename the window to
+# the session's name once the session starts. A session that was never named
+# leaves the window alone.
+#
+# As with cl, renaming turns off the window's automatic-rename, so the name
+# sticks while claude runs, and cr turns it back on when claude exits. A
+# window that already had a fixed name keeps the session's name afterwards.
+
+emulate -L zsh
+
+if [[ -z $TMUX_PANE ]]; then
+  claude --resume "$@"
+  return
+fi
+
+local auto
+auto=$(tmux display-message -p -t "$TMUX_PANE" '#{automatic-rename}')
+CLAUDE_ATTN_FOLLOW=1 claude --resume "$@"
+local rc=$?
+[[ $auto == 1 ]] && tmux set-window-option -t "$TMUX_PANE" automatic-rename on
+return $rc
